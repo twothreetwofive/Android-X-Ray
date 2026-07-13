@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "static_report.json",
+  "description": "정적 분석(Static Analyzer) 모듈의 출력 스키마. JADX/Apktool 디컴파일 결과와 AndroidManifest.xml 파싱 결과를 바탕으로 작성한다.",
+  "type": "object",
+  "required": ["meta", "permissions", "components", "risk_score"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "분석 대상 APK에 대한 기본 정보",
+      "required": ["apk_name", "package_name", "analyzed_at"],
+      "properties": {
+        "apk_name": { "type": "string", "description": "원본 APK 파일명 (예: anubis.apk)" },
+        "package_name": { "type": "string", "description": "AndroidManifest.xml의 package 속성값" },
+        "sha256": { "type": "string", "description": "APK 파일 해시 (샘플 식별용)" },
+        "analyzed_at": { "type": "string", "format": "date-time", "description": "분석 실행 시각 (ISO 8601)" },
+        "min_sdk": { "type": "integer", "description": "minSdkVersion" },
+        "target_sdk": { "type": "integer", "description": "targetSdkVersion" }
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "description": "Manifest에서 추출한 <uses-permission> 목록",
+      "items": {
+        "type": "object",
+        "required": ["name", "risk_level"],
+        "properties": {
+          "name": { "type": "string", "description": "예: android.permission.READ_SMS" },
+          "risk_level": {
+            "type": "string",
+            "enum": ["high", "medium", "low"],
+            "description": "위험도 분류 (고위험/중위험/저위험)"
+          },
+          "abuse_example": { "type": "string", "description": "악용 예시 설명 (예: 스미싱, 문자 탈취)" }
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "description": "Manifest 내 컴포넌트(Activity/Service/Receiver/Provider) 및 intent-filter 정보",
+      "items": {
+        "type": "object",
+        "required": ["type", "name"],
+        "properties": {
+          "type": { "type": "string", "enum": ["activity", "service", "receiver", "provider"] },
+          "name": { "type": "string", "description": "컴포넌트 클래스 전체 경로" },
+          "exported": { "type": "boolean", "description": "android:exported 값" },
+          "intent_filters": {
+            "type": "array",
+            "items": { "type": "string", "description": "반응하는 action/category (예: android.intent.action.BOOT_COMPLETED)" }
+          }
+        }
+      }
+    },
+    "risk_score": {
+      "type": "object",
+      "description": "권한별 가중치 합산 기반 위험도 점수",
+      "required": ["total", "scale"],
+      "properties": {
+        "total": { "type": "number", "description": "합산 점수" },
+        "scale": { "type": "string", "description": "점수 범위 표기 (예: 0-100)" },
+        "breakdown": {
+          "type": "array",
+          "description": "점수 계산 근거 (권한명 - 가중치)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "permission": { "type": "string" },
+              "weight": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

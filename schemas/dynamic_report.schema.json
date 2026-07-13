@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "dynamic_report.json",
+  "description": "동적 분석(Dynamic Agent) 모듈의 출력 스키마. 에뮬레이터에서 앱을 실행하고 Frida 후킹으로 관찰한 런타임 행위를 기록한다.",
+  "type": "object",
+  "required": ["meta", "hooked_calls", "extracted_strings"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["package_name", "started_at", "duration_sec"],
+      "properties": {
+        "package_name": { "type": "string" },
+        "started_at": { "type": "string", "format": "date-time" },
+        "duration_sec": { "type": "integer", "description": "관찰 시간 제한 (예: 60~90초)" },
+        "emulator_arch": { "type": "string", "description": "예: x86_64, arm64" },
+        "crashed": { "type": "boolean", "description": "실행 중 크래시/재시작 여부" }
+      }
+    },
+    "hooked_calls": {
+      "type": "array",
+      "description": "후킹된 함수 호출 기록 (StringBuilder.append, Base64.decode/encode, Cipher.doFinal 등)",
+      "items": {
+        "type": "object",
+        "required": ["function", "timestamp"],
+        "properties": {
+          "function": { "type": "string", "description": "예: android.util.Base64.decode" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "thread": { "type": "string", "description": "호출 스레드 식별자" },
+          "input_preview": { "type": "string", "description": "인자값 일부 (길이 제한, 민감정보 마스킹 고려)" }
+        }
+      }
+    },
+    "extracted_strings": {
+      "type": "array",
+      "description": "후킹 데이터에서 정제(중복 제거, 최소 길이 필터, Base64/URL 패턴 매칭)한 의미 있는 문자열",
+      "items": {
+        "type": "object",
+        "required": ["value", "source_function", "timestamp"],
+        "properties": {
+          "value": { "type": "string" },
+          "source_function": { "type": "string", "description": "이 문자열을 추출한 후킹 지점" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "looks_like": {
+            "type": "string",
+            "enum": ["base64", "url", "plaintext_credential", "unknown"],
+            "description": "패턴 매칭 결과 추정 분류"
+          }
+        }
+      }
+    }
+  }
+}

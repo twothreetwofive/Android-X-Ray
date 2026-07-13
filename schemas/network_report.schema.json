@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "network_report.json",
+  "description": "네트워크 분석(Traffic Analyzer) 모듈의 출력 스키마. tcpdump로 캡처한 pcap을 tshark/scapy로 파싱한 결과를 기록한다.",
+  "type": "object",
+  "required": ["meta", "dns_queries", "tls_sni", "suspicious"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["package_name", "capture_started_at", "capture_duration_sec"],
+      "properties": {
+        "package_name": { "type": "string" },
+        "capture_started_at": { "type": "string", "format": "date-time" },
+        "capture_duration_sec": { "type": "integer", "description": "동적 분석(Frida) 실행 구간과 동기화된 캡처 시간" },
+        "pcap_file": { "type": "string", "description": "capture.pcap 파일 경로" }
+      }
+    },
+    "dns_queries": {
+      "type": "array",
+      "description": "앱이 조회한 DNS 쿼리 목록",
+      "items": {
+        "type": "object",
+        "required": ["domain", "timestamp"],
+        "properties": {
+          "domain": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "resolved_ip": { "type": "string" }
+        }
+      }
+    },
+    "tls_sni": {
+      "type": "array",
+      "description": "TLS ClientHello의 SNI 필드 목록 (HTTPS 접속 대상 도메인)",
+      "items": {
+        "type": "object",
+        "required": ["sni", "timestamp"],
+        "properties": {
+          "sni": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "dest_ip": { "type": "string" },
+          "dest_port": { "type": "integer" }
+        }
+      }
+    },
+    "suspicious": {
+      "type": "object",
+      "description": "화이트리스트(구글/광고 SDK 등)에 없는, C&C 후보로 판단된 도메인/IP",
+      "properties": {
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "domain": { "type": "string" },
+              "reason": { "type": "string", "description": "예: 화이트리스트 미포함, 하드코딩된 형태" }
+            }
+          }
+        },
+        "ips": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ip": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

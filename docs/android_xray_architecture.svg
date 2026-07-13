@@ -1,0 +1,95 @@
+<svg viewBox="0 0 960 720" xmlns="http://www.w3.org/2000/svg" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="720" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="480" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#111">Android X-Ray 시스템 아키텍처</text>
+
+  <!-- APK Upload -->
+  <rect x="360" y="55" width="240" height="45" rx="6" fill="#e8eefc" stroke="#3b5bdb" stroke-width="1.5"/>
+  <text x="480" y="83" text-anchor="middle" font-size="14" fill="#1c2b52">APK 업로드 (Web Dashboard)</text>
+
+  <line x1="480" y1="100" x2="480" y2="130" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Orchestrator -->
+  <rect x="300" y="130" width="360" height="45" rx="6" fill="#fff3bf" stroke="#e8a400" stroke-width="1.5"/>
+  <text x="480" y="158" text-anchor="middle" font-size="14" fill="#5c4400">Python 메인 파이프라인 (Orchestrator)</text>
+
+  <!-- Branch lines -->
+  <line x1="480" y1="175" x2="480" y2="195" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="195" x2="810" y2="195" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="195" x2="150" y2="215" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="480" y1="195" x2="480" y2="215" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="810" y1="195" x2="810" y2="215" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Module boxes -->
+  <rect x="50" y="215" width="200" height="95" rx="6" fill="#e6fcf5" stroke="#0ca678" stroke-width="1.5"/>
+  <text x="150" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#065f46">① 정적 분석</text>
+  <text x="150" y="256" text-anchor="middle" font-size="11" fill="#065f46">(Static Analyzer)</text>
+  <text x="150" y="276" text-anchor="middle" font-size="10" fill="#065f46">JADX / Apktool 디컴파일</text>
+  <text x="150" y="292" text-anchor="middle" font-size="10" fill="#065f46">Manifest 파싱, 위험도 점수</text>
+
+  <rect x="380" y="215" width="200" height="95" rx="6" fill="#fff0f0" stroke="#e03131" stroke-width="1.5"/>
+  <text x="480" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a1414">② 동적 분석</text>
+  <text x="480" y="256" text-anchor="middle" font-size="11" fill="#7a1414">(Dynamic Agent)</text>
+  <text x="480" y="276" text-anchor="middle" font-size="10" fill="#7a1414">Frida 후킹</text>
+  <text x="480" y="292" text-anchor="middle" font-size="10" fill="#7a1414">평문 데이터 수집</text>
+
+  <rect x="710" y="215" width="200" height="95" rx="6" fill="#eef3ff" stroke="#4263eb" stroke-width="1.5"/>
+  <text x="810" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#1c2b52">③ 네트워크 분석</text>
+  <text x="810" y="256" text-anchor="middle" font-size="11" fill="#1c2b52">(Traffic Analyzer)</text>
+  <text x="810" y="276" text-anchor="middle" font-size="10" fill="#1c2b52">tcpdump 캡처</text>
+  <text x="810" y="292" text-anchor="middle" font-size="10" fill="#1c2b52">scapy/tshark 파싱, C&amp;C 식별</text>
+
+  <!-- sync note between dynamic and network -->
+  <line x1="580" y1="262" x2="710" y2="262" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="645" y="255" text-anchor="middle" font-size="9" fill="#555">같은 실행 구간</text>
+  <text x="645" y="266" text-anchor="middle" font-size="9" fill="#555">동시 진행</text>
+
+  <!-- arrows to json -->
+  <line x1="150" y1="310" x2="150" y2="345" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="480" y1="310" x2="480" y2="345" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="810" y1="310" x2="810" y2="345" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- JSON output boxes -->
+  <rect x="55" y="345" width="190" height="36" rx="4" fill="#f8f9fa" stroke="#868e96"/>
+  <text x="150" y="368" text-anchor="middle" font-size="11" fill="#333">static_report.json</text>
+
+  <rect x="385" y="345" width="190" height="36" rx="4" fill="#f8f9fa" stroke="#868e96"/>
+  <text x="480" y="368" text-anchor="middle" font-size="11" fill="#333">dynamic_report.json</text>
+
+  <rect x="715" y="345" width="190" height="36" rx="4" fill="#f8f9fa" stroke="#868e96"/>
+  <text x="810" y="368" text-anchor="middle" font-size="11" fill="#333">network_report.json</text>
+
+  <!-- converge -->
+  <line x1="150" y1="381" x2="150" y2="400" stroke="#333" stroke-width="1.5"/>
+  <line x1="810" y1="381" x2="810" y2="400" stroke="#333" stroke-width="1.5"/>
+  <line x1="480" y1="381" x2="480" y2="420" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="150" y1="400" x2="810" y2="400" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="400" x2="150" y2="420" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="810" y1="400" x2="810" y2="420" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Integration -->
+  <rect x="300" y="420" width="360" height="55" rx="6" fill="#f3f0ff" stroke="#7048e8" stroke-width="1.5"/>
+  <text x="480" y="443" text-anchor="middle" font-size="13" font-weight="bold" fill="#3f2a8c">④ 결과 통합 (JSON 취합)</text>
+  <text x="480" y="461" text-anchor="middle" font-size="11" fill="#3f2a8c">정적 + 동적 + 네트워크 → 종합 위험도 점수</text>
+
+  <line x1="480" y1="475" x2="480" y2="500" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Dashboard -->
+  <rect x="300" y="500" width="360" height="55" rx="6" fill="#fff5f5" stroke="#f03e3e" stroke-width="1.5"/>
+  <text x="480" y="523" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a1414">⑤ 웹 대시보드 (Streamlit)</text>
+  <text x="480" y="541" text-anchor="middle" font-size="11" fill="#7a1414">권한/문자열/C&amp;C 후보/종합 점수 시각화</text>
+
+  <!-- Execution order note -->
+  <rect x="60" y="590" width="840" height="100" rx="6" fill="#fafafa" stroke="#ced4da"/>
+  <text x="80" y="612" font-size="12" font-weight="bold" fill="#333">실행 순서 설계 원칙</text>
+  <text x="80" y="634" font-size="11" fill="#444">· 정적 분석은 앱 실행이 필요 없어 독립적으로 먼저(또는 병행) 실행 가능</text>
+  <text x="80" y="652" font-size="11" fill="#444">· 동적 분석(Frida)과 네트워크 캡처(tcpdump)는 같은 앱 실행 구간 동안 반드시 동시에 진행되어야 함</text>
+  <text x="80" y="670" font-size="11" fill="#444">· 즉 "정적 분석(독립) → 동적+네트워크(동일 실행 구간에서 동시 진행)" 구조</text>
+</svg>
