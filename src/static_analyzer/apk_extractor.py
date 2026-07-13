@@ -37,6 +37,7 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
     Returns:
         {
             "meta": schema.Meta 형태의 dict,
+            "apk_path": 원본 apk 경로 (Path) — cert_analyzer 등 다른 모듈이 재사용,
             "apktool_dir": apktool 디컴파일 결과 폴더 (Path),
             "jadx_dir": jadx 디컴파일 결과 폴더 (Path),
         }
@@ -58,4 +59,9 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
     apktool_dir = run_apktool(apk_path, work_dir / "apktool", timeout=timeout)
     jadx_dir = run_jadx(apk_path, work_dir / "jadx", timeout=timeout)
 
-    return {"meta": meta, "apktool_dir": apktool_dir, "jadx_dir": jadx_dir}
+    return {
+        "meta": meta,
+        "apk_path": apk_path,
+        "apktool_dir": apktool_dir,
+        "jadx_dir": jadx_dir,
+    }
