@@ -95,7 +95,7 @@ Frida로 앱을 후킹해서 런타임 행위(문자열 복호화, 암호화 함
 | A | 예원 | Frida 제어 스크립트 (세션 생성, attach/spawn) | `frida_controller.py` |
 | B | 소정 | JS 후킹 스크립트 (문자열/Base64/Cipher 등) | `hooks.js` |
 | C | 은아 | Python-JS 연동, 메시지 파싱/필터링 | 메시지 파서, `dynamic_report.json` |
-| D | 은서 (본인) | 실행 시나리오 자동화 (ADB/에뮬레이터) | `scenario_runner.py`, 시나리오 정의서 |
+| D | 은서 | 실행 시나리오 자동화 (ADB/에뮬레이터) | `scenario_runner.py`, 시나리오 정의서 |
 
 작업 비중: A > C > B > D
 
