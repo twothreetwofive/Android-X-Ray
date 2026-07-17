@@ -1,8 +1,7 @@
-// dynamic_analyzer/hooks.js
-// B(소정) 작성, 4주차 과제. C의 schema.py(HookEvent) 포맷에 맞춰 send() 한다.
-// 필드를 바꿔야 하면 C(은아)와 먼저 맞추고 schema.py부터 고칠 것.
+// C의 schema.py(HookEvent) 포맷에 맞춰 send() 한다.
+// 필드를 바꿔야 하면 C와 먼저 맞추고 schema.py부터 고칠 것.
 //
-// 단독 테스트 (2일차, Python/frida_controller.py 없이 가능):
+// Python/frida_controller.py 없이 테스트 가능:
 //   frida -U -f <패키지명> -l hooks.js
 
 // ── 전송 전 노이즈 사전 필터 ──
