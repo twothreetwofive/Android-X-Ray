@@ -3,6 +3,7 @@
 //
 // Python/frida_controller.py 없이 테스트 가능:
 //   frida -U -f <패키지명> -l hooks.js
+const Java = require('frida-java-bridge');
 
 // ── 전송 전 노이즈 사전 필터 ──
 // 여기서 거르는 건 "명백히 의미 없는 값"뿐이고, 최종 분류/세션 단위 통계는 C의 message_parser.py 몫.
@@ -113,10 +114,9 @@ function hookCipher() {
 }
 
 // custom_xor 후킹은 4일차 몫 (표준 API로 안 잡히는 패턴이라 대상 앱 리버싱 후 추가 예정)
-
 Java.perform(function () {
-    hookStringBuilder();
-    hookBase64();
-    hookCipher();
-    console.log("[hooks.js] string_builder / base64 / cipher 후킹 등록 완료");
-});
+        hookStringBuilder();
+        hookBase64();
+        hookCipher();
+        console.log("[hooks.js] string_builder / base64 / cipher 후킹 등록 완료");
+    });
