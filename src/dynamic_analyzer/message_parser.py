@@ -3,6 +3,7 @@ from .schema import HookEvent
 
 def on_message(message: dict, data=None):
     """script.on('message', on_message) 에 그대로 등록할 콜백"""
+    print("[디버그] 전체 메시지:", message)  # 이 줄 추가
     if message["type"] == "send":
         payload: HookEvent = message["payload"]
         _handle_hook_event(payload)
