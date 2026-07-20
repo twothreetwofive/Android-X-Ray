@@ -1,0 +1,115 @@
+{
+  "package_name": "com.android.chrome",
+  "session_duration_sec": 0,
+  "total_events_captured": 11,
+  "total_events_filtered": 10,
+  "events": [
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:56.227Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "18765ebe",
+      "extra": {},
+      "thread_id": 8930
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:56.236Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "190e6c42a70",
+      "extra": {},
+      "thread_id": 8930
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:56.952Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Using linker: ",
+      "extra": {},
+      "thread_id": 8994
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:56.954Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "org.chromium.base.library_loader.ModernLinker",
+      "extra": {},
+      "thread_id": 8994
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:57.541Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Loaded native library version number \"",
+      "extra": {},
+      "thread_id": 8994
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:57.544Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "83.0.4103.106",
+      "extra": {},
+      "thread_id": 8994
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-18T07:21:57.909Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGU...",
+      "extra": {
+        "direction": "encode"
+      },
+      "thread_id": 8930
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-18T07:21:57.910Z",
+      "class_name": "android.util.Base64",
+      "method_name": "decode",
+      "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGU...",
+      "extra": {
+        "direction": "decode"
+      },
+      "thread_id": 8930
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:58.418Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Error while loading asset ",
+      "extra": {},
+      "thread_id": 8930
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-18T07:21:58.420Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "assets/stored-locales/en-US.pak",
+      "extra": {},
+      "thread_id": 8930
+    }
+  ],
+  "plaintext_candidates": [
+    "18765ebe",
+    "190e6c42a70",
+    "Using linker: ",
+    "org.chromium.base.library_loader.ModernLinker",
+    "Loaded native library version number \"",
+    "83.0.4103.106",
+    "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGU...",
+    "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGU...",
+    "Error while loading asset ",
+    "assets/stored-locales/en-US.pak"
+  ],
+  "errors": []
+}

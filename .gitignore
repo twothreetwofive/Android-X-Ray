@@ -5,3 +5,4 @@ venv/
 *:Zone.Identifier
 work/
 *.apk
+node_modules/

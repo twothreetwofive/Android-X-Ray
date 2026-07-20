@@ -60,6 +60,7 @@ src/static_analyzer/
   apk 파일 자체에서 바로 Manifest/서명 인증서를 읽기 때문에, apktool로 압축을 풀 필요가
   없음. 반면 `code_scanner`/`string_extractor`/`sdk_detector`는 jadx가 만든 자바 소스 트리
   텍스트를 훑어야 해서 `apk_extractor`가 만든 `jadx_dir`이 필요함.
+  `code_analysis`/`strings`필드 (코드 스캔, 문자열 추출)는 디컴파일된 소스가 있어야 분석 가능함. 
 - **schema.py** — 실제 코드가 아니라 "출력 형식 계약"만 있는 파일. 새 필드를 추가/변경하려면
   여기부터 고치고 팀에 공유해야 함 (임의로 바꾸면 다른 사람 코드가 깨짐).
 - **exceptions.py** — `StaticAnalysisError`가 최상위 예외. `decompiler.py`의

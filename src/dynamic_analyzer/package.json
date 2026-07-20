@@ -1,0 +1,17 @@
+{
+  "name": "dynamic_analyzer",
+  "version": "1.0.0",
+  "description": "Frida hooks.js 빌드용 npm 프로젝트 (frida-compile로 hooks.bundle.js 생성)",
+  "private": true,
+  "scripts": {
+    "build": "frida-compile hooks.js -o hooks.bundle.js -B iife"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "frida-java-bridge": "^7.0.13"
+  },
+  "devDependencies": {
+    "frida-compile": "^19.0.5"
+  }
+}
