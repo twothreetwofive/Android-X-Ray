@@ -3,7 +3,7 @@
 //
 // Python/frida_controller.py 없이 테스트 가능:
 //   frida -U -f <패키지명> -l hooks.js
-const Java = require('frida-java-bridge');
+import Java from 'frida-java-bridge';
 
 // ── 전송 전 노이즈 사전 필터 ──
 // 여기서 거르는 건 "명백히 의미 없는 값"뿐이고, 최종 분류/세션 단위 통계는 C의 message_parser.py 몫.

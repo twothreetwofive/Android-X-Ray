@@ -118,6 +118,6 @@ if __name__ == "__main__":
     print("연결된 디바이스:", controller.device.name)
 
     targets = ["com.google.android.calendar", "com.google.android.deskclock"]  # 실제 설치된 패키지로 교체
-    results = controller.run_batch(targets, "dummy_hook.js", observe_sec=3.0)
+    results = controller.run_batch(targets, "hooks.bundle.js", observe_sec=3.0)
     for r in results:
         print(r)
