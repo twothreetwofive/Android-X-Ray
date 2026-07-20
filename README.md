@@ -9,7 +9,7 @@
 | 모듈 | 상태 |
 |---|---|
 | 정적 분석 (`src/static_analyzer/`) | ✅ 완료 |
-| 동적 분석 (Frida) | 🔜 2026-07-15(수) 시작 |
+| 동적 분석 (Frida) | 🚧 진행 중 (`feature/dynamic-agent`, A/B/C/D 4일차까지 완료, 5일차 전원 통합 남음) |
 | 네트워크 분석 | 예정 |
 | 웹 대시보드 | 예정 |
 
@@ -90,12 +90,15 @@ src/static_analyzer/
 Frida로 앱을 후킹해서 런타임 행위(문자열 복호화, 암호화 함수 호출 등)를 관찰하는 모듈.
 5일 일정, 전원 동일 기간으로 진행.
 
-| 역할 | 담당 | 내용 | 산출물 |
-|---|---|---|---|
-| A | 예원 | Frida 제어 스크립트 (세션 생성, attach/spawn) | `frida_controller.py` |
-| B | 소정 | JS 후킹 스크립트 (문자열/Base64/Cipher 등) | `hooks.js` |
-| C | 은아 | Python-JS 연동, 메시지 파싱/필터링 | 메시지 파서, `dynamic_report.json` |
-| D | 은서 | 실행 시나리오 자동화 (ADB/에뮬레이터) | `scenario_runner.py`, 시나리오 정의서 |
+| 역할 | 담당 | 내용 | 산출물 | 상태 |
+|---|---|---|---|---|
+| A | 예원 | Frida 제어 스크립트 (세션 생성, attach/spawn) | `frida_controller.py` | 4일차까지 완료 (재시도/배치 실행 포함) |
+| B | 소정 | JS 후킹 스크립트 (문자열/Base64/Cipher 등) | `hooks.js` | 4일차까지 완료, `custom_xor`은 실 샘플 부재로 보류 |
+| C | 은아 | Python-JS 연동, 메시지 파싱/필터링 | 메시지 파서, `dynamic_report.json` | 4일차까지 완료, 인프라 버그(esbuild interop) 수정 포함 |
+| D | 은서 | 실행 시나리오 자동화 (ADB/에뮬레이터) | `scenario_runner.py`, 시나리오 정의서 | 4일차까지 완료(문법 검증만, 실기기 실행 미검증). `login_flow`/`permission_request` 좌표는 실 샘플 부재로 보류 |
+
+5일차(전원 통합, 실제 앱 2개로 A→B→C→D end-to-end 실행)는 아직 진행 전.
+자세한 진행 상황은 `docs/동적분석/`의 팀원별 4주차 과제 보고서 참고.
 
 작업 비중: A > C > B > D
 
