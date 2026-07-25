@@ -1,0 +1,1193 @@
+{
+  "package_name": "com.google.android.calendar",
+  "session_duration_sec": 9,
+  "total_events_captured": 152,
+  "total_events_filtered": 117,
+  "events": [
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.119Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "SafetyNetV3",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.119Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "OrphanEventsDataCleanup",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.121Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UnifiedSyncAndStore",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.122Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "PrimesApiLogging",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.124Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "GrowthKit",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.125Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ThirdPartyConferencesEditing",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.127Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "RoomsOrdering",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.128Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Creation",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.130Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "DisableExperimentalOptionsToggling",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.131Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "DisableAppVersionInDrawer",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.133Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "BatteryInstrumentation",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.134Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ProdExtendedMemoryMonitoring",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.136Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "RendezVousOff",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.137Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "PrimesTracing",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.140Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ClientErrorLogging",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.141Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ScheduleVital",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.144Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "CacheCalendarReads",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.145Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "BackgroundExecutionPolicy",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.149Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Hats",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.151Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "PrimesNetwork",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.153Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "RemoteTracing",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.154Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "SyncLab",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.156Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "TitleAutogen",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.157Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "GrpcCompression",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.160Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Streamz",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.162Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ConcurrentV2AProtoDeserialization",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.164Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "FuzzPeriodicSyncs",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.165Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Cronet",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.166Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "TimelineEarlyLoad",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.168Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "TimelineNavigation",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.170Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ShipshapeNudgeSync",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.171Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UnifiedSyncRetryTemporaryAuthFailures",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.172Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UnifiedSyncNetworkDiagnostics",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.174Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "CalendarProviderStats",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.176Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "TimelineAdapterBackgroundThread",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.178Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Peeking",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.179Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "SendEventFeedback",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.180Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "DirectActions",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.183Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UnifiedSyncEndpoints",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.184Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "SplitStoreInvalidation",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.187Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "FuzzWidgetAlarms",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.189Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Tasks",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.190Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "TimelineAdapterPrioritization",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.191Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ChimeCalendar",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.193Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ChimeForUnifiedSync",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.195Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ChimeForApiarySync",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.196Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "InAppSync",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.197Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UnifiedSyncRpcLogging",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.198Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "VerticalScrollMonthView",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.199Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "MaybeChip",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.200Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "NewOoo",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.201Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "FlightStatusUpdates",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.202Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "CalendarIntegration",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.203Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ForegroundServiceSync",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.204Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "NewSmartmailEdit",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.206Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "PeekingPreloadCache",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.207Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "PeekingPreresolveAccounts",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.208Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Wildlife",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.208Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ChatWithMeetingGuests",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.209Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "com.google.android.gm.lite",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.210Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "com.google.android.apps.dynamite",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.211Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UnifiedSyncDatabaseChecker",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.212Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "OptimizedCpLoading",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.213Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "RefactorAndroidTextTime",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.215Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "PeekingFeatureHighlight",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.216Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "EmailGuestsButton",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.217Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "CrossProfile",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.218Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ContactsInPeopleSheet",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.219Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "RegisterChimeAccountsOnAppUpdate",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.220Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "GoogleMeetBranding",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.221Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "MeetSharing",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.222Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "MeetTemplateAutoAdd",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.223Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "MeetForceAutoAddForConsumer",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.224Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "NotificationVital",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.225Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "SipForMeet",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.226Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "SubscribeToCalendarFeature",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.228Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "CrossProfilePromo",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.230Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "UpdateNotificationContent",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.231Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ConferenceSegmentElevation",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.232Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ChatScheduling",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.233Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "MeetPromo",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.345Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "supports_settings",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.346Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "supports_habits",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.348Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "supports_events",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.349Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "supports_calendars",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.378Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "phenotype__",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.379Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "com.google.android.libraries.social.populous",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.381Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "com.google.android.calendar",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.410Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "sync",
+      "extra": {},
+      "thread_id": 14880
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.424Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "sync-0-",
+      "extra": {},
+      "thread_id": 14880
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.433Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "database",
+      "extra": {},
+      "thread_id": 14880
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.435Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "database-1-",
+      "extra": {},
+      "thread_id": 14880
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.455Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "api-2-",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.467Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "20260725",
+      "extra": {},
+      "thread_id": 14883
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.468Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": ".log",
+      "extra": {},
+      "thread_id": 14883
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.483Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "sql-3-",
+      "extra": {},
+      "thread_id": 14891
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.487Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "JobScheduler returned RESULT_FAILURE. Did you forget to add [",
+      "extra": {},
+      "thread_id": 14877
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.487Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "java/com/google/android/libraries/notifications/entrypoints/scheduled",
+      "extra": {},
+      "thread_id": 14877
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.488Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "] to your app dependencies?",
+      "extra": {},
+      "thread_id": 14877
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.500Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "pluginId",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.502Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "=? AND ",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.503Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "entityFingerprint",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.508Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "notificationType",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.510Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "notificationTriggerMillis",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-25T05:55:58.515Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "Q0hJTUVfQU5EUk9JRF9TREs",
+      "extra": {
+        "direction": "encode"
+      },
+      "thread_id": 14877
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-25T05:55:58.515Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "MTo3NDc2NTQ1MjAyMjA6YW5kcm9pZDowMDAwMDAwMDAwMDAwMDAw",
+      "extra": {
+        "direction": "encode"
+      },
+      "thread_id": 14877
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.546Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "firebase-installations-executor-",
+      "extra": {},
+      "thread_id": 14899
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.567Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "2016607548",
+      "extra": {},
+      "thread_id": 14892
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.569Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "2020.18.5-313192754-release",
+      "extra": {},
+      "thread_id": 14892
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.627Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ownerAccount",
+      "extra": {},
+      "thread_id": 14913
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.629Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "account_name",
+      "extra": {},
+      "thread_id": 14913
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.630Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "account_type",
+      "extra": {},
+      "thread_id": 14913
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-07-25T05:55:58.744Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Primary account is null",
+      "extra": {},
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-25T05:55:58.784Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+      "extra": {
+        "direction": "encode"
+      },
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-25T05:55:58.784Z",
+      "class_name": "android.util.Base64",
+      "method_name": "decode",
+      "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+      "extra": {
+        "direction": "decode"
+      },
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-25T05:55:58.785Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+      "extra": {
+        "direction": "encode"
+      },
+      "thread_id": 14841
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-07-25T05:55:58.786Z",
+      "class_name": "android.util.Base64",
+      "method_name": "decode",
+      "raw_value": "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+      "extra": {
+        "direction": "decode"
+      },
+      "thread_id": 14841
+    }
+  ],
+  "plaintext_candidates": [
+    "SafetyNetV3",
+    "OrphanEventsDataCleanup",
+    "UnifiedSyncAndStore",
+    "PrimesApiLogging",
+    "GrowthKit",
+    "ThirdPartyConferencesEditing",
+    "RoomsOrdering",
+    "Creation",
+    "DisableExperimentalOptionsToggling",
+    "DisableAppVersionInDrawer",
+    "BatteryInstrumentation",
+    "ProdExtendedMemoryMonitoring",
+    "RendezVousOff",
+    "PrimesTracing",
+    "ClientErrorLogging",
+    "ScheduleVital",
+    "CacheCalendarReads",
+    "BackgroundExecutionPolicy",
+    "Hats",
+    "PrimesNetwork",
+    "RemoteTracing",
+    "SyncLab",
+    "TitleAutogen",
+    "GrpcCompression",
+    "Streamz",
+    "ConcurrentV2AProtoDeserialization",
+    "FuzzPeriodicSyncs",
+    "Cronet",
+    "TimelineEarlyLoad",
+    "TimelineNavigation",
+    "ShipshapeNudgeSync",
+    "UnifiedSyncRetryTemporaryAuthFailures",
+    "UnifiedSyncNetworkDiagnostics",
+    "CalendarProviderStats",
+    "TimelineAdapterBackgroundThread",
+    "Peeking",
+    "SendEventFeedback",
+    "DirectActions",
+    "UnifiedSyncEndpoints",
+    "SplitStoreInvalidation",
+    "FuzzWidgetAlarms",
+    "Tasks",
+    "TimelineAdapterPrioritization",
+    "ChimeCalendar",
+    "ChimeForUnifiedSync",
+    "ChimeForApiarySync",
+    "InAppSync",
+    "UnifiedSyncRpcLogging",
+    "VerticalScrollMonthView",
+    "MaybeChip",
+    "NewOoo",
+    "FlightStatusUpdates",
+    "CalendarIntegration",
+    "ForegroundServiceSync",
+    "NewSmartmailEdit",
+    "PeekingPreloadCache",
+    "PeekingPreresolveAccounts",
+    "Wildlife",
+    "ChatWithMeetingGuests",
+    "com.google.android.gm.lite",
+    "com.google.android.apps.dynamite",
+    "UnifiedSyncDatabaseChecker",
+    "OptimizedCpLoading",
+    "RefactorAndroidTextTime",
+    "PeekingFeatureHighlight",
+    "EmailGuestsButton",
+    "CrossProfile",
+    "ContactsInPeopleSheet",
+    "RegisterChimeAccountsOnAppUpdate",
+    "GoogleMeetBranding",
+    "MeetSharing",
+    "MeetTemplateAutoAdd",
+    "MeetForceAutoAddForConsumer",
+    "NotificationVital",
+    "SipForMeet",
+    "SubscribeToCalendarFeature",
+    "CrossProfilePromo",
+    "UpdateNotificationContent",
+    "ConferenceSegmentElevation",
+    "ChatScheduling",
+    "MeetPromo",
+    "supports_settings",
+    "supports_habits",
+    "supports_events",
+    "supports_calendars",
+    "phenotype__",
+    "com.google.android.libraries.social.populous",
+    "com.google.android.calendar",
+    "sync",
+    "sync-0-",
+    "database",
+    "database-1-",
+    "api-2-",
+    "20260725",
+    ".log",
+    "sql-3-",
+    "JobScheduler returned RESULT_FAILURE. Did you forget to add [",
+    "java/com/google/android/libraries/notifications/entrypoints/scheduled",
+    "] to your app dependencies?",
+    "pluginId",
+    "=? AND ",
+    "entityFingerprint",
+    "notificationType",
+    "notificationTriggerMillis",
+    "Q0hJTUVfQU5EUk9JRF9TREs",
+    "MTo3NDc2NTQ1MjAyMjA6YW5kcm9pZDowMDAwMDAwMDAwMDAwMDAw",
+    "firebase-installations-executor-",
+    "2016607548",
+    "2020.18.5-313192754-release",
+    "ownerAccount",
+    "account_name",
+    "account_type",
+    "Primary account is null",
+    "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+    "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+    "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+    "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n"
+  ],
+  "errors": []
+}
