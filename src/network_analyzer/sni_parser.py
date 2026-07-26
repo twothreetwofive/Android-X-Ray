@@ -9,7 +9,6 @@ from __future__ import annotations
 import subprocess
 from datetime import datetime, timezone
 
-
 def parse_sni(pcap_path: str) -> list[dict]:
     """pcap 파일에서 TLS ClientHello의 SNI를 추출한다.
 
@@ -31,22 +30,41 @@ def parse_sni(pcap_path: str) -> list[dict]:
     result = subprocess.run(cmd, capture_output=True, text=True, check=True)
 
     entries: list[dict] = []
+    skipped_no_sni = 0
     for line in result.stdout.splitlines():
         if not line.strip():
             continue
         parts = line.split("|")
         if len(parts) != 4:
             continue
-        epoch_str, dest_ip, dest_port, sni = parts
+        epoch_str, dest_ip, dest_port_raw, sni = parts
+
         if not sni:
-            continue
-        timestamp = datetime.fromtimestamp(float(epoch_str), tz=timezone.utc).isoformat()
+            skipped_no_sni += 1
+            continue  # ECH 사용 또는 세션 재개(resumption) 가능성
+
+        # tshark가 필드값을 콤마로 여러 개 반환하는 경우 방어 (예: "443,443")
+        dest_port = None
+        if dest_port_raw:
+            try:
+                dest_port = int(dest_port_raw.split(",")[0])
+            except ValueError:
+                dest_port = None
+
+        timestamp = datetime.fromtimestamp(
+            float(epoch_str.split(",")[0]), tz=timezone.utc
+        ).isoformat()
+
         entries.append({
-            "sni": sni,
+            "sni": sni.split(",")[0],
             "timestamp": timestamp,
-            "dest_ip": dest_ip,
-            "dest_port": int(dest_port) if dest_port else None,
+            "dest_ip": dest_ip.split(",")[0] if dest_ip else None,
+            "dest_port": dest_port,
         })
+
+    if skipped_no_sni > 0:
+        print(f"[경고] SNI 없는 ClientHello {skipped_no_sni}건 건너뜀 (ECH 또는 세션 재개 가능성)")
+
     return entries
 
 import json
