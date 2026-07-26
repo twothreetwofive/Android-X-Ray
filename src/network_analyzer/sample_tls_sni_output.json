@@ -1,0 +1,158 @@
+[
+  {
+    "sni": "settings-win.data.microsoft.com",
+    "timestamp": "2026-07-25T15:53:14.780971+00:00",
+    "dest_ip": "40.84.85.40",
+    "dest_port": 443
+  },
+  {
+    "sni": "velog.io",
+    "timestamp": "2026-07-25T15:53:15.878697+00:00",
+    "dest_ip": "54.116.248.54",
+    "dest_port": 443
+  },
+  {
+    "sni": "content-autofill.googleapis.com",
+    "timestamp": "2026-07-25T15:53:18.450448+00:00",
+    "dest_ip": "172.217.116.4",
+    "dest_port": null
+  },
+  {
+    "sni": "login.microsoftonline.com",
+    "timestamp": "2026-07-25T15:53:18.886710+00:00",
+    "dest_ip": "20.190.148.162",
+    "dest_port": 443
+  },
+  {
+    "sni": "webshell.suite.office.com",
+    "timestamp": "2026-07-25T15:53:19.153922+00:00",
+    "dest_ip": "52.110.15.77",
+    "dest_port": 443
+  },
+  {
+    "sni": "webshell.suite.office.com",
+    "timestamp": "2026-07-25T15:53:19.163829+00:00",
+    "dest_ip": "52.110.15.77",
+    "dest_port": 443
+  },
+  {
+    "sni": "webshell.suite.office.com",
+    "timestamp": "2026-07-25T15:53:19.258556+00:00",
+    "dest_ip": "52.110.15.77",
+    "dest_port": null
+  },
+  {
+    "sni": "webshell.suite.office.com",
+    "timestamp": "2026-07-25T15:53:19.272649+00:00",
+    "dest_ip": "52.110.15.77",
+    "dest_port": null
+  },
+  {
+    "sni": "login.microsoftonline.com",
+    "timestamp": "2026-07-25T15:53:19.649932+00:00",
+    "dest_ip": "20.190.148.162",
+    "dest_port": 443
+  },
+  {
+    "sni": "www.inflearn.com",
+    "timestamp": "2026-07-25T15:53:19.737643+00:00",
+    "dest_ip": "52.85.128.22",
+    "dest_port": 443
+  },
+  {
+    "sni": "www.google.com",
+    "timestamp": "2026-07-25T15:53:20.788774+00:00",
+    "dest_ip": "142.251.156.119",
+    "dest_port": null
+  },
+  {
+    "sni": "www.googleapis.com",
+    "timestamp": "2026-07-25T15:53:20.830944+00:00",
+    "dest_ip": "216.239.32.223",
+    "dest_port": null
+  },
+  {
+    "sni": "lh3.google.com",
+    "timestamp": "2026-07-25T15:53:20.939057+00:00",
+    "dest_ip": "142.250.199.206",
+    "dest_port": null
+  },
+  {
+    "sni": "ogads-pa.clients6.google.com",
+    "timestamp": "2026-07-25T15:53:21.019799+00:00",
+    "dest_ip": "142.250.199.74",
+    "dest_port": null
+  },
+  {
+    "sni": "lh3.googleusercontent.com",
+    "timestamp": "2026-07-25T15:53:21.022981+00:00",
+    "dest_ip": "142.250.197.129",
+    "dest_port": null
+  },
+  {
+    "sni": "github.com",
+    "timestamp": "2026-07-25T15:53:21.483113+00:00",
+    "dest_ip": "20.200.245.247",
+    "dest_port": 443
+  },
+  {
+    "sni": "outlook.office.com",
+    "timestamp": "2026-07-25T15:53:21.755464+00:00",
+    "dest_ip": "40.99.16.194",
+    "dest_port": null
+  },
+  {
+    "sni": "outlook.office.com",
+    "timestamp": "2026-07-25T15:53:21.765836+00:00",
+    "dest_ip": "40.99.16.194",
+    "dest_port": null
+  },
+  {
+    "sni": "res.public.onecdn.static.microsoft",
+    "timestamp": "2026-07-25T15:53:21.991868+00:00",
+    "dest_ip": "23.211.14.152",
+    "dest_port": null
+  },
+  {
+    "sni": "play.google.com",
+    "timestamp": "2026-07-25T15:53:22.026086+00:00",
+    "dest_ip": "142.250.198.174",
+    "dest_port": null
+  },
+  {
+    "sni": "beacons.gcp.gvt2.com",
+    "timestamp": "2026-07-25T15:53:22.531538+00:00",
+    "dest_ip": "142.250.20.94",
+    "dest_port": null
+  },
+  {
+    "sni": "outlook.cloud.microsoft",
+    "timestamp": "2026-07-25T15:53:22.654847+00:00",
+    "dest_ip": "52.97.118.98",
+    "dest_port": null
+  },
+  {
+    "sni": "outlook.cloud.microsoft",
+    "timestamp": "2026-07-25T15:53:22.666706+00:00",
+    "dest_ip": "52.97.118.98",
+    "dest_port": null
+  },
+  {
+    "sni": "loki.delve.office.com",
+    "timestamp": "2026-07-25T15:53:24.005219+00:00",
+    "dest_ip": "23.103.239.101",
+    "dest_port": null
+  },
+  {
+    "sni": "loki.delve.office.com",
+    "timestamp": "2026-07-25T15:53:24.016961+00:00",
+    "dest_ip": "23.103.239.101",
+    "dest_port": null
+  },
+  {
+    "sni": "res-1.cdn.office.net",
+    "timestamp": "2026-07-25T15:53:24.037428+00:00",
+    "dest_ip": "23.197.49.18",
+    "dest_port": 443
+  }
+]

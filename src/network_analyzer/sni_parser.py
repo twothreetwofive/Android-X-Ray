@@ -49,9 +49,10 @@ def parse_sni(pcap_path: str) -> list[dict]:
         })
     return entries
 
+import json
 
 if __name__ == "__main__":
-    results = parse_sni(r"C:\Users\mindy\Downloads\test.pcapng")  # 어제 저장한 파일 경로로 교체
-    for r in results:
-        print(r)
-    print(f"\n총 {len(results)}개 SNI 추출됨")
+    results = parse_sni(r"C:\workspace\23.25\Android-X-Ray\test.pcapng")
+    with open("sample_tls_sni_output.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=2)
+    print(f"총 {len(results)}개 SNI 추출됨 -> sample_tls_sni_output.json 저장 완료")
