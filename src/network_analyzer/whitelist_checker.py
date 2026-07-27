@@ -4,11 +4,12 @@
 B(dns_parser.py)/C(sni_parser.py)가 만드는 도메인 목록을 이 화이트리스트와
 대조해서 suspicious.domains를 채우는 데 쓴다.
 
-IP 기반 판별(suspicious.ips, 하드코딩된 IP 패턴)은 4일차 범위라 아직 없음.
+IP 기반 판별(suspicious.ips)은 ip_checker.py 참고(3~4일차에 완성).
 """
 
 from typing import List
 
+from .ip_checker import is_ip_literal
 from .schema import SuspiciousDomain
 
 # 카테고리별 정리. 전체를 다 덮을 순 없어서, 실제 캡처에서 자주 보이는데
@@ -73,12 +74,22 @@ def is_whitelisted(domain: str) -> bool:
 
 
 def find_suspicious_domains(domains: List[str]) -> List[SuspiciousDomain]:
-    """화이트리스트에 없는 도메인만 골라 suspicious.domains 형식으로 반환."""
+    """화이트리스트에 없는 도메인만 골라 suspicious.domains 형식으로 반환.
+
+    domain/sni 필드에 호스트명 대신 IP가 그대로 들어있는 경우(예: DNS 조회 없이
+    하드코딩된 IP로 접속)는 화이트리스트 미포함과 구분해서 "하드코딩된 형태"로 표시한다.
+    """
     seen = set()
     result: List[SuspiciousDomain] = []
     for domain in domains:
         normalized = domain.lower().rstrip(".")
-        if normalized in seen or is_whitelisted(normalized):
+        if normalized in seen:
+            continue
+        if is_ip_literal(normalized):
+            seen.add(normalized)
+            result.append({"domain": normalized, "reason": "하드코딩된 형태"})
+            continue
+        if is_whitelisted(normalized):
             continue
         seen.add(normalized)
         result.append({"domain": normalized, "reason": "화이트리스트 미포함"})

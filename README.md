@@ -10,7 +10,7 @@
 |---|---|
 | 정적 분석 (`src/static_analyzer/`) | ✅ 완료 |
 | 동적 분석 (Frida) | 🚧 진행 중 (`feature/dynamic-agent`, A/B/C/D 4일차까지 완료, 5일차 전원 통합 남음) |
-| 네트워크 분석 | 🚧 진행 중 (D 1~2일차 완료, `feature/network-analyzer` 예정) |
+| 네트워크 분석 | 🚧 진행 중 (D 1~4일차 완료, A/B/C 통합 및 5일차 남음, `feature/network-analyzer`) |
 | 웹 대시보드 | 예정 |
 
 ---
@@ -153,18 +153,26 @@ C는 A(세션)+B(후킹)가 둘 다 있어야 실제 메시지 흐름을 검증�
 | A | 은아 | tcpdump 캡처 자동화, Frida 실행 구간과 동기화 | `packet_capturer.py` | 예정 |
 | B | 소정 | DNS 파싱 | `dns_parser.py` → `dns_queries` | 예정 |
 | C | 예원 | TLS SNI 파싱 | `sni_parser.py` → `tls_sni` | 예정 |
-| D | 은서 | 화이트리스트 구축 + 의심 도메인/IP 판별 + 최종 조립 | `schema.py`, `whitelist_checker.py` | 1~2일차 완료 |
+| D | 은서 | 화이트리스트 구축 + 의심 도메인/IP 판별 + 최종 조립 | `schema.py`, `whitelist_checker.py`, `ip_checker.py`, `report_builder.py` | 1~4일차 완료 |
 
-**D 1~2일차 완료 내용** (`src/network_analyzer/`):
+**D 1~4일차 완료 내용** (`src/network_analyzer/`):
 - `schema.py` — `schemas/network_report.schema.json`을 TypedDict로 옮긴 팀 공유 계약
 - `exceptions.py` — `NetworkAnalysisError`
 - `whitelist_checker.py` — Google/Play services, 광고 SDK(Unity Ads/AppLovin/Vungle 등),
   분석/크래시 리포팅(Sentry/Mixpanel 등), CDN 카테고리로 정리한 화이트리스트 도메인
   ~35개 + `is_whitelisted()`(서브도메인 매칭) + `find_suspicious_domains()`
-  (화이트리스트 미포함 도메인만 `suspicious.domains` 형식으로 반환)
-- 상세 진행 내용은 `docs/네트워크분석/5주차보고서(1).md` 참고 (미커밋, 로컬 문서)
-- IP 기반 판별(`suspicious.ips`)은 4일차 범위라 아직 없음. A의 실제 pcap, B/C의
-  실제 `dns_queries`/`tls_sni` 출력이 나와야 화이트리스트를 실전 검증 가능
+  (화이트리스트 미포함 도메인 또는 IP 리터럴 도메인을 `suspicious.domains` 형식으로 반환)
+- `ip_checker.py` (3~4일차 신규) — 사설/루프백/링크로컬 IP를 정상으로 간주해 제외하고,
+  남은 공인 IP를 "하드코딩된 직접 접속 후보"로 분류하는 `find_suspicious_ips()`,
+  도메인/SNI 필드에 IP가 그대로 들어있는지 확인하는 `is_ip_literal()`
+- `report_builder.py` (4일차 신규) — A/B/C의 `meta`/`dns_queries`/`tls_sni`를 받아
+  `whitelist_checker`/`ip_checker`로 `suspicious`를 채워서 `schema.py`의
+  `NetworkAnalysisResult` 형태로 최종 조립하는 `build_network_report()`
+- 상세 진행 내용은 `docs/네트워크분석/5주차보고서(1).md`(1~2일차),
+  `5주차보고서(2).md`(3~4일차) 참고 (미커밋, 로컬 문서)
+- A/B/C 코드는 아직 이 브랜치에 통합 전이라, 검증은 A가 5주차에 실제로 얻은 캡처
+  결과와 C가 실제로 캡처한 SNI 샘플(각자 PDF 참고)을 참고 데이터로 사용해서 진행함.
+  실제 `dns_queries`/`tls_sni` 산출물로 전체 파이프라인을 돌려보는 건 5일차(전원 통합) 범위
 
 작업 비중/스케줄은 동적 분석 모듈과 동일한 "3일차 인수인계 데드라인" 구조를 따름
 (A가 캡처한 pcap이 있어야 B/C가 실데이터로 검증 가능, D는 B/C 출력이 있어야
