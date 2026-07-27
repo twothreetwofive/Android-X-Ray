@@ -6,3 +6,6 @@ venv/
 work/
 *.apk
 node_modules/
+
+# run_test.py 등 실행할 때마다 덮어써지는 동적 분석 결과물 (버전관리 대상 아님)
+dynamic_report.json

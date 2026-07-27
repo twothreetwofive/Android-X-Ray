@@ -13667,14 +13667,35 @@ std_string_c_str (StdString * self)
         lastValueByHookType[hookType] = rawValue;
         return false;
       }
+      var INTERNAL_DELEGATE_CLASSES = ["java.lang.AbstractStringBuilder"];
+      function getCallerInfo(hookedClassName) {
+        try {
+          var Exception = frida_java_bridge_default.use("java.lang.Exception");
+          var stackTrace = Exception.$new().getStackTrace();
+          for (var i = 0; i < stackTrace.length; i++) {
+            var frameClass = stackTrace[i].getClassName();
+            if (frameClass === "java.lang.Exception" || frameClass === hookedClassName || INTERNAL_DELEGATE_CLASSES.indexOf(frameClass) !== -1) {
+              continue;
+            }
+            return {
+              caller_class: frameClass,
+              caller_method: stackTrace[i].getMethodName()
+            };
+          }
+        } catch (e) {
+          console.log("[hooks.js] caller \uC815\uBCF4 \uCD94\uCD9C \uC2E4\uD328: " + e);
+        }
+        return { caller_class: "unknown", caller_method: "unknown" };
+      }
       function sendEvent(hookType, className, methodName, rawValue, extra) {
+        var callerInfo = getCallerInfo(className);
         send({
           hook_type: hookType,
           timestamp: (/* @__PURE__ */ new Date()).toISOString(),
           class_name: className,
           method_name: methodName,
           raw_value: rawValue,
-          extra: extra || {},
+          extra: Object.assign({}, extra, callerInfo),
           thread_id: Process.getCurrentThreadId()
         });
       }
