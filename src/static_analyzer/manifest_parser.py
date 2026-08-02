@@ -19,12 +19,38 @@ PERMISSION_WEIGHTS = {
 NS = "{http://schemas.android.com/apk/res/android}"
 
 
+def _get_intent_filters(elem):
+    """컴포넌트의 <intent-filter> 안에 있는 action/category 이름을 평평한 목록으로 모은다.
+
+    schemas/static_report.schema.json의 components[].intent_filters가
+    "반응하는 action/category" 문자열 배열이라 그 형태에 맞춘다.
+    <data>(딥링크 scheme/host)는 스키마에 자리가 없어서 여기서는 수집하지 않는다.
+
+    intent-filter가 여러 개면 전부 합치되, 중복은 순서를 유지한 채 제거한다.
+    """
+    names = []
+    for intent_filter in elem.findall("intent-filter"):
+        for child_tag in ("action", "category"):
+            for child in intent_filter.findall(child_tag):
+                name = child.get(f"{NS}name")
+                if name:
+                    names.append(name)
+    return list(dict.fromkeys(names))
+
+
 def _get_component_info(manifest_root, tag_name):
-    """이름 목록 + exported 여부를 함께 뽑는 내부 헬퍼"""
+    """컴포넌트별 이름 + exported 여부 + intent-filter 내용을 뽑는 내부 헬퍼
+
+    <activity-alias>는 별도 태그라 여기서 안 잡힌다 — 기존 동작 그대로 유지했다.
+    (실제 앱에서 쓰이면 누락되므로 나중에 보완 대상)
+    """
     result = []
     for elem in manifest_root.iter(tag_name):
         name = elem.get(f"{NS}name")
         exported_attr = elem.get(f"{NS}exported")
+        # exported 기본값 추론은 "intent-filter가 있는가"로 판단한다.
+        # 아래 intent_filters가 비어 있어도(action/category 없는 빈 필터) 여기서는
+        # True일 수 있으므로, 둘을 같은 것으로 취급하면 안 된다.
         has_intent_filter = elem.find("intent-filter") is not None
 
         if exported_attr is not None:
@@ -32,7 +58,13 @@ def _get_component_info(manifest_root, tag_name):
         else:
             exported = has_intent_filter
 
-        result.append({"name": name, "exported": exported})
+        result.append(
+            {
+                "name": name,
+                "exported": exported,
+                "intent_filters": _get_intent_filters(elem),
+            }
+        )
     return result
 
 
@@ -44,19 +76,28 @@ def parse_manifest(apk_path: str) -> dict:
     all_perms = apk.get_permissions()
     dangerous_perms = [p for p in all_perms if PERMISSION_WEIGHTS.get(p, 0) >= 8]
 
-    # 컴포넌트별 정보 (내부적으로만 exported 판단에 사용)
+    # 컴포넌트별 정보
     activities_info = _get_component_info(manifest_root, "activity")
     services_info = _get_component_info(manifest_root, "service")
     receivers_info = _get_component_info(manifest_root, "receiver")
     providers_info = _get_component_info(manifest_root, "provider")
 
-    # exported인 것만 이름만 모아서 통합 리스트로
-    exported_components = [
-        c["name"]
-        for group in (activities_info, services_info, receivers_info, providers_info)
-        for c in group
-        if c["exported"]
+    # 종류(type)를 붙여서 하나의 목록으로 합친다. 아래 activities/services/...
+    # 4개 리스트는 이름만 남기고 종류 정보가 흩어지기 때문에, 6주차 통합용
+    # static_report.schema.json의 components 배열은 이쪽을 쓴다.
+    components = [
+        {"type": comp_type, **info}
+        for comp_type, group in (
+            ("activity", activities_info),
+            ("service", services_info),
+            ("receiver", receivers_info),
+            ("provider", providers_info),
+        )
+        for info in group
     ]
+
+    # exported인 것만 이름만 모아서 통합 리스트로
+    exported_components = [c["name"] for c in components if c["exported"]]
 
     return {
         "permissions": all_perms,
@@ -66,4 +107,5 @@ def parse_manifest(apk_path: str) -> dict:
         "receivers": [c["name"] for c in receivers_info],
         "providers": [c["name"] for c in providers_info],
         "exported_components": exported_components,
+        "components": components,
     }

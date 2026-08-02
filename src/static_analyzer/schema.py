@@ -23,6 +23,13 @@ class Meta(TypedDict):
     file_size: int
 
 
+class Component(TypedDict):
+    type: str  # "activity" | "service" | "receiver" | "provider"
+    name: str
+    exported: bool
+    intent_filters: List[str]  # 반응하는 action/category 이름
+
+
 class ManifestInfo(TypedDict):
     permissions: List[str]
     dangerous_permissions: List[str]
@@ -31,6 +38,11 @@ class ManifestInfo(TypedDict):
     receivers: List[str]
     providers: List[str]
     exported_components: List[str]
+    # 아래 components는 6주차 통합용으로 B가 추가한 필드(기존 필드는 그대로 둠).
+    # activities/services/receivers/providers는 이름만 남아서 종류(type)와
+    # intent-filter 내용이 사라지기 때문에, static_report.schema.json의
+    # components 배열로 변환할 때는 이 필드를 쓴다.
+    components: List[Component]
 
 
 class CertInfo(TypedDict):
