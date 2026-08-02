@@ -14,6 +14,10 @@ class FileHash(TypedDict):
 
 
 class Meta(TypedDict):
+    # apk_name / analyzed_at은 6주차 통합 스키마의 required 필드라 B가 추가함.
+    # apk_name은 apk_extractor에서, analyzed_at은 analyzer에서 채운다.
+    apk_name: str
+    analyzed_at: str  # 분석 시작 시각 (ISO 8601, UTC)
     package_name: str
     version_name: str
     version_code: int

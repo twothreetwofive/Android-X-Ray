@@ -16,6 +16,49 @@ PERMISSION_WEIGHTS = {
     # 필요한 만큼 계속 추가하면 됨
 }
 
+# 권한별 악용 예시 설명. static_report.schema.json의 permissions[].abuse_example용.
+#
+# 위 PERMISSION_WEIGHTS와 목적이 다르다 — 이쪽은 사용자에게 "이 권한이 왜 위험한가"를
+# 보여주는 설명 텍스트일 뿐이고 위험도 점수 계산에는 전혀 쓰이지 않는다. 그래서
+# PERMISSION_WEIGHTS에 없는 권한도 자유롭게 넣을 수 있다 (넣어도 D의 점수는 안 바뀜).
+# 반대로 PERMISSION_WEIGHTS 쪽은 risk_scorer가 그대로 합산에 쓰므로 임의로 못 늘린다.
+ABUSE_EXAMPLES = {
+    "android.permission.BIND_ACCESSIBILITY_SERVICE": (
+        "화면 내용 읽기·입력값 가로채기·자동 클릭이 가능하다. 뱅킹 트로이목마가 "
+        "가짜 로그인 화면을 덮어씌우고 2차 인증을 우회하는 데 쓰는 핵심 권한"
+    ),
+    "android.permission.SYSTEM_ALERT_WINDOW": (
+        "다른 앱 위에 창을 띄울 수 있다. 정상 앱 화면 위에 가짜 입력창을 겹쳐 "
+        "계정·카드 정보를 가로채는 오버레이 피싱에 쓰인다"
+    ),
+    "android.permission.READ_SMS": "문자 내용을 읽어 OTP(일회용 비밀번호)를 탈취",
+    "android.permission.RECEIVE_SMS": "수신 문자를 실시간으로 가로채 OTP 탈취·스미싱",
+    "android.permission.SEND_SMS": "사용자 모르게 유료 문자 발송, 스미싱 링크 확산",
+    "android.permission.REQUEST_INSTALL_PACKAGES": (
+        "추가 APK 설치를 유도할 수 있다. 최초 앱은 정상인 척하고 나중에 악성 모듈을 "
+        "내려받아 설치하는 드로퍼 방식에 쓰인다"
+    ),
+    "android.permission.READ_CONTACTS": "연락처를 수집해 스미싱 발송 대상 확보",
+    "android.permission.READ_PHONE_STATE": "기기 식별자·통신사·통화 상태 수집 (기기 지문화)",
+    "android.permission.ACCESS_FINE_LOCATION": "정확한 위치를 지속 수집해 사용자 추적",
+    "android.permission.CAMERA": "사용자 모르게 사진·영상 촬영",
+    "android.permission.RECORD_AUDIO": "사용자 모르게 주변 소리·통화 녹음",
+    "android.permission.READ_EXTERNAL_STORAGE": "저장소의 사진·문서 파일 탈취",
+    "android.permission.WRITE_EXTERNAL_STORAGE": "저장소에 악성 파일을 심거나 기존 파일 변조",
+    "android.permission.RECEIVE_BOOT_COMPLETED": (
+        "부팅될 때마다 자동 실행된다. 사용자가 앱을 직접 열지 않아도 악성 동작이 "
+        "계속 살아남는 지속성 확보 수단"
+    ),
+    "android.permission.QUERY_ALL_PACKAGES": (
+        "설치된 앱 목록을 전부 조회한다. 공격 대상 은행 앱이 깔려 있는지 확인하는 데 쓰인다"
+    ),
+    "android.permission.INTERNET": (
+        "외부 서버와 통신한다. 거의 모든 앱이 쓰는 흔한 권한이지만, 탈취한 정보를 "
+        "공격자 서버(C&C)로 보내는 통로도 이 권한이다"
+    ),
+    # 필요한 만큼 계속 추가하면 됨 — 점수에 영향이 없으므로 추가는 자유롭다
+}
+
 NS = "{http://schemas.android.com/apk/res/android}"
 
 

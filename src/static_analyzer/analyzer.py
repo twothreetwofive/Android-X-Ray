@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .apk_extractor import extract_apk
@@ -33,6 +34,10 @@ def analyze_static(apk_path: str, work_dir: str | Path = "work") -> dict:
     """
     errors: list[str] = []
 
+    # 분석 시작 시각. 나중에 리포트를 변환하는 시점이 아니라 "실제로 분석한 시점"이어야
+    # 의미가 있어서 여기서 찍는다 (네트워크 모듈의 capture_started_at과 같은 방식).
+    analyzed_at = datetime.now(timezone.utc).isoformat()
+
     # 1. 치명적 실패(apk 없음, apktool/jadx 실패)는 여기서 그대로 위로 전파시킴 —
     #    디컴파일 자체가 안 되면 뒤 단계를 계속 진행할 의미가 없음.
     extracted = extract_apk(apk_path, work_dir)
@@ -46,7 +51,7 @@ def analyze_static(apk_path: str, work_dir: str | Path = "work") -> dict:
     risk = _run_stage(errors, "위험도 계산", calculate_risk, manifest_data, code_data, strings_data)
 
     return {
-        "meta": extracted["meta"],
+        "meta": {**extracted["meta"], "analyzed_at": analyzed_at},
         "manifest": manifest_data,
         "certificate": cert_data,
         "code_analysis": code_data,
