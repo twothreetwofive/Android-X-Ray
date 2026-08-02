@@ -23,6 +23,12 @@ class HookEvent(TypedDict):
 #   base64         → {"direction": "decode" | "encode"}
 #   cipher         → {"algorithm": "AES/CBC/PKCS5Padding", "mode": "decrypt"|"encrypt"}
 #   custom_xor     → {"detected_pattern": "string_assembly"}
+#
+# 계약 변경: 위 4개 hook_type 전부에 caller(호출자) 정보가 공통으로 추가됨.
+# hooks.js의 sendEvent()가 스택트레이스에서 후킹 대상 클래스 자신의 프레임(및 JDK 내부 위임 프레임)을
+# 건너뛰고 처음 나오는 바깥 프레임을 caller로 잡아서 extra에 자동으로 합쳐 보낸다.
+#   caller_class  → 호출자 클래스 (예: "com.example.malware.Crypto"), 못 잡으면 "unknown"
+#   caller_method → 호출자 메서드명, 못 잡으면 "unknown"
 
 
 # ── C가 필터링/정제 후 최종적으로 만드는 산출물 ──

@@ -64,8 +64,10 @@ class FridaController:
             raise RuntimeError("spawn_and_attach()를 먼저 호출해야 합니다.")
         self.device.resume(self.pid)
 
-    def _cleanup_current_session(self) -> None:
-        """현재 세션/프로세스를 정리한다. 다음 앱 분석 전에 반드시 호출."""
+    def cleanup(self) -> None:
+        """현재 세션/프로세스를 정리한다. 다음 앱 분석 전에 반드시 호출.
+        외부(D의 scenario_runner 등)에서도 직접 호출 가능하도록 public으로 노출.
+        """
         try:
             if self.script is not None:
                 self.script.unload()
@@ -98,7 +100,7 @@ class FridaController:
         except Exception as e:
             result["error"] = str(e)
         finally:
-            self._cleanup_current_session()
+            self._cleanup()
         return result
 
     def run_batch(self, package_names: list[str], js_path: str, observe_sec: float = 5.0) -> list[dict]:

@@ -21,14 +21,48 @@ function isDuplicate(hookType, rawValue) {
     return false;
 }
 
+// ── caller(호출자) 정보 ──
+// C와 합의 후 추가. schema.py의 extra 계약 변경 (extra에 caller_class/caller_method 공통 추가).
+// hookedClassName(예: "java.lang.StringBuilder") 자신의 프레임은 건너뛰고,
+// 스택트레이스에서 처음으로 나오는 "바깥" 프레임을 실제 호출자로 본다.
+//
+// StringBuilder.append()는 JDK 내부적으로 AbstractStringBuilder.append()에 위임하기 때문에,
+// hookedClassName만 건너뛰면 실제 호출자가 아니라 이 내부 위임 프레임이 caller로 잡힌다
+// (calendar 앱 실측: string_builder 이벤트 117개 중 111개가 이 프레임으로 오염됨).
+// 그래서 이런 JDK 내부 위임 클래스도 같이 건너뛴다.
+var INTERNAL_DELEGATE_CLASSES = ["java.lang.AbstractStringBuilder"];
+
+function getCallerInfo(hookedClassName) {
+    try {
+        var Exception = Java.use("java.lang.Exception");
+        var stackTrace = Exception.$new().getStackTrace();
+        for (var i = 0; i < stackTrace.length; i++) {
+            var frameClass = stackTrace[i].getClassName();
+            if (frameClass === "java.lang.Exception" ||
+                frameClass === hookedClassName ||
+                INTERNAL_DELEGATE_CLASSES.indexOf(frameClass) !== -1) {
+                continue;
+            }
+            return {
+                caller_class: frameClass,
+                caller_method: stackTrace[i].getMethodName()
+            };
+        }
+    } catch (e) {
+        console.log("[hooks.js] caller 정보 추출 실패: " + e);
+    }
+    return { caller_class: "unknown", caller_method: "unknown" };
+}
+
 function sendEvent(hookType, className, methodName, rawValue, extra) {
+    var callerInfo = getCallerInfo(className);
     send({
         hook_type: hookType,
         timestamp: new Date().toISOString(),
         class_name: className,
         method_name: methodName,
         raw_value: rawValue,
-        extra: extra || {},
+        extra: Object.assign({}, extra, callerInfo),
         thread_id: Process.getCurrentThreadId()
     });
 }
