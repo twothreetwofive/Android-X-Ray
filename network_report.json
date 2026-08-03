@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "package_name": "com.google.android.calendar",
+    "capture_started_at": "2026-08-02T18:34:17+00:00",
+    "capture_duration_sec": 40,
+    "pcap_file": "output/capture.pcap"
+  },
+  "dns_queries": [
+    {
+      "domain": "connectivitycheck.gstatic.com",
+      "timestamp": "2026-08-02T18:34:22.745987+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "connectivitycheck.gstatic.com",
+      "timestamp": "2026-08-02T18:34:22.750117+00:00",
+      "resolved_ip": "172.217.209.94"
+    },
+    {
+      "domain": "www.google.com",
+      "timestamp": "2026-08-02T18:34:22.800636+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "www.google.com",
+      "timestamp": "2026-08-02T18:34:22.800985+00:00",
+      "resolved_ip": "142.251.151.119"
+    },
+    {
+      "domain": "mtalk.google.com",
+      "timestamp": "2026-08-02T18:34:22.886600+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "mtalk.google.com",
+      "timestamp": "2026-08-02T18:34:22.894435+00:00",
+      "resolved_ip": "64.233.188.188"
+    },
+    {
+      "domain": "dgbszpfhdgn",
+      "timestamp": "2026-08-02T18:34:23.936331+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "tbquqcrzvpy",
+      "timestamp": "2026-08-02T18:34:23.952025+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "oxxotof",
+      "timestamp": "2026-08-02T18:34:23.952233+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "youtubei.googleapis.com",
+      "timestamp": "2026-08-02T18:34:24.878666+00:00",
+      "resolved_ip": "172.217.119.4"
+    },
+    {
+      "domain": "www.youtube.com",
+      "timestamp": "2026-08-02T18:34:25.351176+00:00",
+      "resolved_ip": "142.251.154.4"
+    },
+    {
+      "domain": "www.googleadservices.com",
+      "timestamp": "2026-08-02T18:34:25.427591+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "www.googleadservices.com",
+      "timestamp": "2026-08-02T18:34:25.437264+00:00",
+      "resolved_ip": "142.251.119.154"
+    },
+    {
+      "domain": "android.googleapis.com",
+      "timestamp": "2026-08-02T18:34:26.070651+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "android.googleapis.com",
+      "timestamp": "2026-08-02T18:34:26.083262+00:00",
+      "resolved_ip": "172.217.112.4"
+    },
+    {
+      "domain": "connectivitycheck.gstatic.com",
+      "timestamp": "2026-08-02T18:34:27.600233+00:00",
+      "resolved_ip": "142.251.119.94"
+    },
+    {
+      "domain": "www.google.com",
+      "timestamp": "2026-08-02T18:34:27.609781+00:00",
+      "resolved_ip": "142.251.150.119"
+    },
+    {
+      "domain": "mtalk.google.com",
+      "timestamp": "2026-08-02T18:34:28.062372+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "mtalk.google.com",
+      "timestamp": "2026-08-02T18:34:28.069191+00:00",
+      "resolved_ip": "142.251.169.188"
+    },
+    {
+      "domain": "eyzimomdtegs",
+      "timestamp": "2026-08-02T18:34:28.921454+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "padkihywgdfpfj",
+      "timestamp": "2026-08-02T18:34:28.921503+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "padkihywgdfpfj",
+      "timestamp": "2026-08-02T18:34:28.930040+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "sgxntijlxgtt",
+      "timestamp": "2026-08-02T18:34:28.930144+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "eyzimomdtegs",
+      "timestamp": "2026-08-02T18:34:28.937272+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "sgxntijlxgtt",
+      "timestamp": "2026-08-02T18:34:28.941456+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "www.googleapis.com",
+      "timestamp": "2026-08-02T18:34:31.276901+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "www.googleapis.com",
+      "timestamp": "2026-08-02T18:34:31.283766+00:00",
+      "resolved_ip": "172.217.117.4"
+    },
+    {
+      "domain": "accounts.google.com",
+      "timestamp": "2026-08-02T18:34:31.648570+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "accounts.google.com",
+      "timestamp": "2026-08-02T18:34:31.656795+00:00",
+      "resolved_ip": "192.178.230.84"
+    },
+    {
+      "domain": "www.gstatic.com",
+      "timestamp": "2026-08-02T18:34:32.236260+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "www.gstatic.com",
+      "timestamp": "2026-08-02T18:34:32.245740+00:00",
+      "resolved_ip": "172.217.209.94"
+    },
+    {
+      "domain": "play.google.com",
+      "timestamp": "2026-08-02T18:34:34.278805+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "play.google.com",
+      "timestamp": "2026-08-02T18:34:34.285995+00:00",
+      "resolved_ip": "172.217.209.102"
+    },
+    {
+      "domain": "youtubei.googleapis.com",
+      "timestamp": "2026-08-02T18:34:50.894060+00:00",
+      "resolved_ip": null
+    },
+    {
+      "domain": "youtubei.googleapis.com",
+      "timestamp": "2026-08-02T18:34:50.905889+00:00",
+      "resolved_ip": "172.217.119.4"
+    }
+  ],
+  "tls_sni": [
+    {
+      "sni": "mtalk.google.com",
+      "timestamp": "2026-08-02T18:34:22.978321+00:00",
+      "dest_ip": "64.233.188.188",
+      "dest_port": 5228
+    },
+    {
+      "sni": "www.google.com",
+      "timestamp": "2026-08-02T18:34:23.030791+00:00",
+      "dest_ip": "142.251.157.119",
+      "dest_port": 443
+    },
+    {
+      "sni": "www.google.com",
+      "timestamp": "2026-08-02T18:34:23.387074+00:00",
+      "dest_ip": "142.251.152.119",
+      "dest_port": 443
+    },
+    {
+      "sni": "www.google.com",
+      "timestamp": "2026-08-02T18:34:23.950903+00:00",
+      "dest_ip": "142.251.156.119",
+      "dest_port": 443
+    },
+    {
+      "sni": "youtubei.googleapis.com",
+      "timestamp": "2026-08-02T18:34:24.934214+00:00",
+      "dest_ip": "172.217.119.4",
+      "dest_port": 443
+    },
+    {
+      "sni": "www.youtube.com",
+      "timestamp": "2026-08-02T18:34:25.407824+00:00",
+      "dest_ip": "142.251.154.4",
+      "dest_port": 443
+    },
+    {
+      "sni": "www.googleadservices.com",
+      "timestamp": "2026-08-02T18:34:25.513070+00:00",
+      "dest_ip": "142.251.119.154",
+      "dest_port": 443
+    },
+    {
+      "sni": "android.googleapis.com",
+      "timestamp": "2026-08-02T18:34:26.129664+00:00",
+      "dest_ip": "172.217.112.4",
+      "dest_port": 443
+    },
+    {
+      "sni": "youtubei.googleapis.com",
+      "timestamp": "2026-08-02T18:34:26.485744+00:00",
+      "dest_ip": "172.217.119.4",
+      "dest_port": 443
+    },
+    {
+      "sni": "www.google.com",
+      "timestamp": "2026-08-02T18:34:27.693408+00:00",
+      "dest_ip": "142.251.153.119",
+      "dest_port": 443
+    },
+    {
+      "sni": "mtalk.google.com",
+      "timestamp": "2026-08-02T18:34:28.156029+00:00",
+      "dest_ip": "142.251.169.188",
+      "dest_port": 5228
+    },
+    {
+      "sni": "www.googleapis.com",
+      "timestamp": "2026-08-02T18:34:31.357297+00:00",
+      "dest_ip": "172.217.117.4",
+      "dest_port": 443
+    },
+    {
+      "sni": "accounts.google.com",
+      "timestamp": "2026-08-02T18:34:31.725005+00:00",
+      "dest_ip": "192.178.230.84",
+      "dest_port": 443
+    },
+    {
+      "sni": "www.gstatic.com",
+      "timestamp": "2026-08-02T18:34:32.299012+00:00",
+      "dest_ip": "172.217.209.94",
+      "dest_port": 443
+    },
+    {
+      "sni": "play.google.com",
+      "timestamp": "2026-08-02T18:34:34.345478+00:00",
+      "dest_ip": "172.217.209.102",
+      "dest_port": 443
+    },
+    {
+      "sni": "youtubei.googleapis.com",
+      "timestamp": "2026-08-02T18:34:50.961444+00:00",
+      "dest_ip": "172.217.119.4",
+      "dest_port": 443
+    }
+  ],
+  "suspicious": {
+    "domains": [],
+    "ips": [
+      {
+        "ip": "172.217.209.94",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.151.119",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "64.233.188.188",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "172.217.119.4",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.154.4",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.119.154",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "172.217.112.4",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.119.94",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.150.119",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.169.188",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "172.217.117.4",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "192.178.230.84",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "172.217.209.102",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.157.119",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.152.119",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.156.119",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      },
+      {
+        "ip": "142.251.153.119",
+        "reason": "사설/루프백이 아닌 공인 IP (하드코딩된 직접 접속 후보)"
+      }
+    ]
+  }
+}

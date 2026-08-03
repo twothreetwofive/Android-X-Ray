@@ -28,7 +28,9 @@ def parse_dns(pcap_path: str) -> list[dict]:
     cmd = [
         "tshark",
         "-r", pcap_path,
-        "-Y", "dns",
+        # udp.port==53로 제한 - "dns" 필터만 쓰면 로컬 기기 탐색(mDNS, udp/5353)까지
+        # 같이 잡혀서 TLD 없는 랜덤 호스트명이 suspicious.domains에 노이즈로 섞임
+        "-Y", "dns && udp.port==53",
         "-T", "fields",
         "-e", "frame.time_epoch",
         "-e", "dns.flags.response",

@@ -2,8 +2,16 @@
 
 from __future__ import annotations
 
+import sys
 import time
 import frida
+
+# 후킹된 문자열은 대상 앱에서 그대로 온 값이라 어떤 유니코드 문자든 섞일 수 있음.
+# Windows 콘솔(cp949)은 en-dash(–) 등 일부 문자를 인코딩 못 해서 print()가 죽었었음 -
+# errors="replace"로 못 쓰는 문자만 대체하고 죽지 않게 함.
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
 
 
 class FridaController:

@@ -13,6 +13,13 @@ from __future__ import annotations
 
 import json
 import string
+import sys
+
+# frida_controller.py와 동일한 이유 - 후킹된 문자열에 Windows 콘솔(cp949)이 인코딩
+# 못 하는 유니코드 문자(en-dash 등)가 섞이면 print()가 UnicodeEncodeError로 죽었었음.
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
 from datetime import datetime
 from typing import List
 

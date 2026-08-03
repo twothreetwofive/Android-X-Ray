@@ -32,6 +32,8 @@ WHITELIST_DOMAINS: frozenset = frozenset(
         "connectivitycheck.gstatic.com",
         "android.googleapis.com",
         "play.googleapis.com",
+        "youtube.com",
+        "ytimg.com",
         # 광고 SDK
         "unity3d.com",
         "unityads.unity3d.com",
@@ -88,6 +90,14 @@ def find_suspicious_domains(domains: List[str]) -> List[SuspiciousDomain]:
         if is_ip_literal(normalized):
             seen.add(normalized)
             result.append({"domain": normalized, "reason": "하드코딩된 형태"})
+            continue
+        # 점이 없는 단일 라벨 호스트명(TLD 없음)은 실캡처 검증 중 실제로 관찰됨 -
+        # Android NetworkMonitor가 캡티브 포털/DNS 하이재킹 탐지용으로 날리는
+        # 랜덤 문자열 프로브(예: "dgbszpfhdgn")라 항상 미응답이고 앱 통신도 아님.
+        # 등록 가능한 도메인이 아니라서(진짜 C2든 화이트리스트 도메인이든 TLD가 있음)
+        # 걸러내지 않으면 정상 기기에서도 매번 의심 도메인으로 오탐된다.
+        if "." not in normalized:
+            seen.add(normalized)
             continue
         if is_whitelisted(normalized):
             continue

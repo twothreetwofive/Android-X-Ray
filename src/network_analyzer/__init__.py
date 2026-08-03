@@ -4,6 +4,9 @@ from .report_builder import build_network_report
 from .whitelist_checker import find_suspicious_domains, is_whitelisted
 from .capture import TcpdumpCaptureController, TcpdumpCaptureError   # 추가
 from .scenario_capture import capture_during_scenario   # 추가
+from .dns_parser import parse_dns
+from .sni_parser import parse_sni
+from .pipeline import analyze_network
 
 __all__ = [
     "is_whitelisted",
@@ -15,4 +18,7 @@ __all__ = [
     "TcpdumpCaptureController",   # 추가
     "TcpdumpCaptureError",        # 추가
     "capture_during_scenario",    # 추가
+    "parse_dns",
+    "parse_sni",
+    "analyze_network",
 ]
