@@ -1,6 +1,6 @@
 # 인수인계 — B(왕은서) → A(유예원), D(백소정)
 
-**날짜**: 2026-08-02 (6주차)
+**날짜**: 2026-08-02 작성 / **2026-08-03 갱신 (Day 4)**
 **브랜치**: `feature/static-adapter`
 **상세 근거**: `docs/정적분석/6주차_B_필드매핑.md`
 
@@ -8,6 +8,86 @@
 안 되는 항목**이 A에 4건, D에 4건 나왔습니다. 아래가 그 목록입니다.
 
 ---
+
+# [2026-08-03 갱신] A/D 답변 반영 결과
+
+A의 6주차 스펙과 D의 `fix/static-permission-weights`를 받아서 **8건 중 7건이
+해소**됐습니다. 아래는 그 결과와 **새로 생긴 확인 요청**입니다.
+
+## 해소된 항목
+
+| 대상 | 항목 | 결과 |
+|---|---|---|
+| A (1) | `errors` 통합 스펙 반영 | `main.py`가 `result.get("errors")`로 `module_status` 판정 — 반영됨 |
+| A (2) | `manifest` 실패 정책 | 원본 정책(`None` + `errors` 기록) 존중으로 확정 |
+| A (3) | `min_sdk`/`target_sdk`의 `0` | 원본 값 그대로 통과, 구분 표시는 7~8주차 대시보드 몫 |
+| A (4) | 스키마에 자리 없는 4필드 | 8필드 원본을 그대로 통과시켜 버려지는 필드 없음 |
+| D (1) | `PERMISSION_WEIGHTS` 5개뿐 | 20개로 확장 + 8점 미만 권한이 합산에서 빠지던 버그 수정 |
+| D (2) | 점수 계산 근거 반환 | `calculate_risk_with_breakdown()` 신설 — **B가 배선 완료(아래 참고)** |
+| D (3) | 종합 점수에 쓸 필드 | `is_self_signed` 반영(가중치 10), `third_party_sdks`는 미사용 확정 |
+| D (4) | 정적↔네트워크 교차 검증 | D가 `src/cross_reference.py`에 구현 |
+
+## B가 이번에 한 일 — breakdown 배선
+
+D가 `calculate_risk_with_breakdown()`을 **"어댑터에서 이 함수로 갈아타면 됨"**으로
+만들었는데, A가 어댑터를 안 쓰기로 하면서 **이 함수를 부르는 코드가 아무 데도 없는
+상태**였습니다 (`analyzer.py`는 여전히 `calculate_risk()`만 호출, `main.py`의 최상위
+`risk_score.breakdown`도 `None`). 그대로 두면 D가 만든 근거가 리포트에 안 실립니다.
+
+그래서 **`analyzer.py`가 직접 부르도록 배선**했습니다. 어댑터를 거치지 않는 A의
+8필드 원본 경로에서도 근거가 나옵니다.
+
+```python
+result = analyze_static(apk_path, work_dir)
+result["risk_score"]      # 0.0~1.0 float — 기존 계약 그대로
+result["risk_breakdown"]  # {"total": .., "raw": .., "breakdown": [{factor, weight}, ..]}
+```
+
+## 새로 확인 부탁드릴 것 (3건)
+
+### (A-5) 8필드 → 9필드가 됐습니다
+
+`risk_breakdown`을 **형제 필드로 추가**했습니다. `risk_score`의 타입을 객체로 바꾸면
+`schema.py`의 팀 계약과 `main.py`의 통과 정책이 깨지므로 float을 유지하고 근거만
+따로 뺐습니다. `main.py`는 `data=result`로 통째로 넘기니 코드 수정 없이 그대로
+흘러갑니다만, **"8필드 그대로"라고 쓰신 스펙과는 달라져서 확인이 필요합니다.**
+
+계산 실패 시 `risk_score`와 `risk_breakdown`이 **둘 다 `None`**이 됩니다. "점수는
+있는데 근거가 없는" 어긋난 상태는 생기지 않습니다.
+
+### (A/D-6) breakdown 항목의 키 이름이 스키마와 다릅니다
+
+`static_report.schema.json`은 항목을 `{permission, weight}`로 적어뒀지만, D의
+breakdown에는 권한이 아닌 항목(`"exported_components×2 (3개)"`,
+`"obfuscation_detected"`, `"certificate.is_self_signed"`)도 섞여 있어서 `permission`
+이라는 이름이 맞지 않습니다. **D가 쓰는 `{factor, weight}`를 그대로 내보냅니다.**
+스키마의 `items`에는 `required`도 `additionalProperties` 제한도 없어서 검증은
+통과합니다. 스키마 문구 자체를 고칠지는 정해 주세요.
+
+### (D-7) `cuckoo.apk`로는 권한 확장을 검증할 수 없습니다
+
+"B가 `cuckoo.apk`로 다시 돌려봐 달라"고 하신 것 중 **절반만 됐습니다.**
+
+| 확인 요청 | 결과 |
+|---|---|
+| `is_self_signed` 가산점이 실제 점수에 영향 주는지 | **확인됨** — self-signed `True`, total `0.060` → `0.160` (+0.10) |
+| breakdown 합계가 raw와 일치하는지 | **확인됨** — 합계 16 == raw 16 |
+| `CAMERA` 등이 medium/high로 잡히는지 | **검증 불가** |
+
+`cuckoo.apk`의 권한이 `INTERNET`과 자체 정의 권한 **2개뿐**이라 확장된 표를 실제
+APK로 확인할 방법이 없습니다. 합성 데이터로는 정상 동작을 확인했고
+(`CAMERA` 7점 medium / `READ_SMS` 9점 high / 8점 미만 권한도 합산에 잡힘)
+회귀 테스트로 고정해 뒀습니다(`tests/test_static_adapter.py`,
+`tests/test_analyzer.py`). **권한이 많은 실제 샘플이 있어야 진짜 검증이 됩니다** —
+D가 지적하신 `NORMALIZATION_CAP` 재조정도 같은 샘플이 있어야 가능합니다.
+
+이 PC에서 찾을 수 있는 APK는 `cuckoo.apk`와 에뮬레이터 스킨 오버레이 APK뿐입니다.
+
+---
+
+> **아래는 2026-08-02 원본입니다.** 위 갱신 표에 해소 여부가 정리돼 있으니, 질의
+> 8건의 현재 상태는 위쪽을 보세요. 아래 본문은 각 항목을 왜 물었는지에 대한 근거로
+> 남겨둡니다.
 
 ## 1. A(유예원, 오케스트레이터)가 쓸 수 있는 것
 
@@ -163,3 +243,39 @@ D의 점수에 영향이 없습니다. 반대로 `PERMISSION_WEIGHTS`는 그렇�
 **D 주의**: `risk_scorer.py`는 **건드리지 않았습니다.** `calculate_risk()`가 쓰는
 `dangerous_permissions`와 `exported_components`의 내용·순서가 이전과 동일하다는 것을
 회귀 테스트로 고정해 뒀습니다 (`tests/test_manifest_parser.py`). 점수가 바뀔 일은 없습니다.
+
+---
+
+## 6. [2026-08-03 추가] 병합 이후 바뀐 파일
+
+`fix/static-permission-weights`를 `feature/static-adapter`에 병합했습니다.
+
+**충돌 1건** — `manifest_parser.py`에서 `ABUSE_EXAMPLES`(B)와
+`DANGEROUS_PERMISSION_THRESHOLD`(D)가 `PERMISSION_WEIGHTS` 바로 뒤 같은 위치에
+추가돼 겹쳤습니다. 내용이 안 겹쳐서 **둘 다 살렸습니다.** D가 미리 예고해 주신
+그대로였습니다.
+
+| 파일 | 변경 |
+|---|---|
+| `analyzer.py` | `calculate_risk()` → `calculate_risk_with_breakdown()`, `risk_breakdown` 필드 추가 |
+| `schema.py` | `RiskBreakdown` / `BreakdownItem` TypedDict 추가, `risk_breakdown` 필드 |
+| `static_adapter.py` | `_build_breakdown()` 추가 — 근거를 직접 계산하지 않고 옮기기만 함 |
+| `tests/test_analyzer.py` | **신규 8개** |
+| `tests/test_static_adapter.py` | breakdown 케이스 + `risk_level` 회귀 6건 추가 |
+| `risk_scorer.py`, `manifest_parser.py`(가중치 부분) | **D 작업물 그대로** — B는 안 건드림 |
+
+`pytest` **44개 → 67개 전부 통과**. 통과만 보면 의미가 없어서 코드를 일부러 되돌려
+테스트가 실제로 잡는지 확인했습니다 (4건 전부 잡힘):
+
+| 되돌린 것 | 잡은 테스트 |
+|---|---|
+| 어댑터의 breakdown 연결 제거 | 4개 |
+| breakdown 항목 1개 누락시킴 | 4개 |
+| `analyzer`가 `risk_breakdown`을 안 채우게 함 | 5개 (`test_analyzer.py`) |
+| 8점 미만 권한 미합산 버그 재현 | 1개 (`test_analyzer.py`) |
+
+세 번째 항목이 `tests/test_analyzer.py`를 새로 만든 이유입니다. 어댑터 테스트는 전부
+fixture dict 기반이라 **원천(`analyze_static`)에서 필드가 빠지는 걸 못 잡습니다.**
+6주차 Day 1에 `intent_filters`가 파싱 단계에서 버려지고 있던 걸 뒤늦게 발견한 것과
+같은 유형의 구멍이라, 하위 단계를 monkeypatch해서 jadx/apktool 없이 조립 로직만
+검증하도록 했습니다.
