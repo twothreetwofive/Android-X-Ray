@@ -17,9 +17,12 @@ def calculate_risk(manifest_data: dict | None, code_data: dict | None, strings_d
     raw = 0.0
 
     if manifest_data:
-        raw += sum(
-            PERMISSION_WEIGHTS.get(p, 0) for p in manifest_data.get("dangerous_permissions", [])
-        )
+        # manifest_data["dangerous_permissions"]가 아니라 permissions 전체에 가중치를
+        # 적용한다. dangerous_permissions는 manifest_parser.py의 DANGEROUS_PERMISSION_
+        # THRESHOLD(현재 8) 이상만 걸러낸 "보고서 강조용" 목록이라, 그걸 그대로 쓰면
+        # weight 1~7짜리 권한(CAMERA=7, RECORD_AUDIO=7, READ_CONTACTS=6 등)은 표에
+        # 있어도 점수에 전혀 반영되지 않는 문제가 있었음.
+        raw += sum(PERMISSION_WEIGHTS.get(p, 0) for p in manifest_data.get("permissions", []))
         raw += len(manifest_data.get("exported_components", [])) * 2
 
     if code_data:
