@@ -83,6 +83,36 @@ D가 지적하신 `NORMALIZATION_CAP` 재조정도 같은 샘플이 있어야 �
 
 이 PC에서 찾을 수 있는 APK는 `cuckoo.apk`와 에뮬레이터 스킨 오버레이 APK뿐입니다.
 
+## 골격 연결 확인 결과 (A)
+
+`feature/orchestrator`의 `main.py`를 받아서 정적 stage가 실제로 물리는지 확인했습니다.
+**B 쪽은 수정 없이 그대로 꽂힙니다.**
+
+| 확인 항목 | 결과 |
+|---|---|
+| `_run_static_stage()`가 `analyze_static()` 출력을 받는지 | 정상 |
+| `meta.package_name` 추출 (동적/네트워크 stage 진입 조건) | 정상 |
+| `errors` 비었을 때 `ok` / 있을 때 `partial` 판정 | 정상 |
+| `risk_breakdown`이 통과 정책으로 그대로 흘러가는지 | **정상 — `main.py` 수정 불필요** |
+| 실제 `cuckoo.apk` | `status="failed"` (apktool 없음, 예상된 동작) |
+
+### (A-8) `main.py`가 `frida` 없이는 import조차 안 됩니다
+
+`from dynamic_analyzer.frida_controller import FridaController`가 최상위에 있어서
+`frida`가 설치되지 않은 PC에서는 **`main.py` 모듈 로드 자체가 실패**합니다
+(`ModuleNotFoundError: No module named 'frida'`). 정적 분석만 돌려보려 해도 막힙니다.
+저는 확인할 때 `frida`를 스텁으로 넣어서 우회했습니다.
+
+`requirements.txt`에 `frida==17.16.2`가 있으니 설치하면 해결되지만, **동적 분석 stage
+안에서 import하도록 옮기면** 정적만 돌려보는 것도 가능해집니다. 정하실 사항입니다.
+
+### (A-9) 사소한 것 — 없는 APK 경로가 "예상치 못한 에러"로 분류됩니다
+
+`analyze_static()`은 파일이 없으면 `FileNotFoundError`를 던집니다(docstring에 명시).
+`_run_static_stage()`의 `except StaticAnalysisError`에 안 걸려서 아래
+`except Exception`의 **"예상치 못한 에러"**로 기록됩니다. 실제로는 예상된 케이스이니
+문구만 구분해 주시면 로그 읽기가 편할 것 같습니다.
+
 ---
 
 > **아래는 2026-08-02 원본입니다.** 위 갱신 표에 해소 여부가 정리돼 있으니, 질의
