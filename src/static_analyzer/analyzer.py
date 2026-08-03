@@ -12,7 +12,7 @@ from .apk_extractor import extract_apk
 from .cert_analyzer import analyze_cert
 from .code_scanner import scan_code
 from .manifest_parser import parse_manifest
-from .risk_scorer import calculate_risk
+from .risk_scorer import calculate_risk_with_breakdown
 from .sdk_detector import detect_sdks
 from .string_extractor import extract_strings
 
@@ -48,7 +48,14 @@ def analyze_static(apk_path: str, work_dir: str | Path = "work") -> dict:
     code_data = _run_stage(errors, "코드 스캔", scan_code, extracted)
     strings_data = _run_stage(errors, "문자열 추출", extract_strings, extracted)
     sdks = _run_stage(errors, "SDK 탐지", detect_sdks, extracted)
-    risk = _run_stage(errors, "위험도 계산", calculate_risk, manifest_data, code_data, strings_data, cert_data)
+
+    # calculate_risk()가 아니라 calculate_risk_with_breakdown()을 쓴다 — 점수와 함께
+    # "왜 그 점수가 나왔는지"(항목별 기여도)를 같이 받기 위해서다. 두 함수는 내부적으로
+    # 같은 _score_breakdown()을 공유하므로 total 값은 calculate_risk()와 항상 동일하다.
+    risk = _run_stage(
+        errors, "위험도 계산", calculate_risk_with_breakdown,
+        manifest_data, code_data, strings_data, cert_data,
+    )
 
     return {
         "meta": {**extracted["meta"], "analyzed_at": analyzed_at},
@@ -57,7 +64,12 @@ def analyze_static(apk_path: str, work_dir: str | Path = "work") -> dict:
         "code_analysis": code_data,
         "strings": strings_data,
         "third_party_sdks": sdks,
-        "risk_score": risk,
+        # risk_score는 기존대로 float(0.0~1.0)을 유지한다. schema.py의 팀 계약이고
+        # main.py(A)가 8필드를 변환 없이 통과시키는 정책이라 타입을 바꾸면 그쪽이 깨진다.
+        "risk_score": risk["total"] if risk else None,
+        # 근거는 형제 필드로 따로 뺐다. 계산 실패 시 risk_score와 함께 None이 되므로
+        # "점수는 있는데 근거만 없는" 어긋난 상태가 생기지 않는다.
+        "risk_breakdown": risk,
         "errors": errors,
     }
 

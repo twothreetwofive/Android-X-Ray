@@ -47,9 +47,8 @@ def permission_risk_level(permission: str) -> str:
     """권한 이름 -> "high" | "medium" | "low".
 
     PERMISSION_WEIGHTS에 없는 권한은 가중치 0으로 취급돼 전부 low가 된다.
-    현재 이 표에는 권한이 5개뿐이라 CAMERA, RECORD_AUDIO, READ_CONTACTS 같은
-    실제 위험 권한도 low로 떨어진다 — 표 확장은 risk_scorer(D 담당)의 점수를
-    바꾸는 일이라 D와 함께 정하기로 하고 보류 중이다.
+    6주차에 D가 이 표를 5개 -> 20개로 확장해서, 예전에 low로 떨어지던
+    CAMERA/RECORD_AUDIO/READ_CONTACTS/ACCESS_FINE_LOCATION은 이제 medium으로 잡힌다.
     """
     weight = PERMISSION_WEIGHTS.get(permission, 0)
     if weight >= RISK_LEVEL_HIGH_MIN:
@@ -156,15 +155,38 @@ def _build_meta(
     return built
 
 
-def _build_risk_score(raw: Any, warnings: list[str]) -> dict[str, Any]:
-    """float(0.0~1.0) -> 스키마의 risk_score 객체.
+def _build_breakdown(risk_breakdown: Any) -> list[dict[str, Any]] | None:
+    """risk_breakdown["breakdown"] -> 스키마의 risk_score.breakdown 배열.
 
-    breakdown(점수 계산 근거)은 일부러 만들지 않는다. 어댑터가 접근할 수 있는 건
-    권한 가중치뿐인데 실제 raw 점수에는 exported 컴포넌트/의심 API/난독화/리플렉션/
-    동적 로딩/의심 문자열도 함께 들어가서, 권한만 재현하면 breakdown 합계가 total과
-    맞지 않는다. "근거"의 합이 총점과 다르면 오히려 혼란스러우므로 D(risk_scorer 담당)가
-    calculate_risk()에서 근거를 반환해 주면 그때 연결한다.
+    D의 calculate_risk_with_breakdown()이 채워주는 값을 그대로 옮긴다. 어댑터가 직접
+    계산하지 않는 이유가 있다 — 어댑터가 접근할 수 있는 건 권한 가중치뿐인데 실제 raw
+    점수에는 exported 컴포넌트/의심 API/난독화/리플렉션/동적 로딩/의심 문자열/자가서명
+    인증서도 함께 들어가서, 권한만 재현하면 합계가 total과 어긋난다.
+
+    키 이름 주의: 팀 스키마는 items를 {permission, weight}로 적어뒀지만 여기서는
+    D가 쓰는 {factor, weight}를 그대로 내보낸다. breakdown 항목에는 권한이 아닌 것
+    ("exported_components×2 (3개)" 등)도 섞여 있어서 permission이라는 이름이 맞지 않기
+    때문이다. 스키마의 items에는 required도 additionalProperties 제한도 없어서 이대로도
+    검증은 통과한다 — 스키마 문구 자체를 고칠지는 A/D와 정할 사항으로 남겨둔다.
     """
+    if not isinstance(risk_breakdown, dict):
+        return None
+
+    items = risk_breakdown.get("breakdown")
+    if not isinstance(items, list):
+        return None
+
+    return [
+        {"factor": item.get("factor"), "weight": item.get("weight")}
+        for item in items
+        if isinstance(item, dict)
+    ]
+
+
+def _build_risk_score(
+    raw: Any, risk_breakdown: Any, warnings: list[str]
+) -> dict[str, Any]:
+    """float(0.0~1.0) -> 스키마의 risk_score 객체."""
     if not isinstance(raw, (int, float)) or isinstance(raw, bool):
         # 스키마에서 risk_score.total은 required + number라 null을 넣을 수 없다.
         # 0.0으로 채우되, 그대로 두면 "안전한 앱"으로 오해되므로 반드시 경고를 남긴다.
@@ -173,7 +195,23 @@ def _build_risk_score(raw: Any, warnings: list[str]) -> dict[str, Any]:
         )
         return {"total": 0.0, "scale": RISK_SCORE_SCALE}
 
-    return {"total": round(float(raw) * 100, 1), "scale": RISK_SCORE_SCALE}
+    score: dict[str, Any] = {
+        "total": round(float(raw) * 100, 1),
+        "scale": RISK_SCORE_SCALE,
+    }
+
+    breakdown = _build_breakdown(risk_breakdown)
+    if breakdown is None:
+        # 구버전 analyze_static() 결과(risk_breakdown 필드가 없던 시절)로도 계속 동작한다.
+        # breakdown은 스키마상 optional이라 키를 빼면 그만이지만, 근거 없는 점수라는 건
+        # 리포트를 보는 쪽에서 알아야 하므로 경고로 남긴다.
+        warnings.append(
+            "risk_breakdown이 없어 risk_score.breakdown을 생략함 (점수 근거 없음)"
+        )
+    else:
+        score["breakdown"] = breakdown
+
+    return score
 
 
 def to_static_report(
@@ -212,7 +250,9 @@ def to_static_report(
         "meta": _build_meta(meta, apk_path, warnings),
         "permissions": _build_permissions(manifest),
         "components": _build_components(manifest, warnings),
-        "risk_score": _build_risk_score(result.get("risk_score"), warnings),
+        "risk_score": _build_risk_score(
+            result.get("risk_score"), result.get("risk_breakdown"), warnings
+        ),
     }
 
     if include_extra:

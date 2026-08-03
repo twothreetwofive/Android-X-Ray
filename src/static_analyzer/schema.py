@@ -71,6 +71,20 @@ class StringsInfo(TypedDict):
     suspicious_strings: List[str]
 
 
+class BreakdownItem(TypedDict):
+    # factor는 권한 이름("android.permission.CAMERA")일 수도 있고 집계 항목
+    # ("exported_components×2 (3개)")일 수도 있다. 권한인 경우에만 PERMISSION_WEIGHTS /
+    # ABUSE_EXAMPLES와 이름으로 다시 대조할 수 있다.
+    factor: str
+    weight: float
+
+
+class RiskBreakdown(TypedDict):
+    total: float  # 0.0 ~ 1.0, StaticAnalysisResult.risk_score와 항상 같은 값
+    raw: float  # 정규화 전 합산 점수. items의 weight 합과 정확히 일치한다.
+    breakdown: List[BreakdownItem]
+
+
 class StaticAnalysisResult(TypedDict):
     meta: Meta
     manifest: ManifestInfo
@@ -79,4 +93,8 @@ class StaticAnalysisResult(TypedDict):
     strings: StringsInfo
     third_party_sdks: List[str]
     risk_score: float  # 0.0 ~ 1.0
+    # 6주차 추가 필드(B). D의 calculate_risk_with_breakdown() 반환값을 그대로 담는다.
+    # risk_score의 타입을 바꾸지 않으려고 형제 필드로 뺀 것이라 기존 8필드는 그대로다.
+    # 계산 실패 시 risk_score와 같이 None이 된다.
+    risk_breakdown: RiskBreakdown
     errors: List[str]  # 부분 실패 시 누적, 빈 리스트면 성공

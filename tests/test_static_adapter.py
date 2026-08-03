@@ -11,6 +11,7 @@ from pathlib import Path
 import pytest
 from jsonschema import Draft7Validator
 
+from static_analyzer.manifest_parser import ABUSE_EXAMPLES
 from static_analyzer.static_adapter import (
     RISK_SCORE_SCALE,
     permission_risk_level,
@@ -79,6 +80,21 @@ def result():
         "strings": {"urls": ["http://evil.example.com"], "ip_addresses": [], "suspicious_strings": []},
         "third_party_sdks": ["Firebase"],
         "risk_score": 0.62,
+        # D의 calculate_risk_with_breakdown()이 채워주는 모양. weight 합(62)이 raw와
+        # 정확히 일치해야 한다는 것이 이 구조의 핵심 계약이다.
+        "risk_breakdown": {
+            "total": 0.62,
+            "raw": 62,
+            "breakdown": [
+                {"factor": "android.permission.READ_SMS", "weight": 9},
+                {"factor": "android.permission.REQUEST_INSTALL_PACKAGES", "weight": 5},
+                {"factor": "exported_components×2 (2개)", "weight": 4},
+                {"factor": "suspicious_api_calls×3 (3개)", "weight": 9},
+                {"factor": "obfuscation_detected", "weight": 15},
+                {"factor": "reflection_usage", "weight": 10},
+                {"factor": "certificate.is_self_signed", "weight": 10},
+            ],
+        },
         "errors": [],
     }
 
@@ -168,7 +184,16 @@ def test_sdk_값이_없으면_키_자체를_뺀다(validator, result):
     [
         ("android.permission.BIND_ACCESSIBILITY_SERVICE", "high"),  # weight 10
         ("android.permission.READ_SMS", "high"),  # weight 9
+        ("android.permission.SEND_SMS", "high"),  # weight 8 = high 하한 경계
         ("android.permission.REQUEST_INSTALL_PACKAGES", "medium"),  # weight 5
+        # 아래 4개는 D가 6주차에 표를 확장하기 전까지 전부 low로 떨어지던 권한들이다.
+        # D가 확인을 요청한 항목이라 회귀로 고정해 둔다.
+        ("android.permission.CAMERA", "medium"),  # weight 7
+        ("android.permission.RECORD_AUDIO", "medium"),  # weight 7
+        ("android.permission.READ_CONTACTS", "medium"),  # weight 6
+        ("android.permission.ACCESS_FINE_LOCATION", "medium"),  # weight 6
+        # 표에 있어도 weight가 4 미만이면 low다 — "표에 있으니 medium 이상"이 아니다.
+        ("android.permission.READ_EXTERNAL_STORAGE", "low"),  # weight 3
         ("android.permission.INTERNET", "low"),  # 미등록 -> 0
         ("android.permission.FOO_UNKNOWN", "low"),  # 미등록 -> 0
     ],
@@ -258,15 +283,80 @@ def test_복원시_exported는_exported_components_대조로_정한다(result):
 
 
 def test_risk_score가_0에서_100_스케일_객체로_바뀐다(result):
-    assert to_static_report(result)["risk_score"] == {"total": 62.0, "scale": RISK_SCORE_SCALE}
+    risk_score = to_static_report(result)["risk_score"]
+    assert risk_score["total"] == 62.0
+    assert risk_score["scale"] == RISK_SCORE_SCALE
 
 
-def test_breakdown은_만들지_않는다(result):
-    """권한만 재현하면 합계가 total과 안 맞아 오히려 오해를 준다.
+def test_breakdown을_risk_breakdown에서_그대로_옮긴다(result):
+    """어댑터는 근거를 직접 계산하지 않고 D의 계산 결과를 옮기기만 한다."""
+    breakdown = to_static_report(result)["risk_score"]["breakdown"]
 
-    D가 calculate_risk()에서 계산 근거를 반환해 주면 그때 연결한다.
+    assert breakdown == result["risk_breakdown"]["breakdown"]
+    assert {"factor", "weight"} == set(breakdown[0])
+
+
+def test_breakdown_weight_합이_raw와_일치한다(result):
+    """근거의 합이 총점과 다르면 근거로서 의미가 없다 — 이게 breakdown의 존재 이유다.
+
+    어댑터가 항목을 빠뜨리거나 중복시키면 여기서 잡힌다.
     """
-    assert "breakdown" not in to_static_report(result)["risk_score"]
+    report = to_static_report(result)
+    total_weight = sum(item["weight"] for item in report["risk_score"]["breakdown"])
+
+    assert total_weight == result["risk_breakdown"]["raw"]
+    # total(0~100 스케일)도 같은 값이어야 한다 — NORMALIZATION_CAP이 100.0이라
+    # raw가 곧 100점 만점 점수다.
+    assert report["risk_score"]["total"] == float(result["risk_breakdown"]["raw"])
+
+
+def test_권한_factor는_ABUSE_EXAMPLES와_다시_대조할_수_있다(result):
+    """factor에 권한 전체 이름이 그대로 들어있어야 대시보드에서 설명을 붙일 수 있다."""
+    breakdown = to_static_report(result)["risk_score"]["breakdown"]
+    factors = [item["factor"] for item in breakdown]
+
+    assert "android.permission.READ_SMS" in factors
+    assert ABUSE_EXAMPLES["android.permission.READ_SMS"]
+
+
+def test_risk_breakdown이_없으면_breakdown_생략하고_경고(result):
+    """risk_breakdown 필드가 없던 구버전 결과로도 변환은 계속 돼야 한다.
+
+    다만 근거 없는 점수라는 사실은 리포트에 남겨야 한다.
+    """
+    del result["risk_breakdown"]
+    report = to_static_report(result)
+
+    assert "breakdown" not in report["risk_score"]
+    assert report["risk_score"]["total"] == 62.0  # 점수 자체는 그대로 나온다
+    assert any("risk_breakdown" in e for e in report["errors"])
+
+
+@pytest.mark.parametrize("broken", [None, "문자열", 123, {"breakdown": "리스트가 아님"}])
+def test_risk_breakdown이_깨져있어도_변환은_계속된다(validator, result, broken):
+    result["risk_breakdown"] = broken
+    report = to_static_report(result)
+
+    assert "breakdown" not in report["risk_score"]
+    assert_valid(validator, report)
+
+
+def test_breakdown_항목에_모르는_키가_붙어와도_factor_weight만_남긴다(result):
+    """D가 나중에 항목에 필드를 더해도 통합 리포트 모양이 흔들리지 않도록."""
+    result["risk_breakdown"]["breakdown"] = [
+        {"factor": "android.permission.CAMERA", "weight": 7, "설명": "나중에 추가된 키"}
+    ]
+    breakdown = to_static_report(result)["risk_score"]["breakdown"]
+
+    assert breakdown == [{"factor": "android.permission.CAMERA", "weight": 7}]
+
+
+def test_risk_score가_None이면_breakdown도_안_붙는다(result):
+    """점수가 실패했는데 근거만 남아있으면 total=0.0의 근거처럼 읽혀 더 혼란스럽다."""
+    result["risk_score"] = None
+    report = to_static_report(result)
+
+    assert report["risk_score"] == {"total": 0.0, "scale": RISK_SCORE_SCALE}
 
 
 def test_risk_score가_None이면_0으로_채우되_반드시_경고를_남긴다(result):
