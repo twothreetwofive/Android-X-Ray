@@ -43,7 +43,7 @@ def analyze_static(apk_path: str, work_dir: str | Path = "work") -> dict:
     code_data = _run_stage(errors, "코드 스캔", scan_code, extracted)
     strings_data = _run_stage(errors, "문자열 추출", extract_strings, extracted)
     sdks = _run_stage(errors, "SDK 탐지", detect_sdks, extracted)
-    risk = _run_stage(errors, "위험도 계산", calculate_risk, manifest_data, code_data, strings_data)
+    risk = _run_stage(errors, "위험도 계산", calculate_risk, manifest_data, code_data, strings_data, cert_data)
 
     return {
         "meta": extracted["meta"],
