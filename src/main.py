@@ -1,10 +1,9 @@
 """
 main.py — Android X-Ray 오케스트레이터 (6주차 Day2 골격, 역할1 유예원 담당)
 
-의존성 주의: network_analyzer의 capture.py/scenario_capture.py/dns_parser.py/
-sni_parser.py/ip_checker.py/report_builder.py는 아직 `feature/network-analyzer`
-브랜치에만 있고 main에는 merge 전이다(6주차_Day1_통합인터페이스_스펙.md 참고).
-이 파일을 실행하려면 그 브랜치가 먼저 main에 merge돼 있어야 함 — 역할4의 Day1 작업.
+의존성 주의: network_analyzer(capture.py/scenario_capture.py/dns_parser.py/
+sni_parser.py/ip_checker.py/report_builder.py)는 2026-08-03 기준 main에
+이미 merge되어 있음(과거엔 feature/network-analyzer에만 있었음). 별도 조치 불필요.
 
 실행 순서:
     1. 정적 분석(analyze_static) — 독립적이라 가장 먼저 실행
