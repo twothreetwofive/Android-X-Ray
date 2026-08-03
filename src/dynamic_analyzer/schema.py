@@ -39,6 +39,7 @@ class DynamicAnalysisResult(TypedDict):
     total_events_filtered: int      # 필터링 후 최종 개수
     events: List[HookEvent]         # 정제된 최종 이벤트 리스트
     plaintext_candidates: List[str] # 평문으로 판별된 문자열만 별도로 뽑아둔 것
+    risk_score: float               # 0.0~1.0, risk_scorer.calculate_dynamic_risk()가 채움
     errors: List[str]               # 부분 실패 시 누적, 빈 리스트면 성공
-    
+
 # total_events_captured/filtered: 노이즈 대비 실제 유효 데이터 비율 구하기(최종발표때)

@@ -17,6 +17,7 @@ from datetime import datetime
 from typing import List
 
 from .schema import HookEvent, DynamicAnalysisResult
+from .risk_scorer import calculate_dynamic_risk
 
 
 # ────────────────────────────────────────────────────────────
@@ -112,8 +113,10 @@ def build_report(
         "total_events_filtered": len(filtered),
         "events": filtered,
         "plaintext_candidates": plaintext,
+        "risk_score": 0.0,
         "errors": [],
     }
+    report["risk_score"] = calculate_dynamic_risk(report)
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
