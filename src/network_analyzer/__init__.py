@@ -7,6 +7,7 @@ from .scenario_capture import capture_during_scenario   # 추가
 from .dns_parser import parse_dns
 from .sni_parser import parse_sni
 from .pipeline import analyze_network
+from .network_scorer import calculate_network_risk, calculate_network_risk_with_breakdown
 
 __all__ = [
     "is_whitelisted",
@@ -21,4 +22,6 @@ __all__ = [
     "parse_dns",
     "parse_sni",
     "analyze_network",
+    "calculate_network_risk",
+    "calculate_network_risk_with_breakdown",
 ]
