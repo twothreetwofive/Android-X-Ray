@@ -51,7 +51,6 @@ class FridaController:
         with open(js_path, "r", encoding="utf-8") as f:
             source = f.read()
         self.script = self.session.create_script(source)
-        self.script.on("message", self._on_message)
         self.script.load()
 
     def _on_message(self, message: dict, data) -> None:

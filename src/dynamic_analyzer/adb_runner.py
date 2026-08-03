@@ -84,7 +84,7 @@ class AdbRunner:
         if pidof_output:
             return True
         ps_output = self._shell(["ps", "-A"])
-        return any(line.strip().endswith(package_name) for line in ps_output.splitlines())
+        return any(package_name in line for line in ps_output.splitlines())
 
     # ── 앱 실행/종료 ──────────────────────────────────────────
 

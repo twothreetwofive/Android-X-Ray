@@ -30,9 +30,13 @@ from dynamic_analyzer.message_parser import (
 
 HOOKS_BUNDLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hooks.bundle.js")
 
-
-def run(package_name: str, observe_sec: float = 5.0, output_path: str = "dynamic_report.json"):
+def run(package_name: str, observe_sec: float = 5.0, output_path: str | None = None):
     reset_captured_events()
+    
+    if output_path is None:
+        timestamp = datetime.now().strftime("%Y%m%dT%H%M%S")
+        safe_package = package_name.replace(".", "_")
+        output_path = f"output/dynamic_report_{safe_package}_{timestamp}.json"
 
     controller = FridaController()
     controller.connect()

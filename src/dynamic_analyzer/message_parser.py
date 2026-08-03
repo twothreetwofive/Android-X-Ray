@@ -27,15 +27,36 @@ from .schema import HookEvent, DynamicAnalysisResult
 # run_test.py / scenario_runner.py에서 세션 끝난 뒤 이 리스트를 build_report()에 넘기면 됨.
 _captured_events: List[HookEvent] = []
 
+REQUIRED_FIELDS = [
+    "hook_type",
+    "timestamp",
+    "class_name",
+    "method_name",
+    "raw_value",
+    "extra",
+    "thread_id",
+]
 
 def on_message(message: dict, data=None) -> None:
     """script.on('message', on_message) 에 그대로 등록할 콜백"""
     print("[디버그] 전체 메시지:", message)  # 이 줄 추가
-    if message["type"] == "send":
-        payload: HookEvent = message["payload"]
-        _captured_events.append(payload)
+    if message.get("type") == "send":
+        payload = message.get("payload")
+        
+        if not isinstance(payload, dict):
+            print("[message_parser] payload가 dict가 아님")
+            return
+        
+        missing = [f for f in REQUIRED_FIELDS if f not in payload]
+        if missing:
+            print(f"[message_parser] HookEvent 필드 누락: {missing}")
+            return
+        
+        event: HookEvent = payload
+        _captured_events.append(event)
+        
         print(f"[{payload['hook_type']}] {payload['method_name']} → {payload['raw_value'][:60]}")
-    elif message["type"] == "error":
+    elif message.get("type") == "error":
         print(f"[hooks.js 런타임 에러] {message.get('description')}")
 
 
@@ -89,7 +110,18 @@ def is_plaintext(value: str, min_len: int = 4) -> bool:
 
 
 def extract_plaintext_candidates(events: List[HookEvent]) -> List[str]:
-    return [e["raw_value"] for e in events if is_plaintext(e["raw_value"])]
+    candidates = []
+
+    for e in events:
+        # Base64 데이터는 평문 후보에서 제외
+        # 인증서/바이너리 데이터가 printable 문자열처럼 잡히는 문제 방지
+        if e["hook_type"] == "base64":
+            continue
+
+        if is_plaintext(e["raw_value"]):
+            candidates.append(e["raw_value"])
+
+    return candidates
 
 
 # ────────────────────────────────────────────────────────────
@@ -107,7 +139,7 @@ def build_report(
 
     report: DynamicAnalysisResult = {
         "package_name": package_name,
-        "session_duration_sec": int((datetime.now() - session_start).total_seconds()),
+        "session_duration_sec": round((datetime.now() - session_start).total_seconds(), 3),
         "total_events_captured": len(raw_events),
         "total_events_filtered": len(filtered),
         "events": filtered,

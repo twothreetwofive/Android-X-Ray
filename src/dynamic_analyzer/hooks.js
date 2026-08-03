@@ -78,7 +78,7 @@ function hookStringBuilder() {
     append.implementation = function (str) {
         var result = append.call(this, str);
         try {
-            if (str.length > MIN_STRING_BUILDER_LEN && !isDuplicate("string_builder", str)) {
+            if (str && str.length > MIN_STRING_BUILDER_LEN && !isDuplicate("string_builder", str)) {
                 sendEvent("string_builder", "java.lang.StringBuilder", "append", str, {});
             }
         } catch (e) {
