@@ -118,7 +118,7 @@ class ScenarioRunner:
         except Exception as e:
             error = str(e)
         finally:
-            self.controller._cleanup_current_session()
+            self.controller.cleanup()
 
         events = message_parser.get_captured_events()
         report = None

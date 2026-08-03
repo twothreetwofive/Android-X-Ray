@@ -100,7 +100,7 @@ class FridaController:
         except Exception as e:
             result["error"] = str(e)
         finally:
-            self._cleanup()
+            self.cleanup()
         return result
 
     def run_batch(self, package_names: list[str], js_path: str, observe_sec: float = 5.0) -> list[dict]:
