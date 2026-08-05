@@ -47,6 +47,10 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
 
     apk = APK(str(apk_path))
     meta = {
+        # apk_name은 analyze_static()의 반환값만 봐서는 "어떤 파일을 분석했는지" 알 수
+        # 없어서 추가했다 (통합 스키마의 required 필드). 호출부마다 경로를 따로 들고
+        # 다니게 하는 것보다 meta에 넣어두는 쪽이 대시보드 단계에서도 재사용하기 좋다.
+        "apk_name": apk_path.name,
         "package_name": apk.get_package(),
         "version_name": apk.get_androidversion_name(),
         "version_code": _safe_int(apk.get_androidversion_code()),

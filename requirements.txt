@@ -1,3 +1,11 @@
 androguard==4.1.4
 frida==17.16.2
 frida-tools==14.10.4
+
+# lxml은 androguard가 함께 설치해 주지만, 테스트에서 직접 import하므로 명시해 둔다
+# (androguard.get_android_manifest_xml()이 lxml Element를 반환)
+lxml==4.8.0
+
+# 테스트용 (6주차 B — 어댑터 단위 테스트 + 통합 스키마 검증)
+pytest==9.1.1
+jsonschema==3.2.0
