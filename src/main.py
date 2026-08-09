@@ -19,8 +19,8 @@ sni_parser.py/ip_checker.py/report_builder.py는 아직 `feature/network-analyze
        network_analyzer.scenario_capture.capture_during_scenario()가
        "캡처 시작 -> run_scenario_fn 실행 -> 캡처 종료 -> pull"을 한 번에
        보장하는 구조를 그대로 사용한다.
-    3. 위험도 스코어링 — 역할4 담당. 여기서는 인터페이스(risk_score 필드)만
-       비워두고 실제 계산 로직은 역할4가 채운다.
+    3. 위험도 스코어링 — risk_aggregator.aggregate_risk()가 세 모듈의 하위 점수를
+       가중평균해 종합 total/level/breakdown을 채운다(실패 모듈은 빼고 재정규화).
     4. 최종 report.json 조립 + 저장
 
 에러/타임아웃 정책 (스펙 문서 3번 항목 그대로 구현):
@@ -79,6 +79,8 @@ from network_analyzer.dns_parser import parse_dns
 from network_analyzer.sni_parser import parse_sni
 from network_analyzer.report_builder import build_network_report
 from network_analyzer.exceptions import NetworkAnalysisError
+
+from risk_aggregator import aggregate_risk
 
 
 # ── 모듈별 outer timeout (초) ──
@@ -322,18 +324,20 @@ def run_pipeline(
         _notify(on_progress, "dynamic", dynamic_result.status)
         _notify(on_progress, "network", network_result.status)
 
-    # 2. 위험도 스코어링 — 역할4 담당. 인터페이스만 잡아두고 값은 비워둠.
-    risk_score = {"total": None, "level": None, "breakdown": None}
+    # 2. 위험도 스코어링 — 정적/동적/네트워크 하위 점수를 가중평균해 종합 점수 산정.
+    #    risk_aggregator가 부분 리포트(모듈 실패)도 알아서 처리하므로 여기서는 그대로 넘긴다.
+    modules = {
+        "static": static_result.to_dict(),
+        "dynamic": dynamic_result.to_dict(),
+        "network": network_result.to_dict(),
+    }
+    risk_score = aggregate_risk(modules)
 
     return {
         "apk_name": Path(apk_path).name,
         "package_name": package_name,
         "analyzed_at": analyzed_at,
-        "modules": {
-            "static": static_result.to_dict(),
-            "dynamic": dynamic_result.to_dict(),
-            "network": network_result.to_dict(),
-        },
+        "modules": modules,
         "risk_score": risk_score,
     }
 
@@ -364,6 +368,11 @@ def main():
         if mod.get("error"):
             status_line += f" error={mod['error']}"
         print(status_line)
+
+    risk = report["risk_score"]
+    print(f"\n종합 위험도: total={risk['total']} level={risk['level']}")
+    if risk["breakdown"]["unavailable"]:
+        print(f"  (점수에서 제외된 모듈: {', '.join(risk['breakdown']['unavailable'])})")
     print(f"\n최종 리포트 저장: {args.output}")
 
 
