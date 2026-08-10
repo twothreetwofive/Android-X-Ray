@@ -1,0 +1,41 @@
+A — 골격 + 업로드 + 진행상황 (뼈대, 제일 먼저)
+
+- st.file_uploader로 apk 받기 → 임시경로 저장 → pipeline_bridge.run(apk_path) 호출
+- 진행상황: run_pipeline이 지금은 통짜 실행이라 stage별 진행을 못 뿜음. 두 가지 중 택1로 시작:
+    - (간단·권장) st.status/st.spinner로 "정적 분석 중… → 동적/네트워크 중… → 조립 중" 단계 표시. pipeline_bridge에서 정적과 동적+네트워크를 나눠 부르면 2~3단계 진행바가 자연스럽게 나옴.
+    - (여유되면) run_pipeline에 progress_callback 인자 추가 제안 → 오케스트레이터 소유자가 A니까 본인이 넣기 좋음.
+- 결과를 st.session_state["report"]에 저장, 상단에 apk_name / package_name / 분석시각 헤더 + 4개 탭(정적/동적/네트워크/종합위험도) 또는 위험도 상단 + 3탭 레이아웃
+- common.py: status_badge(status)(색깔 배지), safe_get(d, *keys)(None 방어), 상태별 색상 상수 — B/C/D가 다 씀
+- B/C/D는 A의 common.py와 탭 자리만 있으면 착수 가능 → A가 이 뼈대를 제일 먼저 올려야 병목 안 생김
+
+B — 정적 분석 뷰 (render_static)
+
+- 상단 상태배지 + errors 리스트 표시(partial일 때)
+- manifest.permissions → 위험 권한(SMS/접근성/오버레이/SYSTEM_ALERT_WINDOW 등) 강조 테이블
+- manifest 컴포넌트(activities/services/receivers), certificate(서명 주체·유효기간·자가서명 여부), third_party_sdks 목록
+- code_analysis, strings에서 의심 문자열(URL, 명령 키워드) 하이라이트
+- data.risk_score(정적 자체 점수)도 있으면 표시 — 종합 위험도(D)와는 별개
+
+C — 동적 분석 뷰 (render_dynamic)
+
+- 상태배지 + crashed 플래그 경고(true면 눈에 띄게)
+- hooked_calls → 후킹된 API 호출 테이블/타임라인(어떤 민감 API를 언제 불렀나: SMS 전송, 연락처 읽기 등)
+- extracted_strings → 런타임에 뽑힌 문자열(C2 주소, 동적 로딩 흔적)
+- 호출 카테고리별 카운트 요약(상단 metric 몇 개)
+
+D — 네트워크 뷰 + 종합 위험도 패널
+
+- render_network: dns_queries / tls_sni 테이블, suspicious(의심 IP/도메인)를 맨 위에 빨간 강조, 화이트리스트 대비 결과
+- render_risk: 여기가 대시보드 얼굴. risk_score.total(0~100) 게이지, risk_score.level(예: 낮음/주의/위험) 큰 배지, risk_score.breakdown(모듈별 기여도)을 막대/표로. 지금 값은 None이니 더미 값 하나 박아두고({"total":72,"level":"위험","breakdown":{...}}) UI 먼저 완성 → 실제 계산 붙으면 그대로 살아납니다. "했다고 치고"가 여기입니다.
+
+▎ 차트를 그리기 전에 dataviz 스킬을 한 번 읽고 색/게이지 톤을 맞추면 4명 결과물이 한 세트처럼 보입니다. 특히 D의 위험도 게이지와 B의 권한 강조 색을 통일하세요.
+
+main 병합 계획 (최종)
+
+브랜치: 각자 feature/dashboard-a/b/c/d. 순서가 중요합니다.
+
+1. A 먼저 merge — 골격+common.py가 main에 들어가야 B/C/D가 그 위에서 import. (A가 없으면 나머지가 붕 뜸)
+2. B/C/D는 A 머지된 main을 rebase 받아서 각자 뷰 완성 → 개별 PR
+3. 통합 확인: 정상앱 1개로 e2e — 업로드→진행→4개 뷰 다 뜨는지, 그리고 일부러 동적 모듈 죽여서(디바이스 미연결) status=failed일 때도 대시보드가 안 죽고 배지 뜨는지 확인 (이게 오케스트레이터 부분리포트 정책의 검증 포인트)
+4. requirements.txt에 streamlit, (차트 쓰면 plotly 등) 추가 — A가 PR에 포함
+5. 네 뷰 다 붙고 통합 확인 끝나면 최종 PR로 main 병합

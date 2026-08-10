@@ -82,6 +82,29 @@ ABUSE_EXAMPLES = {
         "외부 서버와 통신한다. 거의 모든 앱이 쓰는 흔한 권한이지만, 탈취한 정보를 "
         "공격자 서버(C&C)로 보내는 통로도 이 권한이다"
     ),
+    # 아래 8개는 7주차에 추가. PERMISSION_WEIGHTS에는 있는데 설명이 없어서
+    # 대시보드 권한 표에 가중치만 뜨고 "왜 위험한지" 칸이 비어 있었다.
+    "android.permission.BIND_DEVICE_ADMIN": (
+        "기기 관리자 권한. 화면 잠금·초기화·비밀번호 변경을 할 수 있고, 이 권한을 "
+        "받은 앱은 사용자가 삭제하기 어려워져 랜섬웨어·지속성 확보에 쓰인다"
+    ),
+    "android.permission.ACCESS_BACKGROUND_LOCATION": (
+        "앱을 쓰지 않는 동안에도 위치를 수집한다. 사용자가 눈치채기 가장 어려운 형태의 추적"
+    ),
+    "android.permission.PACKAGE_USAGE_STATS": (
+        "어떤 앱을 언제 얼마나 썼는지 조회한다. 은행 앱이 열리는 순간을 감지해 "
+        "그때 맞춰 가짜 화면을 띄우는 오버레이 공격의 트리거로 쓰인다"
+    ),
+    "android.permission.READ_CALL_LOG": "통화 기록을 수집해 인간관계 파악·보이스피싱 대상 선별",
+    "android.permission.CALL_PHONE": (
+        "사용자 확인 없이 전화를 건다. 유료 번호로 자동 발신하거나, 은행 고객센터 "
+        "전화를 공격자 번호로 가로채는 데 쓰인다"
+    ),
+    "android.permission.WRITE_CONTACTS": (
+        "연락처를 변경·추가한다. 은행 고객센터 번호를 공격자 번호로 바꿔치기하는 수법이 있다"
+    ),
+    "android.permission.ACCESS_COARSE_LOCATION": "대략적인 위치(기지국·와이파이 기준) 수집",
+    "android.permission.GET_ACCOUNTS": "기기에 등록된 계정 목록을 수집해 피싱 대상 계정 확보",
     # 필요한 만큼 계속 추가하면 됨 — 점수에 영향이 없으므로 추가는 자유롭다
 }
 
