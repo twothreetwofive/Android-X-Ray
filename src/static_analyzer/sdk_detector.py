@@ -25,8 +25,13 @@ KNOWN_SDK_PACKAGES = {
 
 
 def detect_sdks(extracted: dict) -> list[str]:
-    jadx_dir = Path(extracted["jadx_dir"])
+    jadx_dir = extracted.get("jadx_dir")
     detected = set()
+
+    # jadx 디컴파일이 실패(None)했으면 패키지 폴더 구조를 볼 수 없어 탐지 불가.
+    if not jadx_dir:
+        return []
+    jadx_dir = Path(jadx_dir)
 
     for pkg_path, sdk_name in KNOWN_SDK_PACKAGES.items():
         # jadx 버전에 따라 sources/ 하위에 소스가 들어가는 경우와 바로 루트인 경우가 있어 둘 다 확인
