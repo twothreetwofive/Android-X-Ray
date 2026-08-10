@@ -41,7 +41,7 @@ def _detect_native_libraries(apk_path: Path) -> list[str]:
 
 
 def scan_code(extracted: dict) -> dict:
-    jadx_dir = Path(extracted["jadx_dir"])
+    jadx_dir = extracted.get("jadx_dir")
     apk_path = Path(extracted["apk_path"])
 
     suspicious_api_calls = []
@@ -50,7 +50,10 @@ def scan_code(extracted: dict) -> dict:
     obfuscated_class_count = 0
     total_class_count = 0
 
-    for java_file in jadx_dir.rglob("*.java"):
+    # jadx 디컴파일이 실패(None)했으면 소스 트리 스캔은 건너뛰되, 네이티브 라이브러리는
+    # apk 자체(zip)에서 뽑으므로 그 부분은 그대로 살린다.
+    java_files = Path(jadx_dir).rglob("*.java") if jadx_dir else []
+    for java_file in java_files:
         total_class_count += 1
         if _OBFUSCATED_NAME_RE.match(java_file.stem):
             obfuscated_class_count += 1

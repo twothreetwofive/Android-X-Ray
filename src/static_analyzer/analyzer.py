@@ -38,9 +38,12 @@ def analyze_static(apk_path: str, work_dir: str | Path = "work") -> dict:
     # 의미가 있어서 여기서 찍는다 (네트워크 모듈의 capture_started_at과 같은 방식).
     analyzed_at = datetime.now(timezone.utc).isoformat()
 
-    # 1. 치명적 실패(apk 없음, apktool/jadx 실패)는 여기서 그대로 위로 전파시킴 —
-    #    디컴파일 자체가 안 되면 뒤 단계를 계속 진행할 의미가 없음.
+    # 1. 치명적 실패(apk 파일 자체가 없거나 androguard 파싱 불가)만 위로 전파된다.
+    #    apktool/jadx 디컴파일 실패는 더 이상 치명적이지 않다 — meta(package_name)는
+    #    androguard로 이미 확보되므로, 디컴파일이 실패해도 뒤 단계(동적/네트워크)까지
+    #    돌 수 있게 extract_apk가 None + decompile_warnings로 알려주고 계속 진행한다.
     extracted = extract_apk(apk_path, work_dir)
+    errors.extend(extracted.get("decompile_warnings", []))
 
     # 2. 나머지는 하나가 실패해도 나머지는 계속 진행 (부분 실패 -> errors 누적)
     manifest_data = _run_stage(errors, "manifest 파싱", parse_manifest, apk_path)
