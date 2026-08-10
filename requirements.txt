@@ -14,4 +14,11 @@ streamlit==1.61.1
 
 # 테스트용 (6주차 B — 어댑터 단위 테스트 + 통합 스키마 검증)
 pytest==9.1.1
-jsonschema==3.2.0
+# jsonschema: 원래 3.2.0였으나 아래 streamlit/altair가 더 높은 버전을 요구해 4.26.0으로
+# 올림. B의 검증 코드는 Draft7Validator(단일 스키마) 하나만 쓰고 $ref/RefResolver를
+# 안 써서 4.x에서도 API 동일하게 동작함(확인 완료). Draft-07 검증 시맨틱도 그대로.
+jsonschema==4.26.0
+
+# 대시보드용 (7~8주차 — Streamlit UI). altair/pandas는 streamlit이 함께 설치한다.
+# width="stretch" 등 최신 API를 쓰므로 이 버전 이상 필요.
+streamlit==1.61.1

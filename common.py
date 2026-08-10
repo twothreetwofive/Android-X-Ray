@@ -39,6 +39,62 @@ STATUS_LABELS_KO: dict[str, str] = {
     "timeout": "타임아웃",
 }
 
+# ── 위험도 등급 색/아이콘/라벨 (dataviz 스킬의 status 팔레트, 검증본) ──
+# aggregate_risk()가 내는 level(영문 low/medium/high/unknown)을 키로 쓴다.
+# D의 종합 위험도 게이지(risk_view)와 B의 정적 권한 강조색(static_view)이 이 한 표를
+# 공유해서 4명 산출물의 톤을 통일한다 — 권한의 risk_level(high/medium/low)도 아래
+# high/medium/low 색을 그대로 쓰면 게이지와 색이 맞는다.
+# status 색은 색만으로 의미를 전달하지 않도록 항상 아이콘+라벨과 함께 쓴다.
+RISK_LEVEL_COLORS: dict[str, str] = {
+    "low": "#0ca30c",      # good
+    "medium": "#fab219",   # warning
+    "high": "#d03b3b",     # critical
+    "unknown": "#898781",  # muted (계산 불가 — 0점=안전으로 오해 방지)
+}
+
+RISK_LEVEL_ICONS: dict[str, str] = {
+    "low": "🟢",
+    "medium": "🟡",
+    "high": "🔴",
+    "unknown": "⚪",
+}
+
+RISK_LEVEL_LABELS_KO: dict[str, str] = {
+    "low": "낮음",
+    "medium": "주의",
+    "high": "위험",
+    "unknown": "판정 불가",
+}
+
+# 종합 점수(0.0~1.0) → 등급 임계값. src/risk_aggregator.py의 LEVEL_THRESHOLDS와
+# 반드시 동일하게 유지할 것 (게이지 구간색과 실제 등급이 어긋나지 않도록).
+RISK_BAND_BOUNDS = [(34, "low"), (67, "medium"), (100, "high")]  # 0~100 스케일 상한
+
+# ── 모듈 카테고리 색 (dataviz 카테고리 슬롯 1/2/3, CVD 검증 통과) ──
+# static/dynamic/network는 대시보드 전체에서 반복 등장하는 "정체성"이라 카테고리
+# 색으로 고정한다. breakdown 막대에서 이 색을 쓰고, 라이트 모드 magenta는 대비가
+# 낮아(WARN) 반드시 직접 라벨/표를 함께 보여준다(relief 규칙).
+MODULE_COLORS: dict[str, str] = {
+    "static": "#2a78d6",   # 파랑
+    "dynamic": "#008300",  # 초록
+    "network": "#e87ba4",  # 마젠타
+}
+
+MODULE_LABELS_KO: dict[str, str] = {
+    "static": "정적",
+    "dynamic": "동적",
+    "network": "네트워크",
+}
+
+
+def risk_level_ko(level: Optional[str]) -> str:
+    """영문 level을 한글 라벨로. 모르는 값이면 그대로 돌려준다."""
+    return RISK_LEVEL_LABELS_KO.get(level or "unknown", level or "판정 불가")
+
+
+def risk_level_color(level: Optional[str]) -> str:
+    return RISK_LEVEL_COLORS.get(level or "unknown", RISK_LEVEL_COLORS["unknown"])
+
 
 def status_badge(status: Optional[str]) -> str:
     """main.py의 module_status를 st.markdown()에 바로 넣을 수 있는 색깔
