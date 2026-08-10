@@ -6,10 +6,13 @@ frida-tools==14.10.4
 # (androguard.get_android_manifest_xml()이 lxml Element를 반환)
 lxml==4.8.0
 
-# 7주차 대시보드. A의 app.py / common.py / views/*가 전부 이걸 쓴다.
+# 대시보드 (7~8주차). A의 app.py / common.py / views/*가 전부 이걸 쓴다.
 # 7주차 계획에는 A가 PR에 포함하기로 돼 있었는데 골격 PR(#6)에 빠져 있어서
-# B가 추가한다 — 이게 없으면 새로 받은 사람이 `streamlit run app.py`부터 막힌다.
+# B와 D가 각자 추가했고, 그 결과 이 파일에 두 번 들어가 있었다(8주차 Day1 정리).
+# 이게 없으면 새로 받은 사람이 `streamlit run app.py`부터 막힌다.
 # 화면 렌더링 테스트(tests/test_static_view_render.py)도 이 패키지를 쓴다.
+# altair/pandas는 streamlit이 함께 설치한다. views/*가 `width="stretch"` 등
+# 최신 API를 쓰므로 이 버전 미만으로 내리면 안 된다.
 streamlit==1.61.1
 
 # 테스트용 (6주차 B — 어댑터 단위 테스트 + 통합 스키마 검증)
@@ -18,7 +21,3 @@ pytest==9.1.1
 # 올림. B의 검증 코드는 Draft7Validator(단일 스키마) 하나만 쓰고 $ref/RefResolver를
 # 안 써서 4.x에서도 API 동일하게 동작함(확인 완료). Draft-07 검증 시맨틱도 그대로.
 jsonschema==4.26.0
-
-# 대시보드용 (7~8주차 — Streamlit UI). altair/pandas는 streamlit이 함께 설치한다.
-# width="stretch" 등 최신 API를 쓰므로 이 버전 이상 필요.
-streamlit==1.61.1
