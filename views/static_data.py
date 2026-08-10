@@ -18,22 +18,15 @@ static_view.py에서 "dict를 표에 넣을 값으로 바꾸는" 부분만 떼�
 """
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from typing import Any, Optional
 
-# src/를 import 경로에 넣는다. app.py로 실행할 때는 pipeline_bridge가 먼저
-# import되면서 이미 넣어주지만, 거기에 기대면 "app.py의 import 순서가 바뀌면
-# 정적 탭만 깨지는" 상태가 된다. 실제로 demo_static.py를 그냥 실행했을 때
-# ModuleNotFoundError: static_analyzer가 났었다. 이 모듈만 단독으로 import해도
-# 되도록 여기서 직접 넣는다. (pytest는 pytest.ini의 pythonpath로 이미 해결)
-_SRC_DIR = Path(__file__).resolve().parent.parent / "src"
-if str(_SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(_SRC_DIR))
-
-from common import safe_get  # noqa: E402 — sys.path 조정 이후에 import
-from static_analyzer.manifest_parser import ABUSE_EXAMPLES, PERMISSION_WEIGHTS  # noqa: E402
-from static_analyzer.static_adapter import permission_risk_level  # noqa: E402
+# src/와 저장소 루트를 import 경로에 넣는 일은 views/__init__.py가 한다 —
+# 7주차에는 이 파일이 직접 했지만, C/D 뷰도 같은 것이 필요해 3벌이 될 상황이라
+# 패키지 __init__으로 옮겼다(8주차 Day1, A-1). `views.static_data`를 import하면
+# __init__.py가 먼저 실행되므로 아래 import는 그대로 동작한다.
+from common import safe_get
+from static_analyzer.manifest_parser import ABUSE_EXAMPLES, PERMISSION_WEIGHTS
+from static_analyzer.static_adapter import permission_risk_level
 
 # ── 색 ──
 # A의 common.py STATUS_COLORS와 같은 streamlit 색 이름을 쓴다. 7주차 계획의

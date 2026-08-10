@@ -135,7 +135,7 @@ def render(report: dict) -> None:
 
             st.dataframe(
                 event_df,
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
 
@@ -156,7 +156,7 @@ def render(report: dict) -> None:
 
         st.dataframe(
             plaintext_df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
         )
 
