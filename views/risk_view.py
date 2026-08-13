@@ -4,36 +4,29 @@ views/risk_view.py — 종합 위험도 패널 (역할 D 담당, 대시보드의
 받는 데이터: report["risk_score"] = src/risk_aggregator.aggregate_risk()의 출력.
     {
       "total": float(0.0~1.0) | None,
-      "level": "low"|"medium"|"high"|"unknown",
-      "breakdown": {
-        "modules": {"static": {"available": bool, "weight": float,
-                               "sub_score": float, ...}, "dynamic": {...}, "network": {...}},
-        "weights_applied": {...},
-        "unavailable": [모듈명, ...],
-      },
+      "score100": int | None,
+      "level": 판정 코드,
+      "verdict": {"code", "band_code", "strong_indicators", "malicious_rule"},
+      "indicators": {"static": [...], "dynamic": [...], "network": [...]},
+      "breakdown": {"modules": {...}, "weights_applied": {...}, "unavailable": [...]},
     }
 
-표시 규약:
-- total은 0.0~1.0이라 화면에는 ×100 해서 0~100 점수로 보여준다.
-- level은 영문이라 common.risk_level_ko()로 한글(낮음/주의/위험/판정 불가)로 바꿔 배지에 쓴다.
-- 게이지 구간색/등급색은 common.RISK_LEVEL_COLORS(= B의 권한 강조색과 같은 표)를 쓴다.
+8주차 구조 변경 (계획수정 PDF 3~5항)
+------------------------------------
+화면을 네 층으로 나눈다. 이전에는 점수·게이지·기여도만 있어서 "분석이 성공했는가"와
+"무엇이 발견됐는가"가 구분되지 않았다.
 
-주의(A가 골격에 남긴 것 유지): total이 None인 상태(스코어링 미반영 또는 입력 모듈
-전부 실패)를 0점(안전)으로 오독하지 않게 분기한다.
+    1. 위험 지표    — 무엇이 발견됐는가 (관찰 사실, 점수와 별개)
+    2. 모듈별 위험도 — 정적/동적/네트워크 각각 XX/100
+    3. 게이지 + 기여도 — 종합 점수가 어떻게 나왔는가
+    4. 판정 근거 + 주의 문구 — 왜 이 판정인가, 그리고 이것이 확정이 아니라는 고지
 
-total=None일 때의 표시 (8주차 Day1에 변경 — 아래 경위 참고):
-    "판정 불가"(회색, common의 unknown 상태)를 그린다. 점수도 게이지도 그리지 않는다.
-    UI 확인용 더미는 st.session_state["risk_view_demo"] = True 로 명시적으로 켤 때만
-    나온다(demo_risk.py 참고).
+최종 판정 배지와 분석 상태 3종은 이 탭이 아니라 화면 최상단(views/verdict_header.py)에
+있다 — 어느 탭을 보고 있든 판정이 보여야 하기 때문.
 
-    7주차에는 total=None이면 배너를 띄우고 곧바로 더미(72점 "위험")를 그렸다. 그때는
-    aggregate_risk()가 아직 배선 전이라 "했다고 치고" 자리로서 맞는 선택이었지만,
-    PR #8로 실제 계산이 main.py에 붙은 뒤로는 total=None이 "스코어링 미반영"이 아니라
-    "세 모듈이 전부 실패"라는 뜻이 됐다. 즉 분석이 통째로 실패한 리포트에서 56px 짜리
-    빨간 "72 / 100 위험"이 뜬다 — 배너가 있어도 발표 화면에서는 그 숫자가 먼저 읽힌다.
-    aggregate_risk()가 total=None, level="unknown"을 굳이 따로 두는 이유(실패를 0.0=안전
-    으로 오해하지 않게)와도 어긋나서, common의 unknown 상태를 그대로 쓰도록 바꿨다.
-    (B가 tests/test_static_view_render.py의 "모듈 전체 실패" 케이스에서 발견)
+주의(A가 골격에 남긴 것 유지): total이 None인 상태를 0점(안전)으로 오독하지 않게
+분기한다. UI 확인용 더미는 st.session_state["risk_view_demo"]를 켤 때만 나온다
+(demo_risk.py 참고).
 """
 from __future__ import annotations
 
@@ -42,25 +35,42 @@ import pandas as pd
 import streamlit as st
 
 from common import (
+    DISCLAIMER,
     MODULE_COLORS,
     MODULE_LABELS_KO,
-    RISK_BAND_BOUNDS,
-    RISK_LEVEL_COLORS,
-    RISK_LEVEL_ICONS,
-    risk_level_color,
-    risk_level_ko,
+    VERDICT_BAND_BOUNDS,
+    VERDICT_COLORS,
+    VERDICT_ICONS,
     safe_get,
     status_badge,
+    verdict_color,
+    verdict_ko,
 )
 
 # UI 확인용 더미. aggregate_risk()의 실제 출력과 "같은 형태"라 기기/샘플 없이도
-# 게이지·기여도 화면을 손볼 수 있다. 실측 리포트에서 저절로 튀어나오면 안 되므로
-# DEMO_FLAG를 켠 경우에만 쓴다.
+# 화면을 손볼 수 있다. 실측 리포트에서 저절로 튀어나오면 안 되므로 DEMO_FLAG를
+# 켠 경우에만 쓴다.
 DEMO_FLAG = "risk_view_demo"
 
 _DUMMY_RISK = {
     "total": 0.72,
-    "level": "high",
+    "score100": 72,
+    "level": "suspicious",
+    "verdict": {
+        "code": "suspicious",
+        "band_code": "suspicious",
+        "score100": 72,
+        "strong_indicators": [
+            {"code": "suspicious_domain", "label": "의심 도메인", "value": "3건", "module": "network"},
+        ],
+        "malicious_rule": {"min_score": 80, "min_indicators": 3,
+                           "strong_indicator_count": 1, "met": False},
+    },
+    "indicators": {
+        "static": [{"code": "obfuscation", "label": "난독화", "value": "탐지", "strong": False}],
+        "dynamic": [{"code": "plaintext", "label": "평문 후보", "value": "2건", "strong": False}],
+        "network": [{"code": "suspicious_domain", "label": "의심 도메인", "value": "3건", "strong": True}],
+    },
     "breakdown": {
         "modules": {
             "static": {"available": True, "weight": 0.4, "sub_score": 0.85},
@@ -79,8 +89,6 @@ def render(report: dict) -> None:
     risk = report.get("risk_score") or {}
     total = risk.get("total")
 
-    st.markdown("### 종합 위험도")
-
     # 더미는 명시적으로 켰을 때만. 실측 리포트에는 절대 섞이지 않는다.
     if total is None and st.session_state.get(DEMO_FLAG):
         st.warning(
@@ -94,30 +102,133 @@ def render(report: dict) -> None:
         _render_unknown(report)
         return
 
-    level = risk.get("level") or "unknown"
-    score100 = round(total * 100)
+    score100 = risk.get("score100")
+    if score100 is None:
+        score100 = round(total * 100)
+    verdict = risk.get("verdict") or {}
+    code = verdict.get("code") or risk.get("level") or "unknown"
 
-    # ── 1. 히어로 점수 + 등급 배지 ──
-    _render_headline(score100, level)
-
-    # ── 2. 게이지 (0~100, 저/중/고 구간색) ──
-    st.altair_chart(_gauge_chart(score100, level), width="stretch")
+    # ── 1. 위험 지표 — "무엇이 발견됐는가" ──
+    _render_indicator_section(risk)
 
     st.divider()
 
-    # ── 3. 모듈별 기여도 ──
+    # ── 2. 모듈별 위험도 ──
+    _render_module_scores(risk)
+
+    st.divider()
+
+    # ── 3. 게이지 + 기여도 ──
+    st.markdown("#### 종합 위험도")
+    st.altair_chart(_gauge_chart(score100, code), width="stretch")
+    st.caption(
+        "구간: 0–29 정상 · 30–59 주의 · 60–79 의심 · 80–100 고위험 "
+        "(‘악성’은 점수만으로 주지 않고 강한 지표가 여러 개 충족될 때만 표시)"
+    )
+
     st.markdown("#### 모듈별 기여도")
     st.caption("종합 점수는 각 모듈 하위점수(0~100)에 재정규화 가중치를 곱해 합산한 값입니다.")
     _render_breakdown(risk)
 
     st.divider()
 
-    # ── 4. 모듈 상태 요약 (A 골격에서 유지) ──
-    _render_module_status(report)
+    # ── 4. 판정 근거 + 주의 문구 ──
+    _render_verdict_basis(verdict)
+    st.info(DISCLAIMER, icon="⚠️")
+
+
+def _render_indicator_section(risk: dict) -> None:
+    """모듈별 위험 지표를 한 표로 모아 보여준다.
+
+    점수와 분리해서 보여주는 것이 핵심이다. 점수는 가중치·상한이 섞인 계산값이지만
+    이쪽은 "관찰된 사실" 그대로라, 발표나 보고서에서 근거로 인용할 수 있는 건
+    이쪽이다.
+    """
+    st.markdown("#### 위험 지표")
+    st.caption("분석 과정에서 관찰된 사실입니다. 위험도 점수와는 별개이며, 그 자체로 악성을 뜻하지 않습니다.")
+
+    indicators = risk.get("indicators") or {}
+    rows = []
+    for name, label in MODULE_LABELS_KO.items():
+        for ind in indicators.get(name) or []:
+            rows.append({
+                "": "⚠️" if ind.get("strong") else "",
+                "모듈": label,
+                "지표": ind.get("label", ""),
+                "값": str(ind.get("value", "")),
+            })
+
+    if not rows:
+        st.caption("관찰된 위험 지표가 없습니다. (지표가 없다는 것이 '안전함'을 뜻하지는 않습니다)")
+        return
+
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+    n_strong = sum(1 for r in rows if r[""] == "⚠️")
+    if n_strong:
+        st.caption(f"⚠️ 표시 {n_strong}건 = 양성으로 설명하기 어려운 '강한 지표' (악성 판정 규칙에 사용)")
+
+
+def _render_module_scores(risk: dict) -> None:
+    """정적/동적/네트워크 각각의 위험도를 0~100으로 나란히 보여준다 (PDF 최종 구조)."""
+    st.markdown("#### 모듈별 위험도")
+    modules = safe_get(risk, "breakdown", "modules", default={}) or {}
+
+    cols = st.columns(3)
+    for col, (name, label) in zip(cols, MODULE_LABELS_KO.items()):
+        m = modules.get(name) or {}
+        if m.get("available"):
+            sub = float(m.get("sub_score") or 0.0)
+            col.metric(f"{label} 위험도", f"{round(sub * 100)} / 100")
+        else:
+            # 점수를 못 낸 모듈에 0을 적으면 "위험 없음"으로 읽힌다.
+            col.metric(f"{label} 위험도", "—", help="점수를 산정할 수 없는 모듈입니다.")
+
+
+def _render_verdict_basis(verdict: dict) -> None:
+    """왜 이 판정이 나왔는지 — 특히 '악성'이 아닌 이유까지 밝힌다.
+
+    PDF 5항의 요구("악성은 여러 강한 지표가 충족됐을 때만")를 화면에서 검증
+    가능하게 만드는 부분이다. 규칙을 숨기지 않고 그대로 노출한다.
+    """
+    rule = verdict.get("malicious_rule") or {}
+    if not rule:
+        return
+
+    code = verdict.get("code")
+    n_strong = rule.get("strong_indicator_count", 0)
+    min_score = rule.get("min_score")
+    min_ind = rule.get("min_indicators")
+    score100 = verdict.get("score100")
+
+    st.markdown("#### 판정 근거")
+    if rule.get("met"):
+        names = ", ".join(
+            f"{MODULE_LABELS_KO.get(i.get('module'), i.get('module'))}: {i.get('label')}"
+            for i in verdict.get("strong_indicators") or []
+        )
+        st.markdown(
+            f"- 종합 점수 **{score100}점** ≥ {min_score}점 **그리고** "
+            f"강한 지표 **{n_strong}개** ≥ {min_ind}개 → **악성**으로 판정"
+        )
+        st.markdown(f"- 충족된 강한 지표: {names}")
+    else:
+        st.markdown(
+            f"- 현재 판정: **{verdict_ko(code)}** (점수 구간 기준)"
+        )
+        st.markdown(
+            f"- **‘악성’으로 표시하지 않은 이유**: 악성 판정은 종합 점수 {min_score}점 이상"
+            f" **그리고** 강한 지표 {min_ind}개 이상을 **둘 다** 충족해야 합니다"
+            f" (현재 점수 {score100}점 / 강한 지표 {n_strong}개)."
+        )
+        st.caption(
+            "취약점 실습용 APK는 평문 처리·테스트 서버 통신 때문에 점수가 쉽게 올라갑니다. "
+            "그것은 '취약'이지 '악성'이 아니므로 두 조건을 모두 요구합니다."
+        )
 
 
 def _render_module_status(report: dict) -> None:
-    st.markdown("#### 모듈별 상태")
+    st.markdown("#### 모듈별 분석 상태")
+    st.caption("앱의 안전 여부가 아니라, 각 분석이 실행에 성공했는지를 뜻합니다.")
     cols = st.columns(3)
     for col, (name, label) in zip(cols, MODULE_LABELS_KO.items()):
         status = safe_get(report, "modules", name, "status")
@@ -130,7 +241,7 @@ def _render_unknown(report: dict) -> None:
     빈 게이지나 0점을 그리면 "위험도 0 = 안전"으로 정반대로 읽히므로, 점수 자리에는
     "판정 불가"만 두고 대신 **왜 못 냈는지**를 보여준다(어느 모듈이 죽었는지).
     """
-    color = RISK_LEVEL_COLORS["unknown"]
+    color = VERDICT_COLORS["unknown"]
     st.markdown(
         f"""
         <div style="display:flex; align-items:baseline; gap:16px; margin:4px 0 8px;">
@@ -139,7 +250,7 @@ def _render_unknown(report: dict) -> None:
           </span>
           <span style="display:inline-block; padding:6px 16px; border-radius:999px;
                        background:{color}; color:#ffffff; font-size:20px; font-weight:700;">
-            {RISK_LEVEL_ICONS['unknown']} {risk_level_ko('unknown')}
+            {VERDICT_ICONS['unknown']} {verdict_ko('unknown')}
           </span>
         </div>
         """,
@@ -165,51 +276,30 @@ def _render_unknown(report: dict) -> None:
     _render_module_status(report)
 
 
-def _render_headline(score100: int, level: str) -> None:
-    color = risk_level_color(level)
-    icon = RISK_LEVEL_ICONS.get(level, "⚪")
-    label_ko = risk_level_ko(level)
-    # st.markdown의 :color[] 문법은 임의 hex를 못 받아서 HTML로 배지를 그린다.
-    st.markdown(
-        f"""
-        <div style="display:flex; align-items:baseline; gap:16px; margin:4px 0 8px;">
-          <span style="font-size:56px; font-weight:700; line-height:1; color:{color};">
-            {score100}<span style="font-size:24px; color:#898781;"> / 100</span>
-          </span>
-          <span style="display:inline-block; padding:6px 16px; border-radius:999px;
-                       background:{color}; color:#ffffff; font-size:20px; font-weight:700;">
-            {icon} {label_ko}
-          </span>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-def _gauge_chart(score100: int, level: str) -> alt.LayerChart:
-    """0~100 선형 게이지. 저/중/고 구간을 옅은 status 색 밴드로 깔고, 현재 점수를
-    진한 눈금(rule) + 점으로 표시한다. 밴드 경계는 RISK_BAND_BOUNDS(=aggregator
-    임계값)와 동일하다."""
+def _gauge_chart(score100: int, verdict_code: str) -> alt.LayerChart:
+    """0~100 선형 게이지. 판정 구간을 옅은 색 밴드로 깔고, 현재 점수를 진한
+    눈금(rule) + 점으로 표시한다. 밴드 경계는 VERDICT_BAND_BOUNDS(=aggregator의
+    VERDICT_BANDS)와 동일하다."""
     prev = 0
     band_rows = []
-    for upper, lvl in RISK_BAND_BOUNDS:
-        band_rows.append({"start": prev, "end": upper, "level": lvl,
-                          "구간": risk_level_ko(lvl)})
+    for upper, code in VERDICT_BAND_BOUNDS:
+        band_rows.append({"start": prev, "end": upper, "code": code,
+                          "구간": verdict_ko(code)})
         prev = upper
     bands = pd.DataFrame(band_rows)
 
-    level_domain = [risk_level_ko(l) for _, l in RISK_BAND_BOUNDS]
-    level_range = [RISK_LEVEL_COLORS[l] for _, l in RISK_BAND_BOUNDS]
+    band_domain = [verdict_ko(c) for _, c in VERDICT_BAND_BOUNDS]
+    band_range = [VERDICT_COLORS[c] for _, c in VERDICT_BAND_BOUNDS]
 
     band_layer = (
         alt.Chart(bands)
         .mark_bar(height=26, cornerRadius=4)
         .encode(
             x=alt.X("start:Q", scale=alt.Scale(domain=[0, 100]),
-                    axis=alt.Axis(title=None, values=[0, 34, 67, 100], grid=False)),
+                    axis=alt.Axis(title=None, values=[0, 30, 60, 80, 100], grid=False)),
             x2="end:Q",
             color=alt.Color("구간:N",
-                            scale=alt.Scale(domain=level_domain, range=level_range),
+                            scale=alt.Scale(domain=band_domain, range=band_range),
                             legend=alt.Legend(title=None, orient="bottom")),
             opacity=alt.value(0.30),
             tooltip=[alt.Tooltip("구간:N"), alt.Tooltip("start:Q", title="이상"),
@@ -225,7 +315,7 @@ def _gauge_chart(score100: int, level: str) -> alt.LayerChart:
     )
     dot = (
         alt.Chart(marker_df)
-        .mark_point(size=140, filled=True, color=risk_level_color(level),
+        .mark_point(size=140, filled=True, color=verdict_color(verdict_code),
                     stroke="#ffffff", strokeWidth=2)
         .encode(x="score:Q", tooltip=[alt.Tooltip("score:Q", title="종합 점수")])
     )
@@ -290,4 +380,4 @@ def _render_breakdown(risk: dict) -> None:
 
     if unavailable:
         excluded = ", ".join(MODULE_LABELS_KO.get(n, n) for n in unavailable)
-        st.caption(f"⚪ 점수에서 제외된 모듈(실패/타임아웃): {excluded} — 남은 모듈끼리 가중치를 재정규화했습니다.")
+        st.caption(f"⚪ 점수에서 제외된 모듈(분석 실패/시간 초과): {excluded} — 남은 모듈끼리 가중치를 재정규화했습니다.")

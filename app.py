@@ -19,7 +19,7 @@ import streamlit as st
 
 import pipeline_bridge
 from common import safe_get
-from views import dynamic_view, network_view, risk_view, static_view
+from views import dynamic_view, network_view, risk_view, static_view, verdict_header
 
 st.set_page_config(page_title="Android X-Ray", layout="wide")
 
@@ -54,6 +54,11 @@ else:
 
     st.subheader(f"{apk_name}  ·  {package_name}")
     st.caption(f"분석 시각: {analyzed_at}")
+
+    # 최종 보안 판정 + 분석 상태 — 탭 위에 둔다. 어느 탭을 보고 있든 판정이
+    # 보여야 하고, "분석 성공"이 "안전"으로 읽히지 않게 두 층을 나눠 표시한다
+    # (8주차 계획수정 PDF의 최종 구조).
+    verdict_header.render(report)
 
     tab_static, tab_dynamic, tab_network, tab_risk = st.tabs(
         ["정적 분석", "동적 분석", "네트워크 분석", "종합 위험도"]

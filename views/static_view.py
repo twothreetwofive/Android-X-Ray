@@ -52,7 +52,7 @@ from typing import Any
 
 import streamlit as st
 
-from common import render_errors, render_module_header, safe_get
+from common import render_errors, render_indicators, render_module_header, safe_get
 from views.static_data import (
     NO_VALUE,
     RISK_COLORS,
@@ -78,6 +78,9 @@ def render(report: dict) -> None:
     7주차 검증 항목이라, 여기서 예외가 나면 탭 하나가 아니라 app.py가 통째로
     죽는다."""
     module = render_module_header(report, "static", "정적 분석")
+    # 분석 상태 바로 아래에 "무엇이 발견됐는가"를 붙인다 — 두 층을 같이 읽히게
+    # 하려는 것(8주차 계획수정 PDF 3항).
+    render_indicators(safe_get(report, "risk_score", "indicators", "static", default=[]))
     data = module.get("data")
 
     if data is None:

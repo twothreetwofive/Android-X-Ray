@@ -107,32 +107,85 @@ def test_더미는_명시적으로_켰을_때만_나온다():
     assert _DUMMY_SCORE_TEXT in " ".join(str(getattr(e, "value", "")) for e in on.markdown)
 
 
-def test_실측_점수는_그대로_그려진다():
-    """판정 불가 분기가 정상 리포트까지 잡아먹지 않는지 확인한다."""
-    report = {
-        "modules": {
-            "static": {"status": "ok"},
-            "dynamic": {"status": "failed"},
-            "network": {"status": "ok"},
+_MEASURED = {
+    "modules": {
+        "static": {"status": "ok"},
+        "dynamic": {"status": "failed"},
+        "network": {"status": "ok"},
+    },
+    "risk_score": {
+        "total": 0.41,
+        "score100": 41,
+        "level": "caution",
+        "verdict": {
+            "code": "caution",
+            "band_code": "caution",
+            "score100": 41,
+            "strong_indicators": [],
+            "malicious_rule": {"min_score": 80, "min_indicators": 3,
+                               "strong_indicator_count": 0, "met": False},
         },
-        "risk_score": {
-            "total": 0.41,
-            "level": "medium",
-            "breakdown": {
-                "modules": {
-                    "static": {"available": True, "weight": 0.571, "sub_score": 0.52},
-                    "dynamic": {"available": False},
-                    "network": {"available": True, "weight": 0.429, "sub_score": 0.26},
-                },
-                "weights_applied": {"static": 0.571, "network": 0.429},
-                "unavailable": ["dynamic"],
+        "indicators": {
+            "static": [{"code": "obfuscation", "label": "난독화", "value": "탐지", "strong": False}],
+            "dynamic": [],
+            "network": [{"code": "suspicious_domain", "label": "의심 도메인",
+                         "value": "1건", "strong": False}],
+        },
+        "breakdown": {
+            "modules": {
+                "static": {"available": True, "weight": 0.571, "sub_score": 0.52},
+                "dynamic": {"available": False},
+                "network": {"available": True, "weight": 0.429, "sub_score": 0.26},
             },
+            "weights_applied": {"static": 0.571, "network": 0.429},
+            "unavailable": ["dynamic"],
         },
-    }
-    at = _run(report)
+    },
+}
+
+
+def test_실측_리포트는_그대로_그려진다():
+    """판정 불가 분기가 정상 리포트까지 잡아먹지 않는지 확인한다."""
+    at = _run(_MEASURED)
 
     assert not at.exception
+    # 위험 지표 표 + 기여도 표 = 2개
+    assert len(at.dataframe) == 2
+
+
+def test_위험_지표가_점수와_따로_표시된다():
+    """8주차 계획수정 PDF 3항 — "분석이 성공했는가"와 "무엇이 발견됐는가"의 분리."""
+    at = _run(_MEASURED)
+
     body = " ".join(str(getattr(el, "value", "")) for el in at.markdown)
-    assert "41" in body
-    assert "주의" in body
-    assert len(at.dataframe) == 1   # 기여도 표
+    assert "위험 지표" in body
+    assert "모듈별 위험도" in body
+
+    # 관찰된 지표가 표에 실제로 들어가 있어야 한다.
+    indicator_table = at.dataframe[0].value
+    assert "난독화" in indicator_table.to_string()
+    assert "의심 도메인" in indicator_table.to_string()
+
+
+def test_모듈별_위험도가_0에서_100으로_표시된다():
+    at = _run(_MEASURED)
+    metric_values = " ".join(str(m.value) for m in at.metric)
+    assert "52 / 100" in metric_values   # 정적 sub_score 0.52
+    assert "26 / 100" in metric_values   # 네트워크 sub_score 0.26
+    # 점수를 못 낸 동적 모듈에 0을 적으면 "위험 없음"으로 읽힌다.
+    assert "0 / 100" not in metric_values
+    assert "—" in metric_values
+
+
+def test_악성이_아닌_이유가_화면에_나온다():
+    """PDF 5항 — 점수만 높다고 '악성'이라 쓰지 않으며, 그 규칙을 화면에 드러낸다."""
+    at = _run(_MEASURED)
+    body = " ".join(str(getattr(el, "value", "")) for el in at.markdown)
+    assert "판정 근거" in body
+    assert "악성" in body and "둘 다" in body
+
+
+def test_주의_문구가_항상_붙는다():
+    at = _run(_MEASURED)
+    infos = " ".join(str(getattr(i, "value", "")) for i in at.info)
+    assert "악성 여부를 단독으로 확정하지 않습니다" in infos

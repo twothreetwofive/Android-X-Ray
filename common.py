@@ -32,43 +32,72 @@ STATUS_ICONS: dict[str, str] = {
     "timeout": "⏱️",
 }
 
+# 분석 "상태"(Status) 라벨 — 8주차에 "정상/실패"에서 "분석 성공/분석 실패"로 바꿨다.
+#
+# 경위(8주차 계획수정 PDF 1항): 모듈 상태에 "✅ 정상"이라고 적으면 화면에서
+# "이 APK가 안전하다"로 읽힌다. 실제 의미는 "정적 분석이 정상적으로 실행됨"이다.
+# 취약 APK를 넣었는데 평문 후보 35건·의심 네트워크 4건이 나오면서도 세 모듈이
+# 전부 "정상"으로 표시되던 것이 그 증거다. 그래서 이 표는 **파이프라인이 돌았는가**
+# 만 말하고, 앱의 안전 여부는 아래 VERDICT_* (보안 판정) 계층이 따로 말한다.
 STATUS_LABELS_KO: dict[str, str] = {
-    "ok": "정상",
-    "partial": "부분 실패",
-    "failed": "실패",
-    "timeout": "타임아웃",
+    "ok": "분석 성공",
+    "partial": "부분 성공",
+    "failed": "분석 실패",
+    "timeout": "시간 초과",
 }
 
-# ── 위험도 등급 색/아이콘/라벨 (dataviz 스킬의 status 팔레트, 검증본) ──
-# aggregate_risk()가 내는 level(영문 low/medium/high/unknown)을 키로 쓴다.
-# D의 종합 위험도 게이지(risk_view)와 B의 정적 권한 강조색(static_view)이 이 한 표를
-# 공유해서 4명 산출물의 톤을 통일한다 — 권한의 risk_level(high/medium/low)도 아래
-# high/medium/low 색을 그대로 쓰면 게이지와 색이 맞는다.
-# status 색은 색만으로 의미를 전달하지 않도록 항상 아이콘+라벨과 함께 쓴다.
-RISK_LEVEL_COLORS: dict[str, str] = {
-    "low": "#0ca30c",      # good
-    "medium": "#fab219",   # warning
-    "high": "#d03b3b",     # critical
-    "unknown": "#898781",  # muted (계산 불가 — 0점=안전으로 오해 방지)
+# ── 보안 판정(Verdict) 색/아이콘/라벨 ──
+#
+# **분석 상태(STATUS_*)와 완전히 다른 축이다.** 위쪽이 "파이프라인이 돌았는가",
+# 이쪽이 "관찰된 지표로 볼 때 이 앱이 얼마나 위험한가"다. 화면에서 두 축이 같은
+# 단어(정상/실패)를 쓰지 않게 라벨을 겹치지 않도록 골랐다.
+#
+# 구간은 8주차 계획수정 PDF 4항 그대로:
+#   0–29 🟢 정상 / 30–59 🟡 주의 / 60–79 🟠 의심 / 80–100 🔴 고위험
+# "악성"은 점수만으로 주지 않는다 — 강한 지표가 여러 개 동시에 충족될 때만
+# risk_aggregator가 승격시킨다(PDF 5항). 판정 근거 없이 "악성 APK"라고 쓰는 것을
+# 막기 위한 잠금이다.
+VERDICT_COLORS: dict[str, str] = {
+    "normal": "#0ca30c",      # good
+    "caution": "#fab219",     # warning
+    "suspicious": "#e07000",  # 진한 주황 — warning과 critical 사이
+    "high_risk": "#d03b3b",   # critical
+    "malicious": "#8b1a1a",   # critical(강)
+    "unknown": "#898781",     # muted (판정 불가 — 0점=안전으로 오해 방지)
 }
 
-RISK_LEVEL_ICONS: dict[str, str] = {
-    "low": "🟢",
-    "medium": "🟡",
-    "high": "🔴",
+VERDICT_ICONS: dict[str, str] = {
+    "normal": "🟢",
+    "caution": "🟡",
+    "suspicious": "🟠",
+    "high_risk": "🔴",
+    "malicious": "⛔",
     "unknown": "⚪",
 }
 
-RISK_LEVEL_LABELS_KO: dict[str, str] = {
-    "low": "낮음",
-    "medium": "주의",
-    "high": "위험",
+VERDICT_LABELS_KO: dict[str, str] = {
+    "normal": "정상",
+    "caution": "주의",
+    "suspicious": "의심",
+    "high_risk": "고위험",
+    "malicious": "악성",
     "unknown": "판정 불가",
 }
 
-# 종합 점수(0.0~1.0) → 등급 임계값. src/risk_aggregator.py의 LEVEL_THRESHOLDS와
-# 반드시 동일하게 유지할 것 (게이지 구간색과 실제 등급이 어긋나지 않도록).
-RISK_BAND_BOUNDS = [(34, "low"), (67, "medium"), (100, "high")]  # 0~100 스케일 상한
+# 게이지에 깔 구간 밴드(0~100 스케일 상한). src/risk_aggregator.py의 VERDICT_BANDS와
+# 반드시 동일하게 유지할 것 — 게이지 구간색과 실제 판정이 어긋나면 안 된다.
+# malicious는 점수 구간이 아니라 지표 기반 승격이라 밴드에 넣지 않는다.
+VERDICT_BAND_BOUNDS = [(30, "normal"), (60, "caution"), (80, "suspicious"), (100, "high_risk")]
+
+# 화면·리포트 하단에 항상 붙이는 문구 (PDF 5항).
+# 위험도는 어디까지나 "관찰된 지표"의 요약이지 악성 판정서가 아니다.
+DISCLAIMER = (
+    "본 결과는 정적·동적·네트워크 분석에서 관찰된 보안 위험 지표를 기반으로 산출된 "
+    "위험도이며, 악성 여부를 단독으로 확정하지 않습니다."
+)
+
+# 정적 뷰의 **권한** 위험도(high/medium/low)는 이것과 다른 축이라 views/static_data.py가
+# 자체 표(RISK_COLORS/RISK_LABELS_KO)를 갖고 있다. 여기 표를 그쪽에 쓰지 말 것.
 
 # ── 모듈 카테고리 색 (dataviz 카테고리 슬롯 1/2/3, CVD 검증 통과) ──
 # static/dynamic/network는 대시보드 전체에서 반복 등장하는 "정체성"이라 카테고리
@@ -87,13 +116,24 @@ MODULE_LABELS_KO: dict[str, str] = {
 }
 
 
-def risk_level_ko(level: Optional[str]) -> str:
-    """영문 level을 한글 라벨로. 모르는 값이면 그대로 돌려준다."""
-    return RISK_LEVEL_LABELS_KO.get(level or "unknown", level or "판정 불가")
+def verdict_ko(verdict: Optional[str]) -> str:
+    """영문 판정 코드를 한글 라벨로. 모르는 값이면 '판정 불가'로 떨어뜨린다."""
+    return VERDICT_LABELS_KO.get(verdict or "unknown", VERDICT_LABELS_KO["unknown"])
 
 
-def risk_level_color(level: Optional[str]) -> str:
-    return RISK_LEVEL_COLORS.get(level or "unknown", RISK_LEVEL_COLORS["unknown"])
+def verdict_color(verdict: Optional[str]) -> str:
+    return VERDICT_COLORS.get(verdict or "unknown", VERDICT_COLORS["unknown"])
+
+
+def verdict_icon(verdict: Optional[str]) -> str:
+    return VERDICT_ICONS.get(verdict or "unknown", VERDICT_ICONS["unknown"])
+
+
+def status_ko(status: Optional[str]) -> str:
+    """분석 상태 코드를 한글 라벨로 (아이콘·색 없이 글자만 필요할 때)."""
+    if status is None:
+        return "결과 없음"
+    return STATUS_LABELS_KO.get(status, status)
 
 
 def status_badge(status: Optional[str]) -> str:
@@ -152,6 +192,10 @@ def render_module_header(report: dict, module_name: str, title: str) -> dict:
     """뷰 파일 맨 위에서 공통으로 하는 일(상태 배지 표시 + error 메시지 표시 +
     module dict 꺼내기)을 한 번에 처리하고, 그 모듈의 raw dict를 반환한다.
 
+    8주차 변경: 제목 옆에 배지를 붙이던 것을 "분석 상태" 라벨을 명시한 한 줄로
+    바꿨다. 배지만 있으면 그 ✅가 "분석이 됐다"인지 "앱이 안전하다"인지 화면에서
+    구분되지 않기 때문이다(PDF 1항). 각 뷰는 이 아래에 위험 지표를 따로 그린다.
+
     사용 예 (views/static_view.py):
         module = render_module_header(report, "static", "정적 분석")
         data = module.get("data")
@@ -164,9 +208,34 @@ def render_module_header(report: dict, module_name: str, title: str) -> dict:
     module = safe_get(report, "modules", module_name, default={}) or {}
     status = module.get("status")
 
-    st.markdown(f"### {title}  {status_badge(status)}")
+    st.markdown(f"### {title}")
+    st.markdown(f"분석 상태 &nbsp; {status_badge(status)}", unsafe_allow_html=True)
 
     if module.get("error"):
         st.error(module["error"])
 
     return module
+
+
+def render_indicators(indicators: Optional[list], empty_text: str = "관찰된 위험 지표 없음") -> None:
+    """모듈 뷰 상단의 "위험 지표" 줄. risk_score["indicators"][모듈명]을 그대로 받는다.
+
+    분석 상태 바로 아래에 두어 "분석은 성공했고, 그 결과 이런 지표가 관찰됐다"는
+    두 층이 화면에서 붙어 읽히게 한다(PDF 3항의 구조).
+
+    지표가 없을 때 "안전함"이라고 쓰지 않는 것이 중요하다 — 관찰되지 않은 것과
+    없는 것은 다르고, 특히 캡처가 비었을 때 "안전"으로 읽히면 안 된다.
+    """
+    import streamlit as st  # 지연 import
+
+    if not indicators:
+        st.caption(f"위험 지표 &nbsp; {empty_text}")
+        return
+
+    lines = []
+    for ind in indicators:
+        label = ind.get("label", "")
+        value = ind.get("value", "")
+        mark = "⚠️" if ind.get("strong") else "•"
+        lines.append(f"{mark} {label} **{value}**")
+    st.markdown("위험 지표 &nbsp; " + " &nbsp;/&nbsp; ".join(lines))

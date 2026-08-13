@@ -9,11 +9,13 @@ from collections import Counter
 import pandas as pd
 import streamlit as st
 
-from common import render_errors, render_module_header, safe_get
+from common import render_errors, render_indicators, render_module_header, safe_get
 
 
 def render(report: dict) -> None:
     module = render_module_header(report, "dynamic", "동적 분석")
+    # 분석 상태 아래에 "무엇이 발견됐는가"를 나란히 둔다(8주차 계획수정 PDF 3항).
+    render_indicators(safe_get(report, "risk_score", "indicators", "dynamic", default=[]))
     data = module.get("data")
 
     # ─────────────────────────────────────────────
