@@ -1,7 +1,7 @@
 {
   "apk_name": "44f9d5c684fb6f34465cd7593709a37cadb57aaf41430b0d043fa593e4faacab.apk",
   "package_name": "video.lotus19.ridenovel31",
-  "analyzed_at": "2026-08-13T11:04:47.280788+00:00",
+  "analyzed_at": "2026-08-13T11:13:47.654000+00:00",
   "modules": {
     "static": {
       "status": "ok",
@@ -19,95 +19,95 @@
             "sha256": "44f9d5c684fb6f34465cd7593709a37cadb57aaf41430b0d043fa593e4faacab"
           },
           "file_size": 8775325,
-          "analyzed_at": "2026-08-13T11:04:47.281081+00:00"
+          "analyzed_at": "2026-08-13T11:13:47.654452+00:00"
         },
         "manifest": {
           "permissions": [
-            "video.lotus19.ridenovel31.permission.feed.upload.collect82",
-            "video.lotus19.ridenovel31.permission.growth.comment.v3",
-            "video.lotus19.ridenovel31.permission.content.upload.v3",
-            "video.lotus19.ridenovel31.permission.trade.wallet.dispatch26",
-            "video.lotus19.ridenovel31.permission.config.article.route19",
-            "video.lotus19.ridenovel31.permission.device.trade.index17",
-            "video.lotus19.ridenovel31.permission.message.article.expose72",
-            "video.lotus19.ridenovel31.permission.content.session.route51",
-            "video.lotus19.ridenovel31.permission.message.campaign.v5",
-            "video.lotus19.ridenovel31.permission.wallet.address.manage23",
-            "video.lotus19.ridenovel31.permission.session.notification.v7",
-            "video.lotus19.ridenovel31.permission.upload.wallet.sync07",
-            "video.lotus19.ridenovel31.permission.address.config.v8",
-            "video.lotus19.ridenovel31.permission.config.config.v5",
-            "video.lotus19.ridenovel31.permission.feed.wallet.observe15",
-            "video.lotus19.ridenovel31.permission.checkout.order.dispatch06",
-            "video.lotus19.ridenovel31.permission.session.session.manage49",
-            "video.lotus19.ridenovel31.permission.video.growth.collect32",
-            "video.lotus19.ridenovel31.permission.account.wallet.bind74",
-            "video.lotus19.ridenovel31.permission.security.notification.v6",
-            "video.lotus19.ridenovel31.permission.article.analytics.v8",
-            "video.lotus19.ridenovel31.permission.upload.notification.access14",
             "video.lotus19.ridenovel31.permission.profile.content.observe08",
-            "video.lotus19.ridenovel31.permission.checkout.trade.v4",
-            "video.lotus19.ridenovel31.permission.payment.live.v4",
-            "video.lotus19.ridenovel31.permission.address.comment.v3",
-            "video.lotus19.ridenovel31.permission.sync.config.route93",
-            "video.lotus19.ridenovel31.permission.video.analytics.collect91",
-            "video.lotus19.ridenovel31.permission.live.campaign.index73",
-            "video.lotus19.ridenovel31.permission.member.search.bridge51",
-            "android.permission.REQUEST_INSTALL_PACKAGES",
-            "video.lotus19.ridenovel31.permission.notification.comment.access37",
-            "video.lotus19.ridenovel31.permission.session.wallet.manage39",
             "video.lotus19.ridenovel31.permission.payment.session.observe62",
-            "video.lotus19.ridenovel31.permission.campaign.feed.v8",
-            "video.lotus19.ridenovel31.permission.video.growth.sync08",
+            "video.lotus19.ridenovel31.permission.video.payment.share70",
             "video.lotus19.ridenovel31.permission.device.feed.v6",
-            "video.lotus19.ridenovel31.permission.trade.trade.v3",
+            "video.lotus19.ridenovel31.permission.member.device.expose85",
+            "video.lotus19.ridenovel31.permission.sync.content.index93",
+            "video.lotus19.ridenovel31.permission.video.growth.collect32",
+            "video.lotus19.ridenovel31.permission.payment.session.route85",
+            "video.lotus19.ridenovel31.permission.config.upload.index96",
+            "video.lotus19.ridenovel31.permission.device.analytics.manage80",
+            "video.lotus19.ridenovel31.permission.upload.wallet.sync07",
+            "video.lotus19.ridenovel31.permission.member.search.bridge51",
+            "video.lotus19.ridenovel31.permission.payment.account.observe07",
+            "video.lotus19.ridenovel31.permission.config.security.query41",
+            "video.lotus19.ridenovel31.permission.account.wallet.bind74",
+            "video.lotus19.ridenovel31.permission.address.video.sync95",
+            "video.lotus19.ridenovel31.permission.config.article.route19",
+            "video.lotus19.ridenovel31.permission.checkout.order.dispatch06",
+            "video.lotus19.ridenovel31.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+            "video.lotus19.ridenovel31.permission.security.order.v2",
+            "video.lotus19.ridenovel31.permission.sync.sync.bind27",
             "video.lotus19.ridenovel31.permission.comment.session.v8",
             "video.lotus19.ridenovel31.permission.analytics.content.observe89",
-            "video.lotus19.ridenovel31.permission.article.sync.update04",
-            "video.lotus19.ridenovel31.permission.config.analytics.access93",
-            "video.lotus19.ridenovel31.permission.analytics.device.observe55",
-            "video.lotus19.ridenovel31.permission.upload.address.v5",
-            "video.lotus19.ridenovel31.permission.sync.sync.bind27",
-            "video.lotus19.ridenovel31.permission.video.payment.share70",
-            "video.lotus19.ridenovel31.permission.order.notification.route97",
-            "video.lotus19.ridenovel31.permission.trade.growth.v8",
-            "video.lotus19.ridenovel31.permission.comment.message.manage44",
-            "video.lotus19.ridenovel31.permission.member.device.expose85",
-            "video.lotus19.ridenovel31.permission.session.video.refresh79",
-            "video.lotus19.ridenovel31.permission.reward.wallet.v4",
-            "video.lotus19.ridenovel31.permission.content.search.expose64",
-            "video.lotus19.ridenovel31.permission.member.member.v8",
+            "video.lotus19.ridenovel31.permission.notification.comment.access37",
             "video.lotus19.ridenovel31.permission.order.payment.v7",
-            "video.lotus19.ridenovel31.permission.payment.session.route85",
-            "video.lotus19.ridenovel31.permission.config.security.query41",
-            "video.lotus19.ridenovel31.permission.growth.sync.manage08",
-            "video.lotus19.ridenovel31.permission.payment.account.observe07",
-            "video.lotus19.ridenovel31.permission.sync.content.index93",
-            "video.lotus19.ridenovel31.permission.upload.config.collect18",
-            "video.lotus19.ridenovel31.permission.campaign.feed.refresh50",
-            "video.lotus19.ridenovel31.permission.sync.session.refresh78",
-            "video.lotus19.ridenovel31.permission.member.address.v5",
-            "video.lotus19.ridenovel31.permission.config.address.collect13",
-            "video.lotus19.ridenovel31.permission.profile.notification.collect53",
-            "video.lotus19.ridenovel31.permission.security.order.v2",
-            "video.lotus19.ridenovel31.permission.growth.member.v7",
-            "video.lotus19.ridenovel31.permission.sync.growth.v6",
-            "video.lotus19.ridenovel31.permission.device.analytics.manage80",
-            "video.lotus19.ridenovel31.permission.comment.campaign.v4",
+            "video.lotus19.ridenovel31.permission.article.analytics.v8",
+            "video.lotus19.ridenovel31.permission.content.session.route51",
+            "video.lotus19.ridenovel31.permission.address.config.v8",
+            "video.lotus19.ridenovel31.permission.device.trade.index17",
             "video.lotus19.ridenovel31.permission.device.message.access21",
-            "video.lotus19.ridenovel31.permission.config.upload.index96",
-            "video.lotus19.ridenovel31.permission.upload.member.collect39",
-            "video.lotus19.ridenovel31.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
-            "video.lotus19.ridenovel31.permission.wallet.address.v5",
+            "video.lotus19.ridenovel31.permission.member.member.v8",
+            "video.lotus19.ridenovel31.permission.session.video.refresh79",
+            "video.lotus19.ridenovel31.permission.live.campaign.index73",
+            "video.lotus19.ridenovel31.permission.growth.member.v7",
+            "video.lotus19.ridenovel31.permission.session.notification.v7",
             "video.lotus19.ridenovel31.permission.notification.payment.manage69",
-            "video.lotus19.ridenovel31.permission.message.comment.update93",
-            "video.lotus19.ridenovel31.permission.content.config.v4",
-            "video.lotus19.ridenovel31.permission.trade.message.v6",
+            "video.lotus19.ridenovel31.permission.growth.comment.v3",
             "video.lotus19.ridenovel31.permission.content.content.index81",
-            "video.lotus19.ridenovel31.permission.address.video.sync95",
+            "video.lotus19.ridenovel31.permission.wallet.address.v5",
+            "video.lotus19.ridenovel31.permission.upload.config.collect18",
             "video.lotus19.ridenovel31.permission.order.account.v4",
+            "video.lotus19.ridenovel31.permission.profile.notification.collect53",
             "video.lotus19.ridenovel31.permission.wallet.sync.share81",
-            "video.lotus19.ridenovel31.permission.account.config.expose81"
+            "video.lotus19.ridenovel31.permission.campaign.feed.refresh50",
+            "video.lotus19.ridenovel31.permission.trade.growth.v8",
+            "video.lotus19.ridenovel31.permission.account.config.expose81",
+            "video.lotus19.ridenovel31.permission.campaign.feed.v8",
+            "video.lotus19.ridenovel31.permission.wallet.address.manage23",
+            "video.lotus19.ridenovel31.permission.message.article.expose72",
+            "video.lotus19.ridenovel31.permission.upload.address.v5",
+            "video.lotus19.ridenovel31.permission.message.campaign.v5",
+            "video.lotus19.ridenovel31.permission.session.session.manage49",
+            "video.lotus19.ridenovel31.permission.address.comment.v3",
+            "video.lotus19.ridenovel31.permission.content.config.v4",
+            "video.lotus19.ridenovel31.permission.config.analytics.access93",
+            "video.lotus19.ridenovel31.permission.order.notification.route97",
+            "video.lotus19.ridenovel31.permission.checkout.trade.v4",
+            "android.permission.REQUEST_INSTALL_PACKAGES",
+            "video.lotus19.ridenovel31.permission.upload.member.collect39",
+            "video.lotus19.ridenovel31.permission.message.comment.update93",
+            "video.lotus19.ridenovel31.permission.session.wallet.manage39",
+            "video.lotus19.ridenovel31.permission.sync.growth.v6",
+            "video.lotus19.ridenovel31.permission.video.analytics.collect91",
+            "video.lotus19.ridenovel31.permission.reward.wallet.v4",
+            "video.lotus19.ridenovel31.permission.article.sync.update04",
+            "video.lotus19.ridenovel31.permission.trade.trade.v3",
+            "video.lotus19.ridenovel31.permission.growth.sync.manage08",
+            "video.lotus19.ridenovel31.permission.comment.message.manage44",
+            "video.lotus19.ridenovel31.permission.analytics.device.observe55",
+            "video.lotus19.ridenovel31.permission.video.growth.sync08",
+            "video.lotus19.ridenovel31.permission.feed.wallet.observe15",
+            "video.lotus19.ridenovel31.permission.feed.upload.collect82",
+            "video.lotus19.ridenovel31.permission.content.upload.v3",
+            "video.lotus19.ridenovel31.permission.config.config.v5",
+            "video.lotus19.ridenovel31.permission.sync.session.refresh78",
+            "video.lotus19.ridenovel31.permission.config.address.collect13",
+            "video.lotus19.ridenovel31.permission.payment.live.v4",
+            "video.lotus19.ridenovel31.permission.upload.notification.access14",
+            "video.lotus19.ridenovel31.permission.member.address.v5",
+            "video.lotus19.ridenovel31.permission.content.search.expose64",
+            "video.lotus19.ridenovel31.permission.trade.message.v6",
+            "video.lotus19.ridenovel31.permission.comment.campaign.v4",
+            "video.lotus19.ridenovel31.permission.sync.config.route93",
+            "video.lotus19.ridenovel31.permission.security.notification.v6",
+            "video.lotus19.ridenovel31.permission.trade.wallet.dispatch26"
           ],
           "dangerous_permissions": [],
           "activities": [
@@ -2586,7 +2586,7 @@
         "events": [
           {
             "hook_type": "base64",
-            "timestamp": "2026-08-13T11:04:20.564Z",
+            "timestamp": "2026-08-13T11:13:44.590Z",
             "class_name": "android.util.Base64",
             "method_name": "encodeToString",
             "raw_value": "8RADmOTcl3B2JnznTLdZcLy+qanSGB//IB0aywCtlSU=\n",
@@ -2595,11 +2595,11 @@
               "caller_class": "g2.b",
               "caller_method": "d"
             },
-            "thread_id": 12458
+            "thread_id": 12832
           },
           {
             "hook_type": "base64",
-            "timestamp": "2026-08-13T11:04:20.565Z",
+            "timestamp": "2026-08-13T11:13:44.591Z",
             "class_name": "android.util.Base64",
             "method_name": "decode",
             "raw_value": "8RADmOTcl3B2JnznTLdZcLy+qanSGB//IB0aywCtlSU=\n",
@@ -2608,11 +2608,11 @@
               "caller_class": "g2.b",
               "caller_method": "d"
             },
-            "thread_id": 12458
+            "thread_id": 12832
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.065Z",
+            "timestamp": "2026-08-13T11:13:45.982Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": "Loaded native library version number \"",
@@ -2620,11 +2620,11 @@
               "caller_class": "java.util.Formatter$FixedString",
               "caller_method": "print"
             },
-            "thread_id": 12413
+            "thread_id": 12800
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.071Z",
+            "timestamp": "2026-08-13T11:13:46.003Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": "83.0.4103.106",
@@ -2632,11 +2632,11 @@
               "caller_class": "java.util.Formatter$FormatSpecifier",
               "caller_method": "print"
             },
-            "thread_id": 12413
+            "thread_id": 12800
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.079Z",
+            "timestamp": "2026-08-13T11:13:46.046Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": "Flushed ",
@@ -2644,11 +2644,11 @@
               "caller_class": "java.util.Formatter$FixedString",
               "caller_method": "print"
             },
-            "thread_id": 12413
+            "thread_id": 12800
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.085Z",
+            "timestamp": "2026-08-13T11:13:46.073Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": " samples from ",
@@ -2656,11 +2656,11 @@
               "caller_class": "java.util.Formatter$FixedString",
               "caller_method": "print"
             },
-            "thread_id": 12413
+            "thread_id": 12800
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.095Z",
+            "timestamp": "2026-08-13T11:13:46.081Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": " histograms.",
@@ -2668,11 +2668,11 @@
               "caller_class": "java.util.Formatter$FixedString",
               "caller_method": "print"
             },
-            "thread_id": 12413
+            "thread_id": 12800
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.154Z",
+            "timestamp": "2026-08-13T11:13:46.151Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": "18765ebe",
@@ -2680,11 +2680,11 @@
               "caller_class": "java.util.Formatter$FormatSpecifier",
               "caller_method": "print"
             },
-            "thread_id": 12472
+            "thread_id": 12843
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.157Z",
+            "timestamp": "2026-08-13T11:13:46.157Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": "19ffaa74b8f",
@@ -2692,11 +2692,11 @@
               "caller_class": "java.util.Formatter$FormatSpecifier",
               "caller_method": "print"
             },
-            "thread_id": 12472
+            "thread_id": 12843
           },
           {
             "hook_type": "string_builder",
-            "timestamp": "2026-08-13T11:04:21.384Z",
+            "timestamp": "2026-08-13T11:13:47.140Z",
             "class_name": "java.lang.StringBuilder",
             "method_name": "append",
             "raw_value": "rgba(",
@@ -2704,7 +2704,7 @@
               "caller_class": "java.util.Formatter$FixedString",
               "caller_method": "print"
             },
-            "thread_id": 12413
+            "thread_id": 12800
           }
         ],
         "plaintext_candidates": [
@@ -2722,7 +2722,7 @@
       "data": {
         "meta": {
           "package_name": "video.lotus19.ridenovel31",
-          "capture_started_at": "2026-08-13T11:05:00+00:00",
+          "capture_started_at": "2026-08-13T11:14:23+00:00",
           "capture_duration_sec": 24,
           "pcap_file": "output/capture.pcap"
         },
@@ -2737,13 +2737,13 @@
     }
   },
   "risk_score": {
-    "total": 0.31,
-    "score100": 31,
+    "total": 0.4429,
+    "score100": 44,
     "level": "caution",
     "verdict": {
       "code": "caution",
       "band_code": "caution",
-      "score100": 31,
+      "score100": 44,
       "strong_indicators": [
         {
           "code": "packed_payload",
@@ -2855,7 +2855,7 @@
               }
             ]
           },
-          "weight": 0.4
+          "weight": 0.5714
         },
         "dynamic": {
           "available": true,
@@ -2866,23 +2866,22 @@
             "base64": 2,
             "string_builder": 8
           },
-          "weight": 0.3
+          "weight": 0.4286
         },
         "network": {
-          "available": true,
-          "sub_score": 0.0,
-          "raw": 0,
-          "suspicious_domain_count": 0,
-          "suspicious_ip_count": 0,
-          "weight": 0.3
+          "available": false,
+          "weight": 0.0,
+          "reason": "no_observations",
+          "reason_ko": "관측된 데이터 없음 (분석은 성공)"
         }
       },
       "weights_applied": {
-        "static": 0.4,
-        "dynamic": 0.3,
-        "network": 0.3
+        "static": 0.5714,
+        "dynamic": 0.4286
       },
-      "unavailable": []
+      "unavailable": [
+        "network"
+      ]
     }
   }
 }

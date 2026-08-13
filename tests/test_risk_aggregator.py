@@ -270,3 +270,57 @@ def test_같은_지표가_많아도_점수가_포화되지_않는다():
                         "network": {"status": "failed", "data": None}})
     assert a["score100"] == b["score100"]
     assert a["score100"] < 100      # 한 종류만으로는 만점이 안 나온다
+
+
+# ────────────────────────────────────────────
+# "관측 없음"은 "위험 없음"이 아니다 (8주차 선택지 1)
+# ────────────────────────────────────────────
+
+def test_관측치가_없는_모듈은_점수에서_제외된다():
+    """정상 실행됐지만 아무것도 관측 못 한 모듈을 0점으로 넣으면
+    그 축에서 '안전 확인됨'으로 계산된다. 실패 모듈과 똑같이 제외한다."""
+    modules = {
+        "static": _static(risk_score=0.8),
+        "dynamic": _dynamic(plaintext=0, cipher=0),      # 이벤트 0
+        "network": _network(dns=0, sni=0),               # 트래픽 0
+    }
+    r = aggregate_risk(modules)
+
+    assert set(r["breakdown"]["unavailable"]) == {"dynamic", "network"}
+    assert r["breakdown"]["modules"]["network"]["reason"] == "no_observations"
+    # 정적만 남으므로 가중치가 1.0으로 재정규화되어 정적 점수가 그대로 종합이 된다.
+    assert r["score100"] == 80
+
+
+def test_관측_없음과_분석_실패는_구분된다():
+    """화면에서 '분석이 실패했다'와 '분석은 됐는데 볼 게 없었다'는 다르게 읽혀야 한다."""
+    r = aggregate_risk({
+        "static": _static(risk_score=0.5),
+        "dynamic": {"status": "failed", "data": None},
+        "network": _network(dns=0, sni=0),
+    })
+    mods = r["breakdown"]["modules"]
+
+    assert mods["dynamic"].get("reason") is None          # 실패는 사유 표기 없음
+    assert mods["network"]["reason"] == "no_observations"
+    assert "관측" in mods["network"]["reason_ko"]
+
+
+def test_관측이_하나라도_있으면_점수에_들어간다():
+    """필터가 과하게 먹어서 실제 신호까지 빠지면 안 된다."""
+    r = aggregate_risk({
+        "static": _static(risk_score=0.5),
+        "dynamic": _dynamic(cipher=1),                    # 이벤트 1건
+        "network": _network(dns=1),                       # DNS 1건
+    })
+    assert r["breakdown"]["unavailable"] == []
+
+
+def test_전부_관측이_없어도_정적이_있으면_판정은_나온다():
+    r = aggregate_risk({
+        "static": _static(risk_score=0.9),
+        "dynamic": _dynamic(),
+        "network": _network(),
+    })
+    assert r["total"] is not None
+    assert r["verdict"]["code"] == "high_risk"

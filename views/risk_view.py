@@ -181,7 +181,10 @@ def _render_module_scores(risk: dict) -> None:
             col.metric(f"{label} 위험도", f"{round(sub * 100)} / 100")
         else:
             # 점수를 못 낸 모듈에 0을 적으면 "위험 없음"으로 읽힌다.
-            col.metric(f"{label} 위험도", "—", help="점수를 산정할 수 없는 모듈입니다.")
+            reason = m.get("reason_ko") or "점수를 산정할 수 없는 모듈입니다."
+            col.metric(f"{label} 위험도", "—", help=reason)
+            if m.get("reason") == "no_observations":
+                col.caption("관측 없음 → 점수 제외")
 
 
 def _render_verdict_basis(verdict: dict) -> None:
@@ -380,4 +383,7 @@ def _render_breakdown(risk: dict) -> None:
 
     if unavailable:
         excluded = ", ".join(MODULE_LABELS_KO.get(n, n) for n in unavailable)
-        st.caption(f"⚪ 점수에서 제외된 모듈(분석 실패/시간 초과): {excluded} — 남은 모듈끼리 가중치를 재정규화했습니다.")
+        st.caption(
+            f"⚪ 점수에서 제외된 모듈: {excluded} — 남은 모듈끼리 가중치를 재정규화했습니다. "
+            "**관측된 데이터가 없는 모듈은 0점(=안전)이 아니라 '정보 없음'으로 처리합니다.**"
+        )

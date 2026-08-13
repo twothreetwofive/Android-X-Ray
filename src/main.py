@@ -451,9 +451,16 @@ def _print_summary(report: dict, output_path: str) -> None:
     if not any_ind:
         print("  (관찰된 위험 지표 없음 — '안전함'을 뜻하지는 않음)")
 
+    breakdown_modules = (risk.get("breakdown") or {}).get("modules") or {}
     unavailable = (risk.get("breakdown") or {}).get("unavailable") or []
     if unavailable:
-        excluded = ", ".join(_MODULE_LABELS.get(n, n) for n in unavailable)
+        # 분석 실패로 빠진 것과 "분석은 됐는데 관측된 게 없어서" 빠진 것을 구분한다.
+        parts = []
+        for n in unavailable:
+            label = _MODULE_LABELS.get(n, n)
+            reason = (breakdown_modules.get(n) or {}).get("reason_ko")
+            parts.append(f"{label}({reason})" if reason else label)
+        excluded = ", ".join(parts)
         # 세 모듈이 전부 빠졌으면 "남은 모듈끼리 재정규화"할 대상 자체가 없다.
         tail = " (남은 모듈끼리 가중치 재정규화)" if len(unavailable) < 3 else " — 점수 산정 불가"
         print(f"\n  ※ 점수에서 제외된 모듈: {excluded}{tail}")

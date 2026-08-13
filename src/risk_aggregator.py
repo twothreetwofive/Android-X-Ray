@@ -133,6 +133,34 @@ PERMISSION_GROUPS: dict[str, tuple[str, ...]] = {
 }
 
 
+# ── "관측 없음"은 "위험 없음"이 아니다 ── (8주차)
+#
+# 이 저장소는 같은 원칙을 이미 세 곳에서 지키고 있다:
+#   - static_data.py: 점수가 없을 때 0으로 채우지 않는다("위험도 0 = 안전"으로 읽힘)
+#   - risk_view._render_unknown(): 빈 게이지·0점을 그리지 않고 "판정 불가"로 표시
+#   - aggregate_risk(): 실패한 모듈은 0점이 아니라 **제외 후 가중치 재정규화**
+# 그런데 "모듈이 정상 실행됐지만 아무것도 관측되지 않은" 경우만 예외적으로
+# 하위점수 0.0으로 계산되어, 사실상 "이 축에서는 안전함"으로 취급되고 있었다.
+#
+# 실측 근거(8주차): 내장 앱 2종과 드로퍼 1종 모두 앱 트래픽이 한 건도 안 잡혔다.
+# 캡처는 성공했으므로 status는 "ok"지만, 네트워크 위험도 0점이 종합 점수의 30%를
+# 그대로 끌어내렸다. 특히 사용자가 화면을 누르기 전까지 아무 동작도 하지 않는
+# 휴면형 드로퍼는 이 때문에 정상 앱보다 낮은 점수를 받았다.
+#
+# 실패 모듈과 똑같이 **제외 + 재정규화**로 처리한다. 화면에는 "분석 실패"와 구분해
+# "관측된 데이터 없음"으로 표시한다 — 분석은 성공했고, 다만 근거가 없는 것이다.
+def _observation_count(name: str, data: dict) -> Optional[int]:
+    """이 모듈이 실제로 관측한 것의 개수. None이면 개수 개념이 없는 모듈(정적)."""
+    if name == "dynamic":
+        # 평문 후보는 events에서 파생되지만, 필터 구성에 따라 한쪽만 남을 수 있어
+        # 둘을 합쳐 센다. "무엇이든 하나라도 관측됐는가"를 보는 것이 목적이다.
+        return len(data.get("events") or []) + len(data.get("plaintext_candidates") or [])
+    if name == "network":
+        return len((data.get("dns_queries") or [])) + len((data.get("tls_sni") or []))
+    # 정적 분석은 APK 파일 자체가 입력이라 "관측 없음" 상태가 없다.
+    return None
+
+
 def _usable(module_entry: Optional[dict]) -> Optional[dict]:
     """모듈 항목이 점수 계산에 쓸 수 있으면 data를 반환, 아니면 None.
 
@@ -407,6 +435,18 @@ def aggregate_risk(modules: dict[str, Any]) -> dict:
         # 지표는 하위 점수를 못 내는 모듈(예: 정적 risk_score=None)에서도 뽑는다.
         # 점수화에 실패한 것과 아무것도 관찰되지 않은 것은 다르기 때문.
         indicators[name] = _INDICATORS[name](data)
+
+        # 정상 실행됐지만 관측된 것이 하나도 없으면 점수에 넣지 않는다(위 주석 참고).
+        observed = _observation_count(name, data)
+        if observed == 0:
+            module_details[name] = {
+                "available": False,
+                "weight": 0.0,
+                "reason": "no_observations",
+                "reason_ko": "관측된 데이터 없음 (분석은 성공)",
+            }
+            unavailable.append(name)
+            continue
 
         result = _SUBSCORERS[name](data)
         if result is None:
