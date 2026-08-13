@@ -1,219 +1,249 @@
-# X-ray — 안드로이드 악성코드 정적/동적/네트워크 분석 자동화
+# X-ray — 안드로이드 APK 정적/동적/네트워크 분석 자동화
 
-이삼이오_방캅스 팀. 안드로이드 악성코드(Anubis) 분석 경험을 바탕으로, apk를 넣으면
-정적/동적/네트워크 분석 결과를 자동으로 뽑아주는 도구를 만드는 프로젝트.
+이삼이오_방캅스 팀. APK를 넣으면 정적·동적·네트워크 분석을 한 번에 돌려서
+**위험 지표와 보안 판정을 분리해 보여주는** 통합 대시보드.
 전체 배경과 8주 로드맵은 `CLAUDE.md` 참고.
 
-## 진행 상황
+> ⚠️ 본 도구의 결과는 분석 과정에서 관찰된 보안 위험 지표를 기반으로 산출된 위험도이며,
+> **악성 여부를 단독으로 확정하지 않는다.**
 
-| 모듈 | 상태 |
+---
+
+## 진행 상황 (2026-08-13 기준)
+
+| 구성 요소 | 상태 |
 |---|---|
 | 정적 분석 (`src/static_analyzer/`) | ✅ 완료 |
-| 동적 분석 (Frida) | 🚧 진행 중 (`feature/dynamic-agent`, A/B/C/D 4일차까지 완료, 5일차 전원 통합 남음) |
-| 네트워크 분석 | 🚧 진행 중 (D 1~4일차 완료, A/B/C 통합 및 5일차 남음, `feature/network-analyzer`) |
-| 웹 대시보드 | 예정 |
+| 동적 분석 (`src/dynamic_analyzer/`, Frida) | ✅ 완료 |
+| 네트워크 분석 (`src/network_analyzer/`) | ✅ 완료 |
+| 오케스트레이터 (`src/main.py`) | ✅ 완료 |
+| 위험도 스코어링 (`src/risk_aggregator.py`) | ✅ 완료 |
+| 웹 대시보드 (`app.py` + `views/`) | ✅ 완료 |
+| 실샘플 검증 | 🚧 정상 2종 / 악성 1종 완료, 표본 확대 필요 |
+
+- **8주차에 실제 APK로 세 모듈이 모두 성공하는 것을 처음 확인함.** 상세는
+  `docs/8주차보고서_B.md`
+- 테스트 183개 통과 (`python3 -m pytest -q`)
 
 ---
 
-## 1. 정적 분석 모듈 (완료)
+## 빠른 시작
 
-역할 분배와 최종 상태:
+### 1. 의존성
 
-| 역할 | 내용 | 상태 |
-|---|---|---|
-| A | 패키지 구조 설계, `analyze_static()` 인터페이스, 출력 스키마(`schema.py`) | 완료 |
-| B | `apktool`/`jadx` 호출 wrapper (타임아웃, 예외 처리) | 완료 |
-| C | `AndroidManifest.xml` 파싱 (androguard), 위험 권한/컴포넌트 추출 | 완료 |
-| D | 위험도 점수 계산, 출력 취합 | 완료 |
-
-추가로 A가 스키마(`schema.py`)에는 정의해뒀지만 역할 배정에는 없었던 인증서 분석 /
-코드 스캔 / 문자열 추출 / SDK 탐지 4개 모듈도 구현 완료 — `analyze_static()`이
-스키마의 8개 필드(`meta`/`manifest`/`certificate`/`code_analysis`/`strings`/
-`third_party_sdks`/`risk_score`/`errors`)를 전부 채워서 반환한다.
-
-### static_analyzer/ 모듈별 역할
-
-```
-src/static_analyzer/
-├── __init__.py         # 패키지 공개 API
-├── analyzer.py          # analyze_static(apk_path) -> dict, 오케스트레이터가 이것만 import
-├── apk_extractor.py     # apktool/jadx 실행 + apk 메타데이터(해시, 패키지명, sdk 버전) 추출
-├── decompiler.py         # apktool d / jadx CLI를 subprocess로 감싸는 저수준 wrapper
-├── manifest_parser.py   # AndroidManifest.xml 파싱 (androguard) — 권한/컴포넌트/exported 체크
-├── cert_analyzer.py     # 서명 인증서(발급자/유효기간/자가서명 여부) 추출 (androguard)
-├── code_scanner.py      # jadx 소스 트리에서 의심 API 호출·난독화·리플렉션·네이티브 라이브러리 탐지
-├── string_extractor.py  # jadx 소스 트리에서 URL/IP/의심 문자열 추출
-├── sdk_detector.py      # 알려진 서드파티 SDK 패키지 시그니처 매칭
-├── risk_scorer.py       # 권한 가중치 + 코드/문자열 스캔 결과를 합쳐 0.0~1.0 위험도 계산
-├── schema.py            # analyze_static() 출력 타입 정의 (TypedDict) — 팀 공유 계약
-└── exceptions.py        # StaticAnalysisError 등 커스텀 예외
+```bash
+pip install -r requirements.txt
 ```
 
-각 파일이 왜 나뉘어 있는지:
+`apktool` / `jadx` / `adb` / `frida-server`는 pip 패키지가 아니라 별도 설치 후
+PATH 등록이 필요함. WSL 환경 구축 절차는 **`docs/8주차_로컬테스트_가이드.md`** 에 정리돼 있음.
 
-- **decompiler.py vs apk_extractor.py** — `decompiler.py`는 "apktool/jadx를 어떻게 실행하고
-  실패를 어떻게 처리할지"만 담당. `apk_extractor.py`는 그 위에서 "apk 하나를 분석 가능한
-  형태로 준비"하는 조립 담당 — 디컴파일 실행 + 해시/버전 같은 메타데이터 추출을 묶어서
-  `analyzer.py`가 쓰기 좋은 dict로 반환한다. 다른 모듈이 필요로 하는 `jadx_dir`/`apk_path`도
-  여기서 만들어서 넘겨준다.
-- **manifest_parser.py, cert_analyzer.py는 decompiler.py 결과물을 안 씀** — androguard가
-  apk 파일 자체에서 바로 Manifest/서명 인증서를 읽기 때문에, apktool로 압축을 풀 필요가
-  없음. 반면 `code_scanner`/`string_extractor`/`sdk_detector`는 jadx가 만든 자바 소스 트리
-  텍스트를 훑어야 해서 `apk_extractor`가 만든 `jadx_dir`이 필요함.
-  `code_analysis`/`strings`필드 (코드 스캔, 문자열 추출)는 디컴파일된 소스가 있어야 분석 가능함. 
-- **schema.py** — 실제 코드가 아니라 "출력 형식 계약"만 있는 파일. 새 필드를 추가/변경하려면
-  여기부터 고치고 팀에 공유해야 함 (임의로 바꾸면 다른 사람 코드가 깨짐).
-- **exceptions.py** — `StaticAnalysisError`가 최상위 예외. `decompiler.py`의
-  `DecompileError`/`DecompileTimeoutError`는 전부 이 예외의 하위 클래스라서, 오케스트레이터는
-  `except StaticAnalysisError`로 apktool/jadx 실패와 미래에 추가될 다른 치명적 실패를 한 번에
-  잡을 수 있음.
-- **analyzer.py의 부분 실패 처리** — apk 자체가 없거나 apktool/jadx 실행이 실패하는 건
-  치명적이라 그대로 예외를 던지지만, 그 이후 6개 하위 모듈(manifest/cert/code/strings/
-  sdk/risk) 중 하나가 실패해도 나머지는 계속 진행하고 `errors`에 사유만 남김.
+### 2. 정적 분석만 (에뮬레이터 불필요)
 
-### ⚠️ 정적 분석 — 아직 안 맞춰진 것 / 검증 안 된 것
+```bash
+python3 src/main.py <apk경로> --output output/report_<이름>.json
+```
 
-- **`risk_scorer.py`의 점수 계산식은 1차 추측치임**: 권한 가중치·exported 컴포넌트 개수·
-  의심 API 개수 등을 그냥 더해서 100으로 나눈 임의의 공식(`NORMALIZATION_CAP = 100.0`).
-  정상 앱 2~3개 vs 공개 악성 샘플 2~3개로 실제 돌려서 점수 차이가 나는지 확인하고
-  가중치를 다시 맞춰야 함.
-- **실제 apk로 end-to-end 검증 안 됨**: apktool/jadx/실제 apk 샘플이 없는 환경에서
-  통합했음. `decompiler.py`/`risk_scorer`는 가짜 도구·가짜 데이터로 로직만 검증했고,
-  `code_scanner`/`string_extractor`/`sdk_detector`는 jadx 출력과 비슷하게 흉내낸 가짜
-  디렉터리로 검증함. `cert_analyzer`는 API 존재만 확인했고 실제 서명된 apk로는 아직
-  안 돌려봄. **팀원 중 apktool/jadx가 깔린 환경에서 실제 apk(anubis.apk 등)로
-  `analyze_static()`을 한 번 돌려서 8개 필드가 다 정상적으로 채워지는지 확인 필요.**
+에뮬레이터가 없으면 동적·네트워크는 `분석 실패`로 표시되고 정적 결과만 나옴
+(부분 리포트 정책 — 한 모듈이 죽어도 리포트는 항상 생성됨).
 
----
+### 3. 전체 파이프라인
 
-## 2. 동적 분석 모듈 (2026-07-15(수) 시작)
+```bash
+source scripts/wsl_env.sh                  # PATH 설정 (매 터미널 1회)
+bash scripts/connect_emulator.sh           # 에뮬레이터 연결
+bash scripts/prepare_emulator.sh <apk경로> # tcpdump·frida-server 준비 + 앱 설치
+python3 src/main.py <apk경로> --output output/report_<이름>.json --observe-sec 15
+```
 
-Frida로 앱을 후킹해서 런타임 행위(문자열 복호화, 암호화 함수 호출 등)를 관찰하는 모듈.
-5일 일정, 전원 동일 기간으로 진행.
+### 4. 대시보드
 
-| 역할 | 담당 | 내용 | 산출물 | 상태 |
-|---|---|---|---|---|
-| A | 예원 | Frida 제어 스크립트 (세션 생성, attach/spawn) | `frida_controller.py` | 4일차까지 완료 (재시도/배치 실행 포함) |
-| B | 소정 | JS 후킹 스크립트 (문자열/Base64/Cipher 등) | `hooks.js` | 4일차까지 완료, `custom_xor`은 실 샘플 부재로 보류 |
-| C | 은아 | Python-JS 연동, 메시지 파싱/필터링 | 메시지 파서, `dynamic_report.json` | 4일차까지 완료, 인프라 버그(esbuild interop) 수정 포함 |
-| D | 은서 | 실행 시나리오 자동화 (ADB/에뮬레이터) | `scenario_runner.py`, 시나리오 정의서 | 4일차까지 완료(문법 검증만, 실기기 실행 미검증). `login_flow`/`permission_request` 좌표는 실 샘플 부재로 보류 |
+```bash
+streamlit run app.py        # http://localhost:8501
+```
 
-5일차(전원 통합, 실제 앱 2개로 A→B→C→D end-to-end 실행)는 아직 진행 전.
-자세한 진행 상황은 `docs/동적분석/`의 팀원별 4주차 과제 보고서 참고.
+업로드하면 **에뮬레이터 설치까지 자동으로 처리**함(`preflight.py`). 준비가 안 된
+항목이 있으면 무엇을 실행하면 되는지 화면에 안내함.
 
-작업 비중: A > C > B > D
+기기 없이 화면만 확인하려면:
 
-### 핵심 원칙 — 3일차는 "인수인계 데드라인"
-
-C는 A(세션)+B(후킹)가 둘 다 있어야 실제 메시지 흐름을 검증할 수 있고, D는 A(제어
-스크립트)가 있어야 실제 앱 자동 구동을 검증할 수 있음. 그래서 **A, B는 3일차까지
-"완벽하지 않아도 실제로 동작하는 최소 버전"을 반드시 넘겨야** C, D가 4~5일차에
-제대로 통합/검증할 시간이 생김.
-
-### 5일 스케줄
-
-**1일차 — 각자 독립 가능한 부분부터**
-- A: frida-server 연결 확인, 세션 생성(attach/spawn) 로직 작성 시작
-- B: 대상 앱 클래스/함수 구조 분석, 후킹 대상 함수 목록 확정 (`StringBuilder.append`, `Base64`, `Cipher.doFinal` 등)
-- C: 메시지 JSON 스키마 설계 (A/B 필요 없음) — 확정되는 대로 A, B에게 공유 ("JS에서 이 필드명으로 `send()` 해줘")
-- D: 테스트 시나리오 목록 작성(로그인, 권한 요청 등), `adb shell` 명령으로 앱 수동 실행 자동화 초안
-
-**2일차 — 각자 핵심 로직 완성**
-- A: attach/spawn 로직 완성, `resume()` 흐름까지 동작 확인
-- B: `Interceptor.attach`로 실제 후킹 코드 작성, frida CLI로 단독 테스트 (`frida -U -f 패키지명 -l hooks.js`)
-- C: 확정한 스키마 기준으로 메시지 파서 구조 설계 (아직 실데이터 없이 더미로)
-- D: `scenario_runner.py` 뼈대 작성, adb 자동화 로직 보강
-
-**3일차 — ⭐ 인수인계 데드라인 ⭐**
-- A: `frida_controller.py` 최소 동작 버전을 D에게 전달 (spawn→resume 되는 상태)
-- B: `hooks.js` 최소 동작 버전을 C에게 전달 (문자열/Base64/Cipher 후킹 되는 상태)
-- C: A의 세션 + B의 후킹 스크립트를 실제로 연결해서 `script.on('message', ...)`로 첫 실데이터 수신 테스트
-- D: A의 제어 스크립트로 실제 시나리오(로그인 등) 자동 실행 테스트 시작
-
-**4일차 — 각자 마무리 + 검증**
-- A: 재시도/타임아웃 처리, 배치 실행(여러 앱) 지원 추가
-- B: 커스텀 XOR 등 표준 API로 못 잡는 패턴 보강, 후킹 노이즈 필터링 조언(C에게)
-- C: 실제 후킹 데이터 기반으로 필터링(중복 제거, 평문 판별) 로직 완성, `dynamic_report.json` 1차 출력
-- D: 시나리오 반복 실행 재현성 확인, 엣지 케이스(앱 크래시, 미실행) 대응 로직 추가
-
-**5일차 — 전원 통합**
-- 전원이 실제 앱(정상 1개 + 악성 1개)으로 A→B→C→D 전체 파이프라인 end-to-end 실행
-- 버그 수정, `dynamic_report.json` 최종 형식 확인
-- 발표자료(데모 캡처, 실행 로그) 준비
+```bash
+streamlit run demo_risk.py     # 판정 카드 + 종합 위험도 (5가지 상태)
+streamlit run demo_static.py   # 정적 탭
+```
 
 ---
 
-## 3. 네트워크 분석 모듈 (5주차 시작)
+## 결과 읽는 법 — 분석 상태 ≠ 보안 판정
 
-앱이 어떤 도메인/서버와 통신하는지 tcpdump로 캡처하고, DNS 쿼리와 TLS SNI를
-파싱해서 화이트리스트에 없는 도메인(C&C 후보)을 걸러내는 모듈.
+8주차에 두 축을 코드 수준에서 분리함. 이전에는 모듈 상태 "정상"이 "이 앱이 안전하다"로
+읽히는 문제가 있었음.
 
-| 역할 | 담당 | 내용 | 산출물 | 상태 |
-|---|---|---|---|---|
-| A | 은아 | tcpdump 캡처 자동화, Frida 실행 구간과 동기화 | `packet_capturer.py` | 예정 |
-| B | 소정 | DNS 파싱 | `dns_parser.py` → `dns_queries` | 예정 |
-| C | 예원 | TLS SNI 파싱 | `sni_parser.py` → `tls_sni` | 예정 |
-| D | 은서 | 화이트리스트 구축 + 의심 도메인/IP 판별 + 최종 조립 | `schema.py`, `whitelist_checker.py`, `ip_checker.py`, `report_builder.py` | 1~4일차 완료 |
+**분석 상태(Status)** — 파이프라인이 돌았는가
 
-**D 1~4일차 완료 내용** (`src/network_analyzer/`):
-- `schema.py` — `schemas/network_report.schema.json`을 TypedDict로 옮긴 팀 공유 계약
-- `exceptions.py` — `NetworkAnalysisError`
-- `whitelist_checker.py` — Google/Play services, 광고 SDK(Unity Ads/AppLovin/Vungle 등),
-  분석/크래시 리포팅(Sentry/Mixpanel 등), CDN 카테고리로 정리한 화이트리스트 도메인
-  ~35개 + `is_whitelisted()`(서브도메인 매칭) + `find_suspicious_domains()`
-  (화이트리스트 미포함 도메인 또는 IP 리터럴 도메인을 `suspicious.domains` 형식으로 반환)
-- `ip_checker.py` (3~4일차 신규) — 사설/루프백/링크로컬 IP를 정상으로 간주해 제외하고,
-  남은 공인 IP를 "하드코딩된 직접 접속 후보"로 분류하는 `find_suspicious_ips()`,
-  도메인/SNI 필드에 IP가 그대로 들어있는지 확인하는 `is_ip_literal()`
-- `report_builder.py` (4일차 신규) — A/B/C의 `meta`/`dns_queries`/`tls_sni`를 받아
-  `whitelist_checker`/`ip_checker`로 `suspicious`를 채워서 `schema.py`의
-  `NetworkAnalysisResult` 형태로 최종 조립하는 `build_network_report()`
-- 상세 진행 내용은 `docs/네트워크분석/5주차보고서(1).md`(1~2일차),
-  `5주차보고서(2).md`(3~4일차) 참고 (미커밋, 로컬 문서)
-- A/B/C 코드는 아직 이 브랜치에 통합 전이라, 검증은 A가 5주차에 실제로 얻은 캡처
-  결과와 C가 실제로 캡처한 SNI 샘플(각자 PDF 참고)을 참고 데이터로 사용해서 진행함.
-  실제 `dns_queries`/`tls_sni` 산출물로 전체 파이프라인을 돌려보는 건 5일차(전원 통합) 범위
+| 값 | 뜻 |
+|---|---|
+| 분석 성공 / 부분 성공 | 해당 모듈이 실행에 성공함 (앱의 안전 여부와 무관) |
+| 분석 실패 / 시간 초과 | 모듈이 실행되지 못함 |
 
-작업 비중/스케줄은 동적 분석 모듈과 동일한 "3일차 인수인계 데드라인" 구조를 따름
-(A가 캡처한 pcap이 있어야 B/C가 실데이터로 검증 가능, D는 B/C 출력이 있어야
-화이트리스트 대조 가능).
+**보안 판정(Verdict)** — 관찰된 지표로 볼 때 얼마나 위험한가
+
+| 구간 | 판정 |
+|---|---|
+| 0–29 | 🟢 정상 |
+| 30–59 | 🟡 주의 |
+| 60–79 | 🟠 의심 |
+| 80–100 | 🔴 고위험 |
+
+- **"악성"은 점수만으로 주지 않음.** 종합 80점 이상 **그리고** 강한 지표 3개 이상을
+  둘 다 충족할 때만 표시하며, 충족하지 못한 이유를 화면에 그대로 노출함
+- **관측된 데이터가 없는 모듈은 0점(=안전)이 아니라 "정보 없음"으로 처리**하고 점수에서
+  제외 후 가중치를 재정규화함. "관측 없음"은 "위험 없음"이 아니기 때문
 
 ---
 
-## 4. schemas/ — 각 스키마가 무슨 역할을 하는지
+## 디렉터리 구조
 
-`schemas/` 폴더는 정적/동적/네트워크 세 모듈이 서로 다른 형식으로 결과를 내서 나중에
-파이프라인 통합(main.py) 때 파싱 에러가 나는 걸 막기 위한 **출력 형식 초안**이다.
+```
+├── app.py                  # Streamlit 진입점 (업로드 → 분석 → 4개 탭)
+├── preflight.py            # 분석 전 에뮬레이터 준비 점검 + 앱 자동 설치
+├── pipeline_bridge.py      # 대시보드 ↔ 오케스트레이터 연결
+├── common.py               # 뷰 공용 상수(상태 라벨, 판정 색/구간, 고지 문구)
+├── views/                  # 대시보드 화면
+│   ├── verdict_header.py   #   최종 판정 카드 (탭 위, 항상 보임)
+│   ├── static_view.py      #   정적 탭
+│   ├── dynamic_view.py     #   동적 탭
+│   ├── network_view.py     #   네트워크 탭
+│   ├── risk_view.py        #   종합 위험도 탭
+│   └── static_data.py      #   정적 뷰의 값 가공 (streamlit 없음 → pytest 대상)
+├── src/
+│   ├── main.py             # 오케스트레이터 (CLI 진입점)
+│   ├── risk_aggregator.py  # 세 모듈 결과 → 종합 위험도 + 보안 판정
+│   ├── static_analyzer/    # 정적 분석
+│   ├── dynamic_analyzer/   # 동적 분석 (Frida)
+│   └── network_analyzer/   # 네트워크 분석
+├── scripts/                # 실행 환경 준비 도구
+├── tests/                  # pytest 183개
+└── docs/                   # 주차별 보고서·가이드
+```
 
-| 파일 | 역할 | 상태 |
-|---|---|---|
-| `schemas/README.md` | 세 스키마 전체 설명 문서 | - |
-| `schemas/static_report.schema.json` | 정적 분석 출력 초안 (`meta`/`permissions`/`components`/`risk_score`) | ⚠️ 1주차 초안, 아래 참고 |
-| `schemas/dynamic_report.schema.json` | 동적 분석 출력 — `meta`(패키지명/실행시각/관찰시간), `hooked_calls`(후킹된 함수 호출 기록), `extracted_strings`(정제된 문자열, base64/url/평문 여부 추정) | 4주차에 C가 실제로 채워나갈 대상 |
-| `schemas/network_report.schema.json` | 네트워크 분석 출력 — `meta`, `dns_queries`(조회 도메인), `tls_sni`(HTTPS 접속 대상), `suspicious`(C&C 후보 도메인/IP) | 5~6주차에 쓸 예정 |
+### scripts/
 
-**`schemas/static_report.schema.json` vs `src/static_analyzer/schema.py`**: 이름이
-비슷해서 헷갈리기 쉬운데 서로 다른 파일이다. `schemas/static_report.schema.json`은
-1주차에 만든 4필드짜리 초안이고, `src/static_analyzer/schema.py`는 A가 3주차에 실제로
-확정한 8필드짜리 최신 버전(팀 코드가 지금 이걸 기준으로 동작함). 정적 분석은 이제
-완료됐으니 `schemas/static_report.schema.json`도 `schema.py`에 맞춰 갱신할지 팀 논의
-필요 — 다만 정적+동적+네트워크 파이프라인 통합은 5~6주차라 지금 당장 급하지는 않음.
+| 스크립트 | 역할 |
+|---|---|
+| `wsl_env.sh` | apktool/jadx/adb PATH 설정 |
+| `connect_emulator.sh` | WSL ↔ Windows 에뮬레이터 adb 연결 (상태 확인 후 필요한 것만 수행) |
+| `prepare_emulator.sh` | adb root → tcpdump 준비 → frida-server 기동 → APK 설치 |
+| `snapshot.sh` | 에뮬레이터 스냅샷 save/load/list |
+| `check_apk_compat.py` | 받은 APK가 팀 AVD에 설치 가능한지 사전 판별 |
 
-`dynamic_report.schema.json`은 지금 시작하는 동적 분석 모듈의 목표 출력 형식이니,
-C가 메시지 파서를 설계할 때(1일차) 이 파일을 기준으로 필드명을 맞추면 된다.
+---
+
+## 모듈별 설명
+
+### 정적 분석 (`src/static_analyzer/`)
+
+```
+analyzer.py          # analyze_static(apk_path) -> dict, 오케스트레이터는 이것만 import
+apk_extractor.py     # 디컴파일 실행 + 메타데이터(해시/패키지명/SDK) 추출
+decompiler.py        # apktool d / jadx CLI subprocess wrapper (타임아웃·예외)
+manifest_parser.py   # AndroidManifest 파싱 (androguard) — 권한/컴포넌트/exported
+cert_analyzer.py     # 서명 인증서 (발급자/유효기간/자가서명)
+code_scanner.py      # 의심 API·난독화·리플렉션·네이티브 라이브러리·패킹된 자산 탐지
+string_extractor.py  # URL/IP/의심 문자열 추출
+sdk_detector.py      # 서드파티 SDK 시그니처 매칭
+risk_scorer.py       # 항목별 가중치 합산 → 0.0~1.0
+schema.py            # 출력 타입 정의 (TypedDict) — 팀 공유 계약
+```
+
+- **decompiler.py vs apk_extractor.py** — 앞은 "도구를 어떻게 실행하고 실패를 어떻게
+  처리할지", 뒤는 그 위에서 "apk 하나를 분석 가능한 형태로 준비"하는 조립 담당
+- **manifest_parser / cert_analyzer는 디컴파일 결과를 쓰지 않음** — androguard가 apk에서
+  바로 읽으므로 apktool 압축 해제가 필요 없음
+- 작업 폴더는 `work/<파일명>-<sha256 앞8자>/` 로 **APK마다 분리**됨. 공유하면 이전 APK의
+  소스가 남아 다음 분석 결과를 오염시킴(8주차 실측으로 확인)
+
+### 동적 분석 (`src/dynamic_analyzer/`)
+
+```
+frida_controller.py  # 세션 관리 (spawn → attach → load → resume → cleanup)
+hooks.js / .bundle.js# StringBuilder.append / Base64 / Cipher.doFinal 후킹
+message_parser.py    # 후킹 이벤트 수집 → dynamic_report.json
+scenario_runner.py   # A+B+C를 엮어 시나리오 실행, 크래시 감지
+adb_runner.py        # adb 래퍼 (실행/탭/입력/권한 부여)
+scenarios.py         # LAUNCH_ONLY / LOGIN_FLOW / PERMISSION_REQUEST
+```
+
+- 평문 후보는 `caller_class` 기준으로 **프레임워크 내부 호출을 제외**함. 제외하지 않으면
+  `java.util.Formatter` 같은 런타임 호출이 수백 건 잡혀 정상 앱이 위험하게 보임
+- `LOGIN_FLOW` / `PERMISSION_REQUEST`는 좌표가 아직 플레이스홀더라 사용 전 채워야 함
+
+### 네트워크 분석 (`src/network_analyzer/`)
+
+```
+capture.py           # 기기에서 tcpdump 실행/종료/pull
+scenario_capture.py  # 캡처 시작 → 시나리오 실행 → 종료 → pull 동기화
+dns_parser.py        # DNS 질의/응답 파싱
+sni_parser.py        # TLS ClientHello SNI 파싱
+pcap_fallback.py     # tshark가 없을 때 scapy로 파싱 (형식 동일)
+whitelist_checker.py # 화이트리스트 대조 → suspicious.domains
+ip_checker.py        # 사설/루프백 제외 후 공인 IP를 하드코딩 접속 후보로 분류
+report_builder.py    # 최종 NetworkAnalysisResult 조립
+```
+
+- `tcpdump`는 기기의 `/data/local/tmp/tcpdump` 경로를 사용함. 없으면 동적·네트워크가
+  함께 실패하므로 `prepare_emulator.sh`가 먼저 준비함
+- `tshark`가 없어도 동작함(scapy 폴백). tshark는 관리자 권한이 필요해 PC마다 갈림
+
+---
+
+## 8주차 실측 결과
+
+| 샘플 | 종합 | 판정 | 정적 | 동적 | 네트워크 | 강한 지표 |
+|---|---|---|---|---|---|---|
+| `com.google.android.deskclock` (정상) | 28 | 🟢 정상 | 37 | 15 | 제외 | — |
+| `com.google.android.calendar` (정상) | 46 | 🟡 주의 | 56 | 31 | 제외 | — |
+| MalwareBazaar 드로퍼 (악성) | 44 | 🟡 주의 | 69 | 10 | 제외 | ⚠ 패킹된 페이로드 |
+
+- 세 샘플 모두 분석 상태는 세 모듈 전부 "분석 성공"
+- **점수만으로는 정상/악성이 아직 분리되지 않음** — 표본 3개 기준이며 상수 재조정은
+  팀원 결과를 합쳐 8종이 된 뒤 진행할 예정. 근거와 논의 사항은 `docs/8주차보고서_B.md` 5절
+- 결과 원본: `output/report_{deskclock,calendar,dropper}.json`
+
+---
+
+## 샘플 취급 규칙
+
+- **저장소에 커밋 금지.** `.gitignore`에 `*.apk` `*.apk_` `*.dex` `*.zip` `samples/` 등록됨
+- 샘플은 `~/samples/` 에만 둘 것
+- MalwareBazaar 배포본은 **AES 암호화 zip**이라 Windows 기본 압축 해제로는 안 풀림
+  (7-Zip 또는 `pyzipper` 필요, 비밀번호 `infected`)
+- **실행 전 스냅샷 저장 필수**: `bash scripts/snapshot.sh save before_run`
+  - 드로퍼는 2차 페이로드를 별도 패키지로 설치하므로 `adb uninstall`만으로는 정리되지 않음
 
 ---
 
 ## 개발 환경
 
-- 팀 전체가 `docs/androidStudio_match.pdf` 가이드대로 에뮬레이터(`xray_api30`, Pixel 4 /
-  API 30 / Google APIs / x86_64)를 통일해서 씀.
-- 의존성은 `requirements.txt` 참고 (`pip install -r requirements.txt`). apktool/jadx는 별도
-  설치 필요 (pip 패키지 아님) — 설치 후 PATH 등록까지 해야 `decompiler.py`가 찾을 수 있음.
+- 에뮬레이터: Pixel 4 / **API 30** / Google APIs / x86_64
+  (`abilist = x86_64,x86,arm64-v8a,armeabi-v7a` — ARM 변환 내장이라 샘플 ABI 제약 없음)
+- `adb root`가 되어야 함 → Play Store 포함 이미지 대신 **Google APIs** 이미지 사용
+- WSL에서 돌리는 경우 **WSL adb와 Windows adb의 버전이 같아야 함**. 다르면 WSL
+  클라이언트가 원격 서버를 죽여 기기가 보이지 않음 (`docs/8주차_로컬테스트_가이드.md` 5-3)
+
+```bash
+python3 -m pytest -q          # 183개
+```
+
+---
 
 ## 관련 문서
 
-- `CLAUDE.md` — 프로젝트 개요, 8주 로드맵
-- `schemas/README.md` — 정적/동적/네트워크 세 모듈의 JSON 출력 스키마 초안 설명
-- `docs/4주차_계획_자료_수합_후_환경_통일.pdf` — 정적 분석 완료 시점 스냅샷 + 동적 분석 역할 초안
-- `docs/2주차_통합_발표자료.md` — 2주차 발표자료
+| 문서 | 내용 |
+|---|---|
+| `CLAUDE.md` | 프로젝트 개요, 8주 로드맵 |
+| `docs/8주차_로컬테스트_가이드.md` | 환경 구축부터 대시보드까지 단계별 명령 + 트러블슈팅 |
+| `docs/8주차보고서_B.md` | 8주차 작업 내역, 실측 결과, 미해결 과제 |
+| `docs/8주차_계획수정.pdf` | 판정 구조 개편 요구사항 |
+| `schemas/README.md` | 세 모듈 JSON 출력 스키마 초안 |
+| `src/static_analyzer/HANDOFF_B_to_A_D.md` | 정적 분석 인수인계 메모 |
