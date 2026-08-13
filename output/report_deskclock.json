@@ -1,0 +1,2151 @@
+{
+  "apk_name": "deskclock.apk",
+  "package_name": "com.google.android.deskclock",
+  "analyzed_at": "2026-08-13T11:11:11.439147+00:00",
+  "modules": {
+    "static": {
+      "status": "ok",
+      "data": {
+        "meta": {
+          "apk_name": "deskclock.apk",
+          "package_name": "com.google.android.deskclock",
+          "version_name": "6.2 (259367952)",
+          "version_code": 62000712,
+          "min_sdk": 21,
+          "target_sdk": 29,
+          "file_hash": {
+            "md5": "9ffcfd858f3aa23a3565ecb6e71512eb",
+            "sha1": "4bdd0b2e891f93b8ecbf1f32387fb04cf2ec91aa",
+            "sha256": "160e95dcc296fdf087afa03b4cc10d996a1c58c4da9d25d1bc43536785a8e756"
+          },
+          "file_size": 7924452,
+          "analyzed_at": "2026-08-13T11:11:11.439551+00:00"
+        },
+        "manifest": {
+          "permissions": [
+            "android.permission.RECEIVE_BOOT_COMPLETED",
+            "com.android.systemui.permission.SEND_ALERT_BROADCASTS",
+            "android.permission.WAKE_LOCK",
+            "com.google.android.providers.gsf.permission.READ_GSERVICES",
+            "android.permission.ACCESS_NETWORK_STATE",
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.INTERNET",
+            "android.permission.VIBRATE",
+            "android.permission.USE_FULL_SCREEN_INTENT",
+            "android.permission.DISABLE_KEYGUARD",
+            "android.permission.FOREGROUND_SERVICE"
+          ],
+          "dangerous_permissions": [],
+          "activities": [
+            "com.android.deskclock.DeskClock",
+            "com.android.deskclock.ringtone.RingtonePickerActivity",
+            "com.android.deskclock.ringtone.RingtoneSearchActivity",
+            "com.android.deskclock.settings.SettingsActivity",
+            "com.android.deskclock.HandleShortcuts",
+            "com.android.deskclock.worldclock.CitySelectionActivity",
+            "com.android.deskclock.LicensesActivity",
+            "com.android.deskclock.HandleApiCalls",
+            "com.android.deskclock.alarms.AlarmActivity",
+            "com.android.deskclock.AlarmSelectionActivity",
+            "com.android.deskclock.timer.ExpiredTimersActivity",
+            "com.android.deskclock.ScreensaverActivity",
+            "com.android.deskclock.settings.ScreensaverSettingsActivity",
+            "com.android.deskclock.HandleUris",
+            "com.android.deskclock.HandleGoogleApiCalls",
+            "com.android.deskclock.HandleSpotifyApiCalls",
+            "com.spotify.sdk.android.authentication.LoginActivity",
+            "com.google.android.gms.common.api.GoogleApiActivity",
+            "com.google.android.libraries.places.widget.AutocompleteActivity",
+            "com.spotify.sdk.android.authentication.AuthCallbackActivity"
+          ],
+          "services": [
+            "com.android.deskclock.alarms.AlarmService",
+            "com.android.deskclock.timer.TimerService",
+            "com.android.deskclock.stopwatch.StopwatchService",
+            "com.android.deskclock.Screensaver",
+            "com.android.alarmclock.DigitalAppWidgetCityService",
+            "com.android.deskclock.WearableSyncService",
+            "com.android.deskclock.WearableMessageListenerService",
+            "com.android.deskclock.indexing.IndexingJobService"
+          ],
+          "receivers": [
+            "com.android.deskclock.AlarmInitReceiver",
+            "com.android.deskclock.alarms.AlarmReceiver",
+            "com.android.deskclock.timer.TimerReceiver",
+            "com.android.alarmclock.AnalogAppWidgetProvider",
+            "com.android.alarmclock.DigitalAppWidgetProvider",
+            "com.android.deskclock.indexing.ReindexingReceiver"
+          ],
+          "providers": [],
+          "exported_components": [
+            "com.android.deskclock.DeskClock",
+            "com.android.deskclock.LicensesActivity",
+            "com.android.deskclock.HandleApiCalls",
+            "com.android.deskclock.HandleUris",
+            "com.spotify.sdk.android.authentication.AuthCallbackActivity",
+            "com.android.deskclock.Screensaver",
+            "com.android.deskclock.WearableMessageListenerService",
+            "com.android.deskclock.AlarmInitReceiver",
+            "com.android.alarmclock.AnalogAppWidgetProvider",
+            "com.android.alarmclock.DigitalAppWidgetProvider",
+            "com.android.deskclock.indexing.ReindexingReceiver"
+          ],
+          "components": [
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.DeskClock",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.MAIN",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.LAUNCHER"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.ringtone.RingtonePickerActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.ringtone.RingtoneSearchActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.settings.SettingsActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleShortcuts",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.worldclock.CitySelectionActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.LicensesActivity",
+              "exported": true,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleApiCalls",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.DISMISS_ALARM",
+                "android.intent.action.DISMISS_TIMER",
+                "android.intent.action.SHOW_ALARMS",
+                "android.intent.action.SHOW_TIMERS",
+                "android.intent.action.SNOOZE_ALARM",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.VOICE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.alarms.AlarmActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.AlarmSelectionActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.timer.ExpiredTimersActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.ScreensaverActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.settings.ScreensaverSettingsActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleUris",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.VIEW",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleGoogleApiCalls",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleSpotifyApiCalls",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.spotify.sdk.android.authentication.LoginActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.gms.common.api.GoogleApiActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.places.widget.AutocompleteActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.spotify.sdk.android.authentication.AuthCallbackActivity",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.VIEW",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.alarms.AlarmService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.timer.TimerService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.stopwatch.StopwatchService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.Screensaver",
+              "exported": true,
+              "intent_filters": [
+                "android.service.dreams.DreamService",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.android.alarmclock.DigitalAppWidgetCityService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.WearableSyncService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.WearableMessageListenerService",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.gms.wearable.CAPABILITY_CHANGED",
+                "com.google.android.gms.wearable.MESSAGE_RECEIVED"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.indexing.IndexingJobService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.AlarmInitReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.action.LOCALE_CHANGED",
+                "android.intent.action.LOCKED_BOOT_COMPLETED",
+                "android.intent.action.MY_PACKAGE_REPLACED",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.TIMEZONE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.alarms.AlarmReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.timer.TimerReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.alarmclock.AnalogAppWidgetProvider",
+              "exported": true,
+              "intent_filters": [
+                "android.appwidget.action.APPWIDGET_UPDATE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.alarmclock.DigitalAppWidgetProvider",
+              "exported": true,
+              "intent_filters": [
+                "android.appwidget.action.APPWIDGET_UPDATE",
+                "android.intent.action.LOCALE_CHANGED",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.TIMEZONE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.indexing.ReindexingReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.firebase.appindexing.UPDATE_INDEX"
+              ]
+            }
+          ]
+        },
+        "certificate": {
+          "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+          "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+          "valid_from": "2008-04-15T23:36:56+00:00",
+          "valid_to": "2035-09-01T23:36:56+00:00",
+          "is_self_signed": true
+        },
+        "code_analysis": {
+          "suspicious_api_calls": [
+            {
+              "api": "Base64.decode",
+              "location": "sources/com/spotify/protocol/mappers/gson/GsonMapper.java",
+              "risk": "low"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/com/android/deskclock/alarms/AlarmActivity.java",
+              "risk": "high"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/defpackage/cqv.java",
+              "risk": "low"
+            },
+            {
+              "api": "TelephonyManager",
+              "location": "sources/defpackage/blh.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/cdj.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bst.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/defpackage/czz.java",
+              "risk": "low"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bua.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/cch.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/defpackage/kd.java",
+              "risk": "low"
+            },
+            {
+              "api": "TelephonyManager",
+              "location": "sources/defpackage/bas.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bpn.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bpw.java",
+              "risk": "medium"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/android/support/design/snackbar/BaseTransientBottomBar.java",
+              "risk": "high"
+            }
+          ],
+          "obfuscation_detected": false,
+          "native_libraries": [],
+          "reflection_usage": true,
+          "dynamic_code_loading": false,
+          "packed_assets": []
+        },
+        "strings": {
+          "urls": [
+            "http://goo.gl/8Rd3yj",
+            "http://goo.gl/naFqQk",
+            "http://schemas.android.com/apk/res/android",
+            "http://www.google-analytics.com",
+            "https://app.adjust.com/ndjczk?campaign=com.google.android.deskclock",
+            "https://maps.googleapis.com/",
+            "https://maps.googleapis.com/maps/api/timezone/json?location=%s&timestamp=%d&key=%s",
+            "https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps",
+            "https://plus.google.com/",
+            "https://ssl.google-analytics.com",
+            "https://support.google.com/mobile/?p=clock_main",
+            "https://www.music.youtube.com/attribution_link?c=ptrshp-ytmp-acq-int-pd-app-andclock&u=https%3A%2F%2Fmusic.youtube.com%2Fmusic_premium"
+          ],
+          "ip_addresses": [],
+          "suspicious_strings": []
+        },
+        "third_party_sdks": [
+          "Firebase",
+          "Google Play Services"
+        ],
+        "risk_score": 0.375,
+        "risk_breakdown": {
+          "total": 0.375,
+          "raw": 37.5,
+          "breakdown": [
+            {
+              "factor": "android.permission.READ_EXTERNAL_STORAGE",
+              "weight": 3
+            },
+            {
+              "factor": "exported_components (11개 상한적용)",
+              "weight": 12
+            },
+            {
+              "factor": "suspicious_api_calls (4종, 고위험 1종 / 발견 14건)",
+              "weight": 10.5
+            },
+            {
+              "factor": "reflection_usage",
+              "weight": 10
+            },
+            {
+              "factor": "certificate.is_self_signed",
+              "weight": 2
+            }
+          ]
+        },
+        "errors": []
+      },
+      "error": null
+    },
+    "dynamic": {
+      "status": "ok",
+      "data": {
+        "package_name": "com.google.android.deskclock",
+        "session_duration_sec": 11,
+        "total_events_captured": 374,
+        "total_events_filtered": 127,
+        "events": [
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T11:10:54.530Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T11:10:54.531Z",
+            "class_name": "android.util.Base64",
+            "method_name": "decode",
+            "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+            "extra": {
+              "direction": "decode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T11:10:54.534Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T11:10:54.537Z",
+            "class_name": "android.util.Base64",
+            "method_name": "decode",
+            "raw_value": "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+            "extra": {
+              "direction": "decode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.580Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "CREATE TABLE IF NOT EXISTS ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.585Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "hits2",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.593Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " ( '",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.599Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "hit_id",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.608Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.615Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "hit_time",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.618Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "' INTEGER NOT NULL, '",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.624Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "hit_url",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.631Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "primes:",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12618
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.632Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "' TEXT NOT NULL, '",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.634Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "hit_string",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.649Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "com.google.android.deskclock",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12618
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.658Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "hit_app_id",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.664Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "' INTEGER);",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.668Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SELECT MAX(",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.677Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": ") FROM ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.680Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " WHERE 1;",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.686Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "GoogleAnalytics",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.693Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "18.5.89",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.696Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " (Linux; U; Android ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.701Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "en-us",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.707Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "sdk_gphone_x86_64",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.712Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " Build/",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.715Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "RSR1.240422.006",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12619
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:54.747Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "onActivityCreated",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.206Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "onActivityStarted",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.222Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "onActivityResumed",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.322Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Marshall Islands",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.328Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Midway Island",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.337Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Hawaii",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.344Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Alaska",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.351Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Pacific Time",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.359Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Tijuana",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.365Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Arizona",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.373Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Chihuahua",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.377Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Mountain Time",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.381Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Central America",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.392Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Central Time",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.396Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Mexico City",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.403Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Saskatchewan",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.408Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Bogota",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.414Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Eastern Time",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.420Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Venezuela",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.426Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Atlantic Time (Barbados)",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.431Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Atlantic Time (Canada)",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.437Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Manaus",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.444Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Santiago",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.449Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Newfoundland",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.456Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Brasilia",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.462Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Buenos Aires",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.466Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Greenland",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.475Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Montevideo",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.480Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Mid-Atlantic",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.485Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Azores",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.493Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Cape Verde Islands",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.498Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Casablanca",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.507Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "London, Dublin",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.511Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Amsterdam, Berlin",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.516Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Belgrade",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.524Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Brussels",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.530Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Sarajevo",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.540Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Windhoek",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.545Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "W. Africa Time",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.552Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Amman, Jordan",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.560Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Athens, Istanbul",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.571Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Beirut, Lebanon",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.578Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Cairo",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.582Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Helsinki",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.589Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Jerusalem",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.594Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Minsk",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.599Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Harare",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.608Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Baghdad",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.614Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Moscow",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.622Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Kuwait",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.631Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Nairobi",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.641Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Tehran",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.647Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Baku",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.657Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Tbilisi",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.663Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Yerevan",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.672Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Dubai",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.680Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Kabul",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.688Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Islamabad, Karachi",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.697Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Ural'sk",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.707Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Yekaterinburg",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.713Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Kolkata",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.720Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Sri Lanka",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.728Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Kathmandu",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.737Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Astana",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.749Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Yangon",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.759Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Krasnoyarsk",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.764Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Bangkok",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.773Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Beijing",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.780Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Hong Kong",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.791Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Irkutsk",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.798Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Kuala Lumpur",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.808Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Perth",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.815Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Taipei",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.825Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Seoul",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.830Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Tokyo, Osaka",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.839Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Yakutsk",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.845Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Adelaide",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.853Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Darwin",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.860Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Brisbane",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.868Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Hobart",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.882Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Sydney, Canberra",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.894Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Vladivostok",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.901Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Guam",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.909Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Magadan",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.918Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Auckland",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.927Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Fiji",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.939Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Tonga",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:55.947Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Jakarta",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:56.900Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " hours",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:56.907Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " minutes",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:56.913Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " seconds",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:56.919Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "0 hours",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:56.922Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "0 minutes",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:56.925Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "0 seconds",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:57.901Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Default (",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12624
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:10:57.905Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Cesium",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12624
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:11:00.014Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Periodic: Executing periodic callback for ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:11:00.018Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "MINUTE",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:11:00.020Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " because the period ended",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12587
+          }
+        ],
+        "plaintext_candidates": [],
+        "framework_events_excluded": 127,
+        "errors": []
+      },
+      "error": null,
+      "crashed": false
+    },
+    "network": {
+      "status": "ok",
+      "data": {
+        "meta": {
+          "package_name": "com.google.android.deskclock",
+          "capture_started_at": "2026-08-13T11:11:34+00:00",
+          "capture_duration_sec": 17,
+          "pcap_file": "output/capture.pcap"
+        },
+        "dns_queries": [],
+        "tls_sni": [],
+        "suspicious": {
+          "domains": [],
+          "ips": []
+        }
+      },
+      "error": null
+    }
+  },
+  "risk_score": {
+    "total": 0.281,
+    "score100": 28,
+    "level": "normal",
+    "verdict": {
+      "code": "normal",
+      "band_code": "normal",
+      "score100": 28,
+      "strong_indicators": [],
+      "malicious_rule": {
+        "min_score": 80,
+        "min_indicators": 3,
+        "strong_indicator_count": 0,
+        "met": false
+      }
+    },
+    "indicators": {
+      "static": [
+        {
+          "code": "suspicious_api",
+          "label": "의심 API 호출",
+          "value": "14건",
+          "strong": false
+        },
+        {
+          "code": "reflection",
+          "label": "리플렉션 사용",
+          "value": "탐지",
+          "strong": false
+        },
+        {
+          "code": "self_signed",
+          "label": "자체 서명 인증서",
+          "value": "예",
+          "strong": false
+        }
+      ],
+      "dynamic": [
+        {
+          "code": "hook_events",
+          "label": "후킹 이벤트",
+          "value": "127건",
+          "strong": false
+        }
+      ],
+      "network": []
+    },
+    "breakdown": {
+      "modules": {
+        "static": {
+          "available": true,
+          "sub_score": 0.375,
+          "source": "static_analyzer.risk_score",
+          "static_breakdown": {
+            "total": 0.375,
+            "raw": 37.5,
+            "breakdown": [
+              {
+                "factor": "android.permission.READ_EXTERNAL_STORAGE",
+                "weight": 3
+              },
+              {
+                "factor": "exported_components (11개 상한적용)",
+                "weight": 12
+              },
+              {
+                "factor": "suspicious_api_calls (4종, 고위험 1종 / 발견 14건)",
+                "weight": 10.5
+              },
+              {
+                "factor": "reflection_usage",
+                "weight": 10
+              },
+              {
+                "factor": "certificate.is_self_signed",
+                "weight": 2
+              }
+            ]
+          },
+          "weight": 0.5714
+        },
+        "dynamic": {
+          "available": true,
+          "sub_score": 0.1556,
+          "raw": 14.0,
+          "plaintext_candidate_count": 0,
+          "hook_counts": {
+            "base64": 4,
+            "string_builder": 123
+          },
+          "weight": 0.4286
+        },
+        "network": {
+          "available": false,
+          "weight": 0.0,
+          "reason": "no_observations",
+          "reason_ko": "관측된 데이터 없음 (분석은 성공)"
+        }
+      },
+      "weights_applied": {
+        "static": 0.5714,
+        "dynamic": 0.4286
+      },
+      "unavailable": [
+        "network"
+      ]
+    }
+  }
+}

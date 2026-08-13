@@ -64,9 +64,9 @@ breakdown에는 권한이 아닌 항목(`"exported_components×2 (3개)"`,
 스키마의 `items`에는 `required`도 `additionalProperties` 제한도 없어서 검증은
 통과합니다. 스키마 문구 자체를 고칠지는 정해 주세요.
 
-### (D-7) `cuckoo.apk`로는 권한 확장을 검증할 수 없습니다
+### (D-7) `로컬 테스트 APK`로는 권한 확장을 검증할 수 없습니다
 
-"B가 `cuckoo.apk`로 다시 돌려봐 달라"고 하신 것 중 **절반만 됐습니다.**
+"B가 `로컬 테스트 APK`로 다시 돌려봐 달라"고 하신 것 중 **절반만 됐습니다.**
 
 | 확인 요청 | 결과 |
 |---|---|
@@ -74,14 +74,14 @@ breakdown에는 권한이 아닌 항목(`"exported_components×2 (3개)"`,
 | breakdown 합계가 raw와 일치하는지 | **확인됨** — 합계 16 == raw 16 |
 | `CAMERA` 등이 medium/high로 잡히는지 | **검증 불가** |
 
-`cuckoo.apk`의 권한이 `INTERNET`과 자체 정의 권한 **2개뿐**이라 확장된 표를 실제
+`로컬 테스트 APK`의 권한이 `INTERNET`과 자체 정의 권한 **2개뿐**이라 확장된 표를 실제
 APK로 확인할 방법이 없습니다. 합성 데이터로는 정상 동작을 확인했고
 (`CAMERA` 7점 medium / `READ_SMS` 9점 high / 8점 미만 권한도 합산에 잡힘)
 회귀 테스트로 고정해 뒀습니다(`tests/test_static_adapter.py`,
 `tests/test_analyzer.py`). **권한이 많은 실제 샘플이 있어야 진짜 검증이 됩니다** —
 D가 지적하신 `NORMALIZATION_CAP` 재조정도 같은 샘플이 있어야 가능합니다.
 
-이 PC에서 찾을 수 있는 APK는 `cuckoo.apk`와 에뮬레이터 스킨 오버레이 APK뿐입니다.
+이 PC에서 찾을 수 있는 APK는 `로컬 테스트 APK`와 에뮬레이터 스킨 오버레이 APK뿐입니다.
 
 ## 골격 연결 확인 결과 (A)
 
@@ -94,7 +94,7 @@ D가 지적하신 `NORMALIZATION_CAP` 재조정도 같은 샘플이 있어야 �
 | `meta.package_name` 추출 (동적/네트워크 stage 진입 조건) | 정상 |
 | `errors` 비었을 때 `ok` / 있을 때 `partial` 판정 | 정상 |
 | `risk_breakdown`이 통과 정책으로 그대로 흘러가는지 | **정상 — `main.py` 수정 불필요** |
-| 실제 `cuckoo.apk` | `status="failed"` (apktool 없음, 예상된 동작) |
+| 실제 `로컬 테스트 APK` | `status="failed"` (apktool 없음, 예상된 동작) |
 
 ### (A-8) `main.py`가 `frida` 없이는 import조차 안 됩니다
 
@@ -198,7 +198,7 @@ report = to_static_report(result)             # static_report.json 형태
 **이 표는 `calculate_risk()`가 그대로 합산에 쓰기 때문에, 제가 임의로 늘리면 D의 점수가
 통째로 바뀝니다.** 그래서 손대지 않았습니다. 6주차 종합 점수 설계와 함께 정해 주세요.
 
-> 실제로 `cuckoo.apk`로 확인해 보니 권한이 2개(`INTERNET` 등)뿐이고
+> 실제로 `로컬 테스트 APK`로 확인해 보니 권한이 2개(`INTERNET` 등)뿐이고
 > `dangerous_permissions`는 **비어 있었습니다.**
 
 참고로 **설명 텍스트는 제가 따로 만들어 뒀습니다** — `manifest_parser.ABUSE_EXAMPLES`에

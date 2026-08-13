@@ -56,6 +56,26 @@ def run(
         대시보드 레이어에서도 그대로 유지한다.
     """
 
+    # ── 준비 점검 (8주차 추가) ──
+    # 업로드만으로는 앱이 에뮬레이터에 설치되지 않아서, 새 샘플을 UI로 올리면
+    # 어떤 샘플이든 동적·네트워크가 "앱이 설치되어 있지 않음"으로 실패했다.
+    # 여기서 설치까지 처리하고, 못 고치는 것은 화면에 이유를 띄운다.
+    import preflight  # 지연 import — streamlit 없는 환경에서도 이 모듈을 쓰기 위함
+
+    check = preflight.check_and_prepare(apk_path)
+    if progress_status is not None:
+        _ICONS = {"ok": "✅", "warn": "⚠️", "error": "❌"}
+        for level, title, detail in check.steps:
+            line = f"{_ICONS.get(level, '•')} {title}"
+            if detail:
+                line += f" — {detail}"
+            progress_status.write(line)
+        if not check.ok:
+            progress_status.write(
+                "↳ 위 문제로 **동적·네트워크 분석은 실패할 수 있습니다.** "
+                "정적 분석은 그대로 진행합니다."
+            )
+
     def on_progress(stage: str, status: str) -> None:
         if progress_status is None:
             return

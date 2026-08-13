@@ -4,8 +4,24 @@ __pycache__/
 venv/
 *:Zone.Identifier
 work/
-*.apk
 node_modules/
+
+# ── 분석 샘플 ── 저장소에 절대 들어가면 안 되는 것들.
+# 샘플은 ~/samples/ 에만 두는 것이 원칙이지만, 실수로 저장소 폴더에 받아도
+# 커밋되지 않게 방어한다. MalwareBazaar 배포본은 AES 암호화 zip이라 .zip도 막는다
+# (실제로 8주차에 저장소 루트에 받아둔 적 있음 — 팀 저장소에 악성코드가 올라가면
+# 계정 정지 사유다).
+*.apk
+*.apk_
+*.dex
+*.zip
+samples/
 
 # run_test.py 등 실행할 때마다 덮어써지는 동적 분석 결과물 (버전관리 대상 아님)
 dynamic_report.json
+
+# ── 실행 산출물 ── 돌릴 때마다 새로 생기고 사람마다 달라서 버전관리 대상이 아니다.
+# 특히 capture.pcap은 악성 샘플 실행 중의 트래픽 캡처본이라 저장소에 두지 않는다.
+# 세 샘플의 최종 결과(output/report_*.json)는 팀 공유 근거라 예외로 추적한다.
+output/capture.pcap
+output/dynamic_report_*.json

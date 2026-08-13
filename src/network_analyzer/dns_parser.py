@@ -13,6 +13,8 @@ from __future__ import annotations
 import subprocess
 from datetime import datetime, timezone
 
+from .pcap_fallback import parse_dns_scapy, tshark_available
+
 
 def parse_dns(pcap_path: str) -> list[dict]:
     """pcap 파일에서 DNS 쿼리/응답을 추출해 dns_queries 형식으로 반환한다.
@@ -25,6 +27,12 @@ def parse_dns(pcap_path: str) -> list[dict]:
         dns_queries 필드 형식의 리스트. 각 항목:
         {"domain": str, "timestamp": ISO8601 str, "resolved_ip": str | None}
     """
+    # tshark는 시스템 패키지라 관리자 권한이 필요하고 팀원 PC마다 있고 없고가 갈린다.
+    # 없으면 scapy(파이썬 패키지, 권한 불필요)로 같은 형식의 결과를 만든다.
+    if not tshark_available():
+        print("[정보] tshark가 없어 scapy로 DNS를 파싱합니다.")
+        return parse_dns_scapy(pcap_path)
+
     cmd = [
         "tshark",
         "-r", pcap_path,

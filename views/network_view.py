@@ -25,18 +25,21 @@ import pandas as pd
 import streamlit as st
 
 from common import (
-    RISK_LEVEL_COLORS,
+    VERDICT_COLORS,
     render_errors,
+    render_indicators,
     render_module_header,
     safe_get,
 )
 
-_GOOD = RISK_LEVEL_COLORS["low"]       # 통과(초록)
-_CRITICAL = RISK_LEVEL_COLORS["high"]  # 의심(빨강)
+_GOOD = VERDICT_COLORS["normal"]        # 통과(초록)
+_CRITICAL = VERDICT_COLORS["high_risk"]  # 의심(빨강)
 
 
 def render(report: dict) -> None:
     module = render_module_header(report, "network", "네트워크 분석")
+    # 분석 상태 아래에 "무엇이 발견됐는가"를 나란히 둔다(8주차 계획수정 PDF 3항).
+    render_indicators(safe_get(report, "risk_score", "indicators", "network", default=[]))
     data = module.get("data")
 
     if data is None:
@@ -74,7 +77,13 @@ def _render_suspicious(domains: list, ips: list) -> None:
     n = len(domains) + len(ips)
     st.markdown("#### 🔴 의심 도메인 / IP")
     if n == 0:
-        st.success("화이트리스트를 벗어난 의심 도메인·IP가 발견되지 않았습니다.", icon="✅")
+        # 초록 success 배지를 쓰지 않는다 — 캡처가 비었을 때도 이 분기로 오기 때문에
+        # "안전 확인됨"으로 읽히면 안 된다(8주차 계획수정 PDF 1항과 같은 취지).
+        st.info(
+            "화이트리스트를 벗어난 의심 도메인·IP가 **관찰되지 않았습니다**. "
+            "트래픽 자체가 없었을 수도 있으므로 안전하다는 뜻은 아닙니다.",
+            icon="ℹ️",
+        )
         return
 
     st.error(f"화이트리스트 미포함 등으로 의심되는 항목 {n}건이 발견되었습니다 (C&C 후보).",

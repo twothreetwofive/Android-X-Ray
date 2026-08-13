@@ -11,7 +11,11 @@ import re
 from pathlib import Path
 
 URL_RE = re.compile(r"https?://[^\s\"'<>]+")
-IP_RE = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
+# 각 옥텟을 0~255로 제한한다. 이전 정규식(\d{1,3})은 "8.4.91.697"이나 버전 문자열
+# 같은 것도 IP로 잡아서, 정상 앱에서 "하드코딩 IP 발견"이라는 오탐이 났다
+# (8주차 실측: 시계 앱에서 8.4.91.697이 IP로 잡힘).
+_OCTET = r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)"
+IP_RE = re.compile(rf"(?<![\d.]){_OCTET}(?:\.{_OCTET}){{3}}(?![\d.])")
 
 SUSPICIOUS_KEYWORDS = ["cmd.exe", "chmod 777", "/system/bin/su", ".onion", "su -c"]
 

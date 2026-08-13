@@ -350,7 +350,12 @@ def main():
     parser.add_argument("--output-pcap", default="output/capture.pcap")
     parser.add_argument("--observe-sec", type=float, default=8.0)
     parser.add_argument("--output", default="report.json")
+    parser.add_argument("--verbose", action="store_true",
+                        help="androguard 등 라이브러리 DEBUG 로그까지 전부 출력")
     args = parser.parse_args()
+
+    if not args.verbose:
+        _silence_third_party_logs()
 
     report = run_pipeline(
         apk_path=args.apk_path,
@@ -363,17 +368,113 @@ def main():
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
-    for name, mod in report["modules"].items():
-        status_line = f"[{name}] status={mod['status']}"
-        if mod.get("error"):
-            status_line += f" error={mod['error']}"
-        print(status_line)
+    _print_summary(report, args.output)
 
-    risk = report["risk_score"]
-    print(f"\n종합 위험도: total={risk['total']} level={risk['level']}")
-    if risk["breakdown"]["unavailable"]:
-        print(f"  (점수에서 제외된 모듈: {', '.join(risk['breakdown']['unavailable'])})")
-    print(f"\n최종 리포트 저장: {args.output}")
+
+# 화면(대시보드)과 같은 규칙으로 CLI 출력도 두 층으로 나눈다 — 여기서만 "status=ok"로
+# 뭉뚱그리면 터미널에서 돌린 사람은 여전히 "ok = 안전"으로 읽는다.
+# 라벨 표는 common.py에도 같은 것이 있지만, src/main.py는 대시보드(저장소 루트)에
+# 의존하지 않아야 해서(파이프라인만 단독 실행 가능) 여기 따로 둔다.
+_STATUS_LABELS = {
+    "ok": "분석 성공",
+    "partial": "부분 성공",
+    "failed": "분석 실패",
+    "timeout": "시간 초과",
+}
+_MODULE_LABELS = {"static": "정적 분석", "dynamic": "동적 분석", "network": "네트워크 분석"}
+_VERDICT_LABELS = {
+    "normal": "🟢 정상 (NORMAL)",
+    "caution": "🟡 주의 (CAUTION)",
+    "suspicious": "🟠 의심 (SUSPICIOUS)",
+    "high_risk": "🔴 고위험 (HIGH RISK)",
+    "malicious": "⛔ 악성 (MALICIOUS)",
+    "unknown": "⚪ 판정 불가 (UNDETERMINED)",
+}
+DISCLAIMER = (
+    "본 결과는 정적·동적·네트워크 분석에서 관찰된 보안 위험 지표를 기반으로 산출된 "
+    "위험도이며, 악성 여부를 단독으로 확정하지 않습니다."
+)
+
+
+def _pad_ko(text: str, width: int) -> str:
+    """한글은 터미널에서 두 칸을 차지하므로 len()으로 정렬하면 어긋난다.
+    east_asian_width가 W/F인 문자를 2칸으로 세서 실제 표시 폭을 맞춘다."""
+    import unicodedata
+
+    shown = sum(2 if unicodedata.east_asian_width(c) in ("W", "F") else 1 for c in text)
+    return text + " " * max(0, width - shown)
+
+
+def _silence_third_party_logs() -> None:
+    """androguard(loguru)의 DEBUG 로그를 끈다.
+
+    APK 하나를 분석하면 AXML 파서가 수천 줄을 찍어서 정작 필요한 결과 요약이
+    스크롤 위로 밀려 올라간다(8주차 로컬 실행에서 확인). CLI 기본값은 조용히,
+    필요하면 --verbose로 되살린다. 라이브러리로 import될 때는 호출되지 않게
+    main()에서만 부른다 — 남의 로깅 설정을 마음대로 끄지 않기 위함.
+    """
+    try:
+        from loguru import logger
+    except ImportError:
+        return
+    logger.remove()
+
+
+def _print_summary(report: dict, output_path: str) -> None:
+    risk = report.get("risk_score") or {}
+    verdict = risk.get("verdict") or {}
+    code = verdict.get("code") or risk.get("level") or "unknown"
+    score100 = risk.get("score100")
+
+    print("\n" + "=" * 52)
+    print("  APK 보안 분석 결과")
+    print("=" * 52)
+    print(f"  판정        {_VERDICT_LABELS.get(code, code)}")
+    print(f"  종합 위험도  {score100 if score100 is not None else '—'} / 100")
+
+    print("\n-- 분석 상태 (앱의 안전 여부가 아니라 실행 성공 여부) --")
+    for name, mod in report["modules"].items():
+        label = _MODULE_LABELS.get(name, name)
+        status = _STATUS_LABELS.get(mod["status"], mod["status"])
+        print(f"  {_pad_ko(label, 16)}{status}")
+        if mod.get("error"):
+            print(f"    └ {mod['error']}")
+
+    indicators = risk.get("indicators") or {}
+    print("\n-- 위험 지표 (관찰된 사실) --")
+    any_ind = False
+    for name in ("static", "dynamic", "network"):
+        for ind in indicators.get(name) or []:
+            mark = "⚠" if ind.get("strong") else "·"
+            print(f"  {mark} [{_MODULE_LABELS.get(name, name)}] {ind['label']}: {ind['value']}")
+            any_ind = True
+    if not any_ind:
+        print("  (관찰된 위험 지표 없음 — '안전함'을 뜻하지는 않음)")
+
+    breakdown_modules = (risk.get("breakdown") or {}).get("modules") or {}
+    unavailable = (risk.get("breakdown") or {}).get("unavailable") or []
+    if unavailable:
+        # 분석 실패로 빠진 것과 "분석은 됐는데 관측된 게 없어서" 빠진 것을 구분한다.
+        parts = []
+        for n in unavailable:
+            label = _MODULE_LABELS.get(n, n)
+            reason = (breakdown_modules.get(n) or {}).get("reason_ko")
+            parts.append(f"{label}({reason})" if reason else label)
+        excluded = ", ".join(parts)
+        # 세 모듈이 전부 빠졌으면 "남은 모듈끼리 재정규화"할 대상 자체가 없다.
+        tail = " (남은 모듈끼리 가중치 재정규화)" if len(unavailable) < 3 else " — 점수 산정 불가"
+        print(f"\n  ※ 점수에서 제외된 모듈: {excluded}{tail}")
+
+    rule = verdict.get("malicious_rule") or {}
+    if rule and not rule.get("met") and score100 is not None:
+        print(
+            f"\n  ※ '악성' 미표시: 점수 {rule['min_score']}점 이상 그리고 강한 지표 "
+            f"{rule['min_indicators']}개 이상을 둘 다 충족해야 함 "
+            f"(현재 {score100}점 / 강한 지표 {rule.get('strong_indicator_count', 0)}개)"
+        )
+
+    print(f"\n  ⚠ {DISCLAIMER}")
+    print(f"\n최종 리포트 저장: {output_path}")
 
 
 if __name__ == "__main__":

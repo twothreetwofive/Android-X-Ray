@@ -13,6 +13,7 @@ apktool CLI 래퍼(decompiler.run_apktool)는 나중에 실제로 쓸 데가 생
 from __future__ import annotations
 
 import hashlib
+import shutil
 from pathlib import Path
 
 from androguard.core.apk import APK
@@ -67,13 +68,30 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
         "file_size": apk_path.stat().st_size,
     }
 
+    # APK마다 별도 하위 폴더에 푼다.
+    #
+    # 이전에는 모든 APK를 work/jadx에 그대로 덮어썼다. jadx -d는 자기가 새로 쓰는
+    # 파일만 덮어쓸 뿐 **이전 APK의 잔재를 지우지 않기** 때문에, 두 번째 APK를
+    # 분석하면 앞 APK의 소스가 그대로 남아 code_scanner / string_extractor가
+    # 그것까지 훑었다.
+    #
+    # 실측(8주차): 시계 앱을 분석한 뒤 캘린더를 분석하니 캘린더 결과에
+    # sources/com/android/deskclock/... 의 AccessibilityService와 Spotify SDK의
+    # Base64.decode가 "캘린더의 의심 API"로 잡혀 정적 점수가 부풀었다.
+    #
+    # 폴더 이름에 sha256 앞 8자를 붙여 같은 파일명 다른 내용도 섞이지 않게 한다.
+    apk_id = f"{apk_path.stem}-{meta['file_hash']['sha256'][:8]}"
+    target_dir = work_dir / apk_id
+    if target_dir.exists():
+        shutil.rmtree(target_dir)
+
     # jadx 디컴파일은 실패해도 meta/package_name을 잃지 않도록 방어한다 — 여기서
     # 예외가 위로 전파되면 analyze_static()이 치명적 실패로 처리해 동적/네트워크
     # 단계까지 package_name을 못 구해 전부 안 돌던 문제가 있었다. 실패 시 jadx_dir은
     # None이 되고 사유를 decompile_warnings에 남겨 상위 errors로 노출한다.
     warnings: list[str] = []
     try:
-        jadx_dir = run_jadx(apk_path, work_dir / "jadx", timeout=timeout)
+        jadx_dir = run_jadx(apk_path, target_dir / "jadx", timeout=timeout)
     except StaticAnalysisError as e:
         warnings.append(f"jadx 디컴파일 실패(무시하고 계속 진행): {e}")
         jadx_dir = None

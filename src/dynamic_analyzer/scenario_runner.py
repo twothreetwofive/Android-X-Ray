@@ -118,6 +118,8 @@ class ScenarioRunner:
         except Exception as e:
             error = str(e)
         finally:
+            # A가 private `_cleanup_current_session()`을 public `cleanup()`으로
+            # 바꾼 것에 맞춰 호출부를 갱신함(8주차에 양쪽에서 각각 발견·수정).
             self.controller.cleanup()
 
         events = message_parser.get_captured_events()

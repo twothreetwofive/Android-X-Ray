@@ -192,14 +192,14 @@ def test_근거에서_점수를_다시_계산하지_않는다():
     # D가 준 weight를 그대로 옮기기만 해야 한다. 여기서 재계산하면 두 값이 어긋난다.
     rows = {r["factor"]: r["weight"] for r in build_breakdown_rows(OK)}
     assert rows["obfuscation_detected"] == 15
-    assert rows["exported_components×2 (3개)"] == 6
+    assert rows["exported_components (3개)"] == 6
 
 
 @pytest.mark.parametrize(
     "factor, expected_in",
     [
         ("android.permission.READ_SMS", "READ_SMS"),
-        ("exported_components×2 (3개)", "외부에 열린 컴포넌트"),
+        ("exported_components (3개)", "외부에 열린 컴포넌트"),
         ("obfuscation_detected", "난독화"),
         ("certificate.is_self_signed", "자가 서명"),
     ],
