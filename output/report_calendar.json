@@ -1,0 +1,2725 @@
+{
+  "apk_name": "calendar.apk",
+  "package_name": "com.google.android.calendar",
+  "analyzed_at": "2026-08-13T10:51:36.812285+00:00",
+  "modules": {
+    "static": {
+      "status": "ok",
+      "data": {
+        "meta": {
+          "apk_name": "calendar.apk",
+          "package_name": "com.google.android.calendar",
+          "version_name": "2020.18.5-313192754-release",
+          "version_code": 2016607548,
+          "min_sdk": 21,
+          "target_sdk": 29,
+          "file_hash": {
+            "md5": "57f3cfb24b2d8420cb252880a49ab0fd",
+            "sha1": "0a1440e2cdd16b8b6f3d7da77fa775f49872fbe4",
+            "sha256": "afa8cdb7869e01e57b416090082d9dc82bf1077ccf74567235743c5bcec407b4"
+          },
+          "file_size": 29939804,
+          "analyzed_at": "2026-08-13T10:51:36.812705+00:00"
+        },
+        "manifest": {
+          "permissions": [
+            "android.permission.WAKE_LOCK",
+            "android.permission.READ_SYNC_STATS",
+            "com.google.android.calendar.permission.C2D_MESSAGE",
+            "android.permission.READ_SYNC_SETTINGS",
+            "android.permission.ACCESS_NETWORK_STATE",
+            "android.permission.VIBRATE",
+            "android.permission.SUBSCRIBED_FEEDS_READ",
+            "com.google.android.providers.gsf.permission.READ_GSERVICES",
+            "android.permission.RECEIVE_BOOT_COMPLETED",
+            "android.permission.GET_PACKAGE_SIZE",
+            "android.permission.INTERNET",
+            "android.permission.ACCESS_COARSE_LOCATION",
+            "com.google.android.googleapps.permission.GOOGLE_AUTH",
+            "com.google.android.gm.permission.READ_GMAIL",
+            "com.google.android.c2dm.permission.RECEIVE",
+            "android.permission.READ_CALENDAR",
+            "android.permission.WRITE_SYNC_SETTINGS",
+            "android.permission.READ_CONTACTS",
+            "android.permission.MANAGE_ACCOUNTS",
+            "android.permission.FOREGROUND_SERVICE",
+            "com.google.android.gm.exchange.BIND",
+            "android.permission.SUBSCRIBED_FEEDS_WRITE",
+            "android.permission.GET_ACCOUNTS",
+            "android.permission.USE_CREDENTIALS",
+            "android.permission.WRITE_CALENDAR"
+          ],
+          "dangerous_permissions": [],
+          "activities": [
+            "com.google.android.calendar.AllInOneCalendarActivity",
+            "com.google.android.calendar.event.EventInfoActivity",
+            "com.android.calendar.event.LaunchInfoActivity",
+            "com.google.android.calendar.AlternateSearchActivity",
+            "com.google.android.calendar.quickresponse.QuickResponseActivity",
+            "com.google.android.calendar.launch.oobe.WhatsNewFullScreen",
+            "com.google.android.calendar.ical.ICalActivity",
+            "com.google.android.calendar.alerts.NotificationActionTrampoline",
+            "com.google.android.calendar.timely.report.ViewDebugReportActivity",
+            "com.google.android.calendar.event.EventForwardingActivity",
+            "com.google.android.calendar.event.FindTimeActivity",
+            "com.google.android.calendar.groove.CreateGrooveActivity",
+            "com.google.android.calendar.timely.rooms.controller.RoomBookingActivity",
+            "com.google.android.calendar.PrivacyPolicyActivity",
+            "com.google.android.calendar.launch.RequestPermissionsActivity",
+            "com.google.android.apps.calendar.addnote.AddNoteActivity",
+            "com.google.android.apps.calendar.meetings.activity.ConferencePhoneNumbersActivity",
+            "com.google.android.apps.calendar.proposenewtime.ProposeNewTimeActivity",
+            "com.google.android.gms.common.api.GoogleApiActivity",
+            "com.google.android.libraries.hats20.SurveyPromptActivity",
+            "com.google.android.libraries.hats20.ShowSurveyActivity",
+            "com.google.android.libraries.notifications.entrypoints.systemtray.SystemTrayActivity",
+            "com.google.android.libraries.social.licenses.LicenseMenuActivity",
+            "com.google.android.libraries.social.licenses.LicenseActivity",
+            "com.google.calendar.v2a.android.debug.SyncConsoleActivity",
+            "com.google.android.calendar.recurrencepicker.RecurrencePickerActivity",
+            "com.google.android.calendar.settings.SettingsActivity",
+            "com.google.android.calendar.timely.rooms.infoactivity.RoomInfoActivity",
+            "com.android.timezonepicker.fullscreen.TimeZonePickerActivity"
+          ],
+          "services": [
+            "com.google.android.calendar.timely.CalendarOobeService",
+            "com.google.android.calendar.alerts.DismissAlarmsService",
+            "com.google.android.calendar.widget.CalendarAppWidgetService",
+            "com.google.android.calendar.alerts.ReminderNotificationsActionService",
+            "com.google.android.calendar.alerts.RemindersListenerService",
+            "com.google.android.calendar.alerts.HabitsIntentService",
+            "com.google.android.syncadapters.calendar.CalendarSyncAdapterService",
+            "com.google.android.calendar.jobservices.CalendarProviderObserverJobService",
+            "com.google.android.apps.calendar.tickles.impl.SyncForegroundService",
+            "com.google.android.apps.calendar.vagabond.tasks.impl.sync.PlatformSync$SyncService",
+            "com.google.calendar.v2a.shared.sync.impl.android.PlatformSyncShell$SyncAdapterService",
+            "com.google.android.calendar.jobservices.CalendarProviderObserverForNotificationsJobService",
+            "com.google.firebase.components.ComponentDiscoveryService",
+            "com.google.android.libraries.internal.growth.growthkit.internal.jobs.impl.GrowthKitJobService",
+            "com.google.android.libraries.internal.growth.growthkit.internal.jobs.impl.GrowthKitBelowLollipopJobService",
+            "com.google.android.libraries.notifications.entrypoints.scheduled.ScheduledTaskService",
+            "com.google.android.libraries.notifications.executor.impl.basic.ChimeExecutorApiService"
+          ],
+          "receivers": [
+            "com.google.android.calendar.timely.report.DebugCleanupReceiver",
+            "com.google.android.calendar.SyncUpgradeReceiver",
+            "com.google.android.calendar.AllPrefsUpgradeReceiver",
+            "com.google.android.apps.calendar.sync.SyncOnUnlockReceiver",
+            "com.google.android.apps.calendar.removeaccountdata.AccountDataCleaner",
+            "com.android.calendar.widget.CalendarAppWidgetProvider",
+            "com.google.android.calendar.widget.CalendarAppWidgeLifeboatReceiver",
+            "com.google.android.calendar.widget.WidgetDataReceiver",
+            "com.google.android.calendar.alerts.RemindersBroadcastReceiver",
+            "com.google.android.calendar.alerts.HabitsIntentReceiver",
+            "com.google.android.calendar.widgetmonth.MonthViewWidgetProvider",
+            "com.google.android.calendar.widgetmonth.MonthViewWidgetModelRefresher",
+            "com.google.android.calendar.belong.FitOperationReceiver",
+            "com.google.android.apps.calendar.loggers.SilentFeedbackReceiver",
+            "com.google.android.apps.calendar.loggers.SilentFeedbackInProcessReceiver",
+            "com.google.android.calendar.timely.report.DebugReportingReceiver",
+            "com.google.android.syncadapters.calendar.ObsoleteDataCleanerBroadcastReceiver",
+            "com.google.calendar.v2a.shared.sync.impl.android.accounts.AccountsBroadcastReceiver",
+            "com.google.android.apps.calendar.config.phenotypesupport.broadcast.PhenotypeBroadcastReceiver",
+            "com.google.android.apps.calendar.usernotifications.NotificationsInitializer$NotificationsRelevantUpdatesReceiver",
+            "com.google.android.apps.calendar.usernotificationsframework.common.UserNotificationBroadcastReceiver",
+            "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+            "com.google.android.libraries.internal.growth.growthkit.inject.GrowthKitBootCompletedBroadcastReceiver",
+            "com.google.android.libraries.internal.growth.growthkit.internal.debug.TestingToolsBroadcastReceiver",
+            "com.google.android.libraries.internal.growth.growthkit.internal.experiments.impl.PhenotypeBroadcastReceiver",
+            "com.google.android.libraries.notifications.entrypoints.accountchanged.AccountChangedReceiver",
+            "com.google.android.libraries.notifications.entrypoints.blockstatechanged.BlockStateChangedReceiver",
+            "com.google.android.libraries.notifications.entrypoints.gcm.GcmBroadcastReceiver",
+            "com.google.android.libraries.notifications.entrypoints.phenotype.PhenotypeUpdateReceiver",
+            "com.google.android.libraries.notifications.entrypoints.restart.RestartReceiver",
+            "com.google.android.libraries.notifications.entrypoints.systemtray.SystemTrayBroadcastReceiver",
+            "com.google.android.libraries.phenotype.client.stable.PhenotypeStickyAccount$AccountRemovedBroadcastReceiver"
+          ],
+          "providers": [
+            "android.support.v4.content.FileProvider",
+            "com.google.android.syncadapters.calendar.timely.TimelyProvider",
+            "com.google.android.apps.calendar.vagabond.tasks.impl.sync.PlatformSync$Provider",
+            "com.google.calendar.v2a.shared.sync.impl.android.PlatformSyncShell$Provider",
+            "android.arch.lifecycle.ProcessLifecycleOwnerInitializer"
+          ],
+          "exported_components": [
+            "com.android.calendar.event.LaunchInfoActivity",
+            "com.google.android.calendar.PrivacyPolicyActivity",
+            "com.google.android.libraries.social.licenses.LicenseMenuActivity",
+            "com.google.android.calendar.timely.CalendarOobeService",
+            "com.google.android.calendar.alerts.RemindersListenerService",
+            "com.google.android.syncadapters.calendar.CalendarSyncAdapterService",
+            "com.google.android.calendar.timely.report.DebugCleanupReceiver",
+            "com.google.android.calendar.SyncUpgradeReceiver",
+            "com.google.android.calendar.AllPrefsUpgradeReceiver",
+            "com.google.android.apps.calendar.sync.SyncOnUnlockReceiver",
+            "com.google.android.apps.calendar.removeaccountdata.AccountDataCleaner",
+            "com.android.calendar.widget.CalendarAppWidgetProvider",
+            "com.google.android.calendar.widgetmonth.MonthViewWidgetProvider",
+            "com.google.android.calendar.widgetmonth.MonthViewWidgetModelRefresher",
+            "com.google.android.syncadapters.calendar.ObsoleteDataCleanerBroadcastReceiver",
+            "com.google.calendar.v2a.shared.sync.impl.android.accounts.AccountsBroadcastReceiver",
+            "com.google.android.apps.calendar.config.phenotypesupport.broadcast.PhenotypeBroadcastReceiver",
+            "com.google.android.apps.calendar.usernotifications.NotificationsInitializer$NotificationsRelevantUpdatesReceiver",
+            "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+            "com.google.android.libraries.internal.growth.growthkit.inject.GrowthKitBootCompletedBroadcastReceiver",
+            "com.google.android.libraries.internal.growth.growthkit.internal.debug.TestingToolsBroadcastReceiver",
+            "com.google.android.libraries.internal.growth.growthkit.internal.experiments.impl.PhenotypeBroadcastReceiver",
+            "com.google.android.libraries.notifications.entrypoints.accountchanged.AccountChangedReceiver",
+            "com.google.android.libraries.notifications.entrypoints.blockstatechanged.BlockStateChangedReceiver",
+            "com.google.android.libraries.notifications.entrypoints.gcm.GcmBroadcastReceiver",
+            "com.google.android.libraries.notifications.entrypoints.phenotype.PhenotypeUpdateReceiver",
+            "com.google.android.libraries.notifications.entrypoints.restart.RestartReceiver",
+            "com.google.android.libraries.phenotype.client.stable.PhenotypeStickyAccount$AccountRemovedBroadcastReceiver"
+          ],
+          "components": [
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.AllInOneCalendarActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.event.EventInfoActivity",
+              "exported": false,
+              "intent_filters": [
+                "android.provider.calendar.action.VIEW_MANAGED_PROFILE_CALENDAR_EVENT",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.calendar.event.LaunchInfoActivity",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.EDIT",
+                "android.intent.action.INSERT",
+                "android.intent.action.VIEW",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.AlternateSearchActivity",
+              "exported": false,
+              "intent_filters": [
+                "android.intent.action.SEARCH",
+                "com.google.android.gms.actions.SEARCH_ACTION",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.quickresponse.QuickResponseActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.launch.oobe.WhatsNewFullScreen",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.ical.ICalActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.alerts.NotificationActionTrampoline",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.timely.report.ViewDebugReportActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.event.EventForwardingActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.event.FindTimeActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.groove.CreateGrooveActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.timely.rooms.controller.RoomBookingActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.PrivacyPolicyActivity",
+              "exported": true,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.launch.RequestPermissionsActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.apps.calendar.addnote.AddNoteActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.apps.calendar.meetings.activity.ConferencePhoneNumbersActivity",
+              "exported": false,
+              "intent_filters": [
+                "ConferencePhoneNumbersActivity.intent.action.Launch",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.apps.calendar.proposenewtime.ProposeNewTimeActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.gms.common.api.GoogleApiActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.hats20.SurveyPromptActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.hats20.ShowSurveyActivity",
+              "exported": false,
+              "intent_filters": [
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.notifications.entrypoints.systemtray.SystemTrayActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.social.licenses.LicenseMenuActivity",
+              "exported": true,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.social.licenses.LicenseActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.calendar.v2a.android.debug.SyncConsoleActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.recurrencepicker.RecurrencePickerActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.settings.SettingsActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.calendar.timely.rooms.infoactivity.RoomInfoActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.timezonepicker.fullscreen.TimeZonePickerActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.timely.CalendarOobeService",
+              "exported": true,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.alerts.DismissAlarmsService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.widget.CalendarAppWidgetService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.alerts.ReminderNotificationsActionService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.alerts.RemindersListenerService",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.gms.reminders.BIND_LISTENER"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.alerts.HabitsIntentService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.syncadapters.calendar.CalendarSyncAdapterService",
+              "exported": true,
+              "intent_filters": [
+                "android.content.SyncAdapter"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.jobservices.CalendarProviderObserverJobService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.apps.calendar.tickles.impl.SyncForegroundService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.apps.calendar.vagabond.tasks.impl.sync.PlatformSync$SyncService",
+              "exported": false,
+              "intent_filters": [
+                "android.content.SyncAdapter"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.google.calendar.v2a.shared.sync.impl.android.PlatformSyncShell$SyncAdapterService",
+              "exported": false,
+              "intent_filters": [
+                "android.content.SyncAdapter"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.calendar.jobservices.CalendarProviderObserverForNotificationsJobService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.firebase.components.ComponentDiscoveryService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.libraries.internal.growth.growthkit.internal.jobs.impl.GrowthKitJobService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.libraries.internal.growth.growthkit.internal.jobs.impl.GrowthKitBelowLollipopJobService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.libraries.notifications.entrypoints.scheduled.ScheduledTaskService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.google.android.libraries.notifications.executor.impl.basic.ChimeExecutorApiService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.timely.report.DebugCleanupReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.action.MY_PACKAGE_REPLACED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.SyncUpgradeReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.category.DEFAULT",
+                "android.intent.action.MY_PACKAGE_REPLACED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.AllPrefsUpgradeReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.category.DEFAULT",
+                "android.intent.action.MY_PACKAGE_REPLACED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.sync.SyncOnUnlockReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.removeaccountdata.AccountDataCleaner",
+              "exported": true,
+              "intent_filters": [
+                "android.accounts.LOGIN_ACCOUNTS_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.calendar.widget.CalendarAppWidgetProvider",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.TIMEZONE_CHANGED",
+                "android.intent.action.DATE_CHANGED",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.LOCALE_CHANGED",
+                "com.google.android.calendar.widget.MIDNIGHT",
+                "android.intent.action.PROVIDER_CHANGED",
+                "com.google.android.calendar.ACTION_CALENDAR_PROVIDER_CHANGED",
+                "com.google.android.calendar.APPWIDGET_SCHEDULED_UPDATE",
+                "android.appwidget.action.APPWIDGET_UPDATE",
+                "com.google.android.calendar.APPWIDGET_CALLER_IS_SYNCADAPTER",
+                "com.google.android.calendar.APPWIDGET_NEXT_UPDATE",
+                "com.google.android.calendar.APPWIDGET_REMINDER_CHANGED",
+                "com.google.android.calendar.APPWIDGET_TASK_CHANGED",
+                "com.google.android.calendar.APPWIDGET_CROSS_PROFILE_CHANGED",
+                "com.google.android.timely.intent.action.REMINDER_SETTINGS_CHANGED",
+                "com.google.android.timely.intent.action.TASK_SETTINGS_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.widget.CalendarAppWidgeLifeboatReceiver",
+              "exported": false,
+              "intent_filters": [
+                "com.google.android.calendar.APPWIDGET_LIFEBOAT"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.widget.WidgetDataReceiver",
+              "exported": false,
+              "intent_filters": [
+                "com.google.android.calendar.APPWIDGET_REFRESH_MODEL"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.alerts.RemindersBroadcastReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.alerts.HabitsIntentReceiver",
+              "exported": false,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.action.MY_PACKAGE_REPLACED",
+                "android.intent.action.LOCALE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.widgetmonth.MonthViewWidgetProvider",
+              "exported": true,
+              "intent_filters": [
+                "android.appwidget.action.APPWIDGET_UPDATE",
+                "android.intent.action.DATE_CHANGED",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.TIMEZONE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.widgetmonth.MonthViewWidgetModelRefresher",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.LOCALE_CHANGED",
+                "android.intent.action.PROVIDER_CHANGED",
+                "com.google.android.calendar.ACTION_CALENDAR_PROVIDER_CHANGED",
+                "com.google.android.calendar.APPWIDGET_CALLER_IS_SYNCADAPTER",
+                "com.google.android.calendar.APPWIDGET_REMINDER_CHANGED",
+                "com.google.android.calendar.APPWIDGET_TASK_CHANGED",
+                "com.google.android.calendar.APPWIDGET_CROSS_PROFILE_CHANGED",
+                "com.google.android.timely.intent.action.REMINDER_SETTINGS_CHANGED",
+                "com.google.android.timely.intent.action.TASK_SETTINGS_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.belong.FitOperationReceiver",
+              "exported": false,
+              "intent_filters": [
+                "com.google.android.calendar.intent.action.FIT_ACTIVITY_CHECK",
+                "com.google.android.calendar.intent.action.FIT_SUBSCRIPTION_REFRESH",
+                "com.google.android.calendar.intent.action.FIT_DISABLE_INTEGRATION",
+                "com.google.android.calendar.intent.action.FIT_NOTIFICATION_REFRESH"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.loggers.SilentFeedbackReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.loggers.SilentFeedbackInProcessReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.calendar.timely.report.DebugReportingReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.syncadapters.calendar.ObsoleteDataCleanerBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.accounts.LOGIN_ACCOUNTS_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.calendar.v2a.shared.sync.impl.android.accounts.AccountsBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.accounts.LOGIN_ACCOUNTS_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.config.phenotypesupport.broadcast.PhenotypeBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.gms.phenotype.UPDATE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.usernotifications.NotificationsInitializer$NotificationsRelevantUpdatesReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.PROVIDER_CHANGED",
+                "com.google.android.calendar.ACTION_CALENDAR_PROVIDER_CHANGED_FOR_NOTIFICATIONS",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.DATE_CHANGED",
+                "android.intent.action.TIMEZONE_CHANGED",
+                "android.intent.action.LOCALE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.apps.calendar.usernotificationsframework.common.UserNotificationBroadcastReceiver",
+              "exported": false,
+              "intent_filters": [
+                "com.google.android.calendar.intent.action.CHECK_NOTIFICATIONS",
+                "com.google.android.calendar.intent.action.CHECK_NOTIFICATIONS_WHEN_AWAKE",
+                "com.google.android.calendar.intent.action.UPDATE_NOTIFICATION",
+                "com.google.android.calendar.intent.action.MIDNIGHT",
+                "android.intent.action.BOOT_COMPLETED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.c2dm.intent.RECEIVE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.internal.growth.growthkit.inject.GrowthKitBootCompletedBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.action.QUICKBOOT_POWERON",
+                "android.intent.action.MY_PACKAGE_REPLACED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.internal.growth.growthkit.internal.debug.TestingToolsBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.libraries.internal.growth.growthkit.ADD_PROMO",
+                "com.google.android.libraries.internal.growth.growthkit.ADD_PREVIEW_PROMO",
+                "com.google.android.libraries.internal.growth.growthkit.LOG_DEBUG_DATA",
+                "com.google.android.libraries.internal.growth.growthkit.SYNC",
+                "com.google.android.libraries.internal.growth.growthkit.CLEAR_COUNTERS",
+                "com.google.android.libraries.internal.growth.growthkit.FETCH_PROMOTIONS",
+                "com.google.android.libraries.internal.growth.growthkit.FETCH_EVAL_RESULTS"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.internal.growth.growthkit.internal.experiments.impl.PhenotypeBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.gms.phenotype.UPDATE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.notifications.entrypoints.accountchanged.AccountChangedReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.accounts.LOGIN_ACCOUNTS_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.notifications.entrypoints.blockstatechanged.BlockStateChangedReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.app.action.APP_BLOCK_STATE_CHANGED",
+                "android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED",
+                "android.app.action.NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.notifications.entrypoints.gcm.GcmBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.c2dm.intent.RECEIVE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.notifications.entrypoints.phenotype.PhenotypeUpdateReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.gms.phenotype.UPDATE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.notifications.entrypoints.restart.RestartReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.action.MY_PACKAGE_REPLACED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.notifications.entrypoints.systemtray.SystemTrayBroadcastReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.google.android.libraries.phenotype.client.stable.PhenotypeStickyAccount$AccountRemovedBroadcastReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.accounts.action.ACCOUNT_REMOVED"
+              ]
+            },
+            {
+              "type": "provider",
+              "name": "android.support.v4.content.FileProvider",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "com.google.android.syncadapters.calendar.timely.TimelyProvider",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "com.google.android.apps.calendar.vagabond.tasks.impl.sync.PlatformSync$Provider",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "com.google.calendar.v2a.shared.sync.impl.android.PlatformSyncShell$Provider",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "android.arch.lifecycle.ProcessLifecycleOwnerInitializer",
+              "exported": false,
+              "intent_filters": []
+            }
+          ]
+        },
+        "certificate": {
+          "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+          "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+          "valid_from": "2008-04-15T23:36:56+00:00",
+          "valid_to": "2035-09-01T23:36:56+00:00",
+          "is_self_signed": true
+        },
+        "code_analysis": {
+          "suspicious_api_calls": [
+            {
+              "api": "Base64.decode",
+              "location": "sources/com/google/calendar/v2a/shared/net/impl/android/AndroidSyncServerClientImpl.java",
+              "risk": "low"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/com/google/android/libraries/internal/growth/growthkit/internal/debug/TestingToolsBroadcastReceiver.java",
+              "risk": "low"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/cal/sqt.java",
+              "risk": "high"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/wwy.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/qkj.java",
+              "risk": "low"
+            },
+            {
+              "api": "PathClassLoader",
+              "location": "sources/cal/nut.java",
+              "risk": "high"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/wus.java",
+              "risk": "low"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/qti.java",
+              "risk": "low"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/wxm.java",
+              "risk": "low"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/atj.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/wxu.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/abal.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/sxv.java",
+              "risk": "low"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/jzz.java",
+              "risk": "low"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/syw.java",
+              "risk": "medium"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/cal/sqg.java",
+              "risk": "high"
+            },
+            {
+              "api": "TelephonyManager",
+              "location": "sources/cal/bjq.java",
+              "risk": "medium"
+            },
+            {
+              "api": "TelephonyManager",
+              "location": "sources/cal/rau.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/orx.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/abaz.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/szj.java",
+              "risk": "medium"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/cal/hiq.java",
+              "risk": "high"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/szh.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/niw.java",
+              "risk": "medium"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/cal/mve.java",
+              "risk": "high"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/aazp.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/ats.java",
+              "risk": "medium"
+            },
+            {
+              "api": "OkHttpClient",
+              "location": "sources/cal/aafm.java",
+              "risk": "medium"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/cal/ouv.java",
+              "risk": "high"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/abac.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/abaw.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/cal/ho.java",
+              "risk": "low"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/cal/oyv.java",
+              "risk": "medium"
+            }
+          ],
+          "obfuscation_detected": false,
+          "native_libraries": [],
+          "reflection_usage": true,
+          "dynamic_code_loading": false
+        },
+        "strings": {
+          "urls": [
+            "http://calendar.google.com/",
+            "http://play.google.com/store/apps/details?id=com.google.android.apps.docs",
+            "http://schemas.android.com/apk/res-auto",
+            "http://schemas.android.com/apk/res/android",
+            "http://trace-depot/",
+            "http://www.ccil.org/~cowan/tagsoup/features/bogons-empty",
+            "http://www.ccil.org/~cowan/tagsoup/features/cdata-elements",
+            "http://www.ccil.org/~cowan/tagsoup/features/default-attributes",
+            "http://www.ccil.org/~cowan/tagsoup/features/ignorable-whitespace",
+            "http://www.ccil.org/~cowan/tagsoup/features/ignore-bogons",
+            "http://www.ccil.org/~cowan/tagsoup/features/restart-elements",
+            "http://www.ccil.org/~cowan/tagsoup/features/root-bogons",
+            "http://www.ccil.org/~cowan/tagsoup/features/translate-colons",
+            "http://www.ccil.org/~cowan/tagsoup/properties/auto-detector",
+            "http://www.ccil.org/~cowan/tagsoup/properties/scanner",
+            "http://www.ccil.org/~cowan/tagsoup/properties/schema",
+            "http://www.example.com",
+            "http://www.google-analytics.com/collect",
+            "http://www.google.com/calendar/feeds/",
+            "http://www.google.com/calendar/feeds/%/events/%",
+            "http://www.gstatic.com/meet/phone/public_regional_config.bin",
+            "http://www.w3.org/1999/xhtml",
+            "http://www.w3.org/XML/1998/namespace",
+            "http://xml.org/sax/features/external-general-entities",
+            "http://xml.org/sax/features/external-parameter-entities",
+            "http://xml.org/sax/features/is-standalone",
+            "http://xml.org/sax/features/lexical-handler/parameter-entities",
+            "http://xml.org/sax/features/namespace-prefixes",
+            "http://xml.org/sax/features/namespaces",
+            "http://xml.org/sax/features/resolve-dtd-uris",
+            "http://xml.org/sax/features/string-interning",
+            "http://xml.org/sax/features/use-attributes2",
+            "http://xml.org/sax/features/use-entity-resolver2",
+            "http://xml.org/sax/features/use-locator2",
+            "http://xml.org/sax/features/validation",
+            "http://xml.org/sax/features/xml-1.1",
+            "http://xml.org/sax/features/xmlns-uris",
+            "http://xml.org/sax/properties/lexical-handler",
+            "https://%s/%s/%s",
+            "https://autopush-notifications-pa.sandbox.googleapis.com:443",
+            "https://autopush-proddata-notifications-pa.sandbox.googleapis.com:443",
+            "https://clients4.google.com/insights/consumersurveys/gk/prompt",
+            "https://crbug.com/581399",
+            "https://daily-0-notifications-pa.sandbox.googleapis.com:443",
+            "https://daily-1-notifications-pa.sandbox.googleapis.com:443",
+            "https://daily-2-notifications-pa.sandbox.googleapis.com:443",
+            "https://daily-3-notifications-pa.sandbox.googleapis.com:443",
+            "https://daily-4-notifications-pa.sandbox.googleapis.com:443",
+            "https://daily-5-notifications-pa.sandbox.googleapis.com:443",
+            "https://daily-6-notifications-pa.sandbox.googleapis.com:443",
+            "https://dev-notifications-pa.corp.googleapis.com:443",
+            "https://firebase.google.com/support/privacy/init-options.",
+            "https://github.com/grpc/grpc-java/issues/5015",
+            "https://images",
+            "https://keep.google.com/?reminder=",
+            "https://lh3.googleusercontent.com",
+            "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+            "https://maps.googleapis.com/maps/api/place/details/json",
+            "https://maps.googleapis.com/maps/api/place/details/json?place_id=[PLACE_ID]&sensor=true&key=AIzaSyDwzOp5nlDuTO2MtXeMek6aD5e6rQs49Mk",
+            "https://maps.googleapis.com/maps/api/place/details/json?reference=[REFERENCE_ID]&sensor=true&key=AIzaSyDwzOp5nlDuTO2MtXeMek6aD5e6rQs49Mk",
+            "https://maps.googleapis.com/maps/api/place/photo?photoreference=[PHOTO_REFERENCE]&[DIMENSION_RESTRICTIONS]&sensor=true&key=AIzaSyDwzOp5nlDuTO2MtXeMek6aD5e6rQs49Mk",
+            "https://maps.googleapis.com/maps/api/staticmap?size=[WIDTH]x[HEIGHT]&maptype=roadmap&sensor=true&key=AIzaSyDwzOp5nlDuTO2MtXeMek6aD5e6rQs49Mk&visual_refresh=true&markers=color:red%7Clabel:dot%7C[LATITUDE],[LONGITUDE]&visible=[VISIBLE]",
+            "https://notifications-pa.googleapis.com:443",
+            "https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps",
+            "https://play.google.com/store/apps/details",
+            "https://play.google.com/store/apps/details?id=",
+            "https://plus.google.com/",
+            "https://ssl.google-analytics.com/collect",
+            "https://ssl.gstatic.com/docs/doclist/images/",
+            "https://ssl.gstatic.com/docs/doclist/images/icon_10_generic_list.png",
+            "https://ssl.gstatic.com/tmly/f8944938hffheth4ew890ht4i8/flairs/",
+            "https://ssl.gstatic.com/tmly/f8944938hffheth4ew890ht4i8/promos/%s/%s.png",
+            "https://staging-notifications-pa.sandbox.googleapis.com:443",
+            "https://support.google.com/calendar/",
+            "https://support.google.com/calendar?p=fit_goal_android",
+            "https://tracedepot-pa.googleapis.com/%s/%s",
+            "https://www.google.com/calendar/event?eid=",
+            "https://www.google.com/calendar/feeds/",
+            "https://www.google.com/policies/privacy/",
+            "https://www.googleapis.com/",
+            "https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly",
+            "https://www.googleapis.com/auth/calendar",
+            "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/fitness.activity.read",
+            "https://www.googleapis.com/auth/fitness.activity.write",
+            "https://www.googleapis.com/auth/fitness.blood_glucose.read",
+            "https://www.googleapis.com/auth/fitness.blood_glucose.write",
+            "https://www.googleapis.com/auth/fitness.blood_pressure.read",
+            "https://www.googleapis.com/auth/fitness.blood_pressure.write",
+            "https://www.googleapis.com/auth/fitness.body.read",
+            "https://www.googleapis.com/auth/fitness.body.write",
+            "https://www.googleapis.com/auth/fitness.body_temperature.read",
+            "https://www.googleapis.com/auth/fitness.body_temperature.write",
+            "https://www.googleapis.com/auth/fitness.heart_rate.read",
+            "https://www.googleapis.com/auth/fitness.heart_rate.write",
+            "https://www.googleapis.com/auth/fitness.location.read",
+            "https://www.googleapis.com/auth/fitness.location.write",
+            "https://www.googleapis.com/auth/fitness.nutrition.read",
+            "https://www.googleapis.com/auth/fitness.nutrition.write",
+            "https://www.googleapis.com/auth/fitness.oxygen_saturation.read",
+            "https://www.googleapis.com/auth/fitness.oxygen_saturation.write",
+            "https://www.googleapis.com/auth/fitness.reproductive_health.read",
+            "https://www.googleapis.com/auth/fitness.reproductive_health.write",
+            "https://www.googleapis.com/auth/fitness.sleep.read",
+            "https://www.googleapis.com/auth/fitness.sleep.write",
+            "https://www.googleapis.com/auth/mobile_user_preferences",
+            "https://www.googleapis.com/auth/notifications",
+            "https://www.googleapis.com/auth/peopleapi.readonly",
+            "https://www.googleapis.com/auth/photos.image.readonly",
+            "https://www.googleapis.com/auth/tasks",
+            "https://www.googleapis.com/auth/tracedepot"
+          ],
+          "ip_addresses": [],
+          "suspicious_strings": []
+        },
+        "third_party_sdks": [
+          "Firebase",
+          "Google Play Services"
+        ],
+        "risk_score": 0.565,
+        "risk_breakdown": {
+          "total": 0.565,
+          "raw": 56.5,
+          "breakdown": [
+            {
+              "factor": "android.permission.ACCESS_COARSE_LOCATION",
+              "weight": 4
+            },
+            {
+              "factor": "android.permission.READ_CONTACTS",
+              "weight": 6
+            },
+            {
+              "factor": "android.permission.GET_ACCOUNTS",
+              "weight": 4
+            },
+            {
+              "factor": "exported_components (28개 상한적용)",
+              "weight": 12
+            },
+            {
+              "factor": "suspicious_api_calls (6종, 고위험 2종 / 발견 33건)",
+              "weight": 18.5
+            },
+            {
+              "factor": "reflection_usage",
+              "weight": 10
+            },
+            {
+              "factor": "certificate.is_self_signed",
+              "weight": 2
+            }
+          ]
+        },
+        "errors": []
+      },
+      "error": null
+    },
+    "dynamic": {
+      "status": "ok",
+      "data": {
+        "package_name": "com.google.android.calendar",
+        "session_duration_sec": 12,
+        "total_events_captured": 153,
+        "total_events_filtered": 117,
+        "events": [
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.127Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SafetyNetV3",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.135Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "OrphanEventsDataCleanup",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.147Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UnifiedSyncAndStore",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.150Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "PrimesApiLogging",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.156Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "GrowthKit",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.162Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ThirdPartyConferencesEditing",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.165Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "RoomsOrdering",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.169Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Creation",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.175Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "DisableExperimentalOptionsToggling",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.180Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "DisableAppVersionInDrawer",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.185Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "BatteryInstrumentation",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.193Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ProdExtendedMemoryMonitoring",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.199Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "RendezVousOff",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.203Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "PrimesTracing",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.207Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ClientErrorLogging",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.212Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ScheduleVital",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.214Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "CacheCalendarReads",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.215Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "BackgroundExecutionPolicy",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.219Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Hats",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.223Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "PrimesNetwork",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.225Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "RemoteTracing",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.227Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SyncLab",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.231Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "TitleAutogen",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.233Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "GrpcCompression",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.235Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Streamz",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.238Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ConcurrentV2AProtoDeserialization",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.241Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "FuzzPeriodicSyncs",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.244Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Cronet",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.254Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "TimelineEarlyLoad",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.257Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "TimelineNavigation",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.263Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ShipshapeNudgeSync",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.265Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UnifiedSyncRetryTemporaryAuthFailures",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.269Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UnifiedSyncNetworkDiagnostics",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.279Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "CalendarProviderStats",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.285Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "TimelineAdapterBackgroundThread",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.293Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Peeking",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.300Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SendEventFeedback",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.302Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "DirectActions",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.305Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UnifiedSyncEndpoints",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.308Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SplitStoreInvalidation",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.311Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "FuzzWidgetAlarms",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.314Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Tasks",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.316Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "TimelineAdapterPrioritization",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.320Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ChimeCalendar",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.325Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ChimeForUnifiedSync",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.331Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ChimeForApiarySync",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.332Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "InAppSync",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.336Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UnifiedSyncRpcLogging",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.343Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "VerticalScrollMonthView",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.346Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "MaybeChip",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.352Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "NewOoo",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.359Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "FlightStatusUpdates",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.364Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "CalendarIntegration",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.369Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ForegroundServiceSync",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.374Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "NewSmartmailEdit",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.377Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "PeekingPreloadCache",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.380Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "PeekingPreresolveAccounts",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.388Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Wildlife",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.394Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ChatWithMeetingGuests",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.398Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "com.google.android.gm.lite",
+            "extra": {
+              "caller_class": "cal.vri",
+              "caller_method": "a"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.400Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "com.google.android.apps.dynamite",
+            "extra": {
+              "caller_class": "cal.vri",
+              "caller_method": "a"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.405Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UnifiedSyncDatabaseChecker",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.410Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "OptimizedCpLoading",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.414Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "RefactorAndroidTextTime",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.417Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "PeekingFeatureHighlight",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.421Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "EmailGuestsButton",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.424Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "CrossProfile",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.428Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ContactsInPeopleSheet",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.431Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "RegisterChimeAccountsOnAppUpdate",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.433Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "GoogleMeetBranding",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.435Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "MeetSharing",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.440Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "MeetTemplateAutoAdd",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.443Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "MeetForceAutoAddForConsumer",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.446Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "NotificationVital",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.449Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SipForMeet",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.452Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "SubscribeToCalendarFeature",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.454Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "CrossProfilePromo",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.456Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "UpdateNotificationContent",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.459Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ConferenceSegmentElevation",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.461Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ChatScheduling",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.463Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "MeetPromo",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.557Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "supports_settings",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.562Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "supports_habits",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.566Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "supports_events",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.572Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "supports_calendars",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.650Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "phenotype__",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.660Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "com.google.android.libraries.social.populous",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.671Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "com.google.android.calendar",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.724Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "sync",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11770
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.739Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "sync-0-",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11770
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.755Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "database",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11770
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.760Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "database-1-",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11770
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.800Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "api-2-",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.803Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "20260813",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11773
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.809Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": ".log",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11773
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.850Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "sql-3-",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11781
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.867Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "JobScheduler returned RESULT_FAILURE. Did you forget to add [",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11767
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.873Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "pluginId",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.880Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "java/com/google/android/libraries/notifications/entrypoints/scheduled",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11767
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.885Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "=? AND ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.888Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "entityFingerprint",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.893Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "notificationType",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.901Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "] to your app dependencies?",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11767
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:55.909Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "notificationTriggerMillis",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T10:51:56.019Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "Q0hJTUVfQU5EUk9JRF9TREs",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "cal.wti",
+              "caller_method": "a"
+            },
+            "thread_id": 11767
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T10:51:56.027Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "MTo3NDc2NTQ1MjAyMjA6YW5kcm9pZDowMDAwMDAwMDAwMDAwMDAw",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "cal.wti",
+              "caller_method": "a"
+            },
+            "thread_id": 11767
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.064Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "ownerAccount",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11799
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.079Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "account_name",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11799
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.084Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "account_type",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11799
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.125Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "firebase-installations-executor-",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11795
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T10:51:56.232Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T10:51:56.236Z",
+            "class_name": "android.util.Base64",
+            "method_name": "decode",
+            "raw_value": "MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzET\nMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5k\ncm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYT\nYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQ\nMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAG\nCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCC\nAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajt\nWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacK\nhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJ\nwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/\ncVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0c\nxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGa\npIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRh\naW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5k\ncm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1Ud\nEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW\n7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZn\nOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAW\nPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITE\nI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=\n",
+            "extra": {
+              "direction": "decode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T10:51:56.242Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T10:51:56.248Z",
+            "class_name": "android.util.Base64",
+            "method_name": "decode",
+            "raw_value": "MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMw\nEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29n\nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEz\nMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYw\nFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5k\ncm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtW\nLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKke\ndxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjA\nsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/Cx\nURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJE\nqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/T\ngt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYD\nVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIG\nA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC\n4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/y\nzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCE\nyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1S\nKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifK\nZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3Wf\nMBEmh/9iFBDAaTCK\n",
+            "extra": {
+              "direction": "decode",
+              "caller_class": "android.graphics.Typeface",
+              "caller_method": "createFromResources"
+            },
+            "thread_id": 11732
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.260Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "2016607548",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11782
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.275Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "2020.18.5-313192754-release",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 11782
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T10:51:56.418Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Primary account is null",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 11732
+          }
+        ],
+        "plaintext_candidates": [
+          "com.google.android.gm.lite",
+          "com.google.android.apps.dynamite",
+          "Q0hJTUVfQU5EUk9JRF9TREs",
+          "MTo3NDc2NTQ1MjAyMjA6YW5kcm9pZDowMDAwMDAwMDAwMDAwMDAw"
+        ],
+        "framework_events_excluded": 113,
+        "errors": []
+      },
+      "error": null,
+      "crashed": false
+    },
+    "network": {
+      "status": "ok",
+      "data": {
+        "meta": {
+          "package_name": "com.google.android.calendar",
+          "capture_started_at": "2026-08-13T10:52:34+00:00",
+          "capture_duration_sec": 17,
+          "pcap_file": "output/capture.pcap"
+        },
+        "dns_queries": [],
+        "tls_sni": [],
+        "suspicious": {
+          "domains": [],
+          "ips": []
+        }
+      },
+      "error": null
+    }
+  },
+  "risk_score": {
+    "total": 0.3193,
+    "score100": 32,
+    "level": "caution",
+    "verdict": {
+      "code": "caution",
+      "band_code": "caution",
+      "score100": 32,
+      "strong_indicators": [],
+      "malicious_rule": {
+        "min_score": 80,
+        "min_indicators": 3,
+        "strong_indicator_count": 0,
+        "met": false
+      }
+    },
+    "indicators": {
+      "static": [
+        {
+          "code": "suspicious_api",
+          "label": "의심 API 호출",
+          "value": "33건",
+          "strong": false
+        },
+        {
+          "code": "reflection",
+          "label": "리플렉션 사용",
+          "value": "탐지",
+          "strong": false
+        },
+        {
+          "code": "self_signed",
+          "label": "자체 서명 인증서",
+          "value": "예",
+          "strong": false
+        }
+      ],
+      "dynamic": [
+        {
+          "code": "plaintext",
+          "label": "평문 후보",
+          "value": "4건",
+          "strong": false
+        },
+        {
+          "code": "hook_events",
+          "label": "후킹 이벤트",
+          "value": "117건",
+          "strong": false
+        }
+      ],
+      "network": []
+    },
+    "breakdown": {
+      "modules": {
+        "static": {
+          "available": true,
+          "sub_score": 0.565,
+          "source": "static_analyzer.risk_score",
+          "static_breakdown": {
+            "total": 0.565,
+            "raw": 56.5,
+            "breakdown": [
+              {
+                "factor": "android.permission.ACCESS_COARSE_LOCATION",
+                "weight": 4
+              },
+              {
+                "factor": "android.permission.READ_CONTACTS",
+                "weight": 6
+              },
+              {
+                "factor": "android.permission.GET_ACCOUNTS",
+                "weight": 4
+              },
+              {
+                "factor": "exported_components (28개 상한적용)",
+                "weight": 12
+              },
+              {
+                "factor": "suspicious_api_calls (6종, 고위험 2종 / 발견 33건)",
+                "weight": 18.5
+              },
+              {
+                "factor": "reflection_usage",
+                "weight": 10
+              },
+              {
+                "factor": "certificate.is_self_signed",
+                "weight": 2
+              }
+            ]
+          },
+          "weight": 0.4
+        },
+        "dynamic": {
+          "available": true,
+          "sub_score": 0.3111,
+          "raw": 28.0,
+          "plaintext_candidate_count": 4,
+          "hook_counts": {
+            "string_builder": 111,
+            "base64": 6
+          },
+          "weight": 0.3
+        },
+        "network": {
+          "available": true,
+          "sub_score": 0.0,
+          "raw": 0,
+          "suspicious_domain_count": 0,
+          "suspicious_ip_count": 0,
+          "weight": 0.3
+        }
+      },
+      "weights_applied": {
+        "static": 0.4,
+        "dynamic": 0.3,
+        "network": 0.3
+      },
+      "unavailable": []
+    }
+  }
+}

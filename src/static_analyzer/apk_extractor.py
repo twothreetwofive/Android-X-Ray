@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import hashlib
+import shutil
 from pathlib import Path
 
 from androguard.core.apk import APK
@@ -60,8 +61,28 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
         "file_size": apk_path.stat().st_size,
     }
 
-    apktool_dir = run_apktool(apk_path, work_dir / "apktool", timeout=timeout)
-    jadx_dir = run_jadx(apk_path, work_dir / "jadx", timeout=timeout)
+    # APK마다 별도 하위 폴더에 푼다.
+    #
+    # 이전에는 모든 APK를 work/apktool, work/jadx에 그대로 덮어썼다. apktool -f나
+    # jadx -d는 자기가 새로 쓰는 파일만 덮어쓸 뿐 **이전 APK의 잔재를 지우지 않기**
+    # 때문에, 두 번째 APK를 분석하면 앞 APK의 소스가 그대로 남아 code_scanner /
+    # string_extractor가 그것까지 훑었다.
+    #
+    # 실측(8주차): 시계 앱을 분석한 뒤 캘린더를 분석하니 캘린더 결과에
+    # sources/com/android/deskclock/... 의 AccessibilityService와 Spotify SDK의
+    # Base64.decode가 "캘린더의 의심 API"로 잡혀 정적 점수가 부풀었다.
+    #
+    # 폴더 이름에 sha256 앞 8자를 붙여 같은 파일명 다른 내용도 섞이지 않게 한다.
+    apk_id = f"{apk_path.stem}-{meta['file_hash']['sha256'][:8]}"
+    target_dir = work_dir / apk_id
+
+    # 같은 APK를 다시 돌릴 때 이전 결과가 남아 있으면 그것도 오염원이 되므로
+    # (예: 재패키징으로 클래스가 빠진 경우) 우리가 만든 이 폴더만 지우고 새로 푼다.
+    if target_dir.exists():
+        shutil.rmtree(target_dir)
+
+    apktool_dir = run_apktool(apk_path, target_dir / "apktool", timeout=timeout)
+    jadx_dir = run_jadx(apk_path, target_dir / "jadx", timeout=timeout)
 
     return {
         "meta": meta,
