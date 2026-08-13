@@ -27,6 +27,11 @@ st.title("🔍 Android X-Ray")
 st.caption("정상/악성 APK 정적·동적·네트워크 분석 통합 대시보드")
 
 uploaded = st.file_uploader("분석할 APK 파일 업로드", type=["apk"])
+st.caption(
+    "동적·네트워크 분석을 위해 업로드한 APK를 **에뮬레이터에 설치**한 뒤 실행합니다. "
+    "악성 샘플을 분석할 때는 실행 전 스냅샷을 저장해 두세요 "
+    "(`bash scripts/snapshot.sh save before_run`)."
+)
 run_clicked = st.button("분석 시작", type="primary", disabled=uploaded is None)
 
 if run_clicked and uploaded is not None:
