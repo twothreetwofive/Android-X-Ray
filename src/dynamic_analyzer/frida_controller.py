@@ -51,7 +51,6 @@ class FridaController:
         with open(js_path, "r", encoding="utf-8") as f:
             source = f.read()
         self.script = self.session.create_script(source)
-        self.script.on("message", self._on_message)
         self.script.load()
 
     def _on_message(self, message: dict, data) -> None:
@@ -115,7 +114,7 @@ class FridaController:
         except Exception as e:
             result["error"] = str(e)
         finally:
-            self._cleanup()
+            self.cleanup()
         return result
 
     def run_batch(self, package_names: list[str], js_path: str, observe_sec: float = 5.0) -> list[dict]:

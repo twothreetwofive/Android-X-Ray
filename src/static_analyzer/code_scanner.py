@@ -41,7 +41,7 @@ def _detect_native_libraries(apk_path: Path) -> list[str]:
 
 
 def scan_code(extracted: dict) -> dict:
-    jadx_dir = Path(extracted["jadx_dir"])
+    jadx_dir = extracted.get("jadx_dir")
     apk_path = Path(extracted["apk_path"])
 
     suspicious_api_calls = []
@@ -50,7 +50,10 @@ def scan_code(extracted: dict) -> dict:
     obfuscated_class_count = 0
     total_class_count = 0
 
-    for java_file in jadx_dir.rglob("*.java"):
+    # jadx 디컴파일이 실패(None)했으면 소스 트리 스캔은 건너뛰되, 네이티브 라이브러리는
+    # apk 자체(zip)에서 뽑으므로 그 부분은 그대로 살린다.
+    java_files = Path(jadx_dir).rglob("*.java") if jadx_dir else []
+    for java_file in java_files:
         total_class_count += 1
         if _OBFUSCATED_NAME_RE.match(java_file.stem):
             obfuscated_class_count += 1
@@ -94,6 +97,7 @@ def scan_code(extracted: dict) -> dict:
 # 즉 페이로드를 통째로 품고 있어서 C2 통신조차 필요 없었다(네트워크 캡처가
 # 정당하게 비어 있던 이유). 코드만 보는 분석으로는 원리상 놓칠 수밖에 없다.
 #
+# APK(zip)에서 직접 읽으므로 apktool이 필요 없다.
 # 판별 기준: 큰 파일 + 높은 엔트로피 + 알려진 포맷 아님. 셋을 모두 만족할 때만
 # 잡는다. 정상 앱도 큰 리소스(폰트/이미지/모델)를 assets에 넣지만, 그것들은
 # 매직바이트로 식별되거나 엔트로피가 이만큼 높지 않다.
@@ -143,54 +147,53 @@ def _looks_known_format(head: bytes) -> str | None:
 
 
 def _detect_packed_assets(extracted: dict, apk_path: Path) -> list[dict]:
-    """apktool 결과의 assets/ res/raw/ 에서 "정체 불명의 큰 암호화 덩어리"를 찾는다.
+    """APK(zip) 안의 assets/ · res/raw/ 에서 "정체 불명의 큰 암호화 덩어리"를 찾는다.
 
-    apktool 결과가 없거나 읽을 수 없으면 조용히 빈 리스트를 반환한다 —
-    이 하위 검사 하나 때문에 정적 분석 전체가 실패하면 안 된다.
+    **apktool 결과물을 쓰지 않고 APK 자체에서 직접 읽는다.** APK는 zip이므로
+    assets는 압축을 풀지 않아도 그대로 읽을 수 있다. 8주차에 apktool 단계가
+    제거됐는데(결과물을 쓰는 하위 단계가 없었고 타임아웃이 정적 분석 전체를
+    죽였음, 커밋 2cc9410), 이 검사만을 위해 되살리는 것은 그 개선을 되돌리는
+    일이다. zip에서 직접 읽으면 더 빠르고 jadx 실패와도 무관하게 동작한다.
+
+    어떤 이유로든 읽지 못하면 조용히 빈 리스트를 반환한다 — 이 하위 검사 하나
+    때문에 정적 분석 전체가 실패하면 안 된다.
     """
-    apktool_dir = extracted.get("apktool_dir")
-    if not apktool_dir:
-        return []
-
     try:
         apk_size = apk_path.stat().st_size
     except OSError:
         return []
 
     found: list[dict] = []
-    for sub in ("assets", "res/raw"):
-        base = Path(apktool_dir) / sub
-        if not base.is_dir():
-            continue
-        for f in base.rglob("*"):
-            if not f.is_file():
-                continue
-            try:
-                size = f.stat().st_size
+    try:
+        with zipfile.ZipFile(apk_path) as z:
+            for info in z.infolist():
+                name = info.filename
+                if not (name.startswith("assets/") or name.startswith("res/raw/")):
+                    continue
+                size = info.file_size
                 if size < PACKED_ASSET_MIN_BYTES:
                     continue
                 if apk_size and (size / apk_size) < PACKED_ASSET_MIN_APK_RATIO:
                     continue
-                with f.open("rb") as fh:
-                    head = fh.read(16)
-                    fh.seek(0)
+
+                with z.open(info) as fh:
                     sample = fh.read(1_000_000)   # 앞 1MB만 봐도 충분하다
-            except OSError:
-                continue
+                head = sample[:16]
 
-            if _looks_known_format(head):
-                continue
+                if _looks_known_format(head):
+                    continue
+                entropy = _shannon_entropy(sample)
+                if entropy < PACKED_ASSET_MIN_ENTROPY:
+                    continue
 
-            entropy = _shannon_entropy(sample)
-            if entropy < PACKED_ASSET_MIN_ENTROPY:
-                continue
-
-            found.append({
-                "path": str(f.relative_to(apktool_dir)),
-                "size": size,
-                "apk_ratio": round(size / apk_size, 4) if apk_size else None,
-                "entropy": round(entropy, 3),
-                "magic": head[:8].hex(),
-            })
+                found.append({
+                    "path": name,
+                    "size": size,
+                    "apk_ratio": round(size / apk_size, 4) if apk_size else None,
+                    "entropy": round(entropy, 3),
+                    "magic": head[:8].hex(),
+                })
+    except (zipfile.BadZipFile, OSError, RuntimeError):
+        return []
 
     return found

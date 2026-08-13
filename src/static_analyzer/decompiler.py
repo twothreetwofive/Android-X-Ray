@@ -12,7 +12,7 @@ from pathlib import Path
 
 from .exceptions import StaticAnalysisError
 
-DEFAULT_TIMEOUT = 120  # 초. 큰 APK는 더 걸릴 수 있으므로 호출부에서 조정 가능
+DEFAULT_TIMEOUT = 300  # 초. 큰 APK는 더 걸릴 수 있으므로 호출부에서 조정 가능
 
 
 class DecompileError(StaticAnalysisError):

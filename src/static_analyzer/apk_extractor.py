@@ -1,7 +1,13 @@
-"""apktool/jadx로 APK를 디컴파일하고, 분석 전반에 쓰이는 기본 메타데이터를 뽑는다.
+"""jadx로 APK를 디컴파일하고, 분석 전반에 쓰이는 기본 메타데이터를 뽑는다.
 
-디컴파일 자체(apktool/jadx 호출, 타임아웃/예외 처리)는 decompiler.py(B 작성)를 그대로 쓴다.
+디컴파일 자체(jadx 호출, 타임아웃/예외 처리)는 decompiler.py(B 작성)를 그대로 쓴다.
 이 모듈은 그 위에서 analyzer.py가 기대하는 형태(dict)로 결과를 감싸는 역할만 한다.
+
+apktool은 더 이상 실행하지 않는다 — 결과물(apktool_dir)을 소비하는 하위 단계가
+하나도 없었고(모든 코드/문자열/SDK 스캔이 jadx 트리를, manifest/cert/meta는
+androguard를 씀), 느린 apktool이 타임아웃 나면 정적 분석 전체가 죽던 문제만 있었다.
+apktool CLI 래퍼(decompiler.run_apktool)는 나중에 실제로 쓸 데가 생기면
+재사용할 수 있게 남겨 뒀다.
 """
 
 from __future__ import annotations
@@ -12,7 +18,8 @@ from pathlib import Path
 
 from androguard.core.apk import APK
 
-from .decompiler import DEFAULT_TIMEOUT, run_apktool, run_jadx
+from .decompiler import DEFAULT_TIMEOUT, run_jadx
+from .exceptions import StaticAnalysisError
 
 
 def _hash_file(apk_path: Path) -> dict:
@@ -39,8 +46,8 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
         {
             "meta": schema.Meta 형태의 dict,
             "apk_path": 원본 apk 경로 (Path) — cert_analyzer 등 다른 모듈이 재사용,
-            "apktool_dir": apktool 디컴파일 결과 폴더 (Path),
-            "jadx_dir": jadx 디컴파일 결과 폴더 (Path),
+            "jadx_dir": jadx 디컴파일 결과 폴더 (Path) 또는 실패 시 None,
+            "decompile_warnings": 디컴파일 실패 사유 목록 (없으면 빈 리스트),
         }
     """
     apk_path = Path(apk_path)
@@ -63,10 +70,10 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
 
     # APK마다 별도 하위 폴더에 푼다.
     #
-    # 이전에는 모든 APK를 work/apktool, work/jadx에 그대로 덮어썼다. apktool -f나
-    # jadx -d는 자기가 새로 쓰는 파일만 덮어쓸 뿐 **이전 APK의 잔재를 지우지 않기**
-    # 때문에, 두 번째 APK를 분석하면 앞 APK의 소스가 그대로 남아 code_scanner /
-    # string_extractor가 그것까지 훑었다.
+    # 이전에는 모든 APK를 work/jadx에 그대로 덮어썼다. jadx -d는 자기가 새로 쓰는
+    # 파일만 덮어쓸 뿐 **이전 APK의 잔재를 지우지 않기** 때문에, 두 번째 APK를
+    # 분석하면 앞 APK의 소스가 그대로 남아 code_scanner / string_extractor가
+    # 그것까지 훑었다.
     #
     # 실측(8주차): 시계 앱을 분석한 뒤 캘린더를 분석하니 캘린더 결과에
     # sources/com/android/deskclock/... 의 AccessibilityService와 Spotify SDK의
@@ -75,18 +82,23 @@ def extract_apk(apk_path: str | Path, work_dir: str | Path, timeout: int = DEFAU
     # 폴더 이름에 sha256 앞 8자를 붙여 같은 파일명 다른 내용도 섞이지 않게 한다.
     apk_id = f"{apk_path.stem}-{meta['file_hash']['sha256'][:8]}"
     target_dir = work_dir / apk_id
-
-    # 같은 APK를 다시 돌릴 때 이전 결과가 남아 있으면 그것도 오염원이 되므로
-    # (예: 재패키징으로 클래스가 빠진 경우) 우리가 만든 이 폴더만 지우고 새로 푼다.
     if target_dir.exists():
         shutil.rmtree(target_dir)
 
-    apktool_dir = run_apktool(apk_path, target_dir / "apktool", timeout=timeout)
-    jadx_dir = run_jadx(apk_path, target_dir / "jadx", timeout=timeout)
+    # jadx 디컴파일은 실패해도 meta/package_name을 잃지 않도록 방어한다 — 여기서
+    # 예외가 위로 전파되면 analyze_static()이 치명적 실패로 처리해 동적/네트워크
+    # 단계까지 package_name을 못 구해 전부 안 돌던 문제가 있었다. 실패 시 jadx_dir은
+    # None이 되고 사유를 decompile_warnings에 남겨 상위 errors로 노출한다.
+    warnings: list[str] = []
+    try:
+        jadx_dir = run_jadx(apk_path, target_dir / "jadx", timeout=timeout)
+    except StaticAnalysisError as e:
+        warnings.append(f"jadx 디컴파일 실패(무시하고 계속 진행): {e}")
+        jadx_dir = None
 
     return {
         "meta": meta,
         "apk_path": apk_path,
-        "apktool_dir": apktool_dir,
         "jadx_dir": jadx_dir,
+        "decompile_warnings": warnings,
     }

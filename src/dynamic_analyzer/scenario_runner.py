@@ -119,16 +119,8 @@ class ScenarioRunner:
             error = str(e)
         finally:
             # A가 private `_cleanup_current_session()`을 public `cleanup()`으로
-            # 바꿨는데(D가 dynamic_analyzer/README.md에서 요청했던 것) 이 호출부가
-            # 같이 갱신되지 않아, 8주차 실기기 실행에서 후킹은 다 되고도 정리
-            # 단계에서 AttributeError로 죽었다 → ScenarioResult가 None이 되어
-            # "시나리오 실행 결과 없음"으로만 보였다.
-            # 옛 이름이 남아 있는 브랜치와도 섞일 수 있어 양쪽을 모두 받아준다.
-            cleanup = getattr(self.controller, "cleanup", None) or getattr(
-                self.controller, "_cleanup_current_session", None
-            )
-            if cleanup is not None:
-                cleanup()
+            # 바꾼 것에 맞춰 호출부를 갱신함(8주차에 양쪽에서 각각 발견·수정).
+            self.controller.cleanup()
 
         events = message_parser.get_captured_events()
         report = None

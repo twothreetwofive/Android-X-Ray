@@ -21,13 +21,15 @@ SUSPICIOUS_KEYWORDS = ["cmd.exe", "chmod 777", "/system/bin/su", ".onion", "su -
 
 
 def extract_strings(extracted: dict) -> dict:
-    jadx_dir = Path(extracted["jadx_dir"])
+    jadx_dir = extracted.get("jadx_dir")
 
     urls: set[str] = set()
     ip_addresses: set[str] = set()
     suspicious_strings: set[str] = set()
 
-    for java_file in jadx_dir.rglob("*.java"):
+    # jadx 디컴파일이 실패(None)했으면 훑을 소스가 없으므로 빈 결과를 돌려준다.
+    java_files = Path(jadx_dir).rglob("*.java") if jadx_dir else []
+    for java_file in java_files:
         text = java_file.read_text(encoding="utf-8", errors="ignore")
         urls.update(URL_RE.findall(text))
         ip_addresses.update(IP_RE.findall(text))
