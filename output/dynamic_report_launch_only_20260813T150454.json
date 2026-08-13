@@ -1,0 +1,469 @@
+{
+  "package_name": "com.stereo7games.lastdaydefense",
+  "session_duration_sec": 15,
+  "total_events_captured": 74,
+  "total_events_filtered": 35,
+  "events": [
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-08-13T06:04:58.450Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "W0RFRkFVTFRd",
+      "extra": {
+        "direction": "encode",
+        "caller_class": "com.google.android.gms.common.util.Base64Utils",
+        "caller_method": "encodeUrlSafeNoPadding"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-08-13T06:04:58.453Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "MToxOTQ2MDA2NDcwMTA6YW5kcm9pZDo1YjMyODE0YjRhZGI4YmI5MGU1NDNi",
+      "extra": {
+        "direction": "encode",
+        "caller_class": "com.google.android.gms.common.util.Base64Utils",
+        "caller_method": "encodeUrlSafeNoPadding"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.505Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "1:194600647010:android:5b32814b4adb8bb90e543b",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.509Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "firebase",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.529Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "fetch",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.532Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": ".json",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.541Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "activate",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.556Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "com.facebook.internal.APP_SETTINGS.",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.558Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "240898373876462",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.565Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "defaults",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.604Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "getGraphApiVersion: ",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.605Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "v3.2",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.606Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "https://graph.",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.624Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "settings",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5831
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.627Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "facebook.com",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.655Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "https://graph.facebook.com",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.667Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "v3.2/240898373876462",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.874Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "4.42.0",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5838
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.876Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "FBAndroidSDK",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5837
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:58.945Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "firebase-installations-executor-",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5843
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:59.091Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "FAN:",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5834
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:04:59.093Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "ASYNC",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5834
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:00.879Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "1786601099.053",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5863
+    },
+    {
+      "hook_type": "base64",
+      "timestamp": "2026-08-13T06:05:01.821Z",
+      "class_name": "android.util.Base64",
+      "method_name": "encodeToString",
+      "raw_value": "WEs5TDhXOFIxWVZUVFNZU1lEQlQ1WldFUlA3VVBRUUU=",
+      "extra": {
+        "direction": "encode",
+        "caller_class": "com.tenjin.android.TenjinSDK$AsyncConnect",
+        "caller_method": "doInBackground"
+      },
+      "thread_id": 5889
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.302Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Loaded native library version number \"",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.307Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "83.0.4103.106",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.313Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "Flushed ",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.317Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": " samples from ",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.320Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": " histograms.",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5694
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.347Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "18765ebe",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5900
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:02.348Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "19ff95be6c3",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5900
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:05.309Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "mobile_sdk_gk",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5838
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:05.321Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "240898373876462/mobile_sdk_gk",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5838
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:05.326Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "v3.2/240898373876462/mobile_sdk_gk",
+      "extra": {
+        "caller_class": "java.util.Formatter$FormatSpecifier",
+        "caller_method": "print"
+      },
+      "thread_id": 5838
+    },
+    {
+      "hook_type": "string_builder",
+      "timestamp": "2026-08-13T06:05:05.492Z",
+      "class_name": "java.lang.StringBuilder",
+      "method_name": "append",
+      "raw_value": "com.facebook.internal.APP_GATEKEEPERS.",
+      "extra": {
+        "caller_class": "java.util.Formatter$FixedString",
+        "caller_method": "print"
+      },
+      "thread_id": 5838
+    }
+  ],
+  "plaintext_candidates": [
+    "W0RFRkFVTFRd",
+    "MToxOTQ2MDA2NDcwMTA6YW5kcm9pZDo1YjMyODE0YjRhZGI4YmI5MGU1NDNi",
+    "1:194600647010:android:5b32814b4adb8bb90e543b",
+    "firebase",
+    "fetch",
+    ".json",
+    "activate",
+    "com.facebook.internal.APP_SETTINGS.",
+    "240898373876462",
+    "defaults",
+    "getGraphApiVersion: ",
+    "v3.2",
+    "https://graph.",
+    "settings",
+    "facebook.com",
+    "https://graph.facebook.com",
+    "v3.2/240898373876462",
+    "4.42.0",
+    "FBAndroidSDK",
+    "firebase-installations-executor-",
+    "FAN:",
+    "ASYNC",
+    "1786601099.053",
+    "WEs5TDhXOFIxWVZUVFNZU1lEQlQ1WldFUlA3VVBRUUU=",
+    "Loaded native library version number \"",
+    "83.0.4103.106",
+    "Flushed ",
+    " samples from ",
+    " histograms.",
+    "18765ebe",
+    "19ff95be6c3",
+    "mobile_sdk_gk",
+    "240898373876462/mobile_sdk_gk",
+    "v3.2/240898373876462/mobile_sdk_gk",
+    "com.facebook.internal.APP_GATEKEEPERS."
+  ],
+  "errors": []
+}
