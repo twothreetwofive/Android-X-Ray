@@ -104,6 +104,26 @@ def check(apk_path: Path) -> bool:
     if hit:
         print(f"  주목 권한  : {', '.join(hit)}")
 
+    # 표준 권한 수를 따로 센다. 전체 권한이 수십 개여도 대부분이 앱 자체 정의
+    # 권한(com.xxx.permission.*)이면 실제 능력은 그만큼이 아니다. 반대로 표준
+    # 권한이 1~2개뿐인데 그게 REQUEST_INSTALL_PACKAGES면 드로퍼 신호다.
+    std_perms = {p for p in perms if p.startswith("android.permission.")}
+    if len(perms) != len(std_perms):
+        print(f"  권한 내역  : 표준 {len(std_perms)}개 / 앱 자체 정의 {len(perms) - len(std_perms)}개")
+
+    if "android.permission.REQUEST_INSTALL_PACKAGES" in perms:
+        print("  ⚠ 드로퍼 신호: REQUEST_INSTALL_PACKAGES (실행 후 2차 APK를 내려받아 설치하는 유형)")
+
+    # 이름에 제로폭 문자를 섞어 탐지·검색을 피하는 수법이 흔하다.
+    name = apk.get_app_name() or ""
+    zero_width = [c for c in name if c in "​‌‍⁠﻿"]
+    if zero_width:
+        print(f"  ⚠ 앱 이름에 제로폭 문자 {len(zero_width)}개 — 이름 위장/탐지 회피 수법")
+
+    n_components = len(apk.get_activities()) + len(apk.get_services()) + len(apk.get_receivers())
+    print(f"  컴포넌트   : {n_components}개 "
+          f"(액티비티 {len(apk.get_activities())} / 서비스 {len(apk.get_services())} / 리시버 {len(apk.get_receivers())})")
+
     # ── 설치 가능 여부 판정 ──
     reasons = []
     if abis and not (abis & DEVICE_ABIS):
@@ -116,9 +136,16 @@ def check(apk_path: Path) -> bool:
         print("        -> 동적·네트워크 분석 불가. 정적 분석 대상으로만 사용")
         return False
 
+    # 관찰거리 등급 — 주목 권한 수만 세면 드로퍼처럼 "권한은 적지만 실행 시
+    # 행동이 큰" 유형을 과소평가한다. 드로퍼 신호와 컴포넌트 규모를 함께 본다.
     score = len(perms & INTERESTING_PERMS)
+    if "android.permission.REQUEST_INSTALL_PACKAGES" in perms:
+        score += 3
+    if n_components >= 50:
+        score += 1
+
     grade = "좋음" if score >= 5 else ("보통" if score >= 2 else "빈약")
-    print(f"  판정: [설치 가능]  동적 분석 볼거리: {grade} (주목 권한 {score}개)")
+    print(f"  판정: [설치 가능]  동적 분석 볼거리: {grade}")
     return True
 
 
