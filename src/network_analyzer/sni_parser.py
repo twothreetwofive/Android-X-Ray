@@ -9,6 +9,9 @@ from __future__ import annotations
 import subprocess
 from datetime import datetime, timezone
 
+from .pcap_fallback import parse_sni_scapy, tshark_available
+
+
 def parse_sni(pcap_path: str) -> list[dict]:
     """pcap 파일에서 TLS ClientHello의 SNI를 추출한다.
 
@@ -16,6 +19,11 @@ def parse_sni(pcap_path: str) -> list[dict]:
         tls_sni 필드 형식의 리스트. 각 항목:
         {"sni": str, "timestamp": ISO8601 str, "dest_ip": str, "dest_port": int}
     """
+    # dns_parser와 같은 이유로 tshark가 없으면 scapy 경로로 넘어간다.
+    if not tshark_available():
+        print("[정보] tshark가 없어 scapy로 TLS SNI를 파싱합니다.")
+        return parse_sni_scapy(pcap_path)
+
     cmd = [
         "tshark",
         "-r", pcap_path,

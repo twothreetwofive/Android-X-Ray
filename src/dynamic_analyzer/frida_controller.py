@@ -55,8 +55,23 @@ class FridaController:
         self.script.load()
 
     def _on_message(self, message: dict, data) -> None:
-        """스크립트에서 온 메시지(console.log, send() 등)를 출력한다."""
-        print("[스크립트 메시지]", message)
+        """스크립트에서 온 메시지(console.log, send() 등)를 요약해서 출력한다.
+
+        원래는 message dict를 통째로 찍었는데, 실제 앱을 후킹하면 raw_value에
+        인증서·이미지 같은 수 KB짜리 Base64가 들어와 터미널이 사실상 마비된다
+        (8주차 실기기 실행에서 확인). 이벤트 수집은 message_parser가 따로 하므로
+        여기서는 사람이 진행 상황만 알아볼 수 있으면 된다.
+        """
+        if message.get("type") == "error":
+            print(f"[hooks.js 에러] {message.get('description')}")
+            return
+        payload = message.get("payload") or {}
+        if isinstance(payload, dict) and "hook_type" in payload:
+            raw = str(payload.get("raw_value", ""))
+            preview = raw[:60].replace("\n", "") + ("..." if len(raw) > 60 else "")
+            print(f"[{payload['hook_type']}] {payload.get('method_name', '')} -> {preview}")
+        else:
+            print("[스크립트 메시지]", str(message)[:200])
 
     def resume(self) -> None:
         """정지된 프로세스를 실행 재개한다. 반드시 load_script() 다음에 호출."""

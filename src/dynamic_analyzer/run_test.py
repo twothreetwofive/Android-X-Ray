@@ -47,7 +47,7 @@ def run(package_name: str, observe_sec: float = 5.0, output_path: str = "dynamic
     print(f"=== {observe_sec}초 동안 관찰 ===")
     time.sleep(observe_sec)
 
-    controller._cleanup_current_session()
+    controller.cleanup()   # A가 public으로 바꾼 이름 (구 _cleanup_current_session)
 
     events = get_captured_events()
     report = build_report(package_name, session_start, events, output_path)

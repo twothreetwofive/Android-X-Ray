@@ -137,12 +137,13 @@ _OK_DATA: dict[str, Any] = {
     #
     # 여기서 확인된 것: NORMALIZATION_CAP이 100인데 이 정도 앱의 raw가 이미
     # 140이라 total이 1.0에서 잘린다. 즉 지금 기준으로는 "꽤 위험"과 "매우 위험"이
-    # 똑같이 100점으로 보인다. D가 지적한 NORMALIZATION_CAP 재조정이 필요하다는
-    # 근거 — 8주차 과제로 넘긴다.
+    # 똑같이 100점으로 보인다. NORMALIZATION_CAP 재조정 근거 — 8주차에 항목별
+    # 가중치·상한을 손봤지만(risk_scorer 상단 주석), 뱅킹 트로이목마 구성은 여전히
+    # raw 137로 상한에 걸린다. 상한 자체의 재조정은 실샘플 누적 후 과제로 남긴다.
     "risk_score": 1.0,
     "risk_breakdown": {
         "total": 1.0,
-        "raw": 140.0,
+        "raw": 137,
         # 순서는 risk_scorer가 내보내는 그대로다(권한은 manifest 등장 순서).
         # 가중치 순으로 정렬돼 있지 않다는 점이 중요하다 — 화면에서 위험한 것을
         # 위로 올리는 정렬은 static_data.build_breakdown_rows()가 담당한다.
@@ -157,13 +158,13 @@ _OK_DATA: dict[str, Any] = {
             {"factor": "android.permission.QUERY_ALL_PACKAGES", "weight": 5},
             {"factor": "android.permission.READ_PHONE_STATE", "weight": 4},
             {"factor": "android.permission.WRITE_EXTERNAL_STORAGE", "weight": 3},
-            {"factor": "exported_components×2 (3개)", "weight": 6},
-            {"factor": "suspicious_api_calls×3 (3개)", "weight": 9},
+            {"factor": "exported_components (3개)", "weight": 6},
+            {"factor": "suspicious_api_calls (3종, 고위험 2종 / 발견 3건)", "weight": 14},
             {"factor": "obfuscation_detected", "weight": 15},
             {"factor": "reflection_usage", "weight": 10},
             {"factor": "dynamic_code_loading", "weight": 15},
-            {"factor": "suspicious_strings×2 (2개)", "weight": 4},
-            {"factor": "certificate.is_self_signed", "weight": 10},
+            {"factor": "suspicious_strings (2개)", "weight": 4},
+            {"factor": "certificate.is_self_signed", "weight": 2},
         ],
     },
     "errors": [],
@@ -272,11 +273,11 @@ _NORMAL_DATA: dict[str, Any] = {
     "risk_score": 0.12,
     "risk_breakdown": {
         "total": 0.12,
-        "raw": 12.0,
+        "raw": 12,
         "breakdown": [
             {"factor": "android.permission.CAMERA", "weight": 7},
             {"factor": "android.permission.READ_EXTERNAL_STORAGE", "weight": 3},
-            {"factor": "exported_components×2 (1개)", "weight": 2},
+            {"factor": "exported_components (1개)", "weight": 2},
         ],
     },
     "errors": [],

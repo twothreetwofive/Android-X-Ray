@@ -30,7 +30,6 @@ _captured_events: List[HookEvent] = []
 
 def on_message(message: dict, data=None) -> None:
     """script.on('message', on_message) 에 그대로 등록할 콜백"""
-    print("[디버그] 전체 메시지:", message)  # 이 줄 추가
     if message["type"] == "send":
         payload: HookEvent = message["payload"]
         _captured_events.append(payload)
@@ -88,8 +87,58 @@ def is_plaintext(value: str, min_len: int = 4) -> bool:
     return printable_ratio > 0.9
 
 
+# 프레임워크/런타임 내부 호출자 접두사.
+#
+# hooks.js가 extra.caller_class로 "누가 이 API를 불렀는지"를 넣어 준다(B가 README에서
+# 필요하다고 한 정보). 그 값이 아래 접두사로 시작하면 앱 자체 로직이 아니라
+# 안드로이드/자바 런타임이 자기 일을 하다가 부른 것이다.
+#
+# 8주차 실측 근거: 에뮬레이터 내장 시계 앱에서 평문 후보 124건이 나왔는데
+# 호출자가 java.util.Formatter$FormatSpecifier(104) / $FixedString(16) /
+# android.graphics.Typeface(4)뿐이었다. 즉 String.format()과 폰트 리소스 로딩이고
+# 앱 코드는 한 건도 없었다. 이걸 그대로 두면 정상 앱이 "평문 124건"으로 표시되고
+# 동적 위험도가 0.49까지 올라간다(= 시계 앱이 "주의" 판정).
+FRAMEWORK_CALLER_PREFIXES = (
+    "java.",
+    "javax.",
+    "sun.",
+    "jdk.",
+    "kotlin.",
+    "kotlinx.",
+    "android.",
+    "androidx.",
+    "com.android.internal.",
+    "dalvik.",
+    "libcore.",
+    "com.google.android.material.",
+    "com.google.android.gms.",
+)
+
+
+def is_framework_caller(event: HookEvent) -> bool:
+    """이 이벤트가 프레임워크 내부에서 발생한 것인지 판단한다.
+
+    caller_class 정보가 아예 없으면(구버전 hooks.js 등) False를 반환해서
+    **거르지 않는다** — 정보가 없다는 이유로 실제 신호를 버리면 안 되기 때문.
+    """
+    caller = ((event.get("extra") or {}).get("caller_class") or "")
+    if not caller:
+        return False
+    return caller.startswith(FRAMEWORK_CALLER_PREFIXES)
+
+
 def extract_plaintext_candidates(events: List[HookEvent]) -> List[str]:
-    return [e["raw_value"] for e in events if is_plaintext(e["raw_value"])]
+    """평문 후보 추출. 프레임워크 내부 호출은 제외한다.
+
+    events 자체에서는 빼지 않는다 — 원본 관측 기록은 그대로 남기고, "평문 후보"라는
+    **판단이 들어간 목록**에서만 제외한다. 무엇이 걸러졌는지 확인하려면
+    build_report()가 넣는 framework_events_excluded 수치를 보면 된다.
+    """
+    return [
+        e["raw_value"]
+        for e in events
+        if is_plaintext(e["raw_value"]) and not is_framework_caller(e)
+    ]
 
 
 # ────────────────────────────────────────────────────────────
@@ -112,6 +161,11 @@ def build_report(
         "total_events_filtered": len(filtered),
         "events": filtered,
         "plaintext_candidates": plaintext,
+        # 몇 건이 프레임워크 내부 호출로 제외됐는지 남긴다 — 필터가 과하게 먹었는지
+        # 나중에 확인할 수 있어야 한다(무엇이 사라졌는지 모르면 검증이 안 됨).
+        "framework_events_excluded": sum(
+            1 for e in filtered if is_plaintext(e["raw_value"]) and is_framework_caller(e)
+        ),
         "errors": [],
     }
 
