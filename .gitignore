@@ -19,3 +19,9 @@ samples/
 
 # run_test.py 등 실행할 때마다 덮어써지는 동적 분석 결과물 (버전관리 대상 아님)
 dynamic_report.json
+
+# ── 실행 산출물 ── 돌릴 때마다 새로 생기고 사람마다 달라서 버전관리 대상이 아니다.
+# 특히 capture.pcap은 악성 샘플 실행 중의 트래픽 캡처본이라 저장소에 두지 않는다.
+# 세 샘플의 최종 결과(output/report_*.json)는 팀 공유 근거라 예외로 추적한다.
+output/capture.pcap
+output/dynamic_report_*.json
