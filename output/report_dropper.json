@@ -1,0 +1,66 @@
+{
+  "apk_name": "44f9...faacab.apk",
+  "package_name": null,
+  "analyzed_at": "2026-08-13T10:24:57.293858+00:00",
+  "modules": {
+    "static": {
+      "status": "failed",
+      "data": null,
+      "error": "apk 파일을 찾을 수 없음: [Errno 2] No such file or directory: '/home/ubuntu/samples/44f9...faacab.apk'"
+    },
+    "dynamic": {
+      "status": "failed",
+      "data": null,
+      "error": "package_name을 구할 수 없어 동적/네트워크 단계 실행 안 함 (정적 분석 실패)"
+    },
+    "network": {
+      "status": "failed",
+      "data": null,
+      "error": "package_name을 구할 수 없어 동적/네트워크 단계 실행 안 함 (정적 분석 실패)"
+    }
+  },
+  "risk_score": {
+    "total": null,
+    "score100": null,
+    "level": "unknown",
+    "verdict": {
+      "code": "unknown",
+      "band_code": "unknown",
+      "score100": null,
+      "strong_indicators": [],
+      "malicious_rule": {
+        "min_score": 80,
+        "min_indicators": 3,
+        "strong_indicator_count": 0,
+        "met": false
+      }
+    },
+    "indicators": {
+      "static": [],
+      "dynamic": [],
+      "network": []
+    },
+    "breakdown": {
+      "modules": {
+        "static": {
+          "available": false,
+          "weight": 0.0
+        },
+        "dynamic": {
+          "available": false,
+          "weight": 0.0
+        },
+        "network": {
+          "available": false,
+          "weight": 0.0
+        }
+      },
+      "weights_applied": {},
+      "unavailable": [
+        "static",
+        "dynamic",
+        "network"
+      ]
+    }
+  }
+}

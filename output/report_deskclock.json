@@ -1,0 +1,597 @@
+{
+  "apk_name": "deskclock.apk",
+  "package_name": "com.google.android.deskclock",
+  "analyzed_at": "2026-08-13T10:20:28.369667+00:00",
+  "modules": {
+    "static": {
+      "status": "ok",
+      "data": {
+        "meta": {
+          "apk_name": "deskclock.apk",
+          "package_name": "com.google.android.deskclock",
+          "version_name": "6.2 (259367952)",
+          "version_code": 62000712,
+          "min_sdk": 21,
+          "target_sdk": 29,
+          "file_hash": {
+            "md5": "9ffcfd858f3aa23a3565ecb6e71512eb",
+            "sha1": "4bdd0b2e891f93b8ecbf1f32387fb04cf2ec91aa",
+            "sha256": "160e95dcc296fdf087afa03b4cc10d996a1c58c4da9d25d1bc43536785a8e756"
+          },
+          "file_size": 7924452,
+          "analyzed_at": "2026-08-13T10:20:28.370607+00:00"
+        },
+        "manifest": {
+          "permissions": [
+            "com.android.systemui.permission.SEND_ALERT_BROADCASTS",
+            "android.permission.FOREGROUND_SERVICE",
+            "com.google.android.providers.gsf.permission.READ_GSERVICES",
+            "android.permission.USE_FULL_SCREEN_INTENT",
+            "android.permission.DISABLE_KEYGUARD",
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WAKE_LOCK",
+            "android.permission.INTERNET",
+            "android.permission.VIBRATE",
+            "android.permission.ACCESS_NETWORK_STATE",
+            "android.permission.RECEIVE_BOOT_COMPLETED"
+          ],
+          "dangerous_permissions": [],
+          "activities": [
+            "com.android.deskclock.DeskClock",
+            "com.android.deskclock.ringtone.RingtonePickerActivity",
+            "com.android.deskclock.ringtone.RingtoneSearchActivity",
+            "com.android.deskclock.settings.SettingsActivity",
+            "com.android.deskclock.HandleShortcuts",
+            "com.android.deskclock.worldclock.CitySelectionActivity",
+            "com.android.deskclock.LicensesActivity",
+            "com.android.deskclock.HandleApiCalls",
+            "com.android.deskclock.alarms.AlarmActivity",
+            "com.android.deskclock.AlarmSelectionActivity",
+            "com.android.deskclock.timer.ExpiredTimersActivity",
+            "com.android.deskclock.ScreensaverActivity",
+            "com.android.deskclock.settings.ScreensaverSettingsActivity",
+            "com.android.deskclock.HandleUris",
+            "com.android.deskclock.HandleGoogleApiCalls",
+            "com.android.deskclock.HandleSpotifyApiCalls",
+            "com.spotify.sdk.android.authentication.LoginActivity",
+            "com.google.android.gms.common.api.GoogleApiActivity",
+            "com.google.android.libraries.places.widget.AutocompleteActivity",
+            "com.spotify.sdk.android.authentication.AuthCallbackActivity"
+          ],
+          "services": [
+            "com.android.deskclock.alarms.AlarmService",
+            "com.android.deskclock.timer.TimerService",
+            "com.android.deskclock.stopwatch.StopwatchService",
+            "com.android.deskclock.Screensaver",
+            "com.android.alarmclock.DigitalAppWidgetCityService",
+            "com.android.deskclock.WearableSyncService",
+            "com.android.deskclock.WearableMessageListenerService",
+            "com.android.deskclock.indexing.IndexingJobService"
+          ],
+          "receivers": [
+            "com.android.deskclock.AlarmInitReceiver",
+            "com.android.deskclock.alarms.AlarmReceiver",
+            "com.android.deskclock.timer.TimerReceiver",
+            "com.android.alarmclock.AnalogAppWidgetProvider",
+            "com.android.alarmclock.DigitalAppWidgetProvider",
+            "com.android.deskclock.indexing.ReindexingReceiver"
+          ],
+          "providers": [],
+          "exported_components": [
+            "com.android.deskclock.DeskClock",
+            "com.android.deskclock.LicensesActivity",
+            "com.android.deskclock.HandleApiCalls",
+            "com.android.deskclock.HandleUris",
+            "com.spotify.sdk.android.authentication.AuthCallbackActivity",
+            "com.android.deskclock.Screensaver",
+            "com.android.deskclock.WearableMessageListenerService",
+            "com.android.deskclock.AlarmInitReceiver",
+            "com.android.alarmclock.AnalogAppWidgetProvider",
+            "com.android.alarmclock.DigitalAppWidgetProvider",
+            "com.android.deskclock.indexing.ReindexingReceiver"
+          ],
+          "components": [
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.DeskClock",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.MAIN",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.LAUNCHER"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.ringtone.RingtonePickerActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.ringtone.RingtoneSearchActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.settings.SettingsActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleShortcuts",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.worldclock.CitySelectionActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.LicensesActivity",
+              "exported": true,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleApiCalls",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.DISMISS_ALARM",
+                "android.intent.action.DISMISS_TIMER",
+                "android.intent.action.SHOW_ALARMS",
+                "android.intent.action.SHOW_TIMERS",
+                "android.intent.action.SNOOZE_ALARM",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.VOICE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.alarms.AlarmActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.AlarmSelectionActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.timer.ExpiredTimersActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.ScreensaverActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.settings.ScreensaverSettingsActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleUris",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.VIEW",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleGoogleApiCalls",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.android.deskclock.HandleSpotifyApiCalls",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.spotify.sdk.android.authentication.LoginActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.gms.common.api.GoogleApiActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.google.android.libraries.places.widget.AutocompleteActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.spotify.sdk.android.authentication.AuthCallbackActivity",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.VIEW",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.alarms.AlarmService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.timer.TimerService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.stopwatch.StopwatchService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.Screensaver",
+              "exported": true,
+              "intent_filters": [
+                "android.service.dreams.DreamService",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.android.alarmclock.DigitalAppWidgetCityService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.WearableSyncService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.WearableMessageListenerService",
+              "exported": true,
+              "intent_filters": [
+                "com.google.android.gms.wearable.CAPABILITY_CHANGED",
+                "com.google.android.gms.wearable.MESSAGE_RECEIVED"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "com.android.deskclock.indexing.IndexingJobService",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.AlarmInitReceiver",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.BOOT_COMPLETED",
+                "android.intent.action.LOCALE_CHANGED",
+                "android.intent.action.LOCKED_BOOT_COMPLETED",
+                "android.intent.action.MY_PACKAGE_REPLACED",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.TIMEZONE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.alarms.AlarmReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.timer.TimerReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.alarmclock.AnalogAppWidgetProvider",
+              "exported": true,
+              "intent_filters": [
+                "android.appwidget.action.APPWIDGET_UPDATE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.alarmclock.DigitalAppWidgetProvider",
+              "exported": true,
+              "intent_filters": [
+                "android.appwidget.action.APPWIDGET_UPDATE",
+                "android.intent.action.LOCALE_CHANGED",
+                "android.intent.action.TIME_SET",
+                "android.intent.action.TIMEZONE_CHANGED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "com.android.deskclock.indexing.ReindexingReceiver",
+              "exported": true,
+              "intent_filters": [
+                "com.google.firebase.appindexing.UPDATE_INDEX"
+              ]
+            }
+          ]
+        },
+        "certificate": {
+          "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+          "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+          "valid_from": "2008-04-15T23:36:56+00:00",
+          "valid_to": "2035-09-01T23:36:56+00:00",
+          "is_self_signed": true
+        },
+        "code_analysis": {
+          "suspicious_api_calls": [
+            {
+              "api": "Base64.decode",
+              "location": "sources/com/spotify/protocol/mappers/gson/GsonMapper.java",
+              "risk": "low"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/com/android/deskclock/alarms/AlarmActivity.java",
+              "risk": "high"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/defpackage/cqv.java",
+              "risk": "low"
+            },
+            {
+              "api": "TelephonyManager",
+              "location": "sources/defpackage/blh.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/cdj.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bst.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/defpackage/czz.java",
+              "risk": "low"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bua.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/cch.java",
+              "risk": "medium"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/defpackage/kd.java",
+              "risk": "low"
+            },
+            {
+              "api": "TelephonyManager",
+              "location": "sources/defpackage/bas.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bpn.java",
+              "risk": "medium"
+            },
+            {
+              "api": "HttpURLConnection",
+              "location": "sources/defpackage/bpw.java",
+              "risk": "medium"
+            },
+            {
+              "api": "AccessibilityService",
+              "location": "sources/android/support/design/snackbar/BaseTransientBottomBar.java",
+              "risk": "high"
+            }
+          ],
+          "obfuscation_detected": false,
+          "native_libraries": [],
+          "reflection_usage": true,
+          "dynamic_code_loading": false
+        },
+        "strings": {
+          "urls": [
+            "http://goo.gl/8Rd3yj",
+            "http://goo.gl/naFqQk",
+            "http://schemas.android.com/apk/res/android",
+            "http://www.google-analytics.com",
+            "https://app.adjust.com/ndjczk?campaign=com.google.android.deskclock",
+            "https://maps.googleapis.com/",
+            "https://maps.googleapis.com/maps/api/timezone/json?location=%s&timestamp=%d&key=%s",
+            "https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps",
+            "https://plus.google.com/",
+            "https://ssl.google-analytics.com",
+            "https://support.google.com/mobile/?p=clock_main",
+            "https://www.music.youtube.com/attribution_link?c=ptrshp-ytmp-acq-int-pd-app-andclock&u=https%3A%2F%2Fmusic.youtube.com%2Fmusic_premium"
+          ],
+          "ip_addresses": [
+            "8.4.91.697"
+          ],
+          "suspicious_strings": []
+        },
+        "third_party_sdks": [
+          "Firebase",
+          "Google Play Services"
+        ],
+        "risk_score": 0.87,
+        "risk_breakdown": {
+          "total": 0.87,
+          "raw": 87,
+          "breakdown": [
+            {
+              "factor": "android.permission.READ_EXTERNAL_STORAGE",
+              "weight": 3
+            },
+            {
+              "factor": "exported_components×2 (11개)",
+              "weight": 22
+            },
+            {
+              "factor": "suspicious_api_calls×3 (14개)",
+              "weight": 42
+            },
+            {
+              "factor": "reflection_usage",
+              "weight": 10
+            },
+            {
+              "factor": "certificate.is_self_signed",
+              "weight": 10
+            }
+          ]
+        },
+        "errors": []
+      },
+      "error": null
+    },
+    "dynamic": {
+      "status": "failed",
+      "data": null,
+      "error": "시나리오 실행 결과 없음"
+    },
+    "network": {
+      "status": "failed",
+      "data": {
+        "meta": {
+          "package_name": "com.google.android.deskclock",
+          "capture_started_at": "2026-08-13T10:20:49+00:00",
+          "capture_duration_sec": 19,
+          "pcap_file": "output/capture.pcap"
+        }
+      },
+      "error": "DNS/SNI 파싱 또는 조립 실패: [Errno 2] No such file or directory: 'tshark'"
+    }
+  },
+  "risk_score": {
+    "total": 0.87,
+    "score100": 87,
+    "level": "high_risk",
+    "verdict": {
+      "code": "high_risk",
+      "band_code": "high_risk",
+      "score100": 87,
+      "strong_indicators": [],
+      "malicious_rule": {
+        "min_score": 80,
+        "min_indicators": 3,
+        "strong_indicator_count": 0,
+        "met": false
+      }
+    },
+    "indicators": {
+      "static": [
+        {
+          "code": "suspicious_api",
+          "label": "의심 API 호출",
+          "value": "14건",
+          "strong": false
+        },
+        {
+          "code": "reflection",
+          "label": "리플렉션 사용",
+          "value": "탐지",
+          "strong": false
+        },
+        {
+          "code": "hardcoded_ip_string",
+          "label": "하드코딩 IP 문자열",
+          "value": "1건",
+          "strong": false
+        },
+        {
+          "code": "self_signed",
+          "label": "자체 서명 인증서",
+          "value": "예",
+          "strong": false
+        }
+      ],
+      "dynamic": [],
+      "network": []
+    },
+    "breakdown": {
+      "modules": {
+        "static": {
+          "available": true,
+          "sub_score": 0.87,
+          "source": "static_analyzer.risk_score",
+          "static_breakdown": {
+            "total": 0.87,
+            "raw": 87,
+            "breakdown": [
+              {
+                "factor": "android.permission.READ_EXTERNAL_STORAGE",
+                "weight": 3
+              },
+              {
+                "factor": "exported_components×2 (11개)",
+                "weight": 22
+              },
+              {
+                "factor": "suspicious_api_calls×3 (14개)",
+                "weight": 42
+              },
+              {
+                "factor": "reflection_usage",
+                "weight": 10
+              },
+              {
+                "factor": "certificate.is_self_signed",
+                "weight": 10
+              }
+            ]
+          },
+          "weight": 1.0
+        },
+        "dynamic": {
+          "available": false,
+          "weight": 0.0
+        },
+        "network": {
+          "available": false,
+          "weight": 0.0
+        }
+      },
+      "weights_applied": {
+        "static": 1.0
+      },
+      "unavailable": [
+        "dynamic",
+        "network"
+      ]
+    }
+  }
+}
