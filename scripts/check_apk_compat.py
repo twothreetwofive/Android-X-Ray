@@ -21,8 +21,47 @@ import zipfile
 from pathlib import Path
 
 # 팀 공용 AVD 기준값 (adb shell getprop ro.product.cpu.abilist / ro.build.version.sdk)
-DEVICE_ABIS = {"x86"}
-DEVICE_API = 29
+#
+# 실측(2026-08-13, emulator-5554):
+#   ro.product.cpu.abilist = x86_64,x86,arm64-v8a,armeabi-v7a,armeabi
+#   ro.build.version.sdk   = 30
+# arm64-v8a/armeabi-v7a가 목록에 있는 것은 이 이미지가 **ARM 변환을 내장**하기
+# 때문이다. 즉 ARM 전용 APK도 설치·실행된다 — 안드로이드 악성코드 상당수가
+# ARM 전용이라 샘플 고를 때 제약이 사실상 없어진다.
+DEVICE_ABIS = {"x86_64", "x86", "arm64-v8a", "armeabi-v7a", "armeabi"}
+DEVICE_API = 30
+
+
+def _detect_device() -> None:
+    """에뮬레이터가 붙어 있으면 실제 값으로 갱신한다.
+
+    위 기본값은 이 팀 AVD 기준이라, 다른 사람이 다른 AVD로 돌리면 틀린 판정을
+    내놓는다. adb가 잡히면 기기에서 직접 읽어오는 편이 정확하다.
+    """
+    global DEVICE_ABIS, DEVICE_API
+    import shutil
+    import subprocess
+
+    if not shutil.which("adb"):
+        return
+    try:
+        abilist = subprocess.run(
+            ["adb", "shell", "getprop", "ro.product.cpu.abilist"],
+            capture_output=True, text=True, timeout=10,
+        ).stdout.strip()
+        sdk = subprocess.run(
+            ["adb", "shell", "getprop", "ro.build.version.sdk"],
+            capture_output=True, text=True, timeout=10,
+        ).stdout.strip()
+    except (subprocess.SubprocessError, OSError):
+        return
+
+    if abilist:
+        DEVICE_ABIS = {a.strip() for a in abilist.split(",") if a.strip()}
+    if sdk.isdigit():
+        DEVICE_API = int(sdk)
+    if abilist or sdk:
+        print(f"[기기 감지] ABI={sorted(DEVICE_ABIS)} API={DEVICE_API}")
 
 # 동적/네트워크 분석에서 볼거리가 나오는 권한들 (있을수록 좋은 샘플)
 INTERESTING_PERMS = {
@@ -159,6 +198,8 @@ def main(argv: list[str]) -> int:
     if not paths:
         print("검사할 APK 파일이 없음")
         return 1
+
+    _detect_device()   # 기기가 붙어 있으면 실제 사양으로 판정
 
     installable = [p for p in paths if check(p)]
 
