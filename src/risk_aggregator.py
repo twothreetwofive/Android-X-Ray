@@ -253,6 +253,18 @@ def _static_indicators(data: dict) -> list[dict]:
     elif matched:
         out.append(_ind("permission_combo", "주목 권한군", " + ".join(matched)))
 
+    # 패킹된 페이로드: APK 대부분이 정체 불명의 암호화 덩어리라는 것은 양성으로
+    # 설명하기 어렵다(정상 앱의 큰 자산은 매직바이트로 식별되는 미디어/압축 포맷이다).
+    # 실측 근거는 static_analyzer/code_scanner.py의 _detect_packed_assets 주석 참고.
+    packed = code.get("packed_assets") or []
+    if packed:
+        biggest = max(packed, key=lambda a: a.get("apk_ratio") or 0)
+        out.append(_ind(
+            "packed_payload", "패킹된 페이로드",
+            f"{len(packed)}개 (APK의 {(biggest.get('apk_ratio') or 0) * 100:.0f}%, 엔트로피 {biggest.get('entropy')})",
+            strong=True,
+        ))
+
     api_calls = code.get("suspicious_api_calls") or []
     if api_calls:
         out.append(_ind("suspicious_api", "의심 API 호출", f"{len(api_calls)}건"))

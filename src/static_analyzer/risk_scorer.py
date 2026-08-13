@@ -53,6 +53,10 @@ SUSPICIOUS_STRING_CAP = 10
 
 SELF_SIGNED_CERT_WEIGHT = 2
 
+# 패킹된 페이로드 — APK의 대부분이 정체 불명의 암호화 덩어리라면 코드 분석으로는
+# 볼 수 있는 게 없다는 뜻이다. 그 자체가 강한 신호라 단일 항목 중 가장 큰 가중치를 준다.
+PACKED_ASSET_WEIGHT = 25
+
 
 def _score_breakdown(
     manifest_data: dict[str, Any] | None,
@@ -116,6 +120,15 @@ def _score_breakdown(
             breakdown.append({"factor": "reflection_usage", "weight": 10})
         if code_data.get("dynamic_code_loading"):
             breakdown.append({"factor": "dynamic_code_loading", "weight": 15})
+
+        packed = code_data.get("packed_assets") or []
+        if packed:
+            biggest = max(packed, key=lambda a: a.get("apk_ratio") or 0)
+            ratio = biggest.get("apk_ratio") or 0
+            breakdown.append({
+                "factor": f"packed_assets ({len(packed)}개, 최대 APK의 {ratio*100:.0f}%)",
+                "weight": PACKED_ASSET_WEIGHT,
+            })
 
     if strings_data:
         suspicious_count = len(strings_data.get("suspicious_strings", []))

@@ -63,6 +63,10 @@ class CodeAnalysis(TypedDict):
     native_libraries: List[str]
     reflection_usage: bool
     dynamic_code_loading: bool
+    # 8주차 추가: assets/res/raw에 숨은 "정체 불명의 큰 암호화 덩어리".
+    # {path, size, apk_ratio, entropy, magic} 형태. 드로퍼가 2차 페이로드를
+    # 코드가 아니라 자산으로 품고 있는 경우를 잡는다(code_scanner 주석 참고).
+    packed_assets: List[Dict[str, object]]
 
 
 class StringsInfo(TypedDict):

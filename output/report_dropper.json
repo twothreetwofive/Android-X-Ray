@@ -1,66 +1,2888 @@
 {
-  "apk_name": "44f9...faacab.apk",
-  "package_name": null,
-  "analyzed_at": "2026-08-13T10:24:57.293858+00:00",
+  "apk_name": "44f9d5c684fb6f34465cd7593709a37cadb57aaf41430b0d043fa593e4faacab.apk",
+  "package_name": "video.lotus19.ridenovel31",
+  "analyzed_at": "2026-08-13T11:04:47.280788+00:00",
   "modules": {
     "static": {
-      "status": "failed",
-      "data": null,
-      "error": "apk 파일을 찾을 수 없음: [Errno 2] No such file or directory: '/home/ubuntu/samples/44f9...faacab.apk'"
+      "status": "ok",
+      "data": {
+        "meta": {
+          "apk_name": "44f9d5c684fb6f34465cd7593709a37cadb57aaf41430b0d043fa593e4faacab.apk",
+          "package_name": "video.lotus19.ridenovel31",
+          "version_name": "1.91.37.237",
+          "version_code": 6923417,
+          "min_sdk": 24,
+          "target_sdk": 36,
+          "file_hash": {
+            "md5": "1da48686908f9535d7123713deddbd7f",
+            "sha1": "7f6982bb0b21b1d4ef0b8a21e5a7ddc7dfc4b09b",
+            "sha256": "44f9d5c684fb6f34465cd7593709a37cadb57aaf41430b0d043fa593e4faacab"
+          },
+          "file_size": 8775325,
+          "analyzed_at": "2026-08-13T11:04:47.281081+00:00"
+        },
+        "manifest": {
+          "permissions": [
+            "video.lotus19.ridenovel31.permission.feed.upload.collect82",
+            "video.lotus19.ridenovel31.permission.growth.comment.v3",
+            "video.lotus19.ridenovel31.permission.content.upload.v3",
+            "video.lotus19.ridenovel31.permission.trade.wallet.dispatch26",
+            "video.lotus19.ridenovel31.permission.config.article.route19",
+            "video.lotus19.ridenovel31.permission.device.trade.index17",
+            "video.lotus19.ridenovel31.permission.message.article.expose72",
+            "video.lotus19.ridenovel31.permission.content.session.route51",
+            "video.lotus19.ridenovel31.permission.message.campaign.v5",
+            "video.lotus19.ridenovel31.permission.wallet.address.manage23",
+            "video.lotus19.ridenovel31.permission.session.notification.v7",
+            "video.lotus19.ridenovel31.permission.upload.wallet.sync07",
+            "video.lotus19.ridenovel31.permission.address.config.v8",
+            "video.lotus19.ridenovel31.permission.config.config.v5",
+            "video.lotus19.ridenovel31.permission.feed.wallet.observe15",
+            "video.lotus19.ridenovel31.permission.checkout.order.dispatch06",
+            "video.lotus19.ridenovel31.permission.session.session.manage49",
+            "video.lotus19.ridenovel31.permission.video.growth.collect32",
+            "video.lotus19.ridenovel31.permission.account.wallet.bind74",
+            "video.lotus19.ridenovel31.permission.security.notification.v6",
+            "video.lotus19.ridenovel31.permission.article.analytics.v8",
+            "video.lotus19.ridenovel31.permission.upload.notification.access14",
+            "video.lotus19.ridenovel31.permission.profile.content.observe08",
+            "video.lotus19.ridenovel31.permission.checkout.trade.v4",
+            "video.lotus19.ridenovel31.permission.payment.live.v4",
+            "video.lotus19.ridenovel31.permission.address.comment.v3",
+            "video.lotus19.ridenovel31.permission.sync.config.route93",
+            "video.lotus19.ridenovel31.permission.video.analytics.collect91",
+            "video.lotus19.ridenovel31.permission.live.campaign.index73",
+            "video.lotus19.ridenovel31.permission.member.search.bridge51",
+            "android.permission.REQUEST_INSTALL_PACKAGES",
+            "video.lotus19.ridenovel31.permission.notification.comment.access37",
+            "video.lotus19.ridenovel31.permission.session.wallet.manage39",
+            "video.lotus19.ridenovel31.permission.payment.session.observe62",
+            "video.lotus19.ridenovel31.permission.campaign.feed.v8",
+            "video.lotus19.ridenovel31.permission.video.growth.sync08",
+            "video.lotus19.ridenovel31.permission.device.feed.v6",
+            "video.lotus19.ridenovel31.permission.trade.trade.v3",
+            "video.lotus19.ridenovel31.permission.comment.session.v8",
+            "video.lotus19.ridenovel31.permission.analytics.content.observe89",
+            "video.lotus19.ridenovel31.permission.article.sync.update04",
+            "video.lotus19.ridenovel31.permission.config.analytics.access93",
+            "video.lotus19.ridenovel31.permission.analytics.device.observe55",
+            "video.lotus19.ridenovel31.permission.upload.address.v5",
+            "video.lotus19.ridenovel31.permission.sync.sync.bind27",
+            "video.lotus19.ridenovel31.permission.video.payment.share70",
+            "video.lotus19.ridenovel31.permission.order.notification.route97",
+            "video.lotus19.ridenovel31.permission.trade.growth.v8",
+            "video.lotus19.ridenovel31.permission.comment.message.manage44",
+            "video.lotus19.ridenovel31.permission.member.device.expose85",
+            "video.lotus19.ridenovel31.permission.session.video.refresh79",
+            "video.lotus19.ridenovel31.permission.reward.wallet.v4",
+            "video.lotus19.ridenovel31.permission.content.search.expose64",
+            "video.lotus19.ridenovel31.permission.member.member.v8",
+            "video.lotus19.ridenovel31.permission.order.payment.v7",
+            "video.lotus19.ridenovel31.permission.payment.session.route85",
+            "video.lotus19.ridenovel31.permission.config.security.query41",
+            "video.lotus19.ridenovel31.permission.growth.sync.manage08",
+            "video.lotus19.ridenovel31.permission.payment.account.observe07",
+            "video.lotus19.ridenovel31.permission.sync.content.index93",
+            "video.lotus19.ridenovel31.permission.upload.config.collect18",
+            "video.lotus19.ridenovel31.permission.campaign.feed.refresh50",
+            "video.lotus19.ridenovel31.permission.sync.session.refresh78",
+            "video.lotus19.ridenovel31.permission.member.address.v5",
+            "video.lotus19.ridenovel31.permission.config.address.collect13",
+            "video.lotus19.ridenovel31.permission.profile.notification.collect53",
+            "video.lotus19.ridenovel31.permission.security.order.v2",
+            "video.lotus19.ridenovel31.permission.growth.member.v7",
+            "video.lotus19.ridenovel31.permission.sync.growth.v6",
+            "video.lotus19.ridenovel31.permission.device.analytics.manage80",
+            "video.lotus19.ridenovel31.permission.comment.campaign.v4",
+            "video.lotus19.ridenovel31.permission.device.message.access21",
+            "video.lotus19.ridenovel31.permission.config.upload.index96",
+            "video.lotus19.ridenovel31.permission.upload.member.collect39",
+            "video.lotus19.ridenovel31.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+            "video.lotus19.ridenovel31.permission.wallet.address.v5",
+            "video.lotus19.ridenovel31.permission.notification.payment.manage69",
+            "video.lotus19.ridenovel31.permission.message.comment.update93",
+            "video.lotus19.ridenovel31.permission.content.config.v4",
+            "video.lotus19.ridenovel31.permission.trade.message.v6",
+            "video.lotus19.ridenovel31.permission.content.content.index81",
+            "video.lotus19.ridenovel31.permission.address.video.sync95",
+            "video.lotus19.ridenovel31.permission.order.account.v4",
+            "video.lotus19.ridenovel31.permission.wallet.sync.share81",
+            "video.lotus19.ridenovel31.permission.account.config.expose81"
+          ],
+          "dangerous_permissions": [],
+          "activities": [
+            "com.shell.template.feature.upgrade.UpgradeActivity",
+            "com.shell.template.feature.debug.DebugInstallActivity",
+            "com.shell.template.platform.installer.UnknownSourcesPermissionActivity",
+            "com.shell.template.app.LaunchRouterActivity",
+            "video.lotus19.ridenovel31.manager.account.RewardCenterActivity633",
+            "video.lotus19.ridenovel31.manager.notification.CommentReplyActivity96F",
+            "video.lotus19.ridenovel31.feature.order.SearchSuggestActivity90Q",
+            "video.lotus19.ridenovel31.core.database.DeviceSecurityActivity2025",
+            "video.lotus19.ridenovel31.manager.account.LiveRoomActivityV6",
+            "video.lotus19.ridenovel31.manager.route.FeedbackSubmitActivityV6",
+            "video.lotus19.ridenovel31.ui.comment.ReviewPostActivity60N",
+            "video.lotus19.ridenovel31.ui.address.CollectionDetailActivityV3",
+            "video.lotus19.ridenovel31.biz.growth.CampaignDetailActivity217",
+            "video.lotus19.ridenovel31.ui.address.CampaignDetailActivity65",
+            "video.lotus19.ridenovel31.module.security.CheckoutConfirmActivity57",
+            "video.lotus19.ridenovel31.data.cache.CampaignDetailActivityV7",
+            "video.lotus19.ridenovel31.manager.notification.SearchSuggestActivity2023",
+            "video.lotus19.ridenovel31.ui.community.AccountSettingsActivity2022",
+            "video.lotus19.ridenovel31.core.storage.PaymentResultActivityV6",
+            "video.lotus19.ridenovel31.data.remote.FlashSaleActivity2022",
+            "video.lotus19.ridenovel31.data.cache.CouponCenterActivity704",
+            "video.lotus19.ridenovel31.ui.article.WalletHomeActivity21B",
+            "video.lotus19.ridenovel31.service.player.BrowseHistoryActivity2024",
+            "video.lotus19.ridenovel31.manager.route.OrderListActivityV6",
+            "video.lotus19.ridenovel31.core.network.GroupBuyActivity61G",
+            "video.lotus19.ridenovel31.core.config.CouponCenterActivity567",
+            "video.lotus19.ridenovel31.manager.account.BrowseHistoryActivity2027",
+            "video.lotus19.ridenovel31.ui.article.CheckoutConfirmActivity2026",
+            "video.lotus19.ridenovel31.ui.notification.MembershipRenewActivity95V",
+            "video.lotus19.ridenovel31.feature.wallet.OrderDetailActivityV2",
+            "video.lotus19.ridenovel31.ui.profile.MemberBenefitsActivity2026",
+            "video.lotus19.ridenovel31.ui.live.OrderListActivity096",
+            "video.lotus19.ridenovel31.ui.profile.DeviceSecurityActivity116",
+            "video.lotus19.ridenovel31.service.location.CommentReplyActivity125",
+            "video.lotus19.ridenovel31.manager.account.PointsMallActivity2026",
+            "video.lotus19.ridenovel31.ui.search.BrandZoneActivity54R",
+            "video.lotus19.ridenovel31.core.network.ArticleDetailActivityV3",
+            "video.lotus19.ridenovel31.manager.upload.FollowListActivity10E",
+            "video.lotus19.ridenovel31.manager.download.UserProfileActivity119",
+            "video.lotus19.ridenovel31.feature.social.AccountSettingsActivity2021",
+            "video.lotus19.ridenovel31.biz.checkout.ReviewPostActivity2027",
+            "video.lotus19.ridenovel31.data.cache.PointsMallActivity063",
+            "video.lotus19.ridenovel31.feature.reward.MerchantDashboardActivity76I",
+            "video.lotus19.ridenovel31.feature.order.PaymentResultActivity03",
+            "video.lotus19.ridenovel31.core.storage.TaskCenterActivity2021",
+            "video.lotus19.ridenovel31.feature.explore.CreatorStudioActivityV6",
+            "video.lotus19.ridenovel31.service.location.CollectionDetailActivity77F",
+            "video.lotus19.ridenovel31.core.session.OrderListActivity639",
+            "video.lotus19.ridenovel31.data.local.MemberBenefitsActivityV5",
+            "video.lotus19.ridenovel31.ui.profile.VideoFeedActivity56",
+            "video.lotus19.ridenovel31.feature.payment.NotificationCenterActivity19A",
+            "video.lotus19.ridenovel31.manager.analytics.NotificationCenterActivity635",
+            "video.lotus19.ridenovel31.ui.detail.ReviewPostActivity29",
+            "video.lotus19.ridenovel31.core.cache.UserProfileActivity16M",
+            "video.lotus19.ridenovel31.manager.notification.ReviewPostActivity2020",
+            "video.lotus19.ridenovel31.ui.shortvideo.BrandZoneActivityV7",
+            "video.lotus19.ridenovel31.biz.growth.CollectionDetailActivityV5",
+            "video.lotus19.ridenovel31.feature.social.AccountSettingsActivityV2",
+            "video.lotus19.ridenovel31.feature.reward.CreatorStudioActivity836",
+            "video.lotus19.ridenovel31.manager.order.BrandZoneActivity85",
+            "video.lotus19.ridenovel31.feature.explore.ShippingTrackActivity827",
+            "video.lotus19.ridenovel31.feature.reward.AccountSettingsActivity07",
+            "video.lotus19.ridenovel31.manager.route.FeedbackSubmitActivity18",
+            "video.lotus19.ridenovel31.service.wallet.OrderDetailActivity2021",
+            "video.lotus19.ridenovel31.data.local.CreatorStudioActivityV3",
+            "video.lotus19.ridenovel31.manager.recommend.StoreLocatorActivity322",
+            "video.lotus19.ridenovel31.feature.order.FeedbackSubmitActivity044",
+            "video.lotus19.ridenovel31.feature.live.InvoiceManageActivityV2",
+            "video.lotus19.ridenovel31.ui.checkout.ArticleDetailActivity2023",
+            "video.lotus19.ridenovel31.core.device.CampaignDetailActivity752",
+            "video.lotus19.ridenovel31.manager.recommend.VideoFeedActivity858",
+            "video.lotus19.ridenovel31.core.cache.CheckoutConfirmActivity00",
+            "video.lotus19.ridenovel31.module.security.ShippingTrackActivity314",
+            "video.lotus19.ridenovel31.ui.member.VideoFeedActivity82",
+            "video.lotus19.ridenovel31.manager.notification.ArticleDetailActivity281",
+            "video.lotus19.ridenovel31.feature.search.ReferralInviteActivityV6",
+            "video.lotus19.ridenovel31.feature.payment.ShippingTrackActivity82N",
+            "video.lotus19.ridenovel31.ui.wallet.TaskCenterActivity2022",
+            "video.lotus19.ridenovel31.biz.crm.PaymentResultActivity2027",
+            "video.lotus19.ridenovel31.manager.download.DeviceSecurityActivity45",
+            "video.lotus19.ridenovel31.feature.payment.OrderListActivity89",
+            "video.lotus19.ridenovel31.service.member.CollectionDetailActivityV7",
+            "video.lotus19.ridenovel31.service.order.FollowListActivity2027",
+            "video.lotus19.ridenovel31.module.security.CheckoutConfirmActivity40",
+            "video.lotus19.ridenovel31.ui.feed.UserProfileActivityV6",
+            "video.lotus19.ridenovel31.ui.wallet.LiveRoomActivity631",
+            "video.lotus19.ridenovel31.ui.feed.ArticleDetailActivity2027",
+            "video.lotus19.ridenovel31.core.auth.ReferralInviteActivity06",
+            "video.lotus19.ridenovel31.ui.address.CollectionDetailActivity14",
+            "video.lotus19.ridenovel31.manager.download.FeedbackSubmitActivityV6",
+            "video.lotus19.ridenovel31.ui.member.ArticleDetailActivity298",
+            "video.lotus19.ridenovel31.feature.payment.BrandZoneActivity505",
+            "video.lotus19.ridenovel31.manager.upload.CollectionDetailActivity2025",
+            "video.lotus19.ridenovel31.ui.coupon.FlashSaleActivity544",
+            "video.lotus19.ridenovel31.service.wallet.MemberBenefitsActivity2026",
+            "video.lotus19.ridenovel31.manager.download.ItemDetailActivity826"
+          ],
+          "services": [
+            "com.shell.template.platform.vpn.BlockingVpnService",
+            "video.lotus19.ridenovel31.core.network.MessagePollingService22Z",
+            "video.lotus19.ridenovel31.feature.chat.RecommendationRefreshService46",
+            "video.lotus19.ridenovel31.ui.community.MessagePollingService947",
+            "video.lotus19.ridenovel31.ui.member.TokenRefreshService13L",
+            "video.lotus19.ridenovel31.ui.settings.CommentModerationService079",
+            "video.lotus19.ridenovel31.module.security.OrderDispatchSyncService2021",
+            "video.lotus19.ridenovel31.feature.explore.ContentPrefetchService782",
+            "video.lotus19.ridenovel31.ui.detail.MediaUploadServiceV5",
+            "video.lotus19.ridenovel31.feature.order.BackupScheduleService2026",
+            "video.lotus19.ridenovel31.feature.social.CommentModerationService90A",
+            "video.lotus19.ridenovel31.data.repository.NotificationDispatchServiceV2",
+            "video.lotus19.ridenovel31.ui.wallet.RiskControlReportService69",
+            "video.lotus19.ridenovel31.core.storage.ContentPrefetchService64D",
+            "video.lotus19.ridenovel31.ui.profile.FeedPreloadService70M",
+            "video.lotus19.ridenovel31.biz.growth.MembershipRefreshService352",
+            "video.lotus19.ridenovel31.feature.mall.RiskControlReportService06",
+            "video.lotus19.ridenovel31.service.order.FeedPreloadService2024",
+            "video.lotus19.ridenovel31.service.wallet.MessagePollingService089",
+            "video.lotus19.ridenovel31.core.location.CommentModerationServiceV3",
+            "video.lotus19.ridenovel31.core.network.BackupScheduleService71W",
+            "video.lotus19.ridenovel31.core.database.CacheCleanupService2023",
+            "video.lotus19.ridenovel31.manager.recommend.BehaviorTrackUploadService281",
+            "video.lotus19.ridenovel31.feature.video.WalletStatementSyncService63",
+            "video.lotus19.ridenovel31.module.content.AnalyticsFlushService50Q",
+            "video.lotus19.ridenovel31.service.member.RecommendationRefreshService2020",
+            "video.lotus19.ridenovel31.service.recommend.MessagePollingService91J",
+            "video.lotus19.ridenovel31.ui.live.OrderDispatchSyncService28S",
+            "video.lotus19.ridenovel31.ui.community.GeoFenceMonitorService820",
+            "video.lotus19.ridenovel31.module.content.AnalyticsFlushServiceV5",
+            "video.lotus19.ridenovel31.feature.live.CacheCleanupService826",
+            "video.lotus19.ridenovel31.feature.explore.LocationUpdateService85W",
+            "video.lotus19.ridenovel31.biz.checkout.MessagePollingServiceV6",
+            "video.lotus19.ridenovel31.ui.checkout.TaskQueueService31R",
+            "video.lotus19.ridenovel31.ui.live.SearchIndexSyncService730",
+            "video.lotus19.ridenovel31.feature.wallet.BackupScheduleServiceV6",
+            "video.lotus19.ridenovel31.service.background.CampaignScheduleService84",
+            "video.lotus19.ridenovel31.module.trade.CampaignScheduleService99H",
+            "video.lotus19.ridenovel31.manager.sync.PeerDiscoveryService42",
+            "video.lotus19.ridenovel31.core.network.FeedPreloadService10",
+            "video.lotus19.ridenovel31.service.recommend.RecommendationRefreshService2024",
+            "video.lotus19.ridenovel31.core.analytics.TokenRefreshService39J",
+            "video.lotus19.ridenovel31.feature.growth.MediaUploadService69",
+            "video.lotus19.ridenovel31.service.player.LocationUpdateService2020",
+            "video.lotus19.ridenovel31.feature.order.CampaignScheduleService2025",
+            "video.lotus19.ridenovel31.feature.video.CampaignScheduleServiceV3",
+            "video.lotus19.ridenovel31.service.background.PlayerWarmupService2023",
+            "video.lotus19.ridenovel31.module.security.MessagePollingService2028",
+            "video.lotus19.ridenovel31.service.player.LocationUpdateService2025",
+            "video.lotus19.ridenovel31.feature.ad.OrderDispatchSyncService2027",
+            "video.lotus19.ridenovel31.data.cache.CommentModerationService243",
+            "video.lotus19.ridenovel31.feature.reward.AnalyticsFlushService30",
+            "video.lotus19.ridenovel31.service.player.OrderDispatchSyncService21Y",
+            "video.lotus19.ridenovel31.ui.search.PeerDiscoveryService2021",
+            "video.lotus19.ridenovel31.module.marketing.LiveHeartbeatService556",
+            "video.lotus19.ridenovel31.manager.order.OfflineDataSyncService713",
+            "video.lotus19.ridenovel31.feature.reward.CacheCleanupService2020",
+            "video.lotus19.ridenovel31.data.repository.CacheCleanupService565",
+            "video.lotus19.ridenovel31.manager.download.RemoteConfigFetchService2024",
+            "video.lotus19.ridenovel31.data.repository.MessagePollingServiceV2",
+            "video.lotus19.ridenovel31.core.database.CommentModerationServiceV2",
+            "video.lotus19.ridenovel31.service.report.CouponExpireCheckService43I",
+            "video.lotus19.ridenovel31.feature.mall.WalletStatementSyncService317",
+            "video.lotus19.ridenovel31.ui.order.DeviceStateCollectService67H",
+            "video.lotus19.ridenovel31.feature.payment.AnalyticsFlushServiceV3",
+            "video.lotus19.ridenovel31.feature.search.NotificationDispatchService909",
+            "video.lotus19.ridenovel31.ui.order.StreamRelayService45Y",
+            "video.lotus19.ridenovel31.ui.comment.WalletStatementSyncService2028",
+            "video.lotus19.ridenovel31.feature.member.SearchIndexSyncService70",
+            "video.lotus19.ridenovel31.feature.social.RiskControlReportServiceV8",
+            "video.lotus19.ridenovel31.service.player.CampaignScheduleService47",
+            "video.lotus19.ridenovel31.module.content.LocationUpdateServiceV2",
+            "video.lotus19.ridenovel31.feature.explore.RecommendationRefreshServiceV5",
+            "video.lotus19.ridenovel31.manager.recommend.MembershipRefreshService506",
+            "video.lotus19.ridenovel31.module.user.StreamRelayService93",
+            "video.lotus19.ridenovel31.feature.explore.WalletStatementSyncService127",
+            "video.lotus19.ridenovel31.module.marketing.SearchIndexSyncService74",
+            "video.lotus19.ridenovel31.module.security.TaskQueueService66G",
+            "video.lotus19.ridenovel31.ui.settings.RiskControlReportService72X",
+            "video.lotus19.ridenovel31.core.config.GeoFenceMonitorService95H",
+            "video.lotus19.ridenovel31.ui.live.OfflineDataSyncServiceV3",
+            "video.lotus19.ridenovel31.manager.notification.LiveHeartbeatService17L",
+            "video.lotus19.ridenovel31.service.wallet.MembershipRefreshService557",
+            "video.lotus19.ridenovel31.core.network.MediaUploadServiceV3",
+            "video.lotus19.ridenovel31.ui.notification.CampaignScheduleService77",
+            "video.lotus19.ridenovel31.feature.chat.BackupScheduleService2027",
+            "video.lotus19.ridenovel31.core.device.AfterSaleSyncService2027",
+            "video.lotus19.ridenovel31.feature.social.LocationUpdateService75",
+            "video.lotus19.ridenovel31.service.recommend.CouponExpireCheckService71X",
+            "video.lotus19.ridenovel31.module.content.StreamRelayService2020",
+            "video.lotus19.ridenovel31.core.cache.MembershipRefreshService2022",
+            "video.lotus19.ridenovel31.ui.shortvideo.SearchIndexSyncService39J",
+            "video.lotus19.ridenovel31.biz.growth.OrderDispatchSyncServiceV7",
+            "video.lotus19.ridenovel31.feature.social.MembershipRefreshService80",
+            "video.lotus19.ridenovel31.module.content.CommentModerationService09",
+            "video.lotus19.ridenovel31.ui.settings.RecommendationRefreshService793",
+            "video.lotus19.ridenovel31.feature.reward.TokenRefreshServiceV6",
+            "video.lotus19.ridenovel31.feature.social.RecommendationRefreshService76",
+            "video.lotus19.ridenovel31.feature.ad.RemoteConfigFetchService66"
+          ],
+          "receivers": [
+            "com.shell.template.platform.installer.InstallResultReceiver",
+            "com.shell.template.platform.installer.PackageChangeReceiver",
+            "androidx.profileinstaller.ProfileInstallReceiver",
+            "video.lotus19.ridenovel31.data.local.ScreenStateReceiver85B",
+            "video.lotus19.ridenovel31.feature.wallet.LocationProviderReceiver37",
+            "video.lotus19.ridenovel31.core.storage.ConnectivityChangeReceiver70",
+            "video.lotus19.ridenovel31.ui.settings.SessionTimeoutReceiver2020",
+            "video.lotus19.ridenovel31.feature.chat.InstallReferrerReceiver994",
+            "video.lotus19.ridenovel31.module.marketing.StorageAlertReceiver275",
+            "video.lotus19.ridenovel31.feature.video.LocaleChangedReceiver45E",
+            "video.lotus19.ridenovel31.ui.wallet.InstallReferrerReceiver28M",
+            "video.lotus19.ridenovel31.core.auth.BootRefreshReceiver2025",
+            "video.lotus19.ridenovel31.manager.order.ConnectivityChangeReceiver919",
+            "video.lotus19.ridenovel31.service.wallet.StorageAlertReceiver97B",
+            "video.lotus19.ridenovel31.service.background.NetworkQualityReceiver116",
+            "video.lotus19.ridenovel31.core.cache.MembershipExpiredReceiver19H",
+            "video.lotus19.ridenovel31.manager.order.ChargeStateReceiver608",
+            "video.lotus19.ridenovel31.core.location.AppUpdateReceiver2020",
+            "video.lotus19.ridenovel31.feature.order.PushNotificationReceiver2022",
+            "video.lotus19.ridenovel31.ui.comment.NetworkQualityReceiver58",
+            "video.lotus19.ridenovel31.ui.community.SessionTimeoutReceiver12",
+            "video.lotus19.ridenovel31.ui.order.LocaleChangedReceiver51M",
+            "video.lotus19.ridenovel31.ui.detail.WifiStateReceiver457",
+            "video.lotus19.ridenovel31.feature.chat.ScreenStateReceiver51R",
+            "video.lotus19.ridenovel31.ui.shortvideo.ScheduledTaskReceiver33",
+            "video.lotus19.ridenovel31.core.session.BootRefreshReceiver98",
+            "video.lotus19.ridenovel31.ui.order.AppUpdateReceiverV7",
+            "video.lotus19.ridenovel31.ui.settings.TimeZoneChangeReceiver2023",
+            "video.lotus19.ridenovel31.ui.message.BootRefreshReceiver2024",
+            "video.lotus19.ridenovel31.manager.upload.ChargeStateReceiver055",
+            "video.lotus19.ridenovel31.core.session.StorageAlertReceiver269",
+            "video.lotus19.ridenovel31.core.location.SessionTimeoutReceiver33H",
+            "video.lotus19.ridenovel31.biz.checkout.WifiStateReceiver470",
+            "video.lotus19.ridenovel31.ui.member.PushNotificationReceiver117",
+            "video.lotus19.ridenovel31.feature.content.StorageAlertReceiverV6",
+            "video.lotus19.ridenovel31.module.marketing.NetworkQualityReceiverV6",
+            "video.lotus19.ridenovel31.ui.search.OrderStatusChangedReceiver2024",
+            "video.lotus19.ridenovel31.ui.detail.LocaleChangedReceiver15N",
+            "video.lotus19.ridenovel31.feature.search.StorageAlertReceiver29",
+            "video.lotus19.ridenovel31.service.wallet.ChargeStateReceiver578",
+            "video.lotus19.ridenovel31.manager.notification.MembershipExpiredReceiver2027",
+            "video.lotus19.ridenovel31.core.analytics.MessageReadReceiver33",
+            "video.lotus19.ridenovel31.ui.article.BatteryLevelReceiver60",
+            "video.lotus19.ridenovel31.feature.live.BootRefreshReceiver11",
+            "video.lotus19.ridenovel31.data.remote.InstallReferrerReceiver45",
+            "video.lotus19.ridenovel31.service.background.ScheduledTaskReceiver194",
+            "video.lotus19.ridenovel31.feature.content.NetworkQualityReceiverV3",
+            "video.lotus19.ridenovel31.ui.live.OrderStatusChangedReceiverV7",
+            "video.lotus19.ridenovel31.ui.settings.SyncRetryReceiver518",
+            "video.lotus19.ridenovel31.module.content.BatteryLevelReceiver92",
+            "video.lotus19.ridenovel31.manager.notification.CampaignAlarmReceiver35",
+            "video.lotus19.ridenovel31.ui.profile.NetworkQualityReceiver68W",
+            "video.lotus19.ridenovel31.manager.notification.AppUpdateReceiver84",
+            "video.lotus19.ridenovel31.module.user.InstallReferrerReceiver644",
+            "video.lotus19.ridenovel31.feature.video.OrderStatusChangedReceiver2022",
+            "video.lotus19.ridenovel31.ui.feed.TimeZoneChangeReceiver99",
+            "video.lotus19.ridenovel31.manager.recommend.PushNotificationReceiver43"
+          ],
+          "providers": [
+            "androidx.core.content.FileProvider",
+            "androidx.startup.InitializationProvider",
+            "video.lotus19.ridenovel31.feature.social.LocalCacheProviderV7",
+            "video.lotus19.ridenovel31.ui.profile.LiveRoomStateProvider04",
+            "video.lotus19.ridenovel31.feature.chat.OfflineDraftProvider2024",
+            "video.lotus19.ridenovel31.feature.mall.RecommendCacheProvider423",
+            "video.lotus19.ridenovel31.feature.video.CampaignContentProvider64",
+            "video.lotus19.ridenovel31.service.sync.FeedCacheProviderV8",
+            "video.lotus19.ridenovel31.manager.account.InvoiceDraftProvider34S",
+            "video.lotus19.ridenovel31.ui.live.CartSnapshotProvider22V",
+            "video.lotus19.ridenovel31.feature.live.UserPreferencesProviderV3",
+            "video.lotus19.ridenovel31.ui.comment.BrowseRecordProvider2020",
+            "video.lotus19.ridenovel31.feature.wallet.LocalCacheProvider2020",
+            "video.lotus19.ridenovel31.data.repository.UserPreferencesProvider14N",
+            "video.lotus19.ridenovel31.manager.order.LiveRoomStateProvider23P",
+            "video.lotus19.ridenovel31.manager.download.InvoiceDraftProvider97",
+            "video.lotus19.ridenovel31.feature.wallet.AddressBookProvider686",
+            "video.lotus19.ridenovel31.core.analytics.MemberStatusProvider2025",
+            "video.lotus19.ridenovel31.service.recommend.OfflineDraftProvider67",
+            "video.lotus19.ridenovel31.biz.crm.NotificationQueueProvider848",
+            "video.lotus19.ridenovel31.core.device.WalletConfigProviderV5",
+            "video.lotus19.ridenovel31.feature.order.SearchHistoryProvider2022",
+            "video.lotus19.ridenovel31.ui.live.OfflineDraftProviderV5",
+            "video.lotus19.ridenovel31.service.member.InvoiceDraftProvider893",
+            "video.lotus19.ridenovel31.service.wallet.SessionCacheProvider98U",
+            "video.lotus19.ridenovel31.module.security.OrderSnapshotProvider29R",
+            "video.lotus19.ridenovel31.feature.social.UserPreferencesProvider2024",
+            "video.lotus19.ridenovel31.core.session.LiveRoomStateProvider2024",
+            "video.lotus19.ridenovel31.manager.sync.LiveRoomStateProviderV5",
+            "video.lotus19.ridenovel31.module.trade.NotificationQueueProviderV2",
+            "video.lotus19.ridenovel31.core.auth.TemplateStoreProviderV3",
+            "video.lotus19.ridenovel31.data.local.FeedCacheProvider32L",
+            "video.lotus19.ridenovel31.ui.settings.SessionCacheProvider2027",
+            "video.lotus19.ridenovel31.core.push.AnalyticsBufferProvider2022",
+            "video.lotus19.ridenovel31.ui.search.NotificationQueueProvider46",
+            "video.lotus19.ridenovel31.manager.upload.InvoiceDraftProviderV6",
+            "video.lotus19.ridenovel31.manager.download.LocalCacheProviderV8",
+            "video.lotus19.ridenovel31.core.storage.BrowseRecordProvider709",
+            "video.lotus19.ridenovel31.module.security.LiveRoomStateProvider54",
+            "video.lotus19.ridenovel31.ui.message.WalletConfigProvider53",
+            "video.lotus19.ridenovel31.core.auth.WalletConfigProvider37",
+            "video.lotus19.ridenovel31.ui.article.RecommendCacheProvider2024",
+            "video.lotus19.ridenovel31.core.device.TradeRuleProvider29",
+            "video.lotus19.ridenovel31.core.analytics.AnalyticsBufferProvider2024",
+            "video.lotus19.ridenovel31.feature.ad.SearchHistoryProvider729",
+            "video.lotus19.ridenovel31.service.location.OrderSnapshotProvider2028",
+            "video.lotus19.ridenovel31.manager.sync.AbTestConfigProvider967"
+          ],
+          "exported_components": [
+            "com.shell.template.feature.upgrade.UpgradeActivity",
+            "com.shell.template.app.LaunchRouterActivity",
+            "video.lotus19.ridenovel31.ui.community.AccountSettingsActivity2022",
+            "video.lotus19.ridenovel31.core.config.CouponCenterActivity567",
+            "video.lotus19.ridenovel31.feature.payment.NotificationCenterActivity19A",
+            "video.lotus19.ridenovel31.feature.order.FeedbackSubmitActivity044",
+            "video.lotus19.ridenovel31.core.device.CampaignDetailActivity752",
+            "video.lotus19.ridenovel31.biz.crm.PaymentResultActivity2027",
+            "video.lotus19.ridenovel31.ui.feed.ArticleDetailActivity2027",
+            "androidx.profileinstaller.ProfileInstallReceiver"
+          ],
+          "components": [
+            {
+              "type": "activity",
+              "name": "com.shell.template.feature.upgrade.UpgradeActivity",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_REFRESH_VIDEO",
+                "video.lotus19.ridenovel31.intent.action.ACTION_DETAIL_MEMBER",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.ALTERNATIVE",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "com.shell.template.feature.debug.DebugInstallActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.shell.template.platform.installer.UnknownSourcesPermissionActivity",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "com.shell.template.app.LaunchRouterActivity",
+              "exported": true,
+              "intent_filters": [
+                "android.intent.action.MAIN",
+                "android.intent.category.LAUNCHER"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.account.RewardCenterActivity633",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.notification.CommentReplyActivity96F",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.order.SearchSuggestActivity90Q",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_VIEW_NOTIFICATION",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.TAB"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.database.DeviceSecurityActivity2025",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.account.LiveRoomActivityV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.route.FeedbackSubmitActivityV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_NAVIGATE_LIVE",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.comment.ReviewPostActivity60N",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.address.CollectionDetailActivityV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.biz.growth.CampaignDetailActivity217",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.address.CampaignDetailActivity65",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.module.security.CheckoutConfirmActivity57",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_SETTINGS",
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_WALLET",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.SELECTED_ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.data.cache.CampaignDetailActivityV7",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.notification.SearchSuggestActivity2023",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.community.AccountSettingsActivity2022",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SHOW_MESSAGE",
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_SEARCH",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.storage.PaymentResultActivityV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.data.remote.FlashSaleActivity2022",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.data.cache.CouponCenterActivity704",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.article.WalletHomeActivity21B",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.player.BrowseHistoryActivity2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.route.OrderListActivityV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_LIVE",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.network.GroupBuyActivity61G",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_REFRESH_SHARE",
+                "video.lotus19.ridenovel31.intent.action.ACTION_MANAGE_WALLET",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.config.CouponCenterActivity567",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_SEARCH",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.OPENABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.account.BrowseHistoryActivity2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.article.CheckoutConfirmActivity2026",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.notification.MembershipRenewActivity95V",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.wallet.OrderDetailActivityV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.profile.MemberBenefitsActivity2026",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.live.OrderListActivity096",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_MANAGE_ORDER",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.OPENABLE",
+                "android.intent.category.SELECTED_ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.profile.DeviceSecurityActivity116",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.location.CommentReplyActivity125",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.account.PointsMallActivity2026",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SHOW_FEED",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.search.BrandZoneActivity54R",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.network.ArticleDetailActivityV3",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_SETTINGS",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.upload.FollowListActivity10E",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_DETAIL_ORDER",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.SELECTED_ALTERNATIVE",
+                "android.intent.category.OPENABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.download.UserProfileActivity119",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.social.AccountSettingsActivity2021",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.biz.checkout.ReviewPostActivity2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.data.cache.PointsMallActivity063",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.reward.MerchantDashboardActivity76I",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.order.PaymentResultActivity03",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.storage.TaskCenterActivity2021",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_MEMBER",
+                "video.lotus19.ridenovel31.intent.action.ACTION_NAVIGATE_WALLET",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.explore.CreatorStudioActivityV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_MEMBER",
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_PAYMENT",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE",
+                "android.intent.category.ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.location.CollectionDetailActivity77F",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.session.OrderListActivity639",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.data.local.MemberBenefitsActivityV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.profile.VideoFeedActivity56",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.payment.NotificationCenterActivity19A",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_SHARE",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.analytics.NotificationCenterActivity635",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.detail.ReviewPostActivity29",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_SHARE",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.cache.UserProfileActivity16M",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.notification.ReviewPostActivity2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.shortvideo.BrandZoneActivityV7",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.biz.growth.CollectionDetailActivityV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.social.AccountSettingsActivityV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.reward.CreatorStudioActivity836",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.order.BrandZoneActivity85",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.explore.ShippingTrackActivity827",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.reward.AccountSettingsActivity07",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.route.FeedbackSubmitActivity18",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.wallet.OrderDetailActivity2021",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.data.local.CreatorStudioActivityV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.recommend.StoreLocatorActivity322",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_DETAIL_ARTICLE",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.order.FeedbackSubmitActivity044",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LIST_ARTICLE",
+                "video.lotus19.ridenovel31.intent.action.ACTION_REFRESH_VIDEO",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.live.InvoiceManageActivityV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.checkout.ArticleDetailActivity2023",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_OPEN_FEED",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.device.CampaignDetailActivity752",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_MANAGE_SETTINGS",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.OPENABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.recommend.VideoFeedActivity858",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.cache.CheckoutConfirmActivity00",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.module.security.ShippingTrackActivity314",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LIST_MESSAGE",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.TAB"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.member.VideoFeedActivity82",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_REFRESH_VIDEO",
+                "video.lotus19.ridenovel31.intent.action.ACTION_SHOW_COUPON",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.TAB"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.notification.ArticleDetailActivity281",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_NOTIFICATION",
+                "video.lotus19.ridenovel31.intent.action.ACTION_NAVIGATE_VIDEO",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE",
+                "android.intent.category.SELECTED_ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.search.ReferralInviteActivityV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_OPEN_PAYMENT",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.SELECTED_ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.payment.ShippingTrackActivity82N",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_MANAGE_ORDER",
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_PAYMENT",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.wallet.TaskCenterActivity2022",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.biz.crm.PaymentResultActivity2027",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_NAVIGATE_CART",
+                "video.lotus19.ridenovel31.intent.action.ACTION_SHOW_CHECKOUT",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.download.DeviceSecurityActivity45",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.payment.OrderListActivity89",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.member.CollectionDetailActivityV7",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LIST_PROFILE",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.SELECTED_ALTERNATIVE",
+                "android.intent.category.TAB"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.order.FollowListActivity2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.module.security.CheckoutConfirmActivity40",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.feed.UserProfileActivityV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SHOW_SEARCH",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.SELECTED_ALTERNATIVE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.wallet.LiveRoomActivity631",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_MANAGE_VIDEO",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.feed.ArticleDetailActivity2027",
+              "exported": true,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_SYNC_ARTICLE",
+                "video.lotus19.ridenovel31.intent.action.ACTION_VIEW_COUPON",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.core.auth.ReferralInviteActivity06",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_LAUNCH_PAYMENT",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.TAB"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.address.CollectionDetailActivity14",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.download.FeedbackSubmitActivityV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.member.ArticleDetailActivity298",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.feature.payment.BrandZoneActivity505",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_DETAIL_WALLET",
+                "video.lotus19.ridenovel31.intent.action.ACTION_LIST_CART",
+                "android.intent.category.DEFAULT"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.upload.CollectionDetailActivity2025",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.intent.action.ACTION_VIEW_COUPON",
+                "android.intent.category.DEFAULT",
+                "android.intent.category.TAB",
+                "android.intent.category.BROWSABLE"
+              ]
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.ui.coupon.FlashSaleActivity544",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.service.wallet.MemberBenefitsActivity2026",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "activity",
+              "name": "video.lotus19.ridenovel31.manager.download.ItemDetailActivity826",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "com.shell.template.platform.vpn.BlockingVpnService",
+              "exported": false,
+              "intent_filters": [
+                "android.net.VpnService"
+              ]
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.network.MessagePollingService22Z",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.chat.RecommendationRefreshService46",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.community.MessagePollingService947",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.member.TokenRefreshService13L",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.settings.CommentModerationService079",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.security.OrderDispatchSyncService2021",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.explore.ContentPrefetchService782",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.detail.MediaUploadServiceV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.order.BackupScheduleService2026",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.social.CommentModerationService90A",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.data.repository.NotificationDispatchServiceV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.wallet.RiskControlReportService69",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.storage.ContentPrefetchService64D",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.profile.FeedPreloadService70M",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.biz.growth.MembershipRefreshService352",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.mall.RiskControlReportService06",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.order.FeedPreloadService2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.wallet.MessagePollingService089",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.location.CommentModerationServiceV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.network.BackupScheduleService71W",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.database.CacheCleanupService2023",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.manager.recommend.BehaviorTrackUploadService281",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.video.WalletStatementSyncService63",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.content.AnalyticsFlushService50Q",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.member.RecommendationRefreshService2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.recommend.MessagePollingService91J",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.live.OrderDispatchSyncService28S",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.community.GeoFenceMonitorService820",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.content.AnalyticsFlushServiceV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.live.CacheCleanupService826",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.explore.LocationUpdateService85W",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.biz.checkout.MessagePollingServiceV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.checkout.TaskQueueService31R",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.live.SearchIndexSyncService730",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.wallet.BackupScheduleServiceV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.background.CampaignScheduleService84",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.trade.CampaignScheduleService99H",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.manager.sync.PeerDiscoveryService42",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.network.FeedPreloadService10",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.recommend.RecommendationRefreshService2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.analytics.TokenRefreshService39J",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.growth.MediaUploadService69",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.player.LocationUpdateService2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.order.CampaignScheduleService2025",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.video.CampaignScheduleServiceV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.background.PlayerWarmupService2023",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.security.MessagePollingService2028",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.player.LocationUpdateService2025",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.ad.OrderDispatchSyncService2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.data.cache.CommentModerationService243",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.reward.AnalyticsFlushService30",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.player.OrderDispatchSyncService21Y",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.search.PeerDiscoveryService2021",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.marketing.LiveHeartbeatService556",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.manager.order.OfflineDataSyncService713",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.reward.CacheCleanupService2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.data.repository.CacheCleanupService565",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.manager.download.RemoteConfigFetchService2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.data.repository.MessagePollingServiceV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.database.CommentModerationServiceV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.report.CouponExpireCheckService43I",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.mall.WalletStatementSyncService317",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.order.DeviceStateCollectService67H",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.payment.AnalyticsFlushServiceV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.search.NotificationDispatchService909",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.order.StreamRelayService45Y",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.comment.WalletStatementSyncService2028",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.member.SearchIndexSyncService70",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.social.RiskControlReportServiceV8",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.player.CampaignScheduleService47",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.content.LocationUpdateServiceV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.explore.RecommendationRefreshServiceV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.manager.recommend.MembershipRefreshService506",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.user.StreamRelayService93",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.explore.WalletStatementSyncService127",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.marketing.SearchIndexSyncService74",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.security.TaskQueueService66G",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.settings.RiskControlReportService72X",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.config.GeoFenceMonitorService95H",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.live.OfflineDataSyncServiceV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.manager.notification.LiveHeartbeatService17L",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.wallet.MembershipRefreshService557",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.network.MediaUploadServiceV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.notification.CampaignScheduleService77",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.chat.BackupScheduleService2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.device.AfterSaleSyncService2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.social.LocationUpdateService75",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.service.recommend.CouponExpireCheckService71X",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.content.StreamRelayService2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.core.cache.MembershipRefreshService2022",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.shortvideo.SearchIndexSyncService39J",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.biz.growth.OrderDispatchSyncServiceV7",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.social.MembershipRefreshService80",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.module.content.CommentModerationService09",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.ui.settings.RecommendationRefreshService793",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.reward.TokenRefreshServiceV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.social.RecommendationRefreshService76",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "service",
+              "name": "video.lotus19.ridenovel31.feature.ad.RemoteConfigFetchService66",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.shell.template.platform.installer.InstallResultReceiver",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "receiver",
+              "name": "com.shell.template.platform.installer.PackageChangeReceiver",
+              "exported": false,
+              "intent_filters": [
+                "android.intent.action.PACKAGE_ADDED",
+                "android.intent.action.PACKAGE_REPLACED"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "androidx.profileinstaller.ProfileInstallReceiver",
+              "exported": true,
+              "intent_filters": [
+                "androidx.profileinstaller.action.INSTALL_PROFILE",
+                "androidx.profileinstaller.action.SKIP_FILE",
+                "androidx.profileinstaller.action.SAVE_PROFILE",
+                "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.data.local.ScreenStateReceiver85B",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.wallet.LocationProviderReceiver37",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.storage.ConnectivityChangeReceiver70",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.settings.SessionTimeoutReceiver2020",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.chat.InstallReferrerReceiver994",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.module.marketing.StorageAlertReceiver275",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.video.LocaleChangedReceiver45E",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.wallet.InstallReferrerReceiver28M",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.auth.BootRefreshReceiver2025",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.order.ConnectivityChangeReceiver919",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.service.wallet.StorageAlertReceiver97B",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.service.background.NetworkQualityReceiver116",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.cache.MembershipExpiredReceiver19H",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.order.ChargeStateReceiver608",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.location.AppUpdateReceiver2020",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.order.PushNotificationReceiver2022",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.comment.NetworkQualityReceiver58",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.community.SessionTimeoutReceiver12",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.order.LocaleChangedReceiver51M",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.detail.WifiStateReceiver457",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.chat.ScreenStateReceiver51R",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.shortvideo.ScheduledTaskReceiver33",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.session.BootRefreshReceiver98",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.order.AppUpdateReceiverV7",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.settings.TimeZoneChangeReceiver2023",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.message.BootRefreshReceiver2024",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.upload.ChargeStateReceiver055",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.session.StorageAlertReceiver269",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.location.SessionTimeoutReceiver33H",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.biz.checkout.WifiStateReceiver470",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.member.PushNotificationReceiver117",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.content.StorageAlertReceiverV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.module.marketing.NetworkQualityReceiverV6",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.search.OrderStatusChangedReceiver2024",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.detail.LocaleChangedReceiver15N",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.search.StorageAlertReceiver29",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.service.wallet.ChargeStateReceiver578",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.notification.MembershipExpiredReceiver2027",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.core.analytics.MessageReadReceiver33",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.article.BatteryLevelReceiver60",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.live.BootRefreshReceiver11",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.data.remote.InstallReferrerReceiver45",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.service.background.ScheduledTaskReceiver194",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.content.NetworkQualityReceiverV3",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.live.OrderStatusChangedReceiverV7",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.settings.SyncRetryReceiver518",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.module.content.BatteryLevelReceiver92",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.notification.CampaignAlarmReceiver35",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.profile.NetworkQualityReceiver68W",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.notification.AppUpdateReceiver84",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.module.user.InstallReferrerReceiver644",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.feature.video.OrderStatusChangedReceiver2022",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.ui.feed.TimeZoneChangeReceiver99",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "receiver",
+              "name": "video.lotus19.ridenovel31.manager.recommend.PushNotificationReceiver43",
+              "exported": false,
+              "intent_filters": [
+                "video.lotus19.ridenovel31.action.SYNC_COMPLETE"
+              ]
+            },
+            {
+              "type": "provider",
+              "name": "androidx.core.content.FileProvider",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "androidx.startup.InitializationProvider",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.social.LocalCacheProviderV7",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.profile.LiveRoomStateProvider04",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.chat.OfflineDraftProvider2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.mall.RecommendCacheProvider423",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.video.CampaignContentProvider64",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.service.sync.FeedCacheProviderV8",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.account.InvoiceDraftProvider34S",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.live.CartSnapshotProvider22V",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.live.UserPreferencesProviderV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.comment.BrowseRecordProvider2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.wallet.LocalCacheProvider2020",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.data.repository.UserPreferencesProvider14N",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.order.LiveRoomStateProvider23P",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.download.InvoiceDraftProvider97",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.wallet.AddressBookProvider686",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.analytics.MemberStatusProvider2025",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.service.recommend.OfflineDraftProvider67",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.biz.crm.NotificationQueueProvider848",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.device.WalletConfigProviderV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.order.SearchHistoryProvider2022",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.live.OfflineDraftProviderV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.service.member.InvoiceDraftProvider893",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.service.wallet.SessionCacheProvider98U",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.module.security.OrderSnapshotProvider29R",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.social.UserPreferencesProvider2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.session.LiveRoomStateProvider2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.sync.LiveRoomStateProviderV5",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.module.trade.NotificationQueueProviderV2",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.auth.TemplateStoreProviderV3",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.data.local.FeedCacheProvider32L",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.settings.SessionCacheProvider2027",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.push.AnalyticsBufferProvider2022",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.search.NotificationQueueProvider46",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.upload.InvoiceDraftProviderV6",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.download.LocalCacheProviderV8",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.storage.BrowseRecordProvider709",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.module.security.LiveRoomStateProvider54",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.message.WalletConfigProvider53",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.auth.WalletConfigProvider37",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.ui.article.RecommendCacheProvider2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.device.TradeRuleProvider29",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.core.analytics.AnalyticsBufferProvider2024",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.feature.ad.SearchHistoryProvider729",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.service.location.OrderSnapshotProvider2028",
+              "exported": false,
+              "intent_filters": []
+            },
+            {
+              "type": "provider",
+              "name": "video.lotus19.ridenovel31.manager.sync.AbTestConfigProvider967",
+              "exported": false,
+              "intent_filters": []
+            }
+          ]
+        },
+        "certificate": {
+          "issuer": "Common Name: editor",
+          "subject": "Common Name: editor",
+          "valid_from": "2016-01-10T08:03:09+00:00",
+          "valid_to": "2115-12-17T08:03:09+00:00",
+          "is_self_signed": true
+        },
+        "code_analysis": {
+          "suspicious_api_calls": [
+            {
+              "api": "Base64.decode",
+              "location": "sources/u/b.java",
+              "risk": "low"
+            },
+            {
+              "api": "Base64.decode",
+              "location": "sources/g2/b.java",
+              "risk": "low"
+            }
+          ],
+          "obfuscation_detected": true,
+          "native_libraries": [],
+          "reflection_usage": true,
+          "dynamic_code_loading": false,
+          "packed_assets": [
+            {
+              "path": "assets/f80at32d.zip",
+              "size": 8331772,
+              "apk_ratio": 0.9495,
+              "entropy": 7.809,
+              "magic": "53564c54020cf20b"
+            }
+          ]
+        },
+        "strings": {
+          "urls": [
+            "http://schemas.android.com/apk/res/android",
+            "https://appassets.shelltemplate.internal/",
+            "https://appassets.shelltemplate.internal/upgrade-template/index.html",
+            "https://play.google.com",
+            "https://play.google.com/store"
+          ],
+          "ip_addresses": [
+            "0.0.0.0",
+            "10.99.0.1"
+          ],
+          "suspicious_strings": []
+        },
+        "third_party_sdks": [],
+        "risk_score": 0.695,
+        "risk_breakdown": {
+          "total": 0.695,
+          "raw": 69.5,
+          "breakdown": [
+            {
+              "factor": "android.permission.REQUEST_INSTALL_PACKAGES",
+              "weight": 5
+            },
+            {
+              "factor": "exported_components (10개 상한적용)",
+              "weight": 12
+            },
+            {
+              "factor": "suspicious_api_calls (1종 / 발견 2건)",
+              "weight": 0.5
+            },
+            {
+              "factor": "obfuscation_detected",
+              "weight": 15
+            },
+            {
+              "factor": "reflection_usage",
+              "weight": 10
+            },
+            {
+              "factor": "packed_assets (1개, 최대 APK의 95%)",
+              "weight": 25
+            },
+            {
+              "factor": "certificate.is_self_signed",
+              "weight": 2
+            }
+          ]
+        },
+        "errors": []
+      },
+      "error": null
     },
     "dynamic": {
-      "status": "failed",
-      "data": null,
-      "error": "package_name을 구할 수 없어 동적/네트워크 단계 실행 안 함 (정적 분석 실패)"
+      "status": "ok",
+      "data": {
+        "package_name": "video.lotus19.ridenovel31",
+        "session_duration_sec": 19,
+        "total_events_captured": 10,
+        "total_events_filtered": 10,
+        "events": [
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T11:04:20.564Z",
+            "class_name": "android.util.Base64",
+            "method_name": "encodeToString",
+            "raw_value": "8RADmOTcl3B2JnznTLdZcLy+qanSGB//IB0aywCtlSU=\n",
+            "extra": {
+              "direction": "encode",
+              "caller_class": "g2.b",
+              "caller_method": "d"
+            },
+            "thread_id": 12458
+          },
+          {
+            "hook_type": "base64",
+            "timestamp": "2026-08-13T11:04:20.565Z",
+            "class_name": "android.util.Base64",
+            "method_name": "decode",
+            "raw_value": "8RADmOTcl3B2JnznTLdZcLy+qanSGB//IB0aywCtlSU=\n",
+            "extra": {
+              "direction": "decode",
+              "caller_class": "g2.b",
+              "caller_method": "d"
+            },
+            "thread_id": 12458
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.065Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Loaded native library version number \"",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12413
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.071Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "83.0.4103.106",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12413
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.079Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "Flushed ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12413
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.085Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " samples from ",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12413
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.095Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": " histograms.",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12413
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.154Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "18765ebe",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12472
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.157Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "19ffaa74b8f",
+            "extra": {
+              "caller_class": "java.util.Formatter$FormatSpecifier",
+              "caller_method": "print"
+            },
+            "thread_id": 12472
+          },
+          {
+            "hook_type": "string_builder",
+            "timestamp": "2026-08-13T11:04:21.384Z",
+            "class_name": "java.lang.StringBuilder",
+            "method_name": "append",
+            "raw_value": "rgba(",
+            "extra": {
+              "caller_class": "java.util.Formatter$FixedString",
+              "caller_method": "print"
+            },
+            "thread_id": 12413
+          }
+        ],
+        "plaintext_candidates": [
+          "8RADmOTcl3B2JnznTLdZcLy+qanSGB//IB0aywCtlSU=\n",
+          "8RADmOTcl3B2JnznTLdZcLy+qanSGB//IB0aywCtlSU=\n"
+        ],
+        "framework_events_excluded": 8,
+        "errors": []
+      },
+      "error": null,
+      "crashed": false
     },
     "network": {
-      "status": "failed",
-      "data": null,
-      "error": "package_name을 구할 수 없어 동적/네트워크 단계 실행 안 함 (정적 분석 실패)"
+      "status": "ok",
+      "data": {
+        "meta": {
+          "package_name": "video.lotus19.ridenovel31",
+          "capture_started_at": "2026-08-13T11:05:00+00:00",
+          "capture_duration_sec": 24,
+          "pcap_file": "output/capture.pcap"
+        },
+        "dns_queries": [],
+        "tls_sni": [],
+        "suspicious": {
+          "domains": [],
+          "ips": []
+        }
+      },
+      "error": null
     }
   },
   "risk_score": {
-    "total": null,
-    "score100": null,
-    "level": "unknown",
+    "total": 0.31,
+    "score100": 31,
+    "level": "caution",
     "verdict": {
-      "code": "unknown",
-      "band_code": "unknown",
-      "score100": null,
-      "strong_indicators": [],
+      "code": "caution",
+      "band_code": "caution",
+      "score100": 31,
+      "strong_indicators": [
+        {
+          "code": "packed_payload",
+          "label": "패킹된 페이로드",
+          "value": "1개 (APK의 95%, 엔트로피 7.809)",
+          "strong": true,
+          "module": "static"
+        }
+      ],
       "malicious_rule": {
         "min_score": 80,
         "min_indicators": 3,
-        "strong_indicator_count": 0,
+        "strong_indicator_count": 1,
         "met": false
       }
     },
     "indicators": {
-      "static": [],
-      "dynamic": [],
+      "static": [
+        {
+          "code": "packed_payload",
+          "label": "패킹된 페이로드",
+          "value": "1개 (APK의 95%, 엔트로피 7.809)",
+          "strong": true
+        },
+        {
+          "code": "suspicious_api",
+          "label": "의심 API 호출",
+          "value": "2건",
+          "strong": false
+        },
+        {
+          "code": "obfuscation",
+          "label": "난독화",
+          "value": "탐지",
+          "strong": false
+        },
+        {
+          "code": "reflection",
+          "label": "리플렉션 사용",
+          "value": "탐지",
+          "strong": false
+        },
+        {
+          "code": "hardcoded_ip_string",
+          "label": "하드코딩 IP 문자열",
+          "value": "2건",
+          "strong": false
+        },
+        {
+          "code": "self_signed",
+          "label": "자체 서명 인증서",
+          "value": "예",
+          "strong": false
+        }
+      ],
+      "dynamic": [
+        {
+          "code": "plaintext",
+          "label": "평문 후보",
+          "value": "2건",
+          "strong": false
+        },
+        {
+          "code": "hook_events",
+          "label": "후킹 이벤트",
+          "value": "10건",
+          "strong": false
+        }
+      ],
       "network": []
     },
     "breakdown": {
       "modules": {
         "static": {
-          "available": false,
-          "weight": 0.0
+          "available": true,
+          "sub_score": 0.695,
+          "source": "static_analyzer.risk_score",
+          "static_breakdown": {
+            "total": 0.695,
+            "raw": 69.5,
+            "breakdown": [
+              {
+                "factor": "android.permission.REQUEST_INSTALL_PACKAGES",
+                "weight": 5
+              },
+              {
+                "factor": "exported_components (10개 상한적용)",
+                "weight": 12
+              },
+              {
+                "factor": "suspicious_api_calls (1종 / 발견 2건)",
+                "weight": 0.5
+              },
+              {
+                "factor": "obfuscation_detected",
+                "weight": 15
+              },
+              {
+                "factor": "reflection_usage",
+                "weight": 10
+              },
+              {
+                "factor": "packed_assets (1개, 최대 APK의 95%)",
+                "weight": 25
+              },
+              {
+                "factor": "certificate.is_self_signed",
+                "weight": 2
+              }
+            ]
+          },
+          "weight": 0.4
         },
         "dynamic": {
-          "available": false,
-          "weight": 0.0
+          "available": true,
+          "sub_score": 0.1067,
+          "raw": 9.6,
+          "plaintext_candidate_count": 2,
+          "hook_counts": {
+            "base64": 2,
+            "string_builder": 8
+          },
+          "weight": 0.3
         },
         "network": {
-          "available": false,
-          "weight": 0.0
+          "available": true,
+          "sub_score": 0.0,
+          "raw": 0,
+          "suspicious_domain_count": 0,
+          "suspicious_ip_count": 0,
+          "weight": 0.3
         }
       },
-      "weights_applied": {},
-      "unavailable": [
-        "static",
-        "dynamic",
-        "network"
-      ]
+      "weights_applied": {
+        "static": 0.4,
+        "dynamic": 0.3,
+        "network": 0.3
+      },
+      "unavailable": []
     }
   }
 }
