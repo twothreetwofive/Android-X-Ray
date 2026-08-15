@@ -121,6 +121,7 @@ def render(report: dict) -> None:
     # ── 3. 게이지 + 기여도 ──
     st.markdown("#### 종합 위험도")
     st.altair_chart(_gauge_chart(score100, code), width="stretch")
+    st.markdown(_band_legend_html(), unsafe_allow_html=True)
     st.caption(
         "구간: 0–29 정상 · 30–59 주의 · 60–79 의심 · 80–100 고위험 "
         "(‘악성’은 점수만으로 주지 않고 강한 지표가 여러 개 충족될 때만 표시)"
@@ -279,6 +280,29 @@ def _render_unknown(report: dict) -> None:
     _render_module_status(report)
 
 
+def _band_legend_html() -> str:
+    """게이지 아래에 둘 판정 구간 범례를 HTML로 만든다.
+
+    vega 하단 범례가 짧은 게이지 높이에서 잘려서, 색만 게이지 밴드와 동일하게
+    맞춘 칩 형태 범례로 대체한다. flex-wrap이라 화면이 좁아도 줄바꿈될 뿐
+    잘리지 않는다. 색·라벨·순서는 VERDICT_BAND_BOUNDS(=게이지 밴드)와 같은 소스다.
+    """
+    chips = []
+    for _upper, code in VERDICT_BAND_BOUNDS:
+        color = VERDICT_COLORS[code]
+        label = verdict_ko(code)
+        chips.append(
+            '<span style="display:inline-flex; align-items:center; gap:6px; '
+            'margin:0 16px 4px 0; font-size:13px; white-space:nowrap;">'
+            f'<span style="width:14px; height:14px; border-radius:3px; '
+            f'background:{color}; display:inline-block;"></span>{label}</span>'
+        )
+    return (
+        '<div style="display:flex; flex-wrap:wrap; justify-content:center; '
+        'margin:-6px 0 2px;">' + "".join(chips) + "</div>"
+    )
+
+
 def _gauge_chart(score100: int, verdict_code: str) -> alt.LayerChart:
     """0~100 선형 게이지. 판정 구간을 옅은 색 밴드로 깔고, 현재 점수를 진한
     눈금(rule) + 점으로 표시한다. 밴드 경계는 VERDICT_BAND_BOUNDS(=aggregator의
@@ -301,9 +325,12 @@ def _gauge_chart(score100: int, verdict_code: str) -> alt.LayerChart:
             x=alt.X("start:Q", scale=alt.Scale(domain=[0, 100]),
                     axis=alt.Axis(title=None, values=[0, 30, 60, 80, 100], grid=False)),
             x2="end:Q",
+            # 범례는 vega 하단 범례(orient="bottom") 대신 HTML로 그린다.
+            # 게이지 높이가 70px로 짧아 하단 가로 범례가 렌더 공간 밖으로 밀려
+            # 잘리는 문제가 있었다(streamlit+vega). _band_legend_html()이 대신한다.
             color=alt.Color("구간:N",
                             scale=alt.Scale(domain=band_domain, range=band_range),
-                            legend=alt.Legend(title=None, orient="bottom")),
+                            legend=None),
             opacity=alt.value(0.30),
             tooltip=[alt.Tooltip("구간:N"), alt.Tooltip("start:Q", title="이상"),
                      alt.Tooltip("end:Q", title="미만")],
