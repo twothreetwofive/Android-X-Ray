@@ -13775,11 +13775,145 @@ std_string_c_str (StdString * self)
           return result;
         };
       }
+      function hookSensitiveRead() {
+        var jobs = [
+          { cls: "android.telephony.TelephonyManager", methods: {
+            getDeviceId: "device_id",
+            getImei: "imei",
+            getSubscriberId: "subscriber_id",
+            getSimSerialNumber: "sim_serial",
+            getLine1Number: "phone_number"
+          } },
+          { cls: "android.location.LocationManager", methods: {
+            getLastKnownLocation: "location"
+          } }
+        ];
+        jobs.forEach(function(job) {
+          var Clazz;
+          try {
+            Clazz = frida_java_bridge_default.use(job.cls);
+          } catch (e) {
+            return;
+          }
+          Object.keys(job.methods).forEach(function(m) {
+            var dataType = job.methods[m];
+            try {
+              Clazz[m].overloads.forEach(function(ov) {
+                ov.implementation = function() {
+                  var result = ov.apply(this, arguments);
+                  try {
+                    if (!isDuplicate("sensitive_read", dataType)) {
+                      sendEvent("sensitive_read", job.cls, m, dataType, { data_type: dataType });
+                    }
+                  } catch (e) {
+                    console.log("[hooks.js] sensitive_read send \uC2E4\uD328: " + e);
+                  }
+                  return result;
+                };
+              });
+            } catch (e) {
+            }
+          });
+        });
+      }
+      function classifyContentUri(uri) {
+        if (!uri) return null;
+        if (uri.indexOf("contacts") !== -1) return "contacts";
+        if (uri.indexOf("sms") !== -1 || uri.indexOf("mms") !== -1) return "sms";
+        if (uri.indexOf("call_log") !== -1) return "call_log";
+        return null;
+      }
+      function hookContentResolver() {
+        var CR;
+        try {
+          CR = frida_java_bridge_default.use("android.content.ContentResolver");
+        } catch (e) {
+          return;
+        }
+        try {
+          CR.query.overloads.forEach(function(ov) {
+            ov.implementation = function() {
+              var result = ov.apply(this, arguments);
+              try {
+                var uri = arguments.length > 0 && arguments[0] ? arguments[0].toString() : "";
+                var dataType = classifyContentUri(uri);
+                if (dataType && !isDuplicate("sensitive_read", dataType)) {
+                  sendEvent(
+                    "sensitive_read",
+                    "android.content.ContentResolver",
+                    "query",
+                    dataType,
+                    { data_type: dataType, uri }
+                  );
+                }
+              } catch (e) {
+                console.log("[hooks.js] contentresolver send \uC2E4\uD328: " + e);
+              }
+              return result;
+            };
+          });
+        } catch (e) {
+        }
+      }
+      function destType(host) {
+        if (!host) return "unknown";
+        if (host === "localhost" || host === "::1" || host.indexOf("127.") === 0) return "loopback";
+        if (host.indexOf("10.") === 0 || host.indexOf("192.168.") === 0) return "private";
+        var m = /^172\.(\d+)\./.exec(host);
+        if (m && +m[1] >= 16 && +m[1] <= 31) return "private";
+        return "public";
+      }
+      function hostOf(urlStr) {
+        try {
+          var m = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/([^\/:?#]+)/.exec(urlStr);
+          return m ? m[1] : "";
+        } catch (e) {
+          return "";
+        }
+      }
+      function emitNetworkSend(cls, method, dest, host) {
+        if (isDuplicate("network_send", dest)) return;
+        sendEvent("network_send", cls, method, dest, { destination: dest, host, dest_type: destType(host) });
+      }
+      function hookNetworkSend() {
+        try {
+          var URL = frida_java_bridge_default.use("java.net.URL");
+          URL.openConnection.overloads.forEach(function(ov) {
+            ov.implementation = function() {
+              var result = ov.apply(this, arguments);
+              try {
+                var url = this.toString();
+                emitNetworkSend("java.net.URL", "openConnection", url, hostOf(url));
+              } catch (e) {
+                console.log("[hooks.js] url send \uC2E4\uD328: " + e);
+              }
+              return result;
+            };
+          });
+        } catch (e) {
+        }
+        try {
+          var Socket = frida_java_bridge_default.use("java.net.Socket");
+          var ctor = Socket.$init.overload("java.lang.String", "int");
+          ctor.implementation = function(host, port) {
+            try {
+              emitNetworkSend("java.net.Socket", "<init>", host + ":" + port, host);
+            } catch (e) {
+              console.log("[hooks.js] socket send \uC2E4\uD328: " + e);
+            }
+            return ctor.call(this, host, port);
+          };
+        } catch (e) {
+        }
+      }
       frida_java_bridge_default.perform(function() {
         hookStringBuilder();
         hookBase64();
         hookCipher();
-        console.log("[hooks.js] string_builder / base64 / cipher \uD6C4\uD0B9 \uB4F1\uB85D \uC644\uB8CC");
+        hookSensitiveRead();
+        hookContentResolver();
+        hookNetworkSend();
+        console.log("[hooks.js] string_builder / base64 / cipher / sensitive_read / network_send \uD6C4\uD0B9 \uB4F1\uB85D \uC644\uB8CC");
       });
     }
   });

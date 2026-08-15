@@ -7,7 +7,13 @@
 from typing import Dict, List, Literal, Optional, TypedDict
 
 # ── B가 hooks.js에서 send()로 보내는 개별 후킹 이벤트(변경 가능) ──
-HookType = Literal["string_builder", "base64", "cipher", "custom_xor"]
+# 8주차: 정보탈취 탐지용 행위 후킹 2종 추가.
+#   sensitive_read → 민감정보 읽기(연락처·기기ID·위치 등) = 무엇을 훔쳤나(source)
+#   network_send   → 외부 전송(URL/Socket) = 어디로 보냈나(sink). 목적지를 남긴다.
+HookType = Literal[
+    "string_builder", "base64", "cipher", "custom_xor",
+    "sensitive_read", "network_send",
+]
 
 class HookEvent(TypedDict):
     hook_type: HookType          # 어떤 후킹에서 잡혔는지
@@ -23,6 +29,10 @@ class HookEvent(TypedDict):
 #   base64         → {"direction": "decode" | "encode"}
 #   cipher         → {"algorithm": "AES/CBC/PKCS5Padding", "mode": "decrypt"|"encrypt"}
 #   custom_xor     → {"detected_pattern": "string_assembly"}
+#   sensitive_read → {"data_type": "contacts"|"sms"|"device_id"|"location"|...}
+#                    raw_value에도 data_type을 넣는다(실제 PII 값은 로깅하지 않음).
+#   network_send   → {"destination": "http://127.0.0.1:8080/..", "host": "127.0.0.1",
+#                     "dest_type": "loopback"|"private"|"public"}. raw_value=destination.
 #
 # 계약 변경: 위 4개 hook_type 전부에 caller(호출자) 정보가 공통으로 추가됨.
 # hooks.js의 sendEvent()가 스택트레이스에서 후킹 대상 클래스 자신의 프레임(및 JDK 내부 위임 프레임)을
