@@ -127,8 +127,15 @@ def is_framework_caller(event: HookEvent) -> bool:
     return caller.startswith(FRAMEWORK_CALLER_PREFIXES)
 
 
+# 행위 후킹(source/sink)의 raw_value는 "암호화 뒤에 숨었다 드러난 평문"이 아니라
+# 종류 라벨("contacts")이나 목적지("http://127.0.0.1/..")다. 평문 후보로 세면
+# 동적 하위점수의 평문 항목이 이중으로 오르므로 이 집계에서만 제외한다
+# (events 원본에는 그대로 남는다 — 지표/스코어링은 hook_type으로 따로 센다).
+_BEHAVIORAL_HOOK_TYPES = {"sensitive_read", "network_send"}
+
+
 def extract_plaintext_candidates(events: List[HookEvent]) -> List[str]:
-    """평문 후보 추출. 프레임워크 내부 호출은 제외한다.
+    """평문 후보 추출. 프레임워크 내부 호출과 행위 후킹은 제외한다.
 
     events 자체에서는 빼지 않는다 — 원본 관측 기록은 그대로 남기고, "평문 후보"라는
     **판단이 들어간 목록**에서만 제외한다. 무엇이 걸러졌는지 확인하려면
@@ -137,7 +144,9 @@ def extract_plaintext_candidates(events: List[HookEvent]) -> List[str]:
     return [
         e["raw_value"]
         for e in events
-        if is_plaintext(e["raw_value"]) and not is_framework_caller(e)
+        if e.get("hook_type") not in _BEHAVIORAL_HOOK_TYPES
+        and is_plaintext(e["raw_value"])
+        and not is_framework_caller(e)
     ]
 
 

@@ -324,3 +324,62 @@ def test_전부_관측이_없어도_정적이_있으면_판정은_나온다():
     })
     assert r["total"] is not None
     assert r["verdict"]["code"] == "high_risk"
+
+
+# ────────────────────────────────────────────
+# 정보탈취 후킹 (source/sink) — 8주차
+#
+# 위장 정보탈취 앱은 연락처·기기ID를 읽어(source) 밖으로 보낸다(sink). 목적지가
+# 루프백이어도(학습용 샘플) network_send 이벤트로 잡히고, "읽기+전송" 조합일 때만
+# 강한 지표(info_stealer_pattern)로 승격한다. 개별 신호는 정상 앱도 흔하므로 강한
+# 지표로 세지 않는다 — 평문 후보/동적로딩 단독을 안 세는 것과 같은 원칙이다.
+# ────────────────────────────────────────────
+
+def _dynamic_behavioral(sensitive=0, send=0, dest_type="loopback"):
+    events = [{"hook_type": "sensitive_read", "extra": {"data_type": "contacts"}}] * sensitive
+    events += [{"hook_type": "network_send", "extra": {"dest_type": dest_type}}] * send
+    return _module(plaintext_candidates=[], events=events)
+
+
+def test_정보탈취_패턴은_읽기와_전송이_겹칠_때만_강한_지표():
+    r = aggregate_risk({
+        "static": _static(risk_score=0.4),
+        "dynamic": _dynamic_behavioral(sensitive=2, send=1),
+        "network": {"status": "failed", "data": None},
+    })
+    strong = [i["code"] for i in r["verdict"]["strong_indicators"]]
+    assert "info_stealer_pattern" in strong
+
+
+def test_민감정보_읽기만으로는_강한_지표가_아니다():
+    r = aggregate_risk({
+        "static": _static(risk_score=0.4),
+        "dynamic": _dynamic_behavioral(sensitive=3, send=0),
+        "network": {"status": "failed", "data": None},
+    })
+    codes = [i["code"] for i in r["indicators"]["dynamic"]]
+    strong = [i["code"] for i in r["verdict"]["strong_indicators"]]
+    assert "sensitive_read" in codes            # 지표로는 보여준다
+    assert "info_stealer_pattern" not in strong  # 승격 근거로는 안 쓴다
+
+
+def test_외부_전송만으로는_강한_지표가_아니다():
+    r = aggregate_risk({
+        "static": _static(risk_score=0.4),
+        "dynamic": _dynamic_behavioral(sensitive=0, send=3),
+        "network": {"status": "failed", "data": None},
+    })
+    strong = [i["code"] for i in r["verdict"]["strong_indicators"]]
+    assert "info_stealer_pattern" not in strong
+
+
+def test_행위_후킹만_있어도_관측으로_집계된다():
+    """루프백 전송처럼 DNS/암복호화가 없어도, source/sink 이벤트가 있으면
+    동적 모듈이 '관측 없음'으로 빠지지 않아야 한다(이 후킹을 넣은 이유)."""
+    r = aggregate_risk({
+        "static": _static(risk_score=0.4),
+        "dynamic": _dynamic_behavioral(sensitive=1, send=1),
+        "network": {"status": "failed", "data": None},
+    })
+    assert "dynamic" not in r["breakdown"]["unavailable"]
+    assert r["breakdown"]["modules"]["dynamic"]["available"] is True

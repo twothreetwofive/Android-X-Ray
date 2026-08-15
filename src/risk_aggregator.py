@@ -59,12 +59,20 @@ DYNAMIC_HOOK_WEIGHTS = {
     "custom_xor": 3,              # 자체 XOR 난독화 패턴
     "base64": 1,                  # base64 인코딩/디코딩
     "string_builder": 0.2,        # 문자열 동적 조립(약한 신호, 정상 앱도 흔함)
+    # 8주차 정보탈취 후킹. 개별 신호는 정상 앱도 흔하므로(연락처 읽기, 네트워크
+    # 접속) 가중치를 낮게 준다 — 판별력은 "둘의 조합"(info_stealer_pattern, 아래
+    # _dynamic_indicators)에서 강한 지표로 나온다. 여기서는 관측이 잡히게 하고
+    # 소폭만 반영한다. network_send는 사실상 모든 앱이 해서 가장 낮게.
+    "sensitive_read": 2,          # 민감정보 읽기(연락처/기기ID/위치 등)
+    "network_send": 0.5,          # 외부 전송(URL/Socket 목적지)
 }
 DYNAMIC_HOOK_MAX_COUNTS = {
     "cipher": 10,
     "custom_xor": 10,
     "base64": 20,
     "string_builder": 50,
+    "sensitive_read": 10,
+    "network_send": 20,
 }
 DYNAMIC_CAP = 90.0               # 위 상한을 전부 채웠을 때의 합 = 1.0
 
@@ -341,6 +349,29 @@ def _dynamic_indicators(data: dict) -> list[dict]:
     n_cipher = hook_counts.get("cipher", 0) + hook_counts.get("custom_xor", 0)
     if n_cipher:
         out.append(_ind("runtime_crypto", "런타임 암복호화", f"{n_cipher}건"))
+
+    # 정보탈취 후킹 (source / sink)
+    n_sensitive = hook_counts.get("sensitive_read", 0)
+    n_send = hook_counts.get("network_send", 0)
+    if n_sensitive:
+        out.append(_ind("sensitive_read", "민감정보 접근", f"{n_sensitive}건"))
+    if n_send:
+        # 목적지 유형(loopback/public)이 있으면 함께 보여준다 — 공인망 전송이 더 위험.
+        dest_types = sorted({
+            (ev.get("extra") or {}).get("dest_type")
+            for ev in events if ev.get("hook_type") == "network_send"
+        } - {None})
+        suffix = f" ({', '.join(dest_types)})" if dest_types else ""
+        out.append(_ind("network_send", "외부 전송", f"{n_send}건{suffix}"))
+
+    # 정보탈취 패턴: 민감정보를 읽고(source) 밖으로 내보냈다(sink)면, 목적지가
+    # 루프백이든 공인망이든 이 "읽기+전송" 조합 자체가 정보탈취의 정의다. 개별
+    # 신호는 정상 앱도 흔하므로 강한 지표로 세지 않지만, 둘이 겹치면 승격한다
+    # (난독화+동적로딩=dropper_pattern과 같은 조합-기반 판정).
+    if n_sensitive and n_send:
+        out.append(_ind("info_stealer_pattern",
+                        "정보탈취 패턴 (민감정보 읽기 + 외부 전송)", "탐지", strong=True))
+
     if events:
         out.append(_ind("hook_events", "후킹 이벤트", f"{len(events)}건"))
 
