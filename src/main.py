@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
@@ -281,13 +282,28 @@ def run_pipeline(
     on_progress: (stage, status) -> None 형태의 선택적 콜백. stage는
     "static"/"dynamic"/"network", status는 "running" 또는 module_status값
     (ok/partial/failed/timeout). 대시보드(pipeline_bridge.py)에서 진행상황
-    표시용으로 씀 — CLI 실행(main())에서는 안 넘기므로 동작 그대로다."""
+    표시용으로 씀 — CLI 실행(main())에서는 안 넘기므로 동작 그대로다.
 
+    timings (8주차 계획수정 PDF, 역할1 유예원 담당): B가 설계하는 "수동 대비 시간
+    단축" 정량화 프로토콜에 자동 측정치를 공급하기 위해 stage별 소요시간을 잰다.
+    사람이 손으로 재던 것을 대체하는 게 목적이라 수동 측정과 같은 기준(벽시계 시간,
+    outer timeout 대기까지 포함)으로 재야 해서 time.perf_counter()를 stage 진입
+    직전~직후에 바로 감싼다(모듈 내부에 계측을 넣지 않음 — 세 모듈 각자 건드리지
+    않고 오케스트레이터 한 곳에서만 재는 게 유지보수에 유리하다).
+
+    동적+네트워크 단계가 건너뛰어진 경우(정적 분석 실패로 package_name이 없음)
+    dynamic_network_sec은 0이 아니라 None이다 — 이 저장소의 원칙("관측 없음은
+    위험 없음이 아니다")과 같은 이유로, "0초 걸림"과 "애초에 안 돌았음"을
+    구분해야 B의 배수 계산이 왜곡되지 않는다."""
+
+    pipeline_start = time.perf_counter()
     analyzed_at = datetime.now(timezone.utc).isoformat()
 
     # 1. 정적 분석 (독립적, 먼저 실행)
     _notify(on_progress, "static", "running")
+    static_start = time.perf_counter()
     static_out = _with_outer_timeout(_run_static_stage, STATIC_STAGE_TIMEOUT_SEC, apk_path, work_dir)
+    static_sec = time.perf_counter() - static_start
     static_result = (
         ModuleResult(status="timeout", error=f"{STATIC_STAGE_TIMEOUT_SEC}s 초과")
         if static_out == "TIMEOUT" else static_out
@@ -300,6 +316,7 @@ def run_pipeline(
     if static_result.data:
         package_name = static_result.data.get("meta", {}).get("package_name")
 
+    dynamic_network_sec: Optional[float] = None
     if package_name is None:
         msg = "package_name을 구할 수 없어 동적/네트워크 단계 실행 안 함 (정적 분석 실패)"
         dynamic_result = ModuleResult(status="failed", error=msg)
@@ -310,11 +327,13 @@ def run_pipeline(
         _notify(on_progress, "dynamic", "running")
         _notify(on_progress, "network", "running")
         scenario = _build_scenario(package_name, scenario_template)
+        dynamic_network_start = time.perf_counter()
         stage_out = _with_outer_timeout(
             _run_dynamic_and_network_stage,
             DYNAMIC_NETWORK_STAGE_TIMEOUT_SEC,
             package_name, scenario, hooks_js_path, output_pcap_path, observe_after_sec,
         )
+        dynamic_network_sec = time.perf_counter() - dynamic_network_start
         if stage_out == "TIMEOUT":
             timeout_msg = f"{DYNAMIC_NETWORK_STAGE_TIMEOUT_SEC}s 초과"
             dynamic_result = ModuleResult(status="timeout", error=timeout_msg)
@@ -333,12 +352,20 @@ def run_pipeline(
     }
     risk_score = aggregate_risk(modules)
 
+    total_sec = time.perf_counter() - pipeline_start
+    timings = {
+        "static_sec": round(static_sec, 3),
+        "dynamic_network_sec": round(dynamic_network_sec, 3) if dynamic_network_sec is not None else None,
+        "total_sec": round(total_sec, 3),
+    }
+
     return {
         "apk_name": Path(apk_path).name,
         "package_name": package_name,
         "analyzed_at": analyzed_at,
         "modules": modules,
         "risk_score": risk_score,
+        "timings": timings,
     }
 
 
@@ -472,6 +499,15 @@ def _print_summary(report: dict, output_path: str) -> None:
             f"{rule['min_indicators']}개 이상을 둘 다 충족해야 함 "
             f"(현재 {score100}점 / 강한 지표 {rule.get('strong_indicator_count', 0)}개)"
         )
+
+    timings = report.get("timings") or {}
+    if timings:
+        dn_sec = timings.get("dynamic_network_sec")
+        dn_display = f"{dn_sec:.2f}s" if dn_sec is not None else "건너뜀 (정적 실패)"
+        print("\n-- 소요 시간 --")
+        print(f"  정적 분석        {timings.get('static_sec', 0):.2f}s")
+        print(f"  동적+네트워크    {dn_display}")
+        print(f"  전체             {timings.get('total_sec', 0):.2f}s")
 
     print(f"\n  ⚠ {DISCLAIMER}")
     print(f"\n최종 리포트 저장: {output_path}")
