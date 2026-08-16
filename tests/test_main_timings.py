@@ -25,7 +25,8 @@ def _fake_static_failed(apk_path, work_dir):
 
 
 def _fake_dynamic_and_network_ok(
-    package_name, scenario, hooks_js_path, output_pcap_path, observe_after_sec
+    package_name, scenario, hooks_js_path, output_pcap_path, observe_after_sec,
+    resource_sink=None,
 ):
     time.sleep(0.02)
     return (
@@ -49,8 +50,9 @@ def test_모든_단계가_성공하면_세_타이밍이_전부_채워진다(monk
     timings = report["timings"]
     assert timings["static_sec"] > 0
     assert timings["dynamic_network_sec"] > 0
-    # 전체 시간은 두 단계 소요시간의 합보다 작을 수 없다 (스코어링 등 부가 작업 포함).
-    assert timings["total_sec"] >= timings["static_sec"] + timings["dynamic_network_sec"]
+    # 전체 시간은 두 단계 소요시간의 합보다 작을 수 없다(스코어링 등 부가 작업 포함) —
+    # 단, 세 값 모두 독립적으로 반올림(round(..., 3))되므로 합만큼의 오차는 허용한다.
+    assert timings["total_sec"] >= timings["static_sec"] + timings["dynamic_network_sec"] - 0.005
 
 
 def test_정적_분석이_실패하면_동적_네트워크_타이밍은_0이_아니라_None이다(monkeypatch):

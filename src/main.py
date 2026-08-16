@@ -32,16 +32,28 @@ sni_parser.py/ip_checker.py/report_builder.py는 아직 `feature/network-analyze
       추가한다 — "코드가 실패한 것"과 "그냥 오래 걸리는 것"을 구분하기 위해
       module_status에 "timeout"을 별도로 둠.
     - outer timeout이 트립됐을 때 내부 adb/frida subprocess가 좀비로 남을 수 있는
-      문제는 Day2 골격 단계에서는 미해결로 남겨둠 — Day3 취합 때 역할1+3이 같이
-      검증하기로 함(스펙 문서 6번 검증 계획 참고).
+      문제 (8주차, 잔버그 f로 수정): 원인은 두 가지였다. (1) `_with_outer_timeout`이
+      `with ThreadPoolExecutor() as executor:`를 쓰고 있어서, 타임아웃을 감지해도
+      `__exit__`이 `shutdown(wait=True)`를 호출해 실제로는 그 stage가 끝날 때까지
+      계속 기다리고 있었다(이름만 "timeout"이었지 진행 시간은 전혀 안 줄었음) —
+      `threading.Thread(daemon=True)` + `join(timeout=...)`으로 교체해 진짜로 그
+      시점에 포기하고 리턴하게 함. (2) 그렇게 스레드를 포기해도 그 스레드가 잡고
+      있던 adb/frida 프로세스 자체는 안 죽으므로, `_run_dynamic_and_network_stage`가
+      만든 컨트롤러를 `resource_sink`로 빼내 `_force_cleanup_after_timeout()`이
+      타임아웃 시점에 강제로 정리(frida cleanup + adb force-stop/pkill tcpdump)한다.
+      스레드 자체를 강제 종료하는 건 여전히 불가능하므로(파이썬의 근본 한계) 완전한
+      해결은 아니고, daemon=True라 최소한 메인 프로세스가 그것 때문에 안 끝나는
+      일은 없다. stage를 별도 프로세스로 분리하는 근본 해결은 이월 과제로 남김
+      (`docs/8주차보고서_B.md` 5-3).
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import subprocess
+import threading
 import time
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 from pathlib import Path
@@ -103,13 +115,87 @@ class ModuleResult:
 
 
 def _with_outer_timeout(fn, timeout_sec: float, *args, **kwargs):
-    """stage 전체에 outer timeout을 건다. 반환값이 문자열 "TIMEOUT"이면 트립된 것."""
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        future = executor.submit(fn, *args, **kwargs)
+    """stage 전체에 outer timeout을 건다. 반환값이 문자열 "TIMEOUT"이면 트립된 것.
+
+    수정 이력 (8주차, 잔버그 f — 좀비 프로세스의 실제 원인): 원래 이 함수는
+    `with ThreadPoolExecutor() as executor:`로 되어 있었다. `future.result(timeout=...)`가
+    타임아웃을 던지는 것까지는 맞는데, `with` 블록을 빠져나갈 때
+    `ThreadPoolExecutor.__exit__`이 내부적으로 `shutdown(wait=True)`를 호출한다 —
+    즉 이 함수가 실제로 "TIMEOUT"을 리턴하기 전에 **그 작업이 실제로 끝날 때까지
+    그대로 기다리고 있었다.** 라벨만 나중에 "timeout"으로 다르게 찍힐 뿐 파이프라인
+    진행 시간은 전혀 줄지 않는 이름뿐인 타임아웃이었던 것 — adb 명령 하나가 응답
+    없이 계속 걸려있으면 run_pipeline() 자체가, 그리고 CLI로 돌렸다면 python
+    프로세스 자체가 그 명령이 끝날 때까지(응답이 없으면 영원히) 안 끝났다.
+
+    파이썬 스레드는 강제 종료가 안 되므로 여기서 할 수 있는 건 "기다리는 것을
+    멈추는 것"뿐이다. `threading.Thread(daemon=True)`로 띄우면 그 스레드가 끝내
+    안 끝나도(예: adb 명령이 정말 응답을 안 주면) 최소한 프로세스 종료 시 그
+    스레드 때문에 block되지는 않는다. 다만 이 함수 자체는 스레드 안에서 실제로
+    붙잡고 있던 adb/frida 리소스를 모르므로 그건 못 죽인다 — 그건 호출부
+    (run_pipeline)가 `_force_cleanup_after_timeout()`으로 "알려진" 리소스만 따로
+    정리한다.
+    """
+    result_box: list = []
+
+    def _target():
         try:
-            return future.result(timeout=timeout_sec)
-        except FutureTimeoutError:
-            return "TIMEOUT"
+            result_box.append(("ok", fn(*args, **kwargs)))
+        except Exception as e:  # noqa: BLE001 — 백그라운드 스레드 예외는 그대로 못 던지니 담아뒀다가 다시 던진다
+            result_box.append(("error", e))
+
+    thread = threading.Thread(target=_target, daemon=True)
+    thread.start()
+    thread.join(timeout=timeout_sec)
+    if thread.is_alive():
+        return "TIMEOUT"
+
+    kind, payload = result_box[0]
+    if kind == "error":
+        raise payload
+    return payload
+
+
+def _force_cleanup_after_timeout(
+    package_name: Optional[str], controller: Optional["FridaController"]
+) -> None:
+    """dynamic+network stage가 outer timeout으로 트립된 뒤, 그 안에서 실행되던
+    백그라운드 스레드가 잡고 있었을 adb/frida 리소스를 최선을 다해 정리한다.
+
+    스레드 자체를 죽이는 게 아니라 걔가 쓰던 "이름이 알려진" 핸들만 다른 스레드에서
+    가로채 끊는 것이다 — FridaController.cleanup()의 각 단계는 이미 개별
+    try/except로 감싸져 있어 원래 스레드와 여기가 동시에 같은 컨트롤러를 건드려도
+    최악의 경우 조용히 실패할 뿐 예외가 위로 새지 않는다. adb 레벨 강제 종료는
+    frida cleanup이 이미 처리했어도 중복 호출이 안전하다(이미 없는 프로세스에
+    force-stop/pkill은 그냥 아무 일도 안 하고 끝난다).
+
+    완전한 해결은 아니다 — 스레드 자체가 진짜로 응답 없는 adb 호출 하나에 영원히
+    막혀 있으면 그 스레드는 프로세스가 끝날 때까지 살아있는다(daemon=True라
+    최소한 메인 프로세스 종료는 막지 않는다). 근본적으로 stage를 별도 프로세스로
+    분리해서 강제 종료 가능하게 만드는 건 Day2 골격 이상의 리팩터라 이월 과제로
+    남긴다(`docs/8주차보고서_B.md` 5-3).
+    """
+    if controller is not None:
+        try:
+            controller.cleanup()
+        except Exception:  # noqa: BLE001 — 정리 실패가 파이프라인을 죽이면 안 됨
+            pass
+
+    if package_name:
+        try:
+            subprocess.run(
+                ["adb", "shell", "am", "force-stop", package_name],
+                capture_output=True, timeout=10,
+            )
+        except Exception:  # noqa: BLE001 — adb 미설치/기기 없음 등, 정리는 최선만 다한다
+            pass
+
+    try:
+        subprocess.run(
+            ["adb", "shell", "pkill", "-f", "tcpdump"],
+            capture_output=True, timeout=10,
+        )
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def _notify(on_progress: Optional[ProgressCallback], stage: str, status: str) -> None:
@@ -177,10 +263,18 @@ def _run_dynamic_and_network_stage(
     hooks_js_path: str,
     output_pcap_path: str,
     observe_after_sec: float,
+    resource_sink: Optional[dict] = None,
 ) -> tuple[ModuleResult, ModuleResult]:
     """capture_during_scenario()가 캡처 시작 -> 시나리오 실행 -> 캡처 종료 순서를
     이미 보장하므로, 오케스트레이터가 따로 스레드를 나눠 병렬 실행할 필요 없이
-    이 함수 하나만 부르면 동기화가 된다."""
+    이 함수 하나만 부르면 동기화가 된다.
+
+    resource_sink (8주차, 잔버그 f): outer timeout이 트립됐을 때 run_pipeline이
+    이 함수가 만든 `controller`를 강제로 정리(cleanup)할 수 있도록, 만들어지는
+    즉시(연결까지 끝난 뒤) 넘겨받은 dict에 채워 넣는다. 이 함수는 자기 스레드
+    안에서만 실행되므로 다른 스레드가 이 dict를 읽어도 안전하다(그냥 참조 하나
+    꺼내가는 것). None이면(main() CLI 등 기존 호출부) 그냥 아무 일도 안 한다 —
+    하위 호환 유지."""
     if FridaController is None:
         err = f"동적 분석 모듈 import 실패 (frida 미설치 환경으로 보임): {_DYNAMIC_IMPORT_ERROR}"
         return ModuleResult(status="failed", error=err), ModuleResult(status="failed", error=err)
@@ -193,6 +287,9 @@ def _run_dynamic_and_network_stage(
     except Exception as e:
         err = f"Frida 연결 실패: {e}"
         return ModuleResult(status="failed", error=err), ModuleResult(status="failed", error=err)
+
+    if resource_sink is not None:
+        resource_sink["controller"] = controller
 
     try:
         capture_meta, scenario_result = capture_during_scenario(
@@ -327,15 +424,21 @@ def run_pipeline(
         _notify(on_progress, "dynamic", "running")
         _notify(on_progress, "network", "running")
         scenario = _build_scenario(package_name, scenario_template)
+        resource_sink: dict = {}
         dynamic_network_start = time.perf_counter()
         stage_out = _with_outer_timeout(
             _run_dynamic_and_network_stage,
             DYNAMIC_NETWORK_STAGE_TIMEOUT_SEC,
             package_name, scenario, hooks_js_path, output_pcap_path, observe_after_sec,
+            resource_sink=resource_sink,
         )
         dynamic_network_sec = time.perf_counter() - dynamic_network_start
         if stage_out == "TIMEOUT":
             timeout_msg = f"{DYNAMIC_NETWORK_STAGE_TIMEOUT_SEC}s 초과"
+            # 잔버그 f: 타임아웃이 트립되면 백그라운드 스레드는 계속 남아있을 수
+            # 있으니, 그 스레드가 만들어둔(있다면) frida 컨트롤러 + 알려진 adb
+            # 프로세스명(패키지, tcpdump)을 여기서 최선을 다해 강제로 정리한다.
+            _force_cleanup_after_timeout(package_name, resource_sink.get("controller"))
             dynamic_result = ModuleResult(status="timeout", error=timeout_msg)
             network_result = ModuleResult(status="timeout", error=timeout_msg)
         else:
